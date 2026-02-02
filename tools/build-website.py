@@ -222,21 +222,19 @@ class WebsiteBuilder:
                     'url': f"/novels/{novel_data['slug']}/chapter-{ch['number']}"
                 })
             
-            # 定义所有10个广告单元
+            # 定义所有8个广告单元 (AdSense/AdX)
             all_ad_units = [
-                {'id': 1, 'slot_id': 'div-gpt-ad-1762511964282-0', 'path': '/22796784223/Netlink/goodluckark.com/banner_1'},
-                {'id': 2, 'slot_id': 'div-gpt-ad-1762511986518-0', 'path': '/22796784223/Netlink/goodluckark.com/banner_2'},
-                {'id': 3, 'slot_id': 'div-gpt-ad-1762512008111-0', 'path': '/22796784223/Netlink/goodluckark.com/banner_3'},
-                {'id': 4, 'slot_id': 'div-gpt-ad-1762512031919-0', 'path': '/22796784223/Netlink/goodluckark.com/banner_4'},
-                {'id': 5, 'slot_id': 'div-gpt-ad-1762512054239-0', 'path': '/22796784223/Netlink/goodluckark.com/banner_5'},
-                {'id': 6, 'slot_id': 'div-gpt-ad-1762512074266-0', 'path': '/22796784223/Netlink/goodluckark.com/banner_in_article_1'},
-                {'id': 7, 'slot_id': 'div-gpt-ad-1762512094799-0', 'path': '/22796784223/Netlink/goodluckark.com/banner_in_article_2'},
-                {'id': 8, 'slot_id': 'div-gpt-ad-1762512119068-0', 'path': '/22796784223/Netlink/goodluckark.com/banner_in_article_3'},
-                {'id': 9, 'slot_id': 'div-gpt-ad-1762512140538-0', 'path': '/22796784223/Netlink/goodluckark.com/banner_in_article_4'},
-                {'id': 10, 'slot_id': 'div-gpt-ad-1762512161163-0', 'path': '/22796784223/Netlink/goodluckark.com/banner_in_article_5'},
+                {'id': 1, 'slot': 'adx-23335185836-banner1', 'name': 'banner1'},
+                {'id': 2, 'slot': 'adx-23335185836-banner2', 'name': 'banner2'},
+                {'id': 3, 'slot': 'adx-23335185836-banner3', 'name': 'banner3'},
+                {'id': 4, 'slot': 'adx-23335185836-banner4', 'name': 'banner4'},
+                {'id': 5, 'slot': 'adx-23335185836-banner5', 'name': 'banner5'},
+                {'id': 6, 'slot': 'adx-23335185836-banner6', 'name': 'banner6'},
+                {'id': 7, 'slot': 'adx-23335185836-banner7', 'name': 'banner7'},
+                {'id': 8, 'slot': 'adx-23335185836-banner8', 'name': 'banner8'},
             ]
             
-            # 从10个广告单元中随机选择6个（每个页面都不同）
+            # 从8个广告单元中随机选择6个（每个页面都不同）
             selected_ad_units = random.sample(all_ad_units, 6)
             
             # 准备渲染数据（两个版本使用相同的数据）

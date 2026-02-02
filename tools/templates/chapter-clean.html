@@ -35,21 +35,8 @@
       gtag('config', 'G-E94B4SVMD4');
     </script>
     
-    <!-- Google Publisher Tag (GPT) -->
-    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js" crossorigin="anonymous"></script>
-    <script>
-      window.googletag = window.googletag || {cmd: []};
-      googletag.cmd.push(function() {
-        // Define ad slots for the chapter page
-        googletag.defineSlot('/22796784223/Netlink/goodluckark.com/banner_1', [300, 250], 'div-gpt-ad-1762511964282-0').addService(googletag.pubads());
-        googletag.defineSlot('/22796784223/Netlink/goodluckark.com/banner_2', [300, 250], 'div-gpt-ad-1762511986518-0').addService(googletag.pubads());
-        googletag.defineSlot('/22796784223/Netlink/goodluckark.com/banner_3', [300, 250], 'div-gpt-ad-1762512008111-0').addService(googletag.pubads());
-        googletag.defineSlot('/22796784223/Netlink/goodluckark.com/banner_4', [300, 250], 'div-gpt-ad-1762512031919-0').addService(googletag.pubads());
-        googletag.defineSlot('/22796784223/Netlink/goodluckark.com/banner_5', [300, 250], 'div-gpt-ad-1762512054239-0').addService(googletag.pubads());
-        googletag.pubads().enableSingleRequest();
-        googletag.enableServices();
-      });
-    </script>
+    <!-- Google AdSense/AdX Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle_direct.js?client=ca-pub-5058896253332104" crossorigin="anonymous"></script>
     
     <!-- Facebook Pixel Code -->
     <script>
@@ -758,60 +745,85 @@
             <div class="content font-medium">
                 {%- set paragraphs = chapter.content.split('\n') | map('trim') | select() | list -%}
                 {%- set total_paragraphs = paragraphs | length -%}
-                {%- set ad_position_1 = 1 -%}
-                {%- set ad_position_5 = total_paragraphs -%}
-                {%- if total_paragraphs > 4 -%}
-                    {%- set middle_space = (total_paragraphs - 2) // 4 -%}
-                    {%- set ad_position_2 = 1 + middle_space -%}
-                    {%- set ad_position_3 = 1 + middle_space * 2 -%}
-                    {%- set ad_position_4 = 1 + middle_space * 3 -%}
+                {%- if total_paragraphs > 10 -%}
+                    {%- set available_space = total_paragraphs - 5 -%}
+                    {%- set interval = available_space // 6 -%}
+                    {%- set ad_position_1 = 5 + interval -%}
+                    {%- set ad_position_2 = 5 + interval * 2 -%}
+                    {%- set ad_position_3 = 5 + interval * 3 -%}
+                    {%- set ad_position_4 = 5 + interval * 4 -%}
+                    {%- set ad_position_5 = 5 + interval * 5 -%}
+                    {%- set ad_position_6 = total_paragraphs -%}
                 {%- else -%}
-                    {%- set ad_position_2 = 2 -%}
-                    {%- set ad_position_3 = 3 -%}
-                    {%- set ad_position_4 = 4 -%}
+                    {%- set ad_position_1 = 6 -%}
+                    {%- set ad_position_2 = 7 -%}
+                    {%- set ad_position_3 = 8 -%}
+                    {%- set ad_position_4 = 9 -%}
+                    {%- set ad_position_5 = 10 -%}
+                    {%- set ad_position_6 = total_paragraphs -%}
                 {%- endif -%}
                 
                 {%- for paragraph in paragraphs %}
                 <p>{{ paragraph }}</p>
                 {%- if loop.index == ad_position_1 %}
-                <!-- /22796784223/Netlink/goodluckark.com/banner_1 -->
-                <div id='div-gpt-ad-1762511964282-0' style='min-width: 300px; min-height: 250px; text-align:center; margin: 20px 0;'>
-                  <script>
-                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1762511964282-0'); });
-                  </script>
-                </div>
+                <!-- AdSense Ad Unit: {{ selected_ad_units[0].slot }} -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="{{ selected_ad_units[0].slot }}"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 {%- endif %}
                 {%- if loop.index == ad_position_2 %}
-                <!-- /22796784223/Netlink/goodluckark.com/banner_2 -->
-                <div id='div-gpt-ad-1762511986518-0' style='min-width: 300px; min-height: 250px; text-align:center; margin: 20px 0;'>
-                  <script>
-                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1762511986518-0'); });
-                  </script>
-                </div>
+                <!-- AdSense Ad Unit: {{ selected_ad_units[1].slot }} -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="{{ selected_ad_units[1].slot }}"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 {%- endif %}
                 {%- if loop.index == ad_position_3 %}
-                <!-- /22796784223/Netlink/goodluckark.com/banner_3 -->
-                <div id='div-gpt-ad-1762512008111-0' style='min-width: 300px; min-height: 250px; text-align:center; margin: 20px 0;'>
-                  <script>
-                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1762512008111-0'); });
-                  </script>
-                </div>
+                <!-- AdSense Ad Unit: {{ selected_ad_units[2].slot }} -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="{{ selected_ad_units[2].slot }}"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 {%- endif %}
                 {%- if loop.index == ad_position_4 %}
-                <!-- /22796784223/Netlink/goodluckark.com/banner_4 -->
-                <div id='div-gpt-ad-1762512031919-0' style='min-width: 300px; min-height: 250px; text-align:center; margin: 20px 0;'>
-                  <script>
-                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1762512031919-0'); });
-                  </script>
-                </div>
+                <!-- AdSense Ad Unit: {{ selected_ad_units[3].slot }} -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="{{ selected_ad_units[3].slot }}"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 {%- endif %}
                 {%- if loop.index == ad_position_5 %}
-                <!-- /22796784223/Netlink/goodluckark.com/banner_5 -->
-                <div id='div-gpt-ad-1762512054239-0' style='min-width: 300px; min-height: 250px; text-align:center; margin: 20px 0;'>
-                  <script>
-                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1762512054239-0'); });
-                  </script>
-                </div>
+                <!-- AdSense Ad Unit: {{ selected_ad_units[4].slot }} -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="{{ selected_ad_units[4].slot }}"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                {%- endif %}
+                {%- if loop.index == ad_position_6 %}
+                <!-- AdSense Ad Unit: {{ selected_ad_units[5].slot }} -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="{{ selected_ad_units[5].slot }}"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 {%- endif %}
                 {%- endfor %}
             </div>

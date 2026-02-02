@@ -974,19 +974,8 @@
       gtag('config', 'G-E94B4SVMD4');
     </script>
     
-    <!-- Google Publisher Tag (GPT) - 动态加载选中的5个广告单元 -->
-    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js" crossorigin="anonymous"></script>
-    <script>
-      window.googletag = window.googletag || {cmd: []};
-      googletag.cmd.push(function() {
-        // Define ad slots for the chapter page (randomly selected 5 out of 10)
-        {% for ad_unit in selected_ad_units %}
-        googletag.defineSlot('{{ ad_unit.path }}', [300, 250], '{{ ad_unit.slot_id }}').addService(googletag.pubads());
-        {% endfor %}
-        googletag.pubads().enableSingleRequest();
-        googletag.enableServices();
-      });
-    </script>
+    <!-- Google AdSense/AdX Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle_direct.js?client=ca-pub-5058896253332104" crossorigin="anonymous"></script>
     
     <!-- Facebook Pixel Code -->
     <script>
@@ -2407,52 +2396,64 @@
                 {%- for paragraph in paragraphs %}
                 <p>{{ paragraph }}</p>
                 {%- if loop.index == ad_position_1 %}
-                <!-- {{ selected_ad_units[0].path }} -->
-                <div id='{{ selected_ad_units[0].slot_id }}' style='min-width: 300px; min-height: 250px;'>
-                  <script>
-                    googletag.cmd.push(function() { googletag.display('{{ selected_ad_units[0].slot_id }}'); });
-                  </script>
-                </div>
+                <!-- AdSense Ad Unit: {{ selected_ad_units[0].name }} -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="{{ selected_ad_units[0].slot }}"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 {%- endif %}
                 {%- if loop.index == ad_position_2 %}
-                <!-- {{ selected_ad_units[1].path }} -->
-                <div id='{{ selected_ad_units[1].slot_id }}' style='min-width: 300px; min-height: 250px;'>
-                  <script>
-                    googletag.cmd.push(function() { googletag.display('{{ selected_ad_units[1].slot_id }}'); });
-                  </script>
-                </div>
+                <!-- AdSense Ad Unit: {{ selected_ad_units[1].name }} -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="{{ selected_ad_units[1].slot }}"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 {%- endif %}
                 {%- if loop.index == ad_position_3 %}
-                <!-- {{ selected_ad_units[2].path }} -->
-                <div id='{{ selected_ad_units[2].slot_id }}' style='min-width: 300px; min-height: 250px;'>
-                  <script>
-                    googletag.cmd.push(function() { googletag.display('{{ selected_ad_units[2].slot_id }}'); });
-                  </script>
-                </div>
+                <!-- AdSense Ad Unit: {{ selected_ad_units[2].name }} -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="{{ selected_ad_units[2].slot }}"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 {%- endif %}
                 {%- if loop.index == ad_position_4 %}
-                <!-- {{ selected_ad_units[3].path }} -->
-                <div id='{{ selected_ad_units[3].slot_id }}' style='min-width: 300px; min-height: 250px;'>
-                  <script>
-                    googletag.cmd.push(function() { googletag.display('{{ selected_ad_units[3].slot_id }}'); });
-                  </script>
-                </div>
+                <!-- AdSense Ad Unit: {{ selected_ad_units[3].name }} -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="{{ selected_ad_units[3].slot }}"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 {%- endif %}
                 {%- if loop.index == ad_position_5 %}
-                <!-- {{ selected_ad_units[4].path }} -->
-                <div id='{{ selected_ad_units[4].slot_id }}' style='min-width: 300px; min-height: 250px;'>
-                  <script>
-                    googletag.cmd.push(function() { googletag.display('{{ selected_ad_units[4].slot_id }}'); });
-                  </script>
-                </div>
+                <!-- AdSense Ad Unit: {{ selected_ad_units[4].name }} -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="{{ selected_ad_units[4].slot }}"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 {%- endif %}
                 {%- if loop.index == ad_position_6 %}
-                <!-- {{ selected_ad_units[5].path }} -->
-                <div id='{{ selected_ad_units[5].slot_id }}' style='min-width: 300px; min-height: 250px;'>
-                  <script>
-                    googletag.cmd.push(function() { googletag.display('{{ selected_ad_units[5].slot_id }}'); });
-                  </script>
-                </div>
+                <!-- AdSense Ad Unit: {{ selected_ad_units[5].name }} -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="{{ selected_ad_units[5].slot }}"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 {%- endif %}
                 {%- endfor %}
             </div>
