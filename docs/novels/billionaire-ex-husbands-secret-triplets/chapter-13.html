@@ -2382,11 +2382,11 @@
                 <p>But Daisy wasn’t laughing.</p>
                 <p>Her cheek still stung from Laura’s slap. Caleb’s expression darkened as he gently touched the red mark. &#34;That witch is going to regret this.&#34;</p>
                 <p>Daisy bit her lip. &#34;Caleb… that woman is Vivian’s mother. Do you think Daddy really doesn’t want us?&#34;</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2394,11 +2394,11 @@
                 <p>Caleb squeezed her hand. &#34;He’s just blinded by Vivian right now. But we’ll make him see the truth. We can’t let him know who we are yet.&#34;</p>
                 <p>Not until we’re sure he’s worth it.</p>
                 <p>Daisy nodded firmly. &#34;Yeah. We’ll protect Mommy no matter what.&#34;</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2418,11 +2418,11 @@
                 <p>Bastards?</p>
                 <p>She closed the folder slowly, her gaze icy. &#34;What are you talking about?&#34;</p>
                 <p>Laura scoffed. &#34;I saw two kids today. Spitting image of you. Admit it—they’re yours!&#34;</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2430,11 +2430,11 @@
                 <p>Sophia wouldn’t have taken them out in public… Would she?</p>
                 <p>Laura narrowed her eyes. &#34;You’re lying.&#34;</p>
                 <p>Evelyn leaned back, feigning indifference. &#34;Even if they were mine, why would you care? Worry about your own daughter. Last I checked, Viana Jewelry is drowning in scandals under her ‘leadership.’&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2446,11 +2446,11 @@
                 <p>Those kids…</p>
                 <p>She exhaled sharply.</p>
                 <p>I won’t let the Vanderbilts use them against me.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4956,8 +4956,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4984,20 +4984,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

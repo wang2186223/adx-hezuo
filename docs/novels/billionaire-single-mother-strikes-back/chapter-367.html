@@ -2394,11 +2394,11 @@
                 <p>Victoria smiled bitterly. Love? What a convenient excuse!</p>
                 <p>Despite her resentment, she couldn’t expose him. She couldn’t let Alexander feel coerced. That would ruin her next move.</p>
                 <p>“Mother, Grandpa,” Victoria said weakly, “I’m exhausted. I don’t want to pressure Alexander. It’s fine if he doesn’t want to get engaged.”</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2418,11 +2418,11 @@
                 <p>Alexander knew better than to act impulsively. As for Isabella… He would find a way later.</p>
                 <p>“Yes,” Alexander replied.</p>
                 <p>Senior Theodore’s expression softened slightly. “Good. Make it grand!”</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2430,11 +2430,11 @@
                 <p>“No! They can’t get engaged!” A sharp, clear voice cut through the room.</p>
                 <p>Everyone turned to see Isabella walking into the ward.</p>
                 <p>Victoria clenched her fists. Why was Isabella here? To ruin things again?!</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2443,11 +2443,11 @@
                 <p>Worried that Isabella would stop the engagement, Eleanor quickly said, “Isabella, you’re just in time. Your sister is pregnant with Alexander’s child. They must get engaged and be together.”</p>
                 <p>What she really meant was: the engagement must proceed. Isabella should not interfere.</p>
                 <p>Benjamin glared at her and snapped, “I don’t care about your feelings for Alexander. Victoria is pregnant. They belong together. You need to accept that.”</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4945,8 +4945,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4973,20 +4973,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

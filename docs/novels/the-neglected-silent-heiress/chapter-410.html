@@ -2388,15 +2388,24 @@
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>In a frantic attempt to regain control, Victoria pleaded, &#34;Whatever lies Olivia told you, don&#39;t believe them! I&#39;m your wife - the one you should trust. She&#39;s just jealous and wants to destroy what we have. Can&#39;t you see she&#39;s manipulating you? Her intentions are far from pure!&#34;</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Daniel&#39;s expression darkened as he slowly shook his head, disappointment radiating from his every pore. &#34;Olivia didn&#39;t say a word. I heard everything I needed to know directly from your own mouth.&#34;</p>
+                <!-- AdSense Ad Unit: banner5 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner5"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Victoria&#39;s face flushed with a mixture of shame, fear, and desperation. Her eyes darted wildly before she swallowed her pride and crawled toward Daniel, clutching at his trousers.</p>
                 <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2405,21 +2414,12 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Victoria&#39;s face flushed with a mixture of shame, fear, and desperation. Her eyes darted wildly before she swallowed her pride and crawled toward Daniel, clutching at his trousers.</p>
-                <!-- AdSense Ad Unit: banner3 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;I&#39;ve stood by your side all these years, Daniel,&#34; Victoria implored emotionally. &#34;I&#39;ve never bowed my head to anyone. I love you so much. What did I really do wrong? I&#39;ll apologize to Olivia. I&#39;ll make amends. From now on, I won&#39;t cause her any trouble. Can&#39;t we just move past this? For your sake, I&#39;m willing to let it all go.&#34;</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2429,11 +2429,11 @@
                 <p>Daniel&#39;s voice softened slightly as he revealed his intentions. &#34;Before everything fell apart, I was planning to take you on a trip. I knew Olivia&#39;s return had shaken you, and I thought getting away from Crestwood might help. I wanted to give you space, perhaps stay away until she left, to bring you some peace.&#34;</p>
                 <p>Victoria&#39;s eyes widened with disbelief and dawning regret. &#34;That can&#39;t be true! I saw how restless you became after she returned. You couldn&#39;t sleep, started going out alone at night. You even changed your phone password. What were you hiding from me?&#34;</p>
                 <p>The ghost of a sad, disappointed smile touched Daniel&#39;s lips as he spoke words that would haunt Victoria forever. &#34;I remember your birthday comes exactly one month after your mother&#39;s...&#34;</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5059,8 +5059,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -5087,20 +5087,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

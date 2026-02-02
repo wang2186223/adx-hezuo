@@ -2383,11 +2383,11 @@
                 <p>Evelyn pulled it off with a frown. &#34;What&#39;s this supposed to mean?&#34;</p>
                 <p>&#34;Wear it.&#34; Nathan&#39;s voice held that familiar commanding edge.</p>
                 <p>She arched an eyebrow. &#34;This is how the dress is designed. Why would I-&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2396,11 +2396,11 @@
                 <p>Evelyn pressed a finger against his rock-hard shoulder. &#34;Mr. Goldmann, half the women here are wearing backless gowns. Why don&#39;t you go police their wardrobes instead of harassing me?&#34;</p>
                 <p>Since when did men get voting rights on women&#39;s fashion choices? This was practically modest compared to some dresses tonight!</p>
                 <p>&#34;Stop arguing. Keep it on.&#34; His jaw clenched audibly.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2409,11 +2409,11 @@
                 <p>Evelyn&#39;s breath hitched, her lashes fluttering wildly. The man radiated heat like a furnace, turning their hidden alcove into a sauna.</p>
                 <p>Watching her bite that plump lower lip, Nathan&#39;s throat worked violently.</p>
                 <p>Her palms grew damp. This infuriating man was standing far too close. Was he actually going to-</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2422,11 +2422,11 @@
                 <p>Nathan&#39;s lips thinned into a dangerous line, his dark eyes smoldering.</p>
                 <p>He&#39;d been seconds away from claiming that insolent mouth.</p>
                 <p>This woman was pure poison - intoxicating and lethal.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2435,11 +2435,11 @@
                 <p>&#39;Zoe wearing Nathan&#39;s clothes? Oh this is getting juicy!&#39;</p>
                 <p>Evelyn flicked her friend&#39;s forehead. &#34;Wipe that smirk off your face!&#34;</p>
                 <p>&#34;Darling, you&#39;re the undisputed queen of tonight! Torn between Bassburgh&#39;s two most powerful bachelors? This is straight out of a romance novel!&#34; Sophia sighed dramatically.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4959,8 +4959,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4987,20 +4987,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

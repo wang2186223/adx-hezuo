@@ -2380,11 +2380,11 @@
                 <p>&#34;Mr. Wright,&#34; Olivia began, cutting through the tension, &#34;I understand you&#39;re considering a substantial order but have reservations about the contract. Could you clarify your concerns? Whether it&#39;s pricing or design specifications, we can certainly negotiate terms.&#34;</p>
                 <p>Benjamin&#39;s laughter turned into a wheezing chuckle as he abruptly stood and moved to sit beside her, his bulk pressing uncomfortably close. Olivia&#39;s grip tightened around her coffee cup until her knuckles turned white, resisting the powerful urge to throw the scalding liquid in his face.</p>
                 <p>Then she felt it - his damp palm sliding around her waist with reptilian slowness.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2400,6 +2400,16 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Olivia&#39;s confusion cut through her anger. This wasn&#39;t Benjamin Wright? Had she entered the wrong private dining room? Impossible - the hostess had specifically directed her here.</p>
                 <p>Ignoring the man&#39;s disgusting advances, Olivia stood to call for assistance. Before she could move, Benjamin&#39;s meaty hand clamped around her wrist, his overpowering cologne mixing unpleasantly with body odor.</p>
+                <!-- AdSense Ad Unit: banner2 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner2"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>&#34;Enough games,&#34; he panted, his free hand groping at her blouse. &#34;I&#39;ve got another appointment soon, so let&#39;s make this quick.&#34;</p>
+                <p>&#34;Get your hands off me!&#34; Olivia&#39;s shout echoed through the room as she twisted violently in his grasp.</p>
                 <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2408,23 +2418,13 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>&#34;Enough games,&#34; he panted, his free hand groping at her blouse. &#34;I&#39;ve got another appointment soon, so let&#39;s make this quick.&#34;</p>
-                <p>&#34;Get your hands off me!&#34; Olivia&#39;s shout echoed through the room as she twisted violently in his grasp.</p>
-                <!-- AdSense Ad Unit: banner8 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>When he didn&#39;t relent, Olivia drove her knee upward, the pointed toe of her designer pump connecting painfully with his shin. As Benjamin howled in pain, she wrenched free and bolted for the door.</p>
                 <p>The hallway outside spun into view as Olivia burst through the doorway - only to collide violently with another figure.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2432,11 +2432,11 @@
                 <p>The impact sent both women staggering. Olivia barely registered the phone screen broadcasting their collision live to thousands of viewers before recognizing the woman she&#39;d nearly knocked over - Margaret Sinclair, social media influencer and perpetual thorn in Olivia&#39;s side.</p>
                 <p>Margaret&#39;s camera captured every detail - Olivia&#39;s wild eyes, her mussed hair, the panic written across her normally composed features. The realization that this humiliating moment was being streamed to half the city froze Olivia in place.</p>
                 <p>The door behind her creaked ominously as Benjamin&#39;s shadow fell across them both.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5062,8 +5062,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -5090,20 +5090,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

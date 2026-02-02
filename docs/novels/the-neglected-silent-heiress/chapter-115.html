@@ -2384,11 +2384,11 @@
                 <p>Dressed in an ice-blue couture gown that shimmered with every step, Victoria Ellington carried herself with effortless authority. Her sharp eyes scanned the room before landing on Olivia, her expression hardening as she took in the scene.</p>
                 <p>One of the guests immediately stepped forward to recount the situation.</p>
                 <p>As the explanation unfolded, Victoria&#39;s lips pressed into a thin line. She approached Olivia with measured steps. &#34;Miss Sinclair,&#34; she began, her voice cool, &#34;I&#39;ll be frank. Your recent... exploits have left a rather unpleasant impression. But even so, I would never resort to such childish games. Perhaps you should examine your own actions before casting accusations.&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2398,11 +2398,11 @@
                 <p>The waiter gave Olivia a patronizing look before rolling his eyes dramatically.</p>
                 <p>Shaking her head, Olivia made no move to enter. Without a proper invitation, it would be beyond inappropriate.</p>
                 <p>Victoria misinterpreted Olivia&#39;s hesitation. &#34;What now? Playing the victim?&#34; she asked with a mocking tilt of her head. &#34;Expecting me to grovel? That pitiful expression doesn&#39;t suit you - it makes me look like the villain here.&#34;</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2412,11 +2412,11 @@
                 <p>&#34;Don&#39;t trouble yourself, Victoria. We all saw what happened. You&#39;ve done nothing wrong. If she&#39;s upset, that&#39;s her problem.&#34;</p>
                 <p>The realization hit Olivia like a physical blow. Prejudice was an immovable mountain. The online rumors might have died down, but their judgment was set in stone. No amount of truth could shift it now.</p>
                 <p>A quiet sigh escaped Olivia&#39;s lips as she blinked back the sting in her eyes.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2426,11 +2426,11 @@
                 <p>Then, like a lifeline, a familiar presence cut through the tension.</p>
                 <p>Gregory Thornton approached with his characteristic warm smile, positioning himself protectively beside Olivia.</p>
                 <p>&#34;Gregory!&#34; Victoria&#39;s face lit up with genuine pleasure. &#34;I didn&#39;t think you&#39;d come!&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2456,11 +2456,11 @@
                 <p>Olivia&#39;s brow furrowed in confusion. From what little she knew, Victoria seemed exceptionally bright. Wouldn&#39;t her intellect be an asset in their specialized field?</p>
                 <p>Gregory shook his head knowingly. His next message held wisdom born of experience. &#34;Raw talent isn&#39;t everything. Victoria&#39;s impatient by nature - a fatal flaw in our work. You possess the rarest qualities: patience, focus, and an unshakable dedication to truth.&#34;</p>
                 <p>A faint blush colored Olivia&#39;s cheeks as she typed her humble response. &#34;You honor me.&#34;</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5086,8 +5086,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -5114,20 +5114,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

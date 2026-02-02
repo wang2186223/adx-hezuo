@@ -2406,30 +2406,6 @@
                 <p>The vandals stared, stunned into silence, momentarily forgetting the caterpillars.</p>
                 <p>The live-streamer recovered first. &#34;Three hundred thousand? Let it be! Righteous citizens will help us raise the funds! We gladly vandalized the cars of a company that protects home-wreckers! A cheap company that signs such immoral artists!&#34;</p>
                 <p>[Right! Agreed!]</p>
-                <!-- AdSense Ad Unit: banner4 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>[So satisfying to watch!]</p>
-                <p>[Send the address! I&#39;m coming to help!]</p>
-                <p>[Give me your account number! I&#39;ll donate ten thousand!]</p>
-                <p>Rage-filled comments flooded the live stream. Emboldened by the support, the streamer glared at Isabella. &#34;See? You protected a home-wrecker! You deserve this! You&#39;re public enemy number one now! Not the idolized Boss Montgomery anymore!&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>His companions joined the verbal assault. &#34;The accomplice is worse than the perpetrator! You showed no concern about your artist&#39;s disgusting behavior! You even shielded her! Disgusting!&#34;</p>
-                <p>&#34;You attacked us, the champions of justice, with these insects! Now taste your own medicine!&#34;</p>
-                <p>One man scooped a handful of caterpillars and hurled them directly at Isabella.</p>
-                <p>She didn&#39;t flinch. She didn&#39;t move.</p>
                 <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2438,15 +2414,39 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>[So satisfying to watch!]</p>
+                <p>[Send the address! I&#39;m coming to help!]</p>
+                <p>[Give me your account number! I&#39;ll donate ten thousand!]</p>
+                <p>Rage-filled comments flooded the live stream. Emboldened by the support, the streamer glared at Isabella. &#34;See? You protected a home-wrecker! You deserve this! You&#39;re public enemy number one now! Not the idolized Boss Montgomery anymore!&#34;</p>
+                <!-- AdSense Ad Unit: banner3 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner3"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>His companions joined the verbal assault. &#34;The accomplice is worse than the perpetrator! You showed no concern about your artist&#39;s disgusting behavior! You even shielded her! Disgusting!&#34;</p>
+                <p>&#34;You attacked us, the champions of justice, with these insects! Now taste your own medicine!&#34;</p>
+                <p>One man scooped a handful of caterpillars and hurled them directly at Isabella.</p>
+                <p>She didn&#39;t flinch. She didn&#39;t move.</p>
+                <!-- AdSense Ad Unit: banner2 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner2"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Ten black-suited bodyguards materialized instantly, forming an impenetrable wall in front of her. The caterpillars smacked harmlessly against their tailored suits. In a synchronized motion, the guards brushed the insects off. The caterpillars fell to the ground, motionless.</p>
                 <p>The display was swift. Professional. Overwhelming.</p>
                 <p>Everyone stared, shocked. They never anticipated Isabella having such elite, ever-present protection.</p>
                 <p>Each bodyguard was formidable. Soldier-like. Exceptionally handsome.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4944,8 +4944,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4972,20 +4972,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

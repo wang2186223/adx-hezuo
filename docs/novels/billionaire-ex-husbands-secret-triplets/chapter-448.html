@@ -2381,11 +2381,11 @@
                 <p>&#34;Yes. Uncle Edmund wouldn’t lie to me.&#34;</p>
                 <p>Evelyn trusted Edmund completely when it came to the truth about her mother’s death. Yet, the way Harrison’s expression had darkened lingered in her mind. &#34;Aunt, do you know why Grandpa reacted like that when he heard about the virus?&#34;</p>
                 <p>The affectionate address softened Lillian’s features, but her response was hesitant. &#34;I don’t know. Your grandfather truly had no idea your mother was infected. Neither did I. No wonder she left with Sebastian...&#34;</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2403,17 +2403,28 @@
                 <p>&#34;Aunt? What’s wrong?&#34; Evelyn frowned as Lillian’s face paled.</p>
                 <p>Lillian met her gaze. &#34;The virus has a one-year incubation period. That means your mother was infected the same year the epidemic started. But that doesn’t make sense.&#34;</p>
                 <p>&#34;Why not?&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;The epidemic thirty years ago only broke out after initial contact. The source was traced to a hotel’s water supply, but your mother never went there.&#34;</p>
                 <p>Lillian’s voice lowered. &#34;During incubation, carriers showed no symptoms. The virus wasn’t airborne—it spread through direct contact, like bacteria on surfaces. But Miranda never left the de Arma estate before meeting Sebastian. She had no exposure to outsiders. So how was she infected?&#34;</p>
                 <p>The question haunted Evelyn the entire ride back.</p>
+                <!-- AdSense Ad Unit: banner1 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner1"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Mom’s infection was orchestrated. Just as Uncle Edmund said—this wasn’t a natural outbreak, but a weapon.</p>
+                <p>Her phone buzzed with a message from Nathan.</p>
+                <p>The suffocating silence in the car pressed down on her. Nathan barely spoke, leaving Evelyn scrambling for words to bridge the distance.</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2422,26 +2433,15 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Mom’s infection was orchestrated. Just as Uncle Edmund said—this wasn’t a natural outbreak, but a weapon.</p>
-                <p>Her phone buzzed with a message from Nathan.</p>
-                <p>The suffocating silence in the car pressed down on her. Nathan barely spoke, leaving Evelyn scrambling for words to bridge the distance.</p>
-                <!-- AdSense Ad Unit: banner7 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Oliver glanced at them through the rearview mirror, uneasy.</p>
                 <p>Mr. Goldmann contracted the virus because of those targeting his family. If he doesn’t divorce Evelyn now, he can’t protect her in his condition.</p>
                 <p>Only by severing ties with the Goldmanns can Evelyn be safe. Once the de Armas acknowledge her, no one would dare touch her in Stoslo.</p>
                 <p>Harrison’s influence is absolute. Those who targeted Evelyn before only did so because he wasn’t present. If anything happened to her now, they’d face the full wrath of the de Armas.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4947,8 +4947,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4975,20 +4975,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

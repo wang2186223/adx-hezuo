@@ -2380,21 +2380,21 @@
                 <p>His face flushed a deep crimson, his neatly trimmed mustache seeming to bristle with his rage.</p>
                 <p>Vivienne had never witnessed her grandfather so enraged. She quickly tried to explain. “Grandfather, I did not dismiss the person you invited! I only removed Isabella Montgomery from the premises!”</p>
                 <p>She stopped mid-sentence, her eyes narrowing as a dreadful suspicion took hold. “Grandfather… the expert you invited… it wasn’t her, was it?”</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>“How would I know her name? All I know is she masterminded the Celestial Gala! She transformed Arabella Fontaine and Genevieve Beaumont overnight! One was a perpetual third wheel, the other a faded star! Yet she made them both shine! Your situation would be trivial for her! Why must you always let your temper destroy everything?!”</p>
                 <p>Archibald’s roar echoed in the lavish study. It took every ounce of his self-control not to strike his granddaughter.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2410,21 +2410,21 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>She had dressed meticulously, prepared to humble herself before the expert… only to find it was Isabella? Her grandfather wanted her to beg Isabella for help?</p>
                 <p>Fury ignited within her. “Grandfather, you are only seeing the surface! You have no idea how vile that woman truly is! She’s sleeping with Nathaniel Blackwood!”</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>“What?!” Archibald’s white eyebrows shot up in stunned disbelief.</p>
                 <p>Vivienne met his gaze with fierce intensity. “The expert you begged to come is Isabella Montgomery! Recently returned from abroad! The disgraced adopted daughter who brought shame to the Montgomery family!”</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2435,11 +2435,11 @@
                 <p>“Grandfather, have I ever lied to you?” Vivienne guided him to his chair, her movements suddenly gentle as she poured him tea. “When Seraphina first told me, I refused to believe it. I thought a man of Nathaniel’s stature would never be interested in someone like her. But I saw it with my own eyes at the Blackwood Estate. Isabella even convinced Oliver to threaten me with pythons to drive me away.”</p>
                 <p>She relayed the entire humiliating encounter. Archibald’s fist crashed onto the desk again, the sound thunderous in the quiet room.</p>
                 <p>“Preposterous! This is utterly preposterous! A woman of her dubious background… who knows what filth she’s been involved with! How could Nathaniel possibly be interested in her?”</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4937,8 +4937,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4965,20 +4965,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

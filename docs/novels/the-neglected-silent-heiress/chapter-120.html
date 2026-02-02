@@ -2383,11 +2383,11 @@
                 <p>&#34;Liam?&#34; Victoria&#39;s voice hitched. &#34;What exactly did he say?&#34;</p>
                 <p>Olivia recalled, brow furrowing slightly. &#34;He said you&#39;re incredibly gifted with antiques. That with proper focus, you&#39;d make an exceptional apprentice for Gregory.&#34;</p>
                 <p>Victoria&#39;s eyes instantly welled with tears.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2396,11 +2396,11 @@
                 <p>As she grew, Victoria became increasingly withdrawn, her circle shrinking to a select few.</p>
                 <p>Many who initially seemed kind secretly mocked her as arrogant and temperamental, making her despise social gatherings.</p>
                 <p>One fateful night, thugs cornered Victoria on her way home.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2422,11 +2422,11 @@
                 <p>Olivia looked away, her expression shadowed. &#34;It&#39;s fine. I hold no grudges. The Blackwoods&#39; kindness is something I&#39;ll cherish forever.&#34;</p>
                 <p>Victoria, perceptive beyond her years, pressed gently. &#34;Just kindness?&#34;</p>
                 <p>Meanwhile, Liam, having dealt with Evelyn, spotted the intense conversation from across the room.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2435,11 +2435,11 @@
                 <p>Liam froze, his expression unreadable as he watched Olivia.</p>
                 <p>After a weighted pause, Olivia met his gaze with a fragile smile, typing carefully. &#34;Yes, just kindness. Anything more would be... sibling affection. I confused that once, and it caused problems. But really, I&#39;m fine.&#34;</p>
                 <p>Olivia had made her peace. She knew her path would diverge from Liam&#39;s, that he and Evelyn were inevitable. No more tangled emotions - just bury that foolish love where it belonged.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2453,11 +2453,11 @@
                 <p>With a genuine smile, Victoria placed a hand on Olivia&#39;s shoulder. &#34;I&#39;ll entrust you with my mother&#39;s collection. I&#39;m planning an exhibition of her pieces - she had many devoted students. As Gregory&#39;s apprentice, this could be your chance to shine.&#34;</p>
                 <p>Olivia startled, typing rapidly. &#34;No, that&#39;s unnecessary! Restoration is my job. If there&#39;s an exhibition, my involvement doesn&#39;t need mentioning.&#34;</p>
                 <p>Victoria shook her head, smiling. &#34;Gregory rejected me, and it wounded my pride. You&#39;ve helped me see clearly, Olivia. For that, I should thank you.&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5083,8 +5083,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -5111,20 +5111,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

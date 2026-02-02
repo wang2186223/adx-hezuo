@@ -2380,31 +2380,31 @@
                 <p>Before anyone could respond, a middle-aged man with an air of superiority emerged. His tailored suit screamed wealth, marking him as some aristocrat&#39;s personal attendant. Olivia remained hidden behind her oversized sunglasses and silk mask - not yet ready to reveal her identity on her first day back in Crestwood.</p>
                 <p>The butler barely glanced at Olivia before addressing the attendant with dripping condescension. &#34;We didn&#39;t make reservations because we hadn&#39;t planned to come. My mistress decided to grace your establishment on a whim. Does it truly matter now that we&#39;re here? You should consider it an honor that she chose your venue at all.&#34;</p>
                 <p>A soft chuckle escaped Olivia&#39;s lips.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>The attendant&#39;s expression hardened. &#34;Is that so? Then your mistress must be quite important. Perhaps you&#39;d care to share her name?&#34;</p>
                 <p>The butler&#39;s smirk turned predatory, his patience visibly thinning. &#34;Clearly you&#39;re new to Crestwood if you don&#39;t recognize my mistress. Otherwise, you wouldn&#39;t dare challenge her for this room.&#34;</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>With a flick of his wrist, the butler produced something that made the attendant&#39;s neutral expression transform into alarm. He leaned close to Olivia, whispering urgently, &#34;That&#39;s Sebastian Whitmore&#39;s fiancée - our auction director. They&#39;re to be married soon. She rarely visits, but when she does...&#34;</p>
                 <p>His voice dropped lower. &#34;For some reason she&#39;s insisting on this particular room today. Should I notify Mr. Whitmore?&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2420,11 +2420,11 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>The attendant nodded and began maneuvering Olivia&#39;s wheelchair away.</p>
                 <p>Unexpectedly, the butler stepped directly into their path, his gaze locked onto Olivia. &#34;Just who exactly are you? You still haven&#39;t identified yourself. Gaining access to private room No. 1 isn&#39;t something just anyone can do.&#34;</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2433,11 +2433,11 @@
                 <p>The butler spat on the polished floor, muttering curses as he stormed back into the private room.</p>
                 <p>Behind an ornate screen in the No. 1 private room, a voluptuous woman lounged with visible irritation. Her honeyed voice carried an edge as sharp as broken glass. &#34;Who does that presumptuous cripple think she is? How dare she attempt to take what&#39;s mine?&#34;</p>
                 <p>The butler sighed dramatically. &#34;She refused to identify herself, yet everyone treats her with deference. From her bearing alone... had she insisted on this room, we would have had no choice but to vacate.&#34;</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5063,8 +5063,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -5091,20 +5091,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

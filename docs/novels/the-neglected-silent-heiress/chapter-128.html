@@ -2383,11 +2383,11 @@
                 <p>Victoria carefully handed the restored garments to her father as if presenting sacred relics. &#34;Father, look! Olivia repaired them perfectly. Isn&#39;t she incredible?&#34;</p>
                 <p>Tears welled in Reginald&#39;s eyes as recognition dawned. &#34;Your mother wore this one during our first date... and I gifted her that one for her twenty-fifth birthday. Over the years, so many of her possessions were lost for various reasons. I&#39;ve searched everywhere... I thought they were gone forever. I was—&#34;</p>
                 <p>&#34;Mrs. Sinclair,&#34; Reginald turned to Olivia with profound gratitude, &#34;words cannot express my thanks.&#34; He extended a formal invitation. &#34;We&#39;d be honored if you&#39;d join us for dinner this evening.&#34;</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2396,11 +2396,11 @@
                 <p>Reginald&#39;s face lit up. &#34;An excellent idea. Let me know how I can assist.&#34;</p>
                 <p>Observing their affectionate interaction, Olivia felt an unexpected pang of loneliness. During her brief time with the Ellingtons, she&#39;d experienced such familial warmth—fleeting moments that now seemed painfully distant.</p>
                 <p>Yet the atmosphere at the Ellington residence remained welcoming. Despite his naturally serious demeanor, Reginald made concerted efforts to include Olivia in conversation.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2409,11 +2409,11 @@
                 <p>Leaning close, she whispered to Olivia, &#34;Father rarely speaks this much with new acquaintances. He must truly admire you.&#34;</p>
                 <p>Olivia gestured modestly that she&#39;d simply honored her promise—no thanks were necessary.</p>
                 <p>Victoria&#39;s expression suddenly turned serious. &#34;Olivia, there&#39;s another matter I wish to discuss. I hope you&#39;ll consider it favorably.&#34;</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2422,11 +2422,11 @@
                 <p>Victoria exchanged a meaningful glance with Olivia before shaking her head. &#34;Send her away.&#34;</p>
                 <p>The servant hesitated. &#34;Miss Hartley threatens to camp at our gates if denied entry.&#34;</p>
                 <p>Olivia gestured that confronting Evelyn might be wiser—the woman&#39;s notorious stubbornness could create unnecessary drama.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2452,11 +2452,11 @@
                 <p>Evelyn protested hastily, &#34;I would never—&#34;</p>
                 <p>Under Victoria&#39;s piercing gaze, she faltered.</p>
                 <p>As anger simmered within her, Victoria realized how Evelyn had manipulated her trust, nearly placing her in an untenable position. Had she rejected Olivia yesterday on Evelyn&#39;s behalf, she would have borne the consequences when the truth emerged—potentially tarnishing the Ellington name irreparably.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5082,8 +5082,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -5110,20 +5110,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

@@ -2379,20 +2379,20 @@
                 <p>Assuming Olivia lacked backbone, Donovan abandoned his protective impulse. He turned to Seraphina with cool detachment. &#34;I came to discuss Grandfather&#39;s upcoming birthday. He&#39;s turning seventy, but with most relatives abroad, we&#39;ve agreed on simplicity. You&#39;ll handle the arrangements while Grandfather and I search for our missing cousin.&#34;</p>
                 <p>Seraphina&#39;s eyes lit up at the chance to host such an event - the perfect opportunity to showcase her talents. Yet the thought of actual work made her hesitate. &#34;Perhaps I shouldn&#39;t have come back,&#34; she murmured.</p>
                 <p>Noticing Donovan&#39;s darkening expression, she quickly corrected course. &#34;But I understand. Finding our cousin takes priority. Leave the party to me.&#34;</p>
+                <!-- AdSense Ad Unit: banner7 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner7"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Donovan&#39;s features softened slightly as he nodded. Rising to leave, he paused at the doorway. &#34;Remember Grandfather&#39;s temper. No repeats of today&#39;s behavior. We&#39;re not in Westhaven anymore - break the law here, and even I can&#39;t protect you.&#34;</p>
                 <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner6"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Donovan&#39;s features softened slightly as he nodded. Rising to leave, he paused at the doorway. &#34;Remember Grandfather&#39;s temper. No repeats of today&#39;s behavior. We&#39;re not in Westhaven anymore - break the law here, and even I can&#39;t protect you.&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2406,11 +2406,11 @@
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Donovan fixed her with a stern look. After a tense moment, Seraphina beckoned Olivia forward. &#34;Come here, Olivia. Tell Donovan - did anyone mistreat you today?&#34;</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2427,11 +2427,11 @@
                 <p>The fact that Liam hadn&#39;t even provided a photo, claiming it was &#34;inconvenient,&#34; struck Donovan as suspicious. He&#39;d never encountered such vague instructions before. It reeked of excuses.</p>
                 <p>Shaking off these thoughts, Donovan departed. The moment he left, the servant who&#39;d tormented Olivia most viciously began complaining. &#34;Miss Kensington, did you see how Olivia played the victim for Mr. Kensington? Running to him like some obedient dog when he called, completely ignoring your orders—&#34;</p>
                 <p>Her words ended in a sharp cry as Seraphina&#39;s hand connected with her cheek. The servant collapsed to her knees, eyes wide with terror at her mistress&#39;s fury.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5057,8 +5057,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -5085,20 +5085,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

@@ -2381,33 +2381,33 @@
                 <p>Now she dares call me cold-blooded? Then I&#39;ll prove her right beyond her wildest expectations!</p>
                 <p>&#34;Evelyn, you&#39;re still a Vanderbilt. Will you really abandon Henry to his fate?&#34; Madam Victoria&#39;s voice trembled with barely concealed panic. Her usual composure had shattered.</p>
                 <p>&#34;Yes. Not only will I abandon him, but I&#39;ll make sure he learns his lesson.&#34; My lips curled into a cold smile. &#34;Honestly, Henry became this worthless because of your blind indulgence. He chose this path—now he&#39;ll face the consequences. I&#39;m simply giving him the chance to reform.&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;What...what do you mean?&#34; Her breath hitched.</p>
                 <p>I flicked my lashes up. &#34;I was the one who reported Henry. The case is already filed—stop dreaming about getting him out. Prison will teach him right from wrong.&#34;</p>
                 <p>Madam Victoria&#39;s scream pierced through the phone. &#34;Evelyn Vanderbilt! You sent your own cousin to jail! You vile creature! I warn you—if you don&#39;t release Henry immediately—&#34;</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;Threaten me again,&#34; I interrupted icily, &#34;and I&#39;ll ensure he never sees daylight again. His sentence depends entirely on my mood. Keep provoking me, and he&#39;ll rot there forever.&#34;</p>
                 <p>Who didn&#39;t know how to play this game? I owed my mastery to all those who&#39;d threatened me before.</p>
                 <p>My words finally made realization dawn on her.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2425,11 +2425,11 @@
                 <p>Knowing their nature, understanding they&#39;d never stop coming after me, the only solution was to crush them completely.</p>
                 <p>&#34;This family spoiled Henry rotten since childhood. Gambling, street fights—he&#39;s been in and out of police stations but never changed. When my investigators uncovered his drug trafficking, sending him to prison became my responsibility. Better reform him now before he escalates to murder.&#34;</p>
                 <p>A knock interrupted my thoughts. Gregory entered with a smile. &#34;Zoe, you have a visitor.&#34;</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2440,11 +2440,11 @@
                 <p>She stepped forward with a practiced smile. &#34;Nathan, where are you off to?&#34;</p>
                 <p>His gaze cooled. &#34;Why are you here?&#34;</p>
                 <p>&#34;Your father asked me to bring you lunch.&#34; She lifted a designer lunchbox. &#34;He mentioned you often skip meals when busy.&#34;</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4950,8 +4950,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4978,20 +4978,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

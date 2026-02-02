@@ -2382,6 +2382,18 @@
                 <p>Evelyn’s phone buzzed.</p>
                 <p>Seeing Caleb’s name, she excused herself and stepped into the hallway. &#34;Caleb?&#34;</p>
                 <p>&#34;Mommy, Liam asked if we should save you some dinner in case you get hungry after the party.&#34;</p>
+                <!-- AdSense Ad Unit: banner4 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner4"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>A warmth spread through her chest. &#34;I’m on my way home. Wait for me.&#34;</p>
+                <p>She turned—and froze.</p>
+                <p>Nathan stood behind her, his expression unreadable. How long had he been there? Had he heard?</p>
+                <p>&#34;Your boyfriend calling you home already?&#34; His voice was cool.</p>
                 <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2390,10 +2402,10 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>A warmth spread through her chest. &#34;I’m on my way home. Wait for me.&#34;</p>
-                <p>She turned—and froze.</p>
-                <p>Nathan stood behind her, his expression unreadable. How long had he been there? Had he heard?</p>
-                <p>&#34;Your boyfriend calling you home already?&#34; His voice was cool.</p>
+                <p>Evelyn shrugged. &#34;Can’t blame him for worrying.&#34;</p>
+                <p>She remembered his jacket and quickly shrugged it off, handing it back. &#34;Thanks for this.&#34;</p>
+                <p>Nathan didn’t take it. Instead, he said, &#34;I’ll drive you.&#34;</p>
+                <p>He wanted to see this man for himself.</p>
                 <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2402,27 +2414,15 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Evelyn shrugged. &#34;Can’t blame him for worrying.&#34;</p>
-                <p>She remembered his jacket and quickly shrugged it off, handing it back. &#34;Thanks for this.&#34;</p>
-                <p>Nathan didn’t take it. Instead, he said, &#34;I’ll drive you.&#34;</p>
-                <p>He wanted to see this man for himself.</p>
+                <p>Evelyn’s lips parted in surprise. &#34;Excuse me?&#34;</p>
+                <p>&#34;Is there a problem?&#34;</p>
+                <p>&#34;No, but I wouldn’t want to trouble you. The person waiting for me might get jealous.&#34; She shoved the jacket into his arms and turned to leave.</p>
+                <p>Nathan blocked her path. &#34;You don’t want to trouble me, or you don’t want me to see who’s waiting?&#34;</p>
                 <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner2"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Evelyn’s lips parted in surprise. &#34;Excuse me?&#34;</p>
-                <p>&#34;Is there a problem?&#34;</p>
-                <p>&#34;No, but I wouldn’t want to trouble you. The person waiting for me might get jealous.&#34; She shoved the jacket into his arms and turned to leave.</p>
-                <p>Nathan blocked her path. &#34;You don’t want to trouble me, or you don’t want me to see who’s waiting?&#34;</p>
-                <!-- AdSense Ad Unit: banner3 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2446,11 +2446,11 @@
                 <p>Adrian watched them go, his lips curving in amusement.</p>
                 <p>Nathan’s behavior toward Evelyn was… unexpected.</p>
                 <p>Outside, Evelyn yanked her arm free. &#34;Mr. Goldmann, what part of no don’t you understand?&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4956,8 +4956,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4984,20 +4984,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

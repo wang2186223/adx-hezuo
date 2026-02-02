@@ -2390,16 +2390,6 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Seraphina Delacroix’s agent shouted, “Yes, involve the police! Find who did this to my Seraphina!”</p>
                 <p>“We demand justice!” another model cried out.</p>
-                <!-- AdSense Ad Unit: banner2 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Eunice Kerr’s replacement, Genevieve Laurent, glared at Nathaniel. “This happened at your event! If you protect the guilty party, our fans will ruin you!”</p>
-                <p>Nathaniel’s face darkened. His gaze turned dangerously cold. “The police will be called. Not because of your threats. But to find the truth.” His piercing eyes briefly landed on Victoria, seeing through her facade. He gave a slight nod to his assistant, Julian Prescott, who immediately pulled out his phone.</p>
                 <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2408,8 +2398,8 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>A chill ran down Victoria’s spine. Nathaniel’s gaze always felt like it could strip her soul bare. Could he know? ‘No. Impossible,’ she reassured herself. Her plan was flawless. Days of meticulous preparation left no trace. The police would find nothing pointing to her. Everything would lead back to Isabella.</p>
-                <p>‘Just wait, Isabella. Your future is behind bars,’ she thought, a hidden smirk forming behind her mask of pain. She bowed her head, pretending to be overcome by illness.</p>
+                <p>Eunice Kerr’s replacement, Genevieve Laurent, glared at Nathaniel. “This happened at your event! If you protect the guilty party, our fans will ruin you!”</p>
+                <p>Nathaniel’s face darkened. His gaze turned dangerously cold. “The police will be called. Not because of your threats. But to find the truth.” His piercing eyes briefly landed on Victoria, seeing through her facade. He gave a slight nod to his assistant, Julian Prescott, who immediately pulled out his phone.</p>
                 <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2418,13 +2408,23 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>The police arrived swiftly after the call. A thorough investigation commenced backstage and in the main hall. Everyone who touched the strawberries was a suspect. Test strips were used on fingertips to detect poison residue.</p>
-                <p>Nothing was found.</p>
+                <p>A chill ran down Victoria’s spine. Nathaniel’s gaze always felt like it could strip her soul bare. Could he know? ‘No. Impossible,’ she reassured herself. Her plan was flawless. Days of meticulous preparation left no trace. The police would find nothing pointing to her. Everything would lead back to Isabella.</p>
+                <p>‘Just wait, Isabella. Your future is behind bars,’ she thought, a hidden smirk forming behind her mask of pain. She bowed her head, pretending to be overcome by illness.</p>
                 <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner4"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>The police arrived swiftly after the call. A thorough investigation commenced backstage and in the main hall. Everyone who touched the strawberries was a suspect. Test strips were used on fingertips to detect poison residue.</p>
+                <p>Nothing was found.</p>
+                <!-- AdSense Ad Unit: banner8 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4933,8 +4933,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4961,20 +4961,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

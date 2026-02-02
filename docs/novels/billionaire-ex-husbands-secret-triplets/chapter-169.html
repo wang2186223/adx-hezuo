@@ -2403,6 +2403,17 @@
                 <p>Evelyn shot to her feet, face pale. &#34;Liam is missing?&#34;</p>
                 <p>Chloe stumbled forward, nearly collapsing. &#34;I&#39;m so sorry! This is all my fault!&#34;</p>
                 <p>Mr. Goldmann Sr. cleared his throat sternly. &#34;Enough. Mobilize everyone to search. This town may be small, but with limited surveillance, it&#39;s more challenging than the city.&#34;</p>
+                <!-- AdSense Ad Unit: banner6 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner6"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>&#34;Sir, I&#39;ll find them. If I fail, you can have my head!&#34; Chloe, genuinely terrified of the consequences, rushed out immediately.</p>
+                <p>Evelyn clenched her fists. &#39;Liam!&#39;</p>
+                <p>She left without breakfast, her stomach in knots.</p>
                 <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2411,25 +2422,14 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>&#34;Sir, I&#39;ll find them. If I fail, you can have my head!&#34; Chloe, genuinely terrified of the consequences, rushed out immediately.</p>
-                <p>Evelyn clenched her fists. &#39;Liam!&#39;</p>
-                <p>She left without breakfast, her stomach in knots.</p>
+                <p>Caleb and Daisy exchanged knowing looks. They understood their brother&#39;s plan, but neither their parents nor Aunt Chloe did.</p>
+                <p>&#34;Don&#39;t panic,&#34; Mr. Goldmann Sr. said calmly. &#34;Given Liam&#39;s scheme and with my assistance, he won&#39;t truly be lost.&#34;</p>
+                <p>His expression darkened as he spoke.</p>
                 <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner3"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Caleb and Daisy exchanged knowing looks. They understood their brother&#39;s plan, but neither their parents nor Aunt Chloe did.</p>
-                <p>&#34;Don&#39;t panic,&#34; Mr. Goldmann Sr. said calmly. &#34;Given Liam&#39;s scheme and with my assistance, he won&#39;t truly be lost.&#34;</p>
-                <p>His expression darkened as he spoke.</p>
-                <!-- AdSense Ad Unit: banner7 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2439,11 +2439,11 @@
                 <p>Evelyn questioned a shopkeeper who recognized Chloe. He confirmed seeing Nathan and Liam but couldn&#39;t recall their direction.</p>
                 <p>Evelyn&#39;s composure shattered. The thought of losing Liam terrified her. This was her fault for oversleeping. What if something happened to him? He held half her heart.</p>
                 <p>&#34;Stay calm,&#34; Chloe said between phone calls. &#34;I&#39;ve alerted my brother. We&#39;ll find them.&#34; Evelyn knew she could only rely on herself now.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4949,8 +4949,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4977,20 +4977,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

@@ -2381,11 +2381,11 @@
                 <p>A cold smirk played on Nathan’s lips. &#34;Because he trusted you. I wanted to see how far you’d go.&#34;</p>
                 <p>Her knees nearly buckled beneath her.</p>
                 <p>Evelyn turned, her gaze sharp. &#34;Were you involved in Winifred’s case too?&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2403,17 +2403,6 @@
                 <p>Rosalind’s jaw clenched. &#34;I don’t know anything about that.&#34;</p>
                 <p>&#34;Someone familiar with the camp layout could’ve easily slipped in unnoticed,&#34; Evelyn mused. &#34;Someone who knew the routines, the blind spots.&#34;</p>
                 <p>Her eyes locked onto Rosalind’s. &#34;Who else would want me dead, if not the person who sees me as an obstacle?&#34;</p>
-                <!-- AdSense Ad Unit: banner3 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>A bead of sweat trickled down Rosalind’s temple, hidden beneath her hairline. Her grip on her shirt was so tight the fabric wrinkled.</p>
-                <p>Then, the office door swung open.</p>
-                <p>Theodore Goldmann stood there, his sharp gaze sweeping over the scene. His frown deepened as he took in Rosalind’s red-rimmed eyes. &#34;What’s going on here?&#34;</p>
                 <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2422,14 +2411,25 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Evelyn stiffened, caught off guard by his sudden appearance.</p>
-                <p>Nathan’s expression darkened, suspicion flickering in his eyes.</p>
-                <p>Rosalind seized the opportunity. &#34;Grandfather, it’s my fault. I made a mistake.&#34; Her voice trembled with false remorse. &#34;I don’t deserve to be Nathan’s special assistant anymore.&#34;</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <p>A bead of sweat trickled down Rosalind’s temple, hidden beneath her hairline. Her grip on her shirt was so tight the fabric wrinkled.</p>
+                <p>Then, the office door swung open.</p>
+                <p>Theodore Goldmann stood there, his sharp gaze sweeping over the scene. His frown deepened as he took in Rosalind’s red-rimmed eyes. &#34;What’s going on here?&#34;</p>
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner4"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Evelyn stiffened, caught off guard by his sudden appearance.</p>
+                <p>Nathan’s expression darkened, suspicion flickering in his eyes.</p>
+                <p>Rosalind seized the opportunity. &#34;Grandfather, it’s my fault. I made a mistake.&#34; Her voice trembled with false remorse. &#34;I don’t deserve to be Nathan’s special assistant anymore.&#34;</p>
+                <!-- AdSense Ad Unit: banner3 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2439,11 +2439,11 @@
                 <p>Evelyn opened her mouth, but Nathan spoke first. &#34;Is that all you did?&#34;</p>
                 <p>Rosalind’s eyes welled with tears, the picture of wounded innocence. &#34;Nathan, I know you hate me, but everything I did was for the Goldmanns.&#34; Her voice cracked. &#34;I admit I tried to drive Ms. Vanderbilt away from you—but I never harmed her!&#34;</p>
                 <p>The lie hung heavy in the air.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4949,8 +4949,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4977,20 +4977,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

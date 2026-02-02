@@ -2381,44 +2381,44 @@
                 <p>But Evelyn wasn&#39;t finished. Her voice turned razor-sharp. &#34;Did you follow him here hoping to catch us together? Maybe burst in at the perfect moment?&#34; The words dripped with cruel amusement.</p>
                 <p>Olivia&#39;s hands flew in denial, but Evelyn cut her off with a sneer. &#34;Or were you hoping to witness something more... intimate? Wake up, darling. Know your place.&#34;</p>
                 <p>Olivia&#39;s response came swift and sharp through sign language - it was Evelyn who needed reminding of her place, since Liam would never love this vicious version of her.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Though Olivia had never felt inferior because of her muteness - except around Liam - she hated how it silenced her against Evelyn&#39;s cruelty.</p>
                 <p>Evelyn&#39;s smirk widened. &#34;I don&#39;t speak hand puppetry. Let me enlighten you. You think you deserve to be his wife? To Liam, you&#39;re nothing but a well-trained pet.&#34;</p>
                 <p>Olivia&#39;s eyes flashed. She struggled to form words through damaged vocal cords. &#34;Lies!&#34;</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;Don&#39;t strain yourself,&#34; Evelyn mocked. &#34;Why waste breath explaining when you could just whimper like the dog you are?&#34;</p>
                 <p>A pause, then Evelyn&#39;s voice turned saccharine. &#34;Oh wait - you can&#39;t even do that properly. Why don&#39;t you crawl on all fours to complete the picture?&#34;</p>
                 <p>Evelyn&#39;s gaze burned with contempt.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Suddenly, fingers tangled viciously in Evelyn&#39;s hair. &#34;You shameless homewrecker! How dare you torment Liam&#39;s wife? Can&#39;t you tell disgrace from decency, you viper?&#34;</p>
                 <p>The grip nearly scalped Evelyn, her scream piercing the hallway as she flailed against her attacker.</p>
                 <p>Natalie moved like lightning, catching Evelyn&#39;s swinging arm and delivering a stinging slap across her face.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2438,11 +2438,11 @@
                 <p>Evelyn turned tear-filled eyes toward the voice. &#34;Liam, don&#39;t blame her! This is all my fault! Whatever she does to me, I deserve it—&#34;</p>
                 <p>Natalie scoffed loudly. &#34;Don&#39;t flatter yourself. I&#39;m the one who slapped this snake. Olivia didn&#39;t lay a finger on her.&#34;</p>
                 <p>Liam helped Evelyn up, his expression unreadable as his icy gaze locked onto Olivia. &#34;I expected better from you.&#34;</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5068,8 +5068,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -5096,20 +5096,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

@@ -2380,11 +2380,11 @@
                 <p>He had so much he wanted to say, but all that emerged was a quiet, humorless chuckle. &#34;You&#39;re taking this remarkably well.&#34;</p>
                 <p>Olivia finished adjusting her clothing and turned to face him. The moment their eyes met, Liam saw the glistening tears pooling in hers. Suddenly, she stumbled backward, knocking over the crystal vase on the nightstand.</p>
                 <p>Before Liam could react, Olivia snatched up a shard of broken crystal and pressed it against the delicate skin of her throat. A thin crimson line appeared instantly beneath the sharp edge.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2400,11 +2400,11 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>The raw despair in her eyes terrified Liam. He could see she was moments away from making an irreversible decision.</p>
                 <p>In a burst of panic, the truth spilled from his lips: &#34;How can you say you don&#39;t know me? I&#39;m the father of your child! Your ex-husband! This only happened because of the poison - if I&#39;d had the antidote, I never would have... If you hate me that much, I&#39;ll vanish from your life forever. Just please, put the glass down!&#34;</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2420,22 +2420,22 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>A cold, knowing smile curved her lips. &#34;I knew all along,&#34; she said, her voice dripping with icy amusement. &#34;I was just waiting to see how long it would take you to admit the truth.&#34;</p>
                 <p>Liam&#39;s stomach dropped. The calculating glint in her eyes made his skin prickle. &#34;When did you figure it out?&#34; he asked hoarsely.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Olivia exhaled sharply. &#34;Your death story was convincing. I actually believed you were gone.&#34; Her gaze turned piercing. &#34;But just now... I recognized you.&#34;</p>
                 <p>She offered no further explanation. The truth was simpler than Liam could imagine - she&#39;d known him by the way her body responded to his touch, by the way her heart had recognized its other half even when her mind protested.</p>
                 <p>Olivia had loved Liam Blackwood for as long as she could remember. Some bonds even amnesia couldn&#39;t break.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5061,8 +5061,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -5089,20 +5089,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

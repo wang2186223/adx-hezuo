@@ -2392,44 +2392,44 @@
                 <p>The prisoner&#39;s entire body went rigid. His pupils contracted to pinpricks at the live surveillance footage.</p>
                 <p>&#34;Your younger brother, isn&#39;t he?&#34; Oliver&#39;s smile didn&#39;t reach his eyes as he slid the water within reach. &#34;Mr. Goldmann has taken a personal interest in his interrogation.&#34;</p>
                 <p>A strangled sound escaped the prisoner&#39;s lips. &#34;Take me... just let him go. He&#39;s just following orders like I was. If I talk, we&#39;re both dead men.&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Oliver tapped a key, saving the recording. &#34;Mr. Goldmann would never harm an innocent. But your employer? That&#39;s another matter.&#34;</p>
                 <p>The truth hung between them - Oliver already knew everything.</p>
                 <p>The prisoner&#39;s shoulders sagged as defeat washed over him. His breathing turned ragged.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Closing the laptop with finality, Oliver stood. &#34;Mr. Goldmann respects your loyalty. Pity it&#39;s misplaced.&#34; He paused. &#34;Your partner... Shane, isn&#39;t it?&#34;</p>
                 <p>Shock registered on the prisoner&#39;s haggard face. They knew more than he&#39;d imagined possible.</p>
                 <p>Dry lips parted. &#34;Shane... he introduced me to Ms. Summers. Been her loyal dog for years.&#34;</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;And the woman from Underground Freeway? Who handled that?&#34;</p>
                 <p>&#34;Shane. Always Shane.&#34; The words tumbled out now. &#34;And Ms. Summers directly.&#34;</p>
                 <p>Oliver pressed further. &#34;The Whitmore family. Why them?&#34;</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2441,11 +2441,11 @@
                 <p>Outside Summer Pavilion, Oliver slid into the waiting car and dialed Nathan. &#34;It&#39;s done. Full confession.&#34;</p>
                 <p>Nathan&#39;s voice came through crisp and clear as he fastened his cufflinks. &#34;Excellent. Activate surveillance at the training camp. We spring the trap the moment our prey appears.&#34;</p>
                 <p>His gaze drifted to Evelyn, sleeping deeply amidst tangled sheets. Gently, he brushed a stray curl from her flushed cheek, savoring the lingering warmth of their passion. The peaceful rise and fall of her breathing belied the storm about to break.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4951,8 +4951,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4979,20 +4979,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

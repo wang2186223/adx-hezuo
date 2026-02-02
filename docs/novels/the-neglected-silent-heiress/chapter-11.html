@@ -2382,11 +2382,11 @@
                 <p>Daniel&#39;s concerned voice came from the other side of the bed. &#34;Olivia, how could Liam let this happen? For the Blackwood heiress to faint from hunger... Have you been skipping meals?&#34;</p>
                 <p>Natalie slammed her palm against the mattress before immediately recoiling. &#34;Sorry! Did I scare you?&#34;</p>
                 <p>Olivia shook her head, fingers dancing to explain it was her own fault for neglecting meals. The truth was more painful - she&#39;d stopped cooking elaborate dinners after months of Liam never coming home to eat them. Gradually, her own appetite had disappeared.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2394,11 +2394,11 @@
                 <p>Olivia grinned as she sat up, but her smile vanished when Natalie exploded. &#34;Liam is unbelievable! His assistant actually told me not to disturb him unless it was life-threatening. His wife collapses unconscious, and that doesn&#39;t qualify?&#34;</p>
                 <p>Olivia&#39;s hands flew in frantic gestures, insisting she was fine now and Liam shouldn&#39;t be interrupted during important meetings. She emphasized she didn&#39;t need his attention.</p>
                 <p>Natalie opened her mouth to argue but stopped, reconsidering her words. Instead, she quietly opened a container of soup. &#34;Just promise you&#39;ll call me if you need anything.&#34;</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2430,11 +2430,11 @@
                 <p>To her shock, the question seemed to ignite Liam&#39;s temper. He closed the distance between them in two strides, gripping her wrist. &#34;Bringing home leftovers? Since when do we eat takeout?&#34;</p>
                 <p>Olivia shook her head frantically, struggling to explain. She simply hadn&#39;t felt like cooking, and the restaurant food had been too good to waste. She never imagined encountering Liam at this hour.</p>
                 <p>&#34;Why did Natalie call me?&#34; Liam pressed, his voice rising with each syllable.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2443,11 +2443,11 @@
                 <p>Something dark flickered in Liam&#39;s gaze. Without warning, he swept Olivia into his arms and carried her upstairs.</p>
                 <p>Liam had actually come home for lunch.</p>
                 <p>Memories surfaced of Olivia preparing elaborate meals he&#39;d rarely stayed to eat. Finding the kitchen empty today had sparked unexpected irritation. But seeing her now, he desired something entirely different than food.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5073,8 +5073,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -5101,20 +5101,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

@@ -2392,17 +2392,6 @@
                 <p>Oliver&#39;s eyes scanned the glass cases. &#34;That bunny! The fluffy white one with pink ears!&#34;</p>
                 <p>She tousled his hair affectionately. &#34;Consider it yours.&#34;</p>
                 <p>Amelia rolled her eyes dramatically. Surely this woman couldn&#39;t replicate that fluke.</p>
-                <!-- AdSense Ad Unit: banner3 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Her jaw dropped when the machine whirred to life again. Another prize tumbled out effortlessly.</p>
-                <p>Oliver applauded with unrestrained glee. &#34;You did it again! Thank you, Mommy!&#34;</p>
-                <p>&#34;Wait here, darling.&#34; Isabella settled him onto a nearby velvet bench.</p>
                 <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2411,14 +2400,25 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>He obediently nodded, giant lollipop in hand. An assortment of won toys surrounded him like a colorful fortress.</p>
-                <p>Isabetha continued her winning streak. Prize after prize joined the growing collection.</p>
-                <p>Other children paused their games to watch in awe. Their envious glances focused on Oliver&#39;s mountain of plush toys.</p>
+                <p>Her jaw dropped when the machine whirred to life again. Another prize tumbled out effortlessly.</p>
+                <p>Oliver applauded with unrestrained glee. &#34;You did it again! Thank you, Mommy!&#34;</p>
+                <p>&#34;Wait here, darling.&#34; Isabella settled him onto a nearby velvet bench.</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner8"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>He obediently nodded, giant lollipop in hand. An assortment of won toys surrounded him like a colorful fortress.</p>
+                <p>Isabetha continued her winning streak. Prize after prize joined the growing collection.</p>
+                <p>Other children paused their games to watch in awe. Their envious glances focused on Oliver&#39;s mountain of plush toys.</p>
+                <!-- AdSense Ad Unit: banner1 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2441,11 +2441,11 @@
                 <p>Trained in classical theater from childhood, she had become a celebrated prodigy. Her film performances earned critical acclaim and numerous awards.</p>
                 <p>She secured the Best Actress trophy by twenty. Marriage into the Blackwood family cemented her status among the elite.</p>
                 <p>Her reputation as devoted wife and mother remained impeccable within high society circles.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4943,8 +4943,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4971,20 +4971,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

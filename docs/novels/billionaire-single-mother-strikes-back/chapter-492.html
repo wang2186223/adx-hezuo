@@ -2380,11 +2380,11 @@
                 <p>Her eyes begged for a sliver of hope. “Just one meal. Please?”</p>
                 <p>She braced for the inevitable refusal. Isabella’s cold demeanor offered no comfort.</p>
                 <p>Then, unexpectedly, Isabella spoke.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2400,16 +2400,6 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>“Do not mistake this for forgiveness,” Isabella stated coldly, cutting through their shock. “This is solely for Grandfather Theodore and the Montgomery legacy.”</p>
                 <p>She remembered his unwavering support. When the entire family scorned her, he had insisted on granting her fifteen percent of the Montgomery shares. He treated her as his own. She would not abandon him now.</p>
-                <!-- AdSense Ad Unit: banner6 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Eleanor nodded frantically, tears welling. “I understand! Truly, I do! This is more than we dared hope for! Your Grandfather already promised… if you save the family, everything will be yours. The entire Montgomery fortune. And my father… he vowed to give you half of the Kensington assets!”</p>
-                <p>Isabella frowned. She anticipated Theodore’s offer. The Kensington proposal, however, was unexpected. Her knowledge of the Kensingtons was limited to whispers. Eleanor never brought her along on visits.</p>
                 <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2418,13 +2408,23 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Her impression was built from others fawning over Victoria. “She’s so lucky! Heir to the Montgomerys and the Kensingtons!” “The premier ceramics dynasty in the country! A living national treasure!” “Their pieces are commissioned by royalty! We commoners never even see them!” “Ugh! I’d kill to be born into that family!”</p>
-                <p>A family of such prestige was willing to hand her half their wealth? It made no sense.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <p>Eleanor nodded frantically, tears welling. “I understand! Truly, I do! This is more than we dared hope for! Your Grandfather already promised… if you save the family, everything will be yours. The entire Montgomery fortune. And my father… he vowed to give you half of the Kensington assets!”</p>
+                <p>Isabella frowned. She anticipated Theodore’s offer. The Kensington proposal, however, was unexpected. Her knowledge of the Kensingtons was limited to whispers. Eleanor never brought her along on visits.</p>
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner6"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Her impression was built from others fawning over Victoria. “She’s so lucky! Heir to the Montgomerys and the Kensingtons!” “The premier ceramics dynasty in the country! A living national treasure!” “Their pieces are commissioned by royalty! We commoners never even see them!” “Ugh! I’d kill to be born into that family!”</p>
+                <p>A family of such prestige was willing to hand her half their wealth? It made no sense.</p>
+                <!-- AdSense Ad Unit: banner7 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4932,8 +4932,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4960,20 +4960,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

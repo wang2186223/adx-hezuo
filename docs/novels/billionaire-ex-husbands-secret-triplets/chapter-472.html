@@ -2394,18 +2394,6 @@
                 <p>Evelyn murmured her agreement.</p>
                 <p>Though she appreciated Adrian&#39;s kindness, she didn&#39;t want to impose. The last thing she needed was to drag him into another media scandal.</p>
                 <p>The moment Adrian left, Oliver Lawson appeared in the doorway. Evelyn&#39;s expression darkened.</p>
-                <!-- AdSense Ad Unit: banner7 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>She already knew what document he was holding. &#34;Divorce papers, I assume?&#34;</p>
-                <p>Oliver hesitated, then nodded. He placed the papers on the bedside table. &#34;Ms. Vanderbilt, signing this is for the best. For both you and Mr. Goldmann.&#34;</p>
-                <p>He knew how deeply Evelyn loved Nathan, and how fiercely Nathan had once loved her. But Nathan had made his choice—he didn’t want her to suffer.</p>
-                <p>Even if he only had a few years left, he still prioritized her happiness above all else.</p>
                 <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2414,15 +2402,27 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>She already knew what document he was holding. &#34;Divorce papers, I assume?&#34;</p>
+                <p>Oliver hesitated, then nodded. He placed the papers on the bedside table. &#34;Ms. Vanderbilt, signing this is for the best. For both you and Mr. Goldmann.&#34;</p>
+                <p>He knew how deeply Evelyn loved Nathan, and how fiercely Nathan had once loved her. But Nathan had made his choice—he didn’t want her to suffer.</p>
+                <p>Even if he only had a few years left, he still prioritized her happiness above all else.</p>
+                <!-- AdSense Ad Unit: banner2 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner2"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Evelyn was silent for a long moment before whispering, &#34;Fine. I&#39;ll sign.&#34;</p>
                 <p>Oliver blinked in surprise. He hadn’t expected her to agree so easily. But then again, maybe she understood it was inevitable.</p>
                 <p>Evelyn took the papers and signed without even glancing at the terms. &#34;I don’t want the shares. He can give them to whoever he pleases. Since he’s the one insisting on this, tell him not to regret it later.&#34;</p>
                 <p>Her voice was steady, but her fingers trembled slightly.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2430,11 +2430,11 @@
                 <p>Oliver opened his mouth, then closed it. There was nothing left to say.</p>
                 <p>He collected the signed papers and left without another word.</p>
                 <p>Evelyn sat motionless on the edge of the bed long after he was gone. The pain in her chest was unbearable, as if someone had plunged a knife into her heart and twisted it.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2443,11 +2443,11 @@
                 <p>Chloe Lawson waited outside in the car. Richard loaded Evelyn’s belongings into the trunk before turning to her. &#34;Zoe, let’s go home.&#34;</p>
                 <p>Evelyn nodded. Just as she was about to step into the car, an eerie sensation prickled the back of her neck.</p>
                 <p>She turned sharply—and locked eyes with a masked woman standing a short distance away, staring intently at her.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4953,8 +4953,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4981,20 +4981,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

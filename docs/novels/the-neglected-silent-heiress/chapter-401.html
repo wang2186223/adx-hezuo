@@ -2380,11 +2380,11 @@
                 <p>But Isabelle had inherited her mother&#39;s fiery spirit. Despite the pain, she glared back defiantly. &#34;You broke it. You clean it.&#34;</p>
                 <p>Richard&#39;s face darkened with rage. &#34;You insolent little brat!&#34;</p>
                 <p>The whiskey fueling his temper, Richard swung with brutal force. His palm connected with Isabelle&#39;s face in a sickening crack.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2400,26 +2400,6 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>For years, Richard had endured humiliation within the Winslow family. Powerless. Disrespected. But now, with this trembling girl before him, he finally felt control.</p>
                 <p>The woman and boy huddled in the corner watched with familiar terror. They knew Richard&#39;s drunken rages well - usually directed at them. Tonight, Isabelle had become his unfortunate target.</p>
-                <!-- AdSense Ad Unit: banner6 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>The child&#39;s whimpers of pain only enraged Richard further. &#34;Shut up!&#34; he roared, striking her again. &#34;Stop your crying! You look just like that whore Olivia - you deserve this!&#34;</p>
-                <p>&#34;Enough!&#34; A voice like frozen steel cut through the chaos.</p>
-                <!-- AdSense Ad Unit: banner3 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Richard froze. That voice - impossible after all these years.</p>
-                <p>He turned slowly, blood turning to ice in his veins. There, flanked by armed guards, stood Liam Blackwood - alive and glowering with murderous intent.</p>
                 <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2428,13 +2408,33 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Richard&#39;s legs gave way. He collapsed to the floor, body convulsing with terror. &#34;No... no... you&#39;re supposed to be dead!&#34; he babbled incoherently.</p>
-                <p>The nightmare had returned.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <p>The child&#39;s whimpers of pain only enraged Richard further. &#34;Shut up!&#34; he roared, striking her again. &#34;Stop your crying! You look just like that whore Olivia - you deserve this!&#34;</p>
+                <p>&#34;Enough!&#34; A voice like frozen steel cut through the chaos.</p>
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner2"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Richard froze. That voice - impossible after all these years.</p>
+                <p>He turned slowly, blood turning to ice in his veins. There, flanked by armed guards, stood Liam Blackwood - alive and glowering with murderous intent.</p>
+                <!-- AdSense Ad Unit: banner1 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner1"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Richard&#39;s legs gave way. He collapsed to the floor, body convulsing with terror. &#34;No... no... you&#39;re supposed to be dead!&#34; he babbled incoherently.</p>
+                <p>The nightmare had returned.</p>
+                <!-- AdSense Ad Unit: banner3 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5060,8 +5060,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -5088,20 +5088,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

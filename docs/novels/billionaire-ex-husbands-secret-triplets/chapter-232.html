@@ -2382,18 +2382,6 @@
                 <p>After all, an invalid contract was nothing but worthless paper. The real agreement remained securely locked away, accessible only with proper authorization.</p>
                 <p>A cold smile curled Evelyn&#39;s lips. &#34;Thank you for your cooperation. Don’t forget to bring your best performance the day after tomorrow. I’m counting on you to deliver the most dramatic live show they’ve ever seen.&#34;</p>
                 <p>As she hung up, her eyes darkened with resolve.</p>
-                <!-- AdSense Ad Unit: banner1 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>This time, Father will finally see his so-called family for what they truly are.</p>
-                <p>Two days later, at Viana Jewelry…</p>
-                <p>The Vanderbilts had gathered, including Yvette’s family, in the conference room. Key executives filled the seats as Richard prepared to announce the heir to his shares.</p>
-                <p>When Richard declared Evelyn would inherit his stake, not a single board member objected.</p>
                 <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2402,15 +2390,27 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>This time, Father will finally see his so-called family for what they truly are.</p>
+                <p>Two days later, at Viana Jewelry…</p>
+                <p>The Vanderbilts had gathered, including Yvette’s family, in the conference room. Key executives filled the seats as Richard prepared to announce the heir to his shares.</p>
+                <p>When Richard declared Evelyn would inherit his stake, not a single board member objected.</p>
+                <!-- AdSense Ad Unit: banner3 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner3"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Madam Victoria, seated as an honored guest, slammed her palm on the table. &#34;I disagree!&#34;</p>
                 <p>&#34;Mother,&#34; Richard said wearily, &#34;everyone here accepts Zoe because she’s proven her capability. What more do you want?&#34;</p>
                 <p>He’d arranged this meeting hoping his family would finally relent.</p>
                 <p>Madam Victoria rose, her voice sharp. &#34;Viana belongs to the Vanderbilts! And you’re handing it to a woman who’ll marry into another family and abandon us? Are you trying to give our legacy away to strangers?&#34;</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2430,11 +2430,11 @@
                 <p>Yvette flushed, shooting a glare at her husband, York.</p>
                 <p>York chuckled. &#34;Richard, don’t mind Yvette. She’s never been the most... thoughtful person.&#34;</p>
                 <p>Yvette’s face twisted with fury at the insult.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2445,11 +2445,11 @@
                 <p>Madam Victoria cared only for securing the shares for her grandson—by any means necessary.</p>
                 <p>Just then, a man in a tailored suit entered, introducing himself as a lawyer.</p>
                 <p>Madam Victoria lifted her chin triumphantly. &#34;Richard, don’t blame me. Everything I do is for the Vanderbilt name.&#34;</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4955,8 +4955,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4983,20 +4983,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

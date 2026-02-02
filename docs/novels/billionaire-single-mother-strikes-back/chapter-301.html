@@ -2380,16 +2380,6 @@
                 <p>She answered. “Vice President Montgomery,” Gregory’s voice came through, “given the mounting backlash, we’ll need to disclose your identity publicly. Are you in agreement?”</p>
                 <p>Isabella gave a faint smile. “Do I have a choice?”</p>
                 <p>“I’ll proceed then, Vice President Montgomery. I’ll handle the announcement immediately.” Gregory ended the call.</p>
-                <!-- AdSense Ad Unit: banner8 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Nathaniel’s eyes narrowed. Vice President Montgomery? So she was the vice president of Vertex Communications? He had suspected her connection to the company, but never imagined she held such a high position.</p>
-                <p>What other secrets was this woman keeping?</p>
                 <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2398,13 +2388,23 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Noticing the curious looks from Nathaniel and Oliver, Isabella explained casually, “Before Eleanor Kensington retired, Vertex was searching for her successor. I happened to assist them in securing the patent for fifth-gen wireless tech. That allowed Vertex to launch the industry’s first cellular tech package ahead of everyone else.”</p>
-                <p>She spoke with detached indifference, as though it were a trivial matter.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <p>Nathaniel’s eyes narrowed. Vice President Montgomery? So she was the vice president of Vertex Communications? He had suspected her connection to the company, but never imagined she held such a high position.</p>
+                <p>What other secrets was this woman keeping?</p>
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner8"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Noticing the curious looks from Nathaniel and Oliver, Isabella explained casually, “Before Eleanor Kensington retired, Vertex was searching for her successor. I happened to assist them in securing the patent for fifth-gen wireless tech. That allowed Vertex to launch the industry’s first cellular tech package ahead of everyone else.”</p>
+                <p>She spoke with detached indifference, as though it were a trivial matter.</p>
+                <!-- AdSense Ad Unit: banner1 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2420,11 +2420,11 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Oliver nodded eagerly. “Yes! How did you know? It’s incredible! The system can detect incoming storms and close windows automatically! It prepares breakfast, adjusts curtains, and even cleans dust! Most importantly, it can put out fires on its own!” He beamed with pride.</p>
                 <p>Isabella glanced at Nathaniel. It was the first time she had learned about his work since moving in, and it intrigued her—smart home tech was something she had a genuine interest in.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2434,11 +2434,11 @@
                 <p>Seeing they finally had common ground, Oliver grinned and quietly slipped out of the room.</p>
                 <p>Nathaniel moved to the sofa and poured Isabella a glass of water, gesturing for her to sit. Once she was settled, he continued, “Quantum already addressed those concerns. Last year, we upgraded to a sixth-gen AI system. It no longer relies on remotes or phone apps.”</p>
                 <p>“It operates through built-in artificial intelligence, automating lights and appliances. It also responds to voice commands in nearly a thousand languages, including various dialects. As for security…” He paused. “Even if Quantum is compromised, no other system in the world would remain intact.”</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4936,8 +4936,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4964,20 +4964,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

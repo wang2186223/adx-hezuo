@@ -2381,44 +2381,44 @@
                 <p>Jaw clenched, Seraphina lowered the glass. &#34;Was I unclear?&#34;</p>
                 <p>&#34;Mr. Donovan is most concerned for your safety,&#34; the guard said smoothly. &#34;With recent... developments, he insists you stay at the family estate where we can properly protect you.&#34;</p>
                 <p>A muscle jumped in Seraphina&#39;s cheek. Since when had Donovan cared about her wellbeing? Their once-close cousinly bond had frayed to near nonexistence over the years.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Her gaze flickered to Olivia. Exposure now would ruin everything. &#34;It&#39;s hardly proper for unmarried relatives to cohabitate,&#34; she demurred. &#34;I appreciate the concern, but-&#34;</p>
                 <p>&#34;Mr. Donovan anticipated your hesitation,&#34; the guard interrupted. &#34;The west wing has been prepared with a full medical team, including specialists transferred from Westhaven. Given his extended stay to locate your missing cousin...&#34; He let the implication hang.</p>
                 <p>Seraphina&#39;s nails bit into her palms. The trap snapped shut with mathematical precision. Any further protest would only raise suspicions.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;Very well,&#34; she conceded through gritted teeth. &#34;Lead the way.&#34;</p>
                 <p>The moment the guards turned, Seraphina whipped out her phone. &#34;You incompetent fool!&#34; she hissed at her assistant. &#34;Donovan spotted Olivia at the hospital! If he uncovers our plans-&#34;</p>
                 <p>Her throat closed around the unspoken threat. The Kensington fortune hung in precarious balance. Grandfather Alistair&#39;s clear favoritism toward Donovan was no secret, and her brother&#39;s recent... missteps had left their branch vulnerable.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Olivia watched the exchange with dawning comprehension. Though she couldn&#39;t decipher the words, the tension crackling between them was unmistakable. Someone had interfered with Seraphina&#39;s plans - someone powerful enough to make the haughty heiress comply.</p>
                 <p>&#34;Shall I relocate the mute, Miss Kensington?&#34; the driver ventured.</p>
                 <p>Seraphina&#39;s laugh was razor-edged. &#34;And confirm his suspicions? No. She remains with me as my... charitable project.&#34; She turned predatory eyes on Olivia. &#34;Remember, disobedience will cost more than your life. That precious burden you carry? It hangs by my mercy alone.&#34;</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2438,11 +2438,11 @@
                 <p>Liam started, as if surfacing from deep thought. &#34;Not my usual taste,&#34; he admitted. &#34;But a... friend of mine enjoys this genre.&#34;</p>
                 <p>The hesitation before &#34;friend&#34; didn&#39;t escape Donovan&#39;s notice. Nor did the way Liam&#39;s fingers lingered on a particular volume - one Donovan knew well.</p>
                 <p>It was Olivia Sinclair&#39;s favorite.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5068,8 +5068,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -5096,20 +5096,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

@@ -2381,6 +2381,17 @@
                 <p>Evelyn’s smirk faltered when she failed to provoke a reaction. &#34;Did you hear that? You’re nothing but a despised mistress, hated by everyone!&#34;</p>
                 <p>Turning to the crowd, Evelyn raised her voice. &#34;Everyone, thank you for standing with me today. Help me teach this woman a lesson, and both the Hartley and Whitmore families will remember your loyalty.&#34;</p>
                 <p>The room erupted. The Hartleys were influential, but the Whitmores? They were old money, a dynasty that commanded respect across Crestwood. Even if they weren’t as visible in high society now, their name still carried weight.</p>
+                <!-- AdSense Ad Unit: banner5 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner5"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Amelia Dawson paled. &#34;What are you doing? Are you seriously considering violence?&#34;</p>
+                <p>She fumbled for her phone, but Evelyn was faster. She lunged forward, gripping Amelia’s wrist with bruising force.</p>
+                <p>The butler seized the moment, shouting, &#34;What are you waiting for? Teach that woman a lesson she won’t forget!&#34;</p>
                 <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2389,25 +2400,14 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Amelia Dawson paled. &#34;What are you doing? Are you seriously considering violence?&#34;</p>
-                <p>She fumbled for her phone, but Evelyn was faster. She lunged forward, gripping Amelia’s wrist with bruising force.</p>
-                <p>The butler seized the moment, shouting, &#34;What are you waiting for? Teach that woman a lesson she won’t forget!&#34;</p>
-                <!-- AdSense Ad Unit: banner8 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Olivia’s face drained of color. She hadn’t expected Evelyn to be this reckless. The room erupted into chaos.</p>
                 <p>Despite the bodyguards Olivia had brought, they were quickly overwhelmed by the sheer number of people surging forward.</p>
                 <p>Someone grabbed Olivia’s hair, yanking hard enough to make her gasp. She was dragged from her wheelchair, her injured legs making it impossible to regain her footing.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2425,11 +2425,11 @@
                 <p>Evelyn’s promise of favor from the Whitmores was all the encouragement they needed.</p>
                 <p>Amelia broke free, throwing herself over Olivia, taking several brutal hits meant for her. Trembling, she whispered, &#34;Olivia, run. They took my phone. I can’t call for help.&#34;</p>
                 <p>Olivia’s jaw clenched, fury burning beneath her icy composure. With Amelia’s help, they inched toward the door—</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2439,11 +2439,11 @@
                 <p>A shadow fell across the threshold.</p>
                 <p>A voice, cold and commanding, cut through the chaos.</p>
                 <p>&#34;Enough.&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5069,8 +5069,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -5097,20 +5097,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

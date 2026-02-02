@@ -2381,28 +2381,17 @@
                 <p>The hostess led them to the Swan Room, where four imposing bodyguards stood sentry.</p>
                 <p>Evelyn&#39;s pulse quickened. Was Nathan waiting inside? But the shadow behind the frosted glass didn&#39;t match his silhouette.</p>
                 <p>Her breath caught when the figure turned.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>No mask obscured his striking features. His warm smile crinkled the corners of mesmerizing eyes. &#34;My instincts never fail me.&#34;</p>
                 <p>Evelyn&#39;s lips curved. Adrian Boucher in the flesh!</p>
                 <p>She moved to the panoramic window overlooking the auction floor. &#34;I never took you for a jewelry enthusiast.&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>The reclusive superstar rarely appeared at public events beyond film premieres. His presence at Summerton Auction House sent shockwaves through high society.</p>
-                <p>Adrian leaned against the railing. &#34;Research for a new role. When I heard Bassburgh&#39;s rising star designer would be here, I couldn&#39;t resist.&#34; His gaze held hers. &#34;Call me Adrian.&#34;</p>
-                <p>Evelyn maintained her professional smile. Up close, his charisma was almost overwhelming - that rare magnetism shared only by Nathan Goldmann in this city.</p>
                 <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2411,14 +2400,25 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>She&#39;d studied his filmography. Whether portraying heroes or villains, he disappeared into every role with breathtaking authenticity.</p>
-                <p>Not a single scandal had tarnished his decade-long career - only glowing reviews of his craft.</p>
-                <p>&#34;Are you bidding tonight?&#34; Adrian&#39;s voice pulled her from her thoughts.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <p>The reclusive superstar rarely appeared at public events beyond film premieres. His presence at Summerton Auction House sent shockwaves through high society.</p>
+                <p>Adrian leaned against the railing. &#34;Research for a new role. When I heard Bassburgh&#39;s rising star designer would be here, I couldn&#39;t resist.&#34; His gaze held hers. &#34;Call me Adrian.&#34;</p>
+                <p>Evelyn maintained her professional smile. Up close, his charisma was almost overwhelming - that rare magnetism shared only by Nathan Goldmann in this city.</p>
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner7"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>She&#39;d studied his filmography. Whether portraying heroes or villains, he disappeared into every role with breathtaking authenticity.</p>
+                <p>Not a single scandal had tarnished his decade-long career - only glowing reviews of his craft.</p>
+                <p>&#34;Are you bidding tonight?&#34; Adrian&#39;s voice pulled her from her thoughts.</p>
+                <!-- AdSense Ad Unit: banner5 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4949,8 +4949,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4977,20 +4977,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

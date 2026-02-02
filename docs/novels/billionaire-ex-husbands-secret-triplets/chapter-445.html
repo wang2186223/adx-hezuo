@@ -2383,19 +2383,6 @@
                 <p>Oliver Lawson nearly dropped his coffee when he spotted her approaching. &#34;Ms. Vanderbilt—&#34;</p>
                 <p>Evelyn had always been striking, but since marrying Nathan, she’d rarely bothered with makeup. Today, she looked radiant.</p>
                 <p>&#34;Can I go in?&#34; she asked, gesturing toward the office door.</p>
-                <!-- AdSense Ad Unit: banner1 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Oliver hesitated. Nathan hadn’t explicitly banned her, but…</p>
-                <p>Before he could respond, Evelyn pushed the door open.</p>
-                <p>Nathan didn’t glance up from his documents, though he’d recognized her voice.</p>
-                <p>She set the lunchbox on his desk.</p>
-                <p>His tone was cool. &#34;What do you need?&#34;</p>
                 <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2404,16 +2391,29 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>&#34;You haven’t eaten, have you? I made these myself.&#34; She lifted the lid, revealing neatly arranged pastries.</p>
-                <p>He barely glanced at them. &#34;Leave it. I’m busy.&#34;</p>
-                <p>Evelyn obeyed, sliding the box aside. Then she leaned against his desk, watching him with warm eyes. &#34;That’s fine. I’ll stay and keep you company.&#34;</p>
-                <p>Nathan’s fingers stilled on the papers. He didn’t respond.</p>
-                <p>Unbothered, Evelyn wandered his office—trailing fingers over the bookshelves, studying the art on the walls.</p>
+                <p>Oliver hesitated. Nathan hadn’t explicitly banned her, but…</p>
+                <p>Before he could respond, Evelyn pushed the door open.</p>
+                <p>Nathan didn’t glance up from his documents, though he’d recognized her voice.</p>
+                <p>She set the lunchbox on his desk.</p>
+                <p>His tone was cool. &#34;What do you need?&#34;</p>
                 <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner4"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>&#34;You haven’t eaten, have you? I made these myself.&#34; She lifted the lid, revealing neatly arranged pastries.</p>
+                <p>He barely glanced at them. &#34;Leave it. I’m busy.&#34;</p>
+                <p>Evelyn obeyed, sliding the box aside. Then she leaned against his desk, watching him with warm eyes. &#34;That’s fine. I’ll stay and keep you company.&#34;</p>
+                <p>Nathan’s fingers stilled on the papers. He didn’t respond.</p>
+                <p>Unbothered, Evelyn wandered his office—trailing fingers over the bookshelves, studying the art on the walls.</p>
+                <!-- AdSense Ad Unit: banner7 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2435,11 +2435,11 @@
                 <p>Her voice was a whisper. &#34;Nathan… let’s not get divorced.&#34;</p>
                 <p>He didn’t answer.</p>
                 <p>Even with her this close, he refused to react—though the effort it took to suppress his emotions was nearly unbearable.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4959,8 +4959,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4987,20 +4987,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

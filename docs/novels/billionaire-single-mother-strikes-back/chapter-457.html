@@ -2380,26 +2380,6 @@
                 <p>He threw the sharp dagger. It landed at her feet with a cold, metallic clang.</p>
                 <p>The sound echoed in the tense silence. Benjamin Kensington’s pulse raced. How could someone as refined as Isabella be forced to mutilate herself? He immediately stepped in front of her, his voice shaking with fury. “Master Yamamoto! This is outrageous! You lost fair and square! Have you no honor?”</p>
                 <p>“Silence! Do not call me ‘Master’! Do you honestly believe I wanted you as my student? I made a deal with Victoria!” Takashi scoffed, his expression full of contempt and impatience. His gaze was icy. “With your mediocre talent? I only agreed because Victoria promised to share my bed!”</p>
-                <!-- AdSense Ad Unit: banner6 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>He laughed, a harsh, grating sound. “Surprised? Everything Isabella said was true! Victoria lured you away from Westchester. She used you to seize control of the entire sixty percent family shares! I’ve been keeping you locked in my basement all this time, and you still call me ‘Master’? Pathetic! You are a fool of the highest order!”</p>
-                <p>Takashi reveled in the destruction. He loved shattering people’s realities.</p>
-                <!-- AdSense Ad Unit: banner5 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Benjamin stumbled backward, his face pale. His world was crumbling. Had it all been a lie? Had Victoria truly manipulated him so completely? Had she really traded her body to a man like Takashi just to ruin him? Was her kindness merely a facade to steal his inheritance?</p>
-                <p>That meant Isabella had been telling the truth. She had come here to rescue him.</p>
                 <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2408,13 +2388,33 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>The sister he adored had betrayed him. The sister he despised had risked everything to save him.</p>
-                <p>Benjamin’s eyes burned. His hands clenched into white-knuckled fists.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <p>He laughed, a harsh, grating sound. “Surprised? Everything Isabella said was true! Victoria lured you away from Westchester. She used you to seize control of the entire sixty percent family shares! I’ve been keeping you locked in my basement all this time, and you still call me ‘Master’? Pathetic! You are a fool of the highest order!”</p>
+                <p>Takashi reveled in the destruction. He loved shattering people’s realities.</p>
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner4"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Benjamin stumbled backward, his face pale. His world was crumbling. Had it all been a lie? Had Victoria truly manipulated him so completely? Had she really traded her body to a man like Takashi just to ruin him? Was her kindness merely a facade to steal his inheritance?</p>
+                <p>That meant Isabella had been telling the truth. She had come here to rescue him.</p>
+                <!-- AdSense Ad Unit: banner5 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner5"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>The sister he adored had betrayed him. The sister he despised had risked everything to save him.</p>
+                <p>Benjamin’s eyes burned. His hands clenched into white-knuckled fists.</p>
+                <!-- AdSense Ad Unit: banner3 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4937,8 +4937,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4965,20 +4965,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

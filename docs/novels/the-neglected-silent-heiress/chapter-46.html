@@ -2381,22 +2381,22 @@
                 <p>Olivia rose quickly, caught off guard by the unexpected apology. She assured him the incident was already forgotten, especially considering the priceless set of azure porcelain he&#39;d gifted her as compensation.</p>
                 <p>&#34;Your grandfather was instrumental in my early career,&#34; Jerome continued, his voice tinged with regret. &#34;I wish I could have supported you better through your difficulties.&#34; His meaningful glance hinted at deeper concerns about her marriage.</p>
                 <p>Olivia understood the unspoken implication. Despite being married to Liam and the carefully maintained facade of their perfect union, she preferred keeping her marital struggles private. She offered Jerome a warm but guarded smile, silently conveying her appreciation while maintaining her dignity.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Jerome&#39;s expression brightened as he changed topics. &#34;I hear you&#39;re considering starting your own venture.&#34; Leaning forward conspiratorially, he added with a chuckle, &#34;I might have an interesting proposition for you.&#34;</p>
                 <p>Olivia hesitated. Liam had been visibly displeased when she began apprenticing at Gregory&#39;s studio. Taking on another professional commitment would undoubtedly provoke his temper further. But did his approval still matter? The thought brought a pang of sadness.</p>
                 <p>She&#39;d come to realize his opinions shouldn&#39;t dictate her choices. After years of marriage, she knew exactly what to expect.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2414,22 +2414,22 @@
                 <p>Her eyes widened in surprise at being offered such a responsible position.</p>
                 <p>&#34;Grandfather, I didn&#39;t realize you held Mrs. Blackwood in such esteem,&#34; Alexander interjected before Olivia could respond.</p>
                 <p>There was a barely perceptible skepticism in Alexander&#39;s tone as he studied Olivia. The unspoken question hung in the air - was she truly qualified?</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Olivia maintained her composure. It was natural for others to doubt her capabilities after years as a sheltered society wife.</p>
                 <p>Gregory quickly came to her defense. &#34;Olivia&#39;s restoration skills are exceptional.&#34;</p>
                 <p>&#34;But consultancy requires more than restoration expertise,&#34; Alexander countered. &#34;Gregory, when you opened your studio, it wasn&#39;t just about your technical skills, was it?&#34;</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2439,11 +2439,11 @@
                 <p>Jerome&#39;s faith in her remained unshaken. Turning to Alexander, he proposed, &#34;If you doubt Olivia&#39;s expertise, test her. If she answers correctly, you&#39;ll toast to her success tonight.&#34;</p>
                 <p>&#34;Agreed,&#34; Alexander said, his gaze intensifying as it locked onto Olivia.</p>
                 <p>Under the weight of their expectant stares, Olivia steadied herself with a deep breath, ready to prove her worth.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5069,8 +5069,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -5097,20 +5097,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

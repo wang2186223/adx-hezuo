@@ -2409,32 +2409,6 @@
                 <p>And it’s going to be a fortune.</p>
                 <p>Nathan stepped out, his dark lashes glistening, softening the usual sharpness of his gaze. He wrapped himself in a robe, lips curling. &#34;How much does she want?&#34;</p>
                 <p>Oliver exhaled. &#34;Two raw gemstones from Taylor Jewelry. Total cost? Twelve million.&#34;</p>
-                <!-- AdSense Ad Unit: banner3 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Nathan took the list, scanning it. &#34;What else did she say?&#34;</p>
-                <p>Oliver smirked. &#34;Your lovely wife said she’s broke.&#34;</p>
-                <p>Evelyn was deep in sketching when the light dimmed. A heavy presence loomed over her.</p>
-                <p>Nathan perched on the edge of her desk, sliding the signed list toward her. &#34;If you need money, just ask me directly.&#34;</p>
-                <p>His voice was low, smooth.</p>
-                <!-- AdSense Ad Unit: banner4 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Evelyn met his gaze. &#34;It’s not for nothing. I’ll earn it back.&#34;</p>
-                <p>&#34;Move in tonight,&#34; Nathan said casually, standing.</p>
-                <p>&#34;Tonight?&#34; Her pulse spiked.</p>
-                <p>He turned, arching a brow. &#34;Problem?&#34;</p>
-                <p>Evelyn hesitated, then realization struck. &#34;Today’s the third day.&#34;</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2443,16 +2417,42 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Nathan studied her before looking away. &#34;Move in. I’ll give you time to adjust. I won’t push you.&#34;</p>
-                <p>Then he left.</p>
-                <p>Evelyn frowned, lost in thought, until her phone buzzed—Laura calling.</p>
-                <p>She answered, only to hear Harriet Heath’s voice instead.</p>
-                <p>By late afternoon, Evelyn stood at the Vanderbilt manor. She’d scoffed at the idea of returning for dinner, but Harriet’s summons left her no choice.</p>
+                <p>Nathan took the list, scanning it. &#34;What else did she say?&#34;</p>
+                <p>Oliver smirked. &#34;Your lovely wife said she’s broke.&#34;</p>
+                <p>Evelyn was deep in sketching when the light dimmed. A heavy presence loomed over her.</p>
+                <p>Nathan perched on the edge of her desk, sliding the signed list toward her. &#34;If you need money, just ask me directly.&#34;</p>
+                <p>His voice was low, smooth.</p>
                 <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner7"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Evelyn met his gaze. &#34;It’s not for nothing. I’ll earn it back.&#34;</p>
+                <p>&#34;Move in tonight,&#34; Nathan said casually, standing.</p>
+                <p>&#34;Tonight?&#34; Her pulse spiked.</p>
+                <p>He turned, arching a brow. &#34;Problem?&#34;</p>
+                <p>Evelyn hesitated, then realization struck. &#34;Today’s the third day.&#34;</p>
+                <!-- AdSense Ad Unit: banner5 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner5"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Nathan studied her before looking away. &#34;Move in. I’ll give you time to adjust. I won’t push you.&#34;</p>
+                <p>Then he left.</p>
+                <p>Evelyn frowned, lost in thought, until her phone buzzed—Laura calling.</p>
+                <p>She answered, only to hear Harriet Heath’s voice instead.</p>
+                <p>By late afternoon, Evelyn stood at the Vanderbilt manor. She’d scoffed at the idea of returning for dinner, but Harriet’s summons left her no choice.</p>
+                <!-- AdSense Ad Unit: banner3 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4958,8 +4958,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4986,20 +4986,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

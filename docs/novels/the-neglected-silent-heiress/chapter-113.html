@@ -2384,11 +2384,11 @@
                 <p>Liam&#39;s cutting words continued to echo. &#34;I&#39;m keeping this quiet out of respect for the Hartley family&#39;s reputation. Do you understand?&#34;</p>
                 <p>The sound of the door slamming shattered Evelyn&#39;s composure. Her legs gave way as she collapsed against the table, bitter despair flooding through her. Despite biting her lip until it bled, hot tears streamed down her face uncontrollably.</p>
                 <p>&#34;No...&#34; Evelyn rasped, her nails digging into the table&#39;s edge. &#34;I won&#39;t accept this!&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2398,11 +2398,11 @@
                 <p>As icy wind lashed at them, Liam was seized by a violent coughing fit.</p>
                 <p>&#34;Mr. Blackwood,&#34; Sebastian fretted, &#34;you must take better care of yourself. Pushing your limits like this—&#34;</p>
                 <p>Liam waved him off, catching his breath. Settling into the car, he leaned back with a weary sigh, swallowing with visible difficulty. &#34;Most problems are handled now. There&#39;s little left to worry about.&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2426,11 +2426,11 @@
                 <p>As the storm raged, Olivia curled into a tight ball, squeezing her eyes shut as fragmented memories surfaced.</p>
                 <p>She remembered trailing after Liam as a child. During storms, she&#39;d sneak into his room despite his feigned annoyance. He&#39;d call her shameless for clinging to him so tightly, but never actually pushed her away.</p>
                 <p>Olivia couldn&#39;t pinpoint when her feelings for Liam had changed. Maybe when she noticed how even the strongest Reeves child could look so lonely. Maybe it was the kindness hidden beneath his stern exterior. Or perhaps all those times he&#39;d stood up for her.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2440,11 +2440,11 @@
                 <p>Her breath caught at the shadowed figure in the doorway. Even in darkness, she&#39;d recognize Liam anywhere. They remained motionless, the air between them charged with unspoken words.</p>
                 <p>Time stretched as neither moved.</p>
                 <p>Almost against her will, Olivia&#39;s hand lifted—only to freeze when Evelyn&#39;s saccharine voice called out.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2455,11 +2455,11 @@
                 <p>Liam and Evelyn stood dangerously close, their bodies angled in unmistakable intimacy.</p>
                 <p>A wave of crushing disappointment washed over Olivia. Silently chastising her foolish hope, she shut the door quietly, leaving the earplugs untouched—as if ignoring them could erase what she&#39;d seen.</p>
                 <p>Evelyn clung to Liam&#39;s hand pleadingly. &#34;I know framing Olivia was wrong, but I&#39;ve paid dearly. See?&#34; She pushed her bangs aside, revealing an ugly scar. &#34;This permanent reminder...&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5085,8 +5085,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -5113,20 +5113,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

@@ -2392,17 +2392,28 @@
                 <p>&#34;I&#39;m begging for your forgiveness! My manager wasn&#39;t watching her step... This is entirely on us. I&#39;ll reimburse the camera, the lost images, the advertising fees. I&#39;ll even cover three days of lost sales revenue. I promise my performance tomorrow will be even stronger than today&#39;s. Please, just give me another chance.&#34;</p>
                 <p>Her voice cracked with genuine-sounding distress. The display of vulnerability was masterful. It instantly softened the angry glares around her.</p>
                 <p>The production manager took a deep, steadying breath. &#34;Fine. We reschedule for tomorrow,&#34; he finally grumbled, his tone resigned.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>He knew recreating today&#39;s magic was nearly impossible. The perfect lighting, the model&#39;s energy—it was a fleeting alchemy. This was a compromise born of pure necessity.</p>
                 <p>Victoria bowed deeply once more. &#34;Thank you! Thank you so much for your understanding. I won&#39;t let you down tomorrow!&#34;</p>
                 <p>Her words were honeyed and meek. But as her head dipped, a fierce, triumphant fire burned in her eyes, unseen by anyone. Isabella Montgomery would not have a successful shoot tomorrow. She would make sure of it. Isabella&#39;s time here was over.</p>
+                <!-- AdSense Ad Unit: banner8 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner8"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Just then, Isabella emerged from the dressing room.</p>
+                <p>The manager approached her, his expression grim. &#34;Ms. Montgomery, I have terrible news. Our primary camera and the backup SD card are destroyed. Today&#39;s work is lost. I must humbly ask you to return for a reshoot tomorrow.&#34;</p>
+                <p>Isabella&#39;s brow furrowed. &#34;Excuse me?&#34;</p>
                 <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2411,25 +2422,14 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Just then, Isabella emerged from the dressing room.</p>
-                <p>The manager approached her, his expression grim. &#34;Ms. Montgomery, I have terrible news. Our primary camera and the backup SD card are destroyed. Today&#39;s work is lost. I must humbly ask you to return for a reshoot tomorrow.&#34;</p>
-                <p>Isabella&#39;s brow furrowed. &#34;Excuse me?&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Victoria rushed forward, her voice a pleading whimper. &#34;Isabella, please don&#39;t be angry with them. This was my mistake. I broke the equipment. I&#39;ll personally cover your fee for tomorrow, and I&#39;ll add an extra million for your trouble. Please, you must agree to come back. I&#39;m begging you.&#34;</p>
                 <p>She looked the picture of pathetic remorse.</p>
                 <p>Isabella&#39;s gaze swept over Vincent, still kneeling amidst the wreckage. She studied the scattered pieces of plastic and glass.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2441,11 +2441,11 @@
                 <p>She walked over to Vincent and gently took the damaged SD card from his limp hand.</p>
                 <p>A tense silence fell as she moved toward the computer terminal.</p>
                 <p>Nervous glances were exchanged across the room.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4943,8 +4943,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4971,20 +4971,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

@@ -2380,16 +2380,6 @@
                 <p>Yet his social media profile had featured a woman&#39;s photo and all his comments used distinctly feminine language.</p>
                 <p>A cold realization washed over Olivia. She&#39;d been mere moments away from walking into a predator&#39;s trap. Had Margaret not collided with her at the entrance, the consequences could have been unthinkable.</p>
                 <p>But gratitude was the furthest thing from Olivia&#39;s mind. Behind her shocked expression, wheels of malice were already turning.</p>
-                <!-- AdSense Ad Unit: banner4 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Spotting the live stream camera, the man raised his voice dramatically. &#34;Ms. Sinclair! I&#39;m your biggest fan! I&#39;ve spent thousands supporting your channel!&#34; He dramatically pointed at Margaret. &#34;This woman came onto me first!&#34;</p>
-                <p>Margaret seized the moment to contact reception. After verifying her reservation details, the staff assured her security would arrive shortly.</p>
                 <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2398,8 +2388,8 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Drawing a steadying breath, Margaret leveled an icy glare at both the man and Olivia. &#34;I came onto you?&#34; Her voice dripped with disdain.</p>
-                <p>Olivia&#39;s acting skills surfaced instantly. Tears welled in her eyes as she joined the man&#39;s accusations. &#34;Margaret, how could you? I know your company&#39;s struggling, but targeting my fan? This is despicable!&#34;</p>
+                <p>Spotting the live stream camera, the man raised his voice dramatically. &#34;Ms. Sinclair! I&#39;m your biggest fan! I&#39;ve spent thousands supporting your channel!&#34; He dramatically pointed at Margaret. &#34;This woman came onto me first!&#34;</p>
+                <p>Margaret seized the moment to contact reception. After verifying her reservation details, the staff assured her security would arrive shortly.</p>
                 <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2408,23 +2398,33 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>The live chat exploded with venom:</p>
-                <p>&#34;Pathetic! Some heiress she turned out to be.&#34;</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <p>Drawing a steadying breath, Margaret leveled an icy glare at both the man and Olivia. &#34;I came onto you?&#34; Her voice dripped with disdain.</p>
+                <p>Olivia&#39;s acting skills surfaced instantly. Tears welled in her eyes as she joined the man&#39;s accusations. &#34;Margaret, how could you? I know your company&#39;s struggling, but targeting my fan? This is despicable!&#34;</p>
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner1"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>The live chat exploded with venom:</p>
+                <p>&#34;Pathetic! Some heiress she turned out to be.&#34;</p>
+                <!-- AdSense Ad Unit: banner7 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;Obviously watched Olivia&#39;s stream yesterday about meeting a fan here.&#34;</p>
                 <p>&#34;Classic gold-digger move. Probably planned to blackmail him.&#34;</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5063,8 +5063,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -5091,20 +5091,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

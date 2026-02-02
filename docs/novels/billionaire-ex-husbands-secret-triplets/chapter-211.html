@@ -2406,18 +2406,6 @@
                 <p>&#34;Oh, so this is Zoe. She&#39;s grown into such a beauty, just like her mother.&#34; Yvette&#39;s voice was high-pitched, her words dripping with something between admiration and veiled mockery.</p>
                 <p>Evelyn took her seat, her crimson lips curving slightly. &#34;Aunt Yvette, I didn’t expect you to arrange a dinner so soon after arriving in Bassburgh.&#34;</p>
                 <p>&#34;What are you saying? You&#39;re my niece, after all. We’re family. It’s only natural I’d want to see you after so long.&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>&#34;Is that so? How thoughtful of you.&#34; Evelyn arched a brow.</p>
-                <p>&#39;Family? I haven’t spoken to any of them in years. Who would believe she actually missed me?&#39;</p>
-                <p>Her gaze flickered to the man across from her, and she frowned. &#34;And this is…?&#34;</p>
-                <p>&#39;Please don’t tell me this is some long-lost cousin.&#39;</p>
                 <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2426,15 +2414,27 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Yvette beamed. &#34;This is Mr. Zimmerman’s grandson from Cornelia. You must know of his grandfather—the Zimmermans were once very close with our family. And this is Mrs. Zimmerman.&#34;</p>
-                <p>Mrs. Zimmerman scrutinized Evelyn with an unreadable expression before pursing her lips. &#34;So this is Richard’s daughter with Isabella? She’s certainly pretty, but I wonder if she’s hardworking.&#34;</p>
-                <p>Yvette laughed. &#34;Oh, all women become hardworking after marriage. Besides, Zoe is highly educated. Where else would the Zimmermans find such a refined daughter-in-law in Cornelia?&#34;</p>
-                <p>Mrs. Zimmerman seemed somewhat convinced.</p>
+                <p>&#34;Is that so? How thoughtful of you.&#34; Evelyn arched a brow.</p>
+                <p>&#39;Family? I haven’t spoken to any of them in years. Who would believe she actually missed me?&#39;</p>
+                <p>Her gaze flickered to the man across from her, and she frowned. &#34;And this is…?&#34;</p>
+                <p>&#39;Please don’t tell me this is some long-lost cousin.&#39;</p>
                 <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner5"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Yvette beamed. &#34;This is Mr. Zimmerman’s grandson from Cornelia. You must know of his grandfather—the Zimmermans were once very close with our family. And this is Mrs. Zimmerman.&#34;</p>
+                <p>Mrs. Zimmerman scrutinized Evelyn with an unreadable expression before pursing her lips. &#34;So this is Richard’s daughter with Isabella? She’s certainly pretty, but I wonder if she’s hardworking.&#34;</p>
+                <p>Yvette laughed. &#34;Oh, all women become hardworking after marriage. Besides, Zoe is highly educated. Where else would the Zimmermans find such a refined daughter-in-law in Cornelia?&#34;</p>
+                <p>Mrs. Zimmerman seemed somewhat convinced.</p>
+                <!-- AdSense Ad Unit: banner6 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4953,8 +4953,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4981,20 +4981,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

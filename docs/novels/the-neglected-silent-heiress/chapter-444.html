@@ -2380,6 +2380,16 @@
                 <p>Isabelle watched with curious eyes. &#34;Where are we going, Mommy?&#34;</p>
                 <p>Olivia smiled as she folded a sweater. &#34;How about a special adventure, just you and me? Would you like that, darling?&#34;</p>
                 <p>Isabelle nodded eagerly, her little hands clutching her stuffed bunny. &#34;Can Liam come too?&#34;</p>
+                <!-- AdSense Ad Unit: banner1 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner1"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>The smile froze on Olivia&#39;s face, though her voice remained gentle. &#34;Not this time, sweetheart. This is our mother-daughter trip. We&#39;ll have so much fun together, and we&#39;ll be back before you know it.&#34; She crouched to meet Isabelle&#39;s eyes. &#34;Liam has someone special in his life now. Let&#39;s not bother them, okay?&#34;</p>
+                <p>Isabelle&#39;s lower lip trembled slightly. &#34;But Liam told me he doesn&#39;t have a girlfriend.&#34;</p>
                 <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2388,18 +2398,18 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>The smile froze on Olivia&#39;s face, though her voice remained gentle. &#34;Not this time, sweetheart. This is our mother-daughter trip. We&#39;ll have so much fun together, and we&#39;ll be back before you know it.&#34; She crouched to meet Isabelle&#39;s eyes. &#34;Liam has someone special in his life now. Let&#39;s not bother them, okay?&#34;</p>
-                <p>Isabelle&#39;s lower lip trembled slightly. &#34;But Liam told me he doesn&#39;t have a girlfriend.&#34;</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <p>Olivia smoothed her daughter&#39;s hair with infinite patience. &#34;Whether he does or doesn&#39;t, that&#39;s not our concern anymore. You wouldn&#39;t want to make him uncomfortable, would you?&#34;</p>
+                <p>The little girl twisted the hem of her dress. &#34;I don&#39;t want anyone to be sad.&#34;</p>
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Olivia smoothed her daughter&#39;s hair with infinite patience. &#34;Whether he does or doesn&#39;t, that&#39;s not our concern anymore. You wouldn&#39;t want to make him uncomfortable, would you?&#34;</p>
-                <p>The little girl twisted the hem of her dress. &#34;I don&#39;t want anyone to be sad.&#34;</p>
+                <p>Olivia gave Isabelle&#39;s cheek an affectionate pinch. &#34;Do you remember what we just talked about?&#34;</p>
+                <p>Isabelle nodded solemnly. &#34;Yes, Mommy. I remember.&#34;</p>
                 <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2408,23 +2418,13 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Olivia gave Isabelle&#39;s cheek an affectionate pinch. &#34;Do you remember what we just talked about?&#34;</p>
-                <p>Isabelle nodded solemnly. &#34;Yes, Mommy. I remember.&#34;</p>
-                <!-- AdSense Ad Unit: banner7 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>At that moment, Winston entered with a worried expression.</p>
                 <p>&#34;Miss Sinclair, is this sudden departure truly necessary? Perhaps you should rest first before traveling? We still don&#39;t know the full effects of that medication in your system. Leaving now could be dangerous.&#34;</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5065,8 +5065,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -5093,20 +5093,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

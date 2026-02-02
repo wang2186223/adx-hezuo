@@ -2381,22 +2381,22 @@
                 <p>Nathan cupped her face, pressing a firm kiss to her forehead. His thumb brushed away an unshed tear. &#34;Trust me, sweetheart. Now go.&#34;</p>
                 <p>Before she could protest, he vanished into the chaos.</p>
                 <p>The child in Evelyn&#39;s arms wailed in pain. She forced herself to focus, rocking the girl gently. &#34;Shh, sweetie. I&#39;ll get you to safety, I promise.&#34;</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>As the sobs subsided, Evelyn cast one last frantic look toward where Nathan had disappeared. Gritting her teeth, she scooped up the child and sprinted toward the fleeing crowds.</p>
                 <p>Police sirens wailed in the distance. Hundreds of terrified visitors huddled in the amusement park&#39;s central plaza, relief washing over them at the sight of authorities.</p>
                 <p>Evelyn pushed through the throng, searching frantically. &#34;She&#39;s hurt! Please, can someone help? She&#39;s lost her family!&#34;</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2414,33 +2414,33 @@
                 <p>Without hesitation, she plunged back into the nightmare.</p>
                 <p>The once-vibrant park now resembled a battleground. Gunfire echoed between the abandoned rides. Evelyn ducked behind an overturned ice cream cart, her breath coming in sharp gasps.</p>
                 <p>A body collapsed inches from her hiding spot. Blood pooled on the pavement. Her stomach lurched.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Then she spotted the fallen man&#39;s weapon.</p>
                 <p>Moving faster than she thought possible, Evelyn rolled forward and snatched the pistol. The metallic click of another gun&#39;s safety being disengaged froze her blood.</p>
                 <p>&#34;Bitch!&#34; a masked figure snarled, leveling his weapon at her head.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Evelyn slowly raised her hands, the stolen gun clattering to the ground. &#34;I didn&#39;t shoot him,&#34; she said carefully. &#34;I just needed protection.&#34;</p>
                 <p>Turning with deliberate slowness, she met her captor&#39;s eyes through his balaclava. A slow, seductive smile curved her lips as she shrugged off her jacket, revealing the thin tank top beneath. &#34;But if you&#39;d prefer... I can make it worth your while.&#34;</p>
                 <p>She pulled the band from her hair, letting the golden waves cascade over her shoulders. The man&#39;s grip on his weapon faltered ever so slightly.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4946,8 +4946,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4974,20 +4974,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

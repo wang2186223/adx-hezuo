@@ -2394,11 +2394,11 @@
                 <p>Regret poured from every word.</p>
                 <p>But what good did regret do now?</p>
                 <p>Evelyn gave him space, slipping quietly from the ward. Nathan had just ended his call when she approached.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2406,11 +2406,11 @@
                 <p>Nathan&#39;s expression darkened. &#34;Grandfather let Rosalind go. Out of respect for the Summers family&#39;s past kindness.&#34;</p>
                 <p>Evelyn squeezed his cold fingers. &#34;Now that your grandfather knows her true nature, she won&#39;t escape consequences if she acts again.&#34;</p>
                 <p>Nathan turned, pulling her into his embrace. His lips brushed her forehead. &#34;Zoe, you don&#39;t need to comfort me.&#34;</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2418,18 +2418,6 @@
                 <p>After a beat, she asked, &#34;Why did you have Father handle this? Were you worried your grandfather wouldn&#39;t believe us?&#34;</p>
                 <p>Nathan&#39;s arm tightened around her waist. &#34;That foolish girl Chloe told Rosalind all our plans. If we&#39;d confronted her directly, she would&#39;ve weaseled out of it with some excuse.&#34;</p>
                 <p>Evelyn toyed with his tie absently. &#34;Yet she still walked away unscathed. What a shame we couldn&#39;t send her to prison.&#34;</p>
-                <!-- AdSense Ad Unit: banner7 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>A dangerous smile curved his lips. &#34;Prison would be too kind. Grandfather may have spared her, but Father won&#39;t.&#34;</p>
-                <p>The next day...</p>
-                <p>Viana Jewelry officially rebranded as Soul Jewelry, drawing massive crowds on opening day.</p>
-                <p>The showroom divided into two distinct sections:</p>
                 <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2438,15 +2426,27 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>A dangerous smile curved his lips. &#34;Prison would be too kind. Grandfather may have spared her, but Father won&#39;t.&#34;</p>
+                <p>The next day...</p>
+                <p>Viana Jewelry officially rebranded as Soul Jewelry, drawing massive crowds on opening day.</p>
+                <p>The showroom divided into two distinct sections:</p>
+                <!-- AdSense Ad Unit: banner8 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner8"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Section A featured exclusive custom designs available by appointment only. Each breathtaking piece carried a staggering price tag, their unique designs justifying every penny.</p>
                 <p>Section B operated as a traditional boutique, selling ready-made collections that flew off the shelves.</p>
                 <p>As Bassburgh&#39;s sole Gothic-inspired jewelry brand - and with Zara as its celebrated designer - the store overflowed with customers.</p>
                 <p>Evelyn barely left her seat despite only handling custom orders. After seeing off one client, she turned to find Madam Nora approaching in her wheelchair, assisted by an attendant.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4952,8 +4952,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4980,20 +4980,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

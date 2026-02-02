@@ -2381,17 +2381,6 @@
                 <p>While their verbal sparring continued, Olivia expertly maneuvered her wheelchair past them and into the sterile hospital room.</p>
                 <p>The sight of the masked figure propped up in bed sent an unexpected pang through Olivia&#39;s chest. Even gravely injured, he refused to reveal his face.</p>
                 <p>Mr. Jack&#39;s eyes - the only visible feature through the mask&#39;s openings - held depths of calm wisdom.</p>
-                <!-- AdSense Ad Unit: banner6 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>&#34;Olivia,&#34; he began, his voice steady as bedrock. &#34;I can see the questions swirling behind your eyes. Today, I intend to answer them all.&#34;</p>
-                <p>Olivia&#39;s fingers curled into tight fists as she fought to steady her breathing. &#34;Please,&#34; she managed, &#34;I&#39;m listening.&#34;</p>
-                <p>&#34;First, I know you suspect I might be Liam.&#34;</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2400,14 +2389,25 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>His blunt acknowledgment hit like a physical blow. Olivia&#39;s eyes widened, her pulse thundering in her ears. Not only had he voiced her deepest suspicion, but he&#39;d done so with unsettling certainty.</p>
-                <p>&#34;You—&#34; Her voice cracked. &#34;Are you?&#34;</p>
-                <p>&#34;No.&#34; Mr. Jack&#39;s response came swift and final. A complex emotion flickered in his gaze as he held hers. &#34;Because Liam Blackwood has been dead for years.&#34;</p>
+                <p>&#34;Olivia,&#34; he began, his voice steady as bedrock. &#34;I can see the questions swirling behind your eyes. Today, I intend to answer them all.&#34;</p>
+                <p>Olivia&#39;s fingers curled into tight fists as she fought to steady her breathing. &#34;Please,&#34; she managed, &#34;I&#39;m listening.&#34;</p>
+                <p>&#34;First, I know you suspect I might be Liam.&#34;</p>
                 <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner1"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>His blunt acknowledgment hit like a physical blow. Olivia&#39;s eyes widened, her pulse thundering in her ears. Not only had he voiced her deepest suspicion, but he&#39;d done so with unsettling certainty.</p>
+                <p>&#34;You—&#34; Her voice cracked. &#34;Are you?&#34;</p>
+                <p>&#34;No.&#34; Mr. Jack&#39;s response came swift and final. A complex emotion flickered in his gaze as he held hers. &#34;Because Liam Blackwood has been dead for years.&#34;</p>
+                <!-- AdSense Ad Unit: banner6 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2437,11 +2437,11 @@
                 <p>The present refused to make sense.</p>
                 <p>And the future...</p>
                 <p>The future suddenly seemed unbearably empty.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5067,8 +5067,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -5095,20 +5095,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

@@ -2381,22 +2381,22 @@
                 <p>The drink bottles had appeared perfectly sealed, but Evelyn&#39;s sharp eyes had caught the nearly invisible puncture marks near each cap.</p>
                 <p>Drawing the curtains plunged the VIP room into shadow just as the door handle turned. Evelyn ducked behind the sofa, letting out a breathy moan. &#34;Lights off... please.&#34;</p>
                 <p>Jacob Zimmerman froze mid-reach for the switch, a lecherous grin spreading across his face. &#34;Ooh, someone&#39;s feeling adventurous tonight.&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Disgust churned in Evelyn&#39;s stomach, but she forced a sultry laugh. &#34;Mr. Zimmerman... I&#39;m waiting... on the couch... feeling so... dizzy...&#34;</p>
                 <p>&#34;Coming, my sweet little kitten,&#34; Jacob crooned, already fumbling with his belt.</p>
                 <p>Blind in the darkness, Jacob&#39;s hands found warm flesh. &#34;My, my, someone&#39;s eager,&#34; he chuckled, hastily shedding his clothes.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2414,22 +2414,22 @@
                 <p>The door clicked shut behind Evelyn. She flipped the placard to &#34;DO NOT DISTURB&#34; with cold satisfaction.</p>
                 <p>&#39;Madam Victoria and Yvette&#39;s faces will be priceless when they discover this little scene,&#39; she thought, smoothing her dress.</p>
                 <p>Twenty minutes later, Evelyn strolled calmly back to the dining room. The shock on Yvette and Madam Victoria&#39;s faces was almost comical.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;Zoe! How are you—&#34;</p>
                 <p>&#34;Is something wrong?&#34; Evelyn blinked innocently. &#34;I just needed some air. Didn&#39;t Lydia take me to rest? Where is she?&#34;</p>
                 <p>Yvette&#39;s chair screeched across the floor as she bolted toward the private rooms, Madam Victoria and Mrs. Zimmerman hot on her heels.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2440,11 +2440,11 @@
                 <p>&#34;You animal!&#34; Yvette launched herself at him, nails raking his face. &#34;You&#39;ve ruined my Lydia!&#34;</p>
                 <p>Mrs. Zimmerman shoved Yvette away violently. &#34;Your harlot daughter seduced my boy! This was clearly her doing!&#34;</p>
                 <p>&#34;Mom, this bitch set me up!&#34; Jacob howled, his face purpling with rage. He&#39;d expected filet mignon and been served ground beef instead.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4950,8 +4950,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4978,20 +4978,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

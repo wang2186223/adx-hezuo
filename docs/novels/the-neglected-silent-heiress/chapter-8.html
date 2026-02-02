@@ -2383,11 +2383,11 @@
                 <p>&#34;Twenty million. Not a cent less. Only then will I even consider discussing divorce.&#34; With violent precision, Liam shredded the documents. The sound of the slamming door echoed through the suddenly too-empty penthouse.</p>
                 <p>Olivia collapsed onto the sofa, silent tears tracing paths down her cheeks. This wasn&#39;t the Liam she once knew. Had she made a terrible mistake all those years ago? If only she&#39;d chosen differently...</p>
                 <p>That night, the penthouse felt cavernous in its silence. Certain Liam wouldn&#39;t return, Olivia was startled when her phone buzzed at 1:17 AM. An unknown number flashed on the screen.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2409,11 +2409,11 @@
                 <p>Across from them stood Natalie, gripping a broken bottle like a weapon, while her brother Daniel positioned himself protectively in front of her. The tension in the room was so thick Olivia could almost taste it.</p>
                 <p>Without thinking, Olivia rushed forward and grabbed Natalie&#39;s wrist, her eyes wide with alarm.</p>
                 <p>&#34;What the hell are you doing here?&#34; Liam&#39;s voice cut through the chaos like a whip, making Olivia flinch.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2435,11 +2435,11 @@
                 <p>Olivia&#39;s gaze fell on the table - an array of exotic, high-proof liquors glinting under the dim lights.</p>
                 <p>&#34;You&#39;ll kill yourself drinking all that! This is my fault anyway. I&#39;ll take responsibility for hitting her,&#34; Natalie whispered to Daniel, reaching for the bottle again.</p>
                 <p>Understanding dawned on Olivia. Natalie had struck Evelyn defending her honor. Now, with Liam furious, it fell to Olivia to bear the consequences.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2448,11 +2448,11 @@
                 <p>&#34;You bitch—&#34; Natalie started forward, but Olivia held her back.</p>
                 <p>Without hesitation, Olivia slapped herself hard across the face. She looked at Evelyn questioningly, silently asking if this satisfied her.</p>
                 <p>&#34;That&#39;s it?&#34; Evelyn scoffed. &#34;Where&#39;s the sincerity? If you truly want to apologize, get on your knees!&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5078,8 +5078,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -5106,20 +5106,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

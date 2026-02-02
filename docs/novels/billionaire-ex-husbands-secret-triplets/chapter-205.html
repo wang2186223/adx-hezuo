@@ -2383,11 +2383,11 @@
                 <p>Oliver returned to Goldmann Enterprises&#39; executive office, faithfully reporting every detail of the hospital encounter.</p>
                 <p>&#39;Mr. Goldmann assigned me as Ms. Vanderbilt&#39;s temporary bodyguard. What else could I do?&#39;</p>
                 <p>Nathan rested his chin on his hand, setting aside documents with a faint smirk. &#34;Seems she handled it perfectly. She deserves a reward.&#34;</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2409,19 +2409,6 @@
                 <p>&#39;Is Evelyn the only sane Vanderbilt?&#39;</p>
                 <p>He attempted to leave when Lydia suddenly bit her lip and lunged toward his chest.</p>
                 <p>Nathan swiftly caught her shoulders, his gaze turning arctic.</p>
-                <!-- AdSense Ad Unit: banner7 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Though denied the embrace, Lydia felt triumphant at his touch - until Nathan violently shoved her away just as Evelyn emerged with paperwork, sending Lydia sprawling.</p>
-                <p>The commotion drew everyone&#39;s attention.</p>
-                <p>Lydia hadn&#39;t anticipated public humiliation.</p>
-                <p>Nathan immediately approached Evelyn, adopting a wounded expression. &#34;She threw herself at me.&#34;</p>
-                <p>Gasps echoed through the studio.</p>
                 <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2430,16 +2417,29 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Though denied the embrace, Lydia felt triumphant at his touch - until Nathan violently shoved her away just as Evelyn emerged with paperwork, sending Lydia sprawling.</p>
+                <p>The commotion drew everyone&#39;s attention.</p>
+                <p>Lydia hadn&#39;t anticipated public humiliation.</p>
+                <p>Nathan immediately approached Evelyn, adopting a wounded expression. &#34;She threw herself at me.&#34;</p>
+                <p>Gasps echoed through the studio.</p>
+                <!-- AdSense Ad Unit: banner7 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner7"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#39;What?&#39;</p>
                 <p>&#39;Mr. Goldmann actually explaining himself to Ms. Zara with that puppy-dog look?&#39;</p>
                 <p>Lydia scrambled up, panicking. &#34;Evelyn! It wasn&#39;t me! I just slipped!&#34;</p>
                 <p>Evelyn understood exactly why Lydia had begged to work at Goldmann Enterprises. She&#39;d grudgingly admired Lydia&#39;s perseverance in enduring the grueling tasks assigned to her.</p>
                 <p>But watching Lydia openly seduce Nathan still churned Evelyn&#39;s stomach.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2450,11 +2450,11 @@
                 <p>&#34;Sister Evelyn...are you firing me?&#34; Lydia clutched her skirt hem.</p>
                 <p>&#34;Disappearing for hours during work shifts? Why should I keep you?&#34;</p>
                 <p>Evelyn knew exactly what Lydia did in the warehouse - Xavier had faithfully reported her three-hour daily absences and refusal to complete assignments.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4960,8 +4960,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4988,20 +4988,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

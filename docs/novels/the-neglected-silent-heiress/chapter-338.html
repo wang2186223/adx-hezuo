@@ -2379,11 +2379,11 @@
                 <p>A team of security personnel escorted in a disheveled woman screaming obscenities. With closer inspection, it became clear her venom was directed at Olivia.</p>
                 <p>Olivia studied the woman&#39;s face through the tangled hair. Despite the wild appearance, recognition flashed in her eyes. It was Margaret.</p>
                 <p>&#34;Margaret.&#34; A spark of revulsion flickered in Olivia&#39;s gaze. &#34;I never imagined our reunion would occur under such circumstances.&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2397,15 +2397,6 @@
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Olivia drew a steadying breath before responding with measured calm. &#34;Margaret, if you confess your motives now, I may show mercy.&#34; The truth was, Olivia had no intention of forgiveness. This was purely a strategic play to uncover the truth about Vivienne&#39;s past.</p>
-                <!-- AdSense Ad Unit: banner5 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Defeated, Margaret collapsed to the floor, her eyes devoid of life. &#34;Fine,&#34; she whispered hoarsely. &#34;I&#39;ll tell you everything.&#34;</p>
                 <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2414,12 +2405,21 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Margaret had despised Vivienne from the moment she married into the Kensington family, her jealousy poisoning her mind. Her own marriage to Reginald had been arranged, devoid of affection - a bitter contrast to Vivienne&#39;s charmed existence.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <p>Defeated, Margaret collapsed to the floor, her eyes devoid of life. &#34;Fine,&#34; she whispered hoarsely. &#34;I&#39;ll tell you everything.&#34;</p>
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner7"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Margaret had despised Vivienne from the moment she married into the Kensington family, her jealousy poisoning her mind. Her own marriage to Reginald had been arranged, devoid of affection - a bitter contrast to Vivienne&#39;s charmed existence.</p>
+                <!-- AdSense Ad Unit: banner4 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2428,11 +2428,11 @@
                 <p>Margaret meticulously plotted Vivienne&#39;s downfall, taking malicious pleasure when heartbreak finally drove Vivienne from the Kensington mansion. For years, Margaret believed she&#39;d won - until Olivia&#39;s unexpected return.</p>
                 <p>Seeing Olivia - Vivienne&#39;s mirror image - receiving the same adoration from the Kensingtons, particularly from Donovan and Alistair, rekindled Margaret&#39;s bitter resentment. Seraphina&#39;s failure to win the family&#39;s favor only deepened Margaret&#39;s twisted sympathy for her.</p>
                 <p>The past had come full circle, and now Margaret would face the consequences of her decades-long vendetta.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5058,8 +5058,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -5086,20 +5086,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

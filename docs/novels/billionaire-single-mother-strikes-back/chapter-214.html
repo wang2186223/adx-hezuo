@@ -2380,6 +2380,16 @@
                 <p>Marcus Donovan was Senior Theodore’s most formidable bodyguard, a powerfully built man. He advanced toward Victoria immediately.</p>
                 <p>Panic seized Victoria. She understood the gravity now. Her reputation was destroyed. The Montgomery family despised her! Being banished to Africa would mean the end.</p>
                 <p>Desperate, she clutched Eleanor’s arm. “Mother, help me! I’ve learned my lesson! I won’t repeat this! I refuse to go to such a place! I can’t!”</p>
+                <!-- AdSense Ad Unit: banner7 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner7"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Eleanor’s heart ached watching Victoria’s tears. But she was horrified by Victoria’s actions and true nature. Outwardly, Victoria supported Alexander and Isabella. Secretly, she seduced Alexander and schemed to seize Isabella’s assets!</p>
+                <p>She could no longer defend a daughter like this.</p>
                 <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2388,23 +2398,13 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Eleanor’s heart ached watching Victoria’s tears. But she was horrified by Victoria’s actions and true nature. Outwardly, Victoria supported Alexander and Isabella. Secretly, she seduced Alexander and schemed to seize Isabella’s assets!</p>
-                <p>She could no longer defend a daughter like this.</p>
+                <p>Tears welled in Eleanor’s eyes as she pulled her arm away. “Victoria, you must go to Africa. It’s for your own good. For everyone’s sake.”</p>
+                <p>Victoria trembled violently. Even Eleanor agreed to this exile? Her mistake was huge, but not this severe! Five years away would erase her standing in the Montgomery family. Worse, Isabella would find ways to eliminate her in Africa. Or steal everything she had left, leaving her a discarded orphan!</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner8"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Tears welled in Eleanor’s eyes as she pulled her arm away. “Victoria, you must go to Africa. It’s for your own good. For everyone’s sake.”</p>
-                <p>Victoria trembled violently. Even Eleanor agreed to this exile? Her mistake was huge, but not this severe! Five years away would erase her standing in the Montgomery family. Worse, Isabella would find ways to eliminate her in Africa. Or steal everything she had left, leaving her a discarded orphan!</p>
-                <!-- AdSense Ad Unit: banner7 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4933,8 +4933,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4961,20 +4961,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

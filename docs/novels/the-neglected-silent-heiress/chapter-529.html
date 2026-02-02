@@ -2379,11 +2379,11 @@
                 <p>Murmurs of admiration for Miranda&#39;s supposed generosity rippled through the gathered crowd.</p>
                 <p>&#34;Honestly, I&#39;ve never seen anyone as forgiving as Miranda. She&#39;s practically a saint.&#34;</p>
                 <p>&#34;True. But I worry for her. That mother-daughter pair might try something when the cameras aren&#39;t rolling.&#34;</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2397,15 +2397,6 @@
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;You&#39;re so naive! Olivia paid a fortune to get on this show. She wasn&#39;t even on the original roster. Makes you wonder what strings she pulled.&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Olivia felt the sting of their words but remained silent. She&#39;d only joined the program for Isabelle&#39;s sake. Forcing a smile, she reached for Miranda&#39;s hand, though her eyes remained guarded. &#34;Why would we cause trouble? Isabelle and I despise drama. There are two beds - you&#39;re welcome to the larger one. If it makes you more comfortable, I&#39;ll even hang a divider between us. And if children bother you, I&#39;ll ensure Isabelle stays out of your way.&#34;</p>
                 <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2414,12 +2405,21 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Miranda blinked in surprise at Olivia&#39;s sudden graciousness. &#34;Oh no, you should take the bigger bed with your daughter. That&#39;s only proper.&#34;</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <p>Olivia felt the sting of their words but remained silent. She&#39;d only joined the program for Isabelle&#39;s sake. Forcing a smile, she reached for Miranda&#39;s hand, though her eyes remained guarded. &#34;Why would we cause trouble? Isabelle and I despise drama. There are two beds - you&#39;re welcome to the larger one. If it makes you more comfortable, I&#39;ll even hang a divider between us. And if children bother you, I&#39;ll ensure Isabelle stays out of your way.&#34;</p>
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner3"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Miranda blinked in surprise at Olivia&#39;s sudden graciousness. &#34;Oh no, you should take the bigger bed with your daughter. That&#39;s only proper.&#34;</p>
+                <!-- AdSense Ad Unit: banner2 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2427,11 +2427,11 @@
                 <p>Her blunt statement created an awkward silence. Miranda&#39;s eyes welled with sudden tears. &#34;Miss Kensington, you can&#39;t paint me as the villain here.&#34;</p>
                 <p>Victoria moved to comfort Miranda, shooting Olivia a disapproving look. &#34;Must you be so cruel? Miranda genuinely wants peace.&#34;</p>
                 <p>Olivia&#39;s musical laughter cut through the tension. Her striking beauty made everyone else fade into the background. &#34;How dramatic! Miss Graves and I were just playing. I didn&#39;t realize she&#39;d take it so seriously. My mistake - I should&#39;ve known better. Earlier, I saw her joking with Isabelle, pretending to fall and claiming my daughter pushed her. I assumed she enjoyed such playful banter.&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5057,8 +5057,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -5085,20 +5085,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

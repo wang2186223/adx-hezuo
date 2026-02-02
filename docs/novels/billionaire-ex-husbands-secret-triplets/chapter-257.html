@@ -2390,6 +2390,16 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Rosalind leaned close to whisper something, her lips nearly brushing Nathan&#39;s ear. He remained stoic, his gaze fixed on the stage, offering only occasional nods.</p>
                 <p>When Rosalind&#39;s triumphant eyes met Evelyn&#39;s, the younger woman spun back around, crossing her arms defensively over her chest.</p>
+                <!-- AdSense Ad Unit: banner4 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner4"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>The auctioneer&#39;s gavel snapped Evelyn&#39;s attention to the stage. Why would Nathan attend with Rosalind? Were they...? She knew Theodore Goldmann favored Rosalind as Nathan&#39;s ideal match. If not for her and the children, they&#39;d probably be together by now. So why did that thought make her stomach twist?</p>
+                <p>The current lot was a flawless white jade bangle, its crystalline purity magnified on the overhead screens. Evelyn chewed her lip as bids escalated—until Nathan&#39;s baritone cut through the crowd.</p>
                 <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2398,23 +2408,13 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>The auctioneer&#39;s gavel snapped Evelyn&#39;s attention to the stage. Why would Nathan attend with Rosalind? Were they...? She knew Theodore Goldmann favored Rosalind as Nathan&#39;s ideal match. If not for her and the children, they&#39;d probably be together by now. So why did that thought make her stomach twist?</p>
-                <p>The current lot was a flawless white jade bangle, its crystalline purity magnified on the overhead screens. Evelyn chewed her lip as bids escalated—until Nathan&#39;s baritone cut through the crowd.</p>
+                <p>Her teacup rattled against its saucer. He&#39;d just placed the highest bid for an obviously feminine piece. For Rosalind?</p>
+                <p>Edmund followed her line of sight and arched a brow. &#34;Jealous?&#34; he murmured.</p>
                 <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner5"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Her teacup rattled against its saucer. He&#39;d just placed the highest bid for an obviously feminine piece. For Rosalind?</p>
-                <p>Edmund followed her line of sight and arched a brow. &#34;Jealous?&#34; he murmured.</p>
-                <!-- AdSense Ad Unit: banner3 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2435,11 +2435,11 @@
                 <p>Edmund didn&#39;t press. &#34;I&#39;ll drive you.&#34;</p>
                 <p>That night, Evelyn bypassed Goldmann Manor entirely, heading straight for Vanderbilt Estate.</p>
                 <p>Richard&#39;s face lit up when she announced she&#39;d stay over—then clouded with concern. &#34;Does Mr. Goldmann know you&#39;re here?&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4945,8 +4945,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4973,20 +4973,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');

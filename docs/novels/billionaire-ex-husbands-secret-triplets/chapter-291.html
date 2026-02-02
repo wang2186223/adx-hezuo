@@ -2380,11 +2380,11 @@
                 <p>&#34;Who said I&#39;m scared?&#34; Winifred snapped, her nails digging into her palms. &#34;You&#39;ll be kneeling before me soon enough, Evelyn!&#34;</p>
                 <p>She had to trust Rosalind. There was no way her ally would betray her now.</p>
                 <p>With trembling fingers, Winifred dialed Rosalind&#39;s number, putting the call on speakerphone. The moment Rosalind answered, Winifred blurted out, &#34;Rosalind, tell everyone you&#39;re Mr. Goldmann&#39;s woman! Now!&#34;</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2400,31 +2400,31 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>The line went dead silent. Rosalind&#39;s breath hitched audibly before she hissed, &#34;Winifred, you imbecile!&#34;</p>
                 <p>&#34;Say something!&#34; Winifred shrieked, desperation clawing at her throat.</p>
-                <!-- AdSense Ad Unit: banner2 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Rosalind&#39;s reply came like a guillotine&#39;s drop: &#34;I never claimed to be involved with Mr. Goldmann. Stop spreading lies.&#34; The call ended with a final click.</p>
-                <p>Back in her apartment, Rosalind hurled her phone against the wall. &#34;That stupid, useless girl!&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Winifred stood frozen as the crowd&#39;s murmurs turned to laughter. The truth was undeniable now - she&#39;d been exposed as a liar.</p>
-                <p>Evelyn gripped Winifred&#39;s chin, forcing their eyes to meet. &#34;Congratulations,&#34; she whispered, her voice dripping with venom. &#34;You&#39;ve just lost your only ally. And changed my opinion about Rosalind&#39;s intelligence.&#34;</p>
                 <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner5"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Rosalind&#39;s reply came like a guillotine&#39;s drop: &#34;I never claimed to be involved with Mr. Goldmann. Stop spreading lies.&#34; The call ended with a final click.</p>
+                <p>Back in her apartment, Rosalind hurled her phone against the wall. &#34;That stupid, useless girl!&#34;</p>
+                <!-- AdSense Ad Unit: banner7 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner7"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Winifred stood frozen as the crowd&#39;s murmurs turned to laughter. The truth was undeniable now - she&#39;d been exposed as a liar.</p>
+                <p>Evelyn gripped Winifred&#39;s chin, forcing their eyes to meet. &#34;Congratulations,&#34; she whispered, her voice dripping with venom. &#34;You&#39;ve just lost your only ally. And changed my opinion about Rosalind&#39;s intelligence.&#34;</p>
+                <!-- AdSense Ad Unit: banner2 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4943,8 +4943,8 @@
 
             startAdMonitoring() {
                 const checkForAds = () => {
-                    // Monitor all GPT ad slots - support multiple banners
-                    const adElements = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                    // Monitor all AdSense ad slots - support multiple banners
+                    const adElements = document.querySelectorAll('.adsbygoogle');
                     adElements.forEach(ad => {
                         if (!ad.dataset.guideMonitored) {
                             ad.dataset.guideMonitored = 'true';
@@ -4971,20 +4971,28 @@
                 const rect = adElement.getBoundingClientRect();
                 const isValidHeight = rect.height > 100 && rect.height <= 650;
                 
-                // Update ad fill detection logic - support ADX ad structure and exclude unfilled ads
+                // Update ad fill detection logic - support AdSense ad structure
                 let isFilled = false;
                 
-                // Check if there is a valid iframe (height > 0)
-                const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    isFilled = iframeRect.height > 0;
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    isFilled = true;
                 }
                 
-                // If no iframe, check other fill indicators
+                // Method 2: Check if there is a valid iframe (height > 0)
+                if (!isFilled) {
+                    const iframe = adElement.querySelector('iframe');
+                    if (iframe) {
+                        const iframeRect = iframe.getBoundingClientRect();
+                        isFilled = iframeRect.height > 0;
+                    }
+                }
+                
+                // Method 3: Check other fill indicators (AdSense/AdX specific)
                 if (!isFilled) {
                     isFilled = adElement.dataset.adStatus === 'filled' || 
                               adElement.innerHTML.includes('googleads') ||
+                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
                               (adElement.querySelector('[data-google-container-id]') !== null && 
                                adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
                               adElement.innerHTML.includes('data-load-complete="true"');
