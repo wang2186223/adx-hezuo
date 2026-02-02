@@ -2383,11 +2383,11 @@
                 <p>“Her lies are catching up to her! She deserves every bit of this!”</p>
                 <p>“Please, everyone, don’t be so harsh on my sister,” Victoria interjected, her voice dripping with false concern. “Maybe she just doesn’t like Silas. It might not be about the car. Perhaps she’s uncomfortable sitting with him.” She turned to Isabella with a saccharine smile. “I can let you sit in the passenger seat if you prefer. Come on, we don’t want to be late.”</p>
                 <p>She pushed the passenger door open. Even from the front, she could make sure Silas got a good bite. Maybe he’d even take her head clean off.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2396,11 +2396,11 @@
                 <p>“Yeah, hurry up! Never been in a car this expensive before? Cat got your tongue?”</p>
                 <p>“She’s probably never even seen one! How hilarious!”</p>
                 <p>As they sneered, a shadow blurred past them and pulled to a smooth stop nearby.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2422,11 +2422,11 @@
                 <p>It opened. A man in a tailored suit stepped out.</p>
                 <p>Though he was just a driver, he carried himself with a commanding presence that outshone any male model. But what he did next was even more shocking.</p>
                 <p>He stood rigidly by the car and announced, “Miss Montgomery, I’m here on behalf of my employer to escort you. Please come with me.”</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2435,11 +2435,11 @@
                 <p>“I’m so jealous! Victoria, please, can I just touch it? Just once?”</p>
                 <p>They gazed at her with pure adoration.</p>
                 <p>Victoria herself was confused. She didn’t know anyone who owned this car. Maybe some billionaire had seen her viral scandal and sent for her?</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2448,11 +2448,11 @@
                 <p>Her friends watched, green with envy. How was she so lucky? Born into the second-richest family in Westchester. Engaged to a perfect man like Alexander Whitmore. And now, a billionaire admirer? No one could ever compete.</p>
                 <p>But the driver’s brow furrowed. He raised a hand. “My apologies. I am here for Miss Isabella Montgomery.”</p>
                 <p>What? Isabella Montgomery? Not Victoria?</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5017,29 +5017,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

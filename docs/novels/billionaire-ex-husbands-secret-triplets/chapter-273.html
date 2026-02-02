@@ -2382,6 +2382,18 @@
                 <p>The door exploded inward with a violent kick, making all three jump.</p>
                 <p>Winifred scrambled to her feet when Evelyn stormed in. &#34;Hey! You can&#39;t just—&#34;</p>
                 <p>The sharp crack of Evelyn&#39;s palm meeting Winifred&#39;s cheek echoed through the room. The other two girls gasped as Winifred stumbled back, clutching her face.</p>
+                <!-- AdSense Ad Unit: banner8 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner8"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>&#34;You hit me?&#34; Winifred&#39;s voice trembled with disbelief.</p>
+                <p>Evelyn grabbed her collar and shoved her against the wall. &#34;Where. Is. Rachel.&#34;</p>
+                <p>Winifred&#39;s eyes flashed with defiance despite the stinging cheek. &#34;After attacking me, you think I&#39;ll tell you anything? You&#39;ll regret this!&#34;</p>
+                <p>She lunged forward, nails aimed at Evelyn&#39;s face.</p>
                 <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2390,27 +2402,15 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>&#34;You hit me?&#34; Winifred&#39;s voice trembled with disbelief.</p>
-                <p>Evelyn grabbed her collar and shoved her against the wall. &#34;Where. Is. Rachel.&#34;</p>
-                <p>Winifred&#39;s eyes flashed with defiance despite the stinging cheek. &#34;After attacking me, you think I&#39;ll tell you anything? You&#39;ll regret this!&#34;</p>
-                <p>She lunged forward, nails aimed at Evelyn&#39;s face.</p>
-                <!-- AdSense Ad Unit: banner7 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Evelyn caught her wrist mid-air and delivered another stinging slap that sent Winifred crashing to the floor.</p>
                 <p>Tears welled in Winifred&#39;s eyes as she cradled her swollen face. &#34;You—&#34;</p>
                 <p>Evelyn snatched a steel fork from the nearby table.</p>
                 <p>The other girls scrambled backward, but Evelyn only had eyes for Winifred. She hauled the sobbing girl up by her shirt collar, pressed her against the bed frame, and held the fork&#39;s sharp tines against her jugular.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2430,11 +2430,11 @@
                 <p>Winifred screamed.</p>
                 <p>The other girls covered their eyes, expecting blood.</p>
                 <p>But the fork embedded itself in the mattress between Winifred&#39;s splayed fingers, missing flesh by millimeters.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2444,11 +2444,11 @@
                 <p>Evelyn found Rachel locked in a bathroom stall, her weak knocks barely audible. The moment Evelyn removed the jammed broom, Rachel tumbled out, shivering violently in soaked clothes.</p>
                 <p>&#34;I&#39;m so sorry, Rachel.&#34; Evelyn caught her before she hit the floor.</p>
                 <p>Rachel burst into tears at the sight of her rescuer. Evelyn quickly helped her back to their room, where Rachel changed into dry clothes and huddled under blankets, still trembling from hours of cold and hunger.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5021,29 +5021,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

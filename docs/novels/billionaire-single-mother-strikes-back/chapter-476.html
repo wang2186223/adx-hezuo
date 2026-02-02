@@ -2382,11 +2382,11 @@
                 <p>“Exactly. Richard nearly died in that fire, and Victoria saved him. Isabella only ever brings destruction.”</p>
                 <p>The family attorney burst into the room, his face pale.</p>
                 <p>“Mr. Montgomery, it’s terrible! Something awful has happened!”</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2394,11 +2394,11 @@
                 <p>The attorney struggled to speak, gasping for air. “It’s Ms. Victoria… She…”</p>
                 <p>Eleanor leaped up and grabbed his arm. “What about Victoria? Did Isabella harm her?”</p>
                 <p>“I’ll find Isabella right now! This time, I’ll end her!” Richard stormed toward the door.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2406,11 +2406,11 @@
                 <p>The room fell into stunned silence.</p>
                 <p>Victoria ran off with the money?</p>
                 <p>The news was too shocking to process.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2418,11 +2418,11 @@
                 <p>“Madam, I didn’t want to believe it either. When I reviewed the company’s finances, I discovered a massive transfer of shares. Victoria sold her sixty percent stake to an unknown buyer. And the fifty billion for the Garden Project—plus the fifty billion bank loan—is gone. She took everything.”</p>
                 <p>Eleanor stumbled backward, nearly collapsing.</p>
                 <p>Theodore jolted upright in his bed.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2446,11 +2446,11 @@
                 <p>Her phone crashed to the floor and shattered.</p>
                 <p>Zachary’s eyes rolled back, and he fainted from the shock.</p>
                 <p>“Darling! Darling! Somebody call a doctor!”</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5015,29 +5015,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

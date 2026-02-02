@@ -2380,26 +2380,16 @@
                 <p>A lone voice of reason chimed in, &#34;Maybe Sinclair Enterprises actually hired a talented designer this round.&#34; But they were quickly drowned out by the mob.</p>
                 <p>The most vicious comment read, &#34;Everyone knows their designer copied Margaret&#39;s work for years before getting caught.&#34;</p>
                 <p>&#34;Such a prestigious company should investigate these claims properly,&#34; another user wrote. &#34;But they clearly underestimated Margaret&#39;s threat level.&#34;</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;This corporation has no ethics when it comes to design integrity.&#34;</p>
                 <p>Margaret Sinclair expertly manipulated the online narrative. Without directly naming Sinclair Enterprises, she painted herself as the wronged party - detailing the emotional devastation of discovering her stolen work and the uphill battle to protect her rights.</p>
-                <!-- AdSense Ad Unit: banner8 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Her final post hinted at newfound resilience. &#34;No one can silence me anymore,&#34; she wrote, suggesting she&#39;d broken free from corporate intimidation.</p>
-                <p>The speculation ran wild. &#34;Margaret, did Sinclair Enterprises block you from the competition?&#34; one fan asked. She responded the next day with nothing but a shushing emoji, letting imaginations run wild.</p>
                 <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2408,23 +2398,33 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Olivia Sinclair and Evelyn Whitmore monitored the situation closely. Evelyn clenched her fists. &#34;She&#39;s using the same old tricks to smear me. After all these years, she hasn&#39;t changed her tactics one bit.&#34;</p>
-                <p>Olivia placed a calming hand on her shoulder. &#34;Her methods may be predictable, but they&#39;re effective. Just follow my plan exactly, and everything will work out.&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <p>Her final post hinted at newfound resilience. &#34;No one can silence me anymore,&#34; she wrote, suggesting she&#39;d broken free from corporate intimidation.</p>
+                <p>The speculation ran wild. &#34;Margaret, did Sinclair Enterprises block you from the competition?&#34; one fan asked. She responded the next day with nothing but a shushing emoji, letting imaginations run wild.</p>
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner8"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Olivia Sinclair and Evelyn Whitmore monitored the situation closely. Evelyn clenched her fists. &#34;She&#39;s using the same old tricks to smear me. After all these years, she hasn&#39;t changed her tactics one bit.&#34;</p>
+                <p>Olivia placed a calming hand on her shoulder. &#34;Her methods may be predictable, but they&#39;re effective. Just follow my plan exactly, and everything will work out.&#34;</p>
+                <!-- AdSense Ad Unit: banner7 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Their conversation was interrupted by Beatrice Whitmore hobbling out on her cane, with little Isabelle trailing behind. &#34;Grandma Beatrice, please don&#39;t worry,&#34; the child said earnestly. &#34;Listen to Mommy.&#34;</p>
                 <p>Both women rushed to intercept her. Evelyn caught Beatrice&#39;s arm gently. &#34;Grandmother, what are you trying to do?&#34;</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5132,29 +5132,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

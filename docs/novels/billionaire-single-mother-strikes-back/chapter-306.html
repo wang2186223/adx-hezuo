@@ -2381,6 +2381,17 @@
                 <p>He accepted each grape, his hands resting possessively on her waist. Their bodies were pressed so close they seemed fused together. The scene was intensely provocative.</p>
                 <p>Vivienne stumbled backward, a scorching wave of fury and envy crashing through her.</p>
                 <p>How… How was this possible?</p>
+                <!-- AdSense Ad Unit: banner5 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner5"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>She had always believed Nathaniel to be virtuous and disciplined, maintaining a respectful distance from women—flawless as a storybook prince. Yet now…</p>
+                <p>He was surrounded by so many women!</p>
+                <p>Meanwhile, Isabella leaned into Nathaniel’s embrace, her voice a silken murmur. “Nathaniel, do you enjoy the grapes?”</p>
                 <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2389,47 +2400,36 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>She had always believed Nathaniel to be virtuous and disciplined, maintaining a respectful distance from women—flawless as a storybook prince. Yet now…</p>
-                <p>He was surrounded by so many women!</p>
-                <p>Meanwhile, Isabella leaned into Nathaniel’s embrace, her voice a silken murmur. “Nathaniel, do you enjoy the grapes?”</p>
-                <!-- AdSense Ad Unit: banner8 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Her form was supple, her warmth and breath ghosting over his face. Nathaniel, unaccustomed to such feminine attention, naturally exuded a cool, detached aura. But at her words, he couldn’t help responding to Isabella.</p>
                 <p>His world narrowed to her alone; everything else faded into obscurity. Gazing into her eyes, he replied, “I prefer you.”</p>
                 <p>His voice was husky and magnetic. Whether intentional or not, his tongue grazed her fingertip as he took the grape.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>A jolt of electricity shot through Isabella’s fingers, making her heart stutter.</p>
                 <p>This man! He had been hesitant earlier, but now he was dominating the scene. Instinct urged her to push him away, but she remembered Vivienne was watching. She had to stay in character. “Then will you marry me?” she purred. “Will you take responsibility? I want to be your wife. I want to be called Mrs. Blackwood. And…”</p>
                 <p>Her tone was exceedingly tender. Nathaniel looked at her with adoration. “Whatever you desire. Whenever you wish.”</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>He sounded utterly serious, not joking in the slightest. He lifted her chin, whispering, “But first, I need to inspect you.”</p>
                 <p>He bent his head and captured her lips in a deep, fervent kiss.</p>
                 <p>Isabella’s mind went completely blank. Her body tensed.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5007,29 +5007,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

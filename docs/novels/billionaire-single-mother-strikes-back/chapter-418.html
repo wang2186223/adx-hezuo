@@ -2379,20 +2379,20 @@
                 <p>She could sense Nathaniel was plotting something.</p>
                 <p>But it didn’t matter. She would never let Alexander get that close to her again anyway. Nathaniel brought her a fresh set of clothes and left the bathroom. After changing, Isabella picked up her soiled garments to toss them in the washer, but Nathaniel intercepted. He took them from her hands and threw them straight into the trash.</p>
                 <p>Straight into the bin! That jacket was brand new—almost ten thousand dollars! Just because he was filthy rich didn’t mean he could be this wasteful. Nathaniel’s expression remained stern and unreadable.</p>
+                <!-- AdSense Ad Unit: banner2 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner2"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>He sat at the dining table. “Dinner is ready.”</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner8"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>He sat at the dining table. “Dinner is ready.”</p>
-                <!-- AdSense Ad Unit: banner7 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2415,11 +2415,11 @@
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Unaware that Oliver had been awake, Isabella began eating with Nathaniel. The table was laden with gourmet dishes: seafood platters with scallops and imported prawns, white truffle pasta, gold-leaf pizza, seafood curry, caviar chocolate pudding… Each dish was exquisitely prepared and looked incredibly expensive.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2428,11 +2428,11 @@
                 <p>She set the peach nectar aside and brought the red wine over. She poured half a glass for him and half for herself. Nathaniel eyed the unlabeled bottle skeptically. No brand, no origin—just mysterious liquid in a plain bottle. “Is this safe to drink?” he asked.</p>
                 <p>“Absolutely. Try it!” Isabella urged. She raised her glass and took a small sip. Instantly, her muscles relaxed. She had to admit, Uncle Silas’s homemade wine was in a league of its own.</p>
                 <p>Nathaniel took a cautious sip, expecting some cheap swill. To his surprise, the flavor surpassed even wines worth tens of millions. His sharp gaze settled on Isabella, lingering. “Isabella, how many more secrets are you hiding from me?” His tone was intrigued, almost tender.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4997,29 +4997,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

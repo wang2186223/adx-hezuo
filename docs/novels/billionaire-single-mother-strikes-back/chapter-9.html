@@ -2381,22 +2381,22 @@
                 <p>Would Eleanor still love her if she discovered the deception?</p>
                 <p>Seeing Victoria&#39;s troubled face, Gabriella assumed she was still upset about the previous night. &#34;Don&#39;t let it get to you. It&#39;s just one photo,&#34; she said, trying to sound reassuring. &#34;Even if it leaked, it wouldn&#39;t be the end of the world. Your focus should be on clinching that final appearance spot. Everyone who&#39;s anyone will be at the show tomorrow. Rumor has it a Blackwood might even attend. Landing this role would skyrocket your value. No one would even remember that birthday party incident.&#34;</p>
                 <p>&#34;I&#39;m aware.&#34; Victoria gave a curt nod.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>The events of last night no longer troubled her. The hacker was probably just another obsessed pervert, like so many of her deranged fans. Since nothing was released immediately, it was unlikely to surface now. They probably just wanted the photos for their private collection.</p>
                 <p>&#34;Oh, I almost forgot,&#34; Gabriella added. &#34;When I checked the participant list this morning, I saw Isabella Montgomery&#39;s name. The girl just got back to the country and has zero modeling experience. It&#39;s honestly laughable that she even signed up!&#34;</p>
                 <p>Instead of joining in the mockery, Victoria’s brow furrowed at the mention of Isabella. Right. She had threatened to take everything from Victoria. Of course she would show up here, trying to compete. But she was utterly out of her depth against a supermodel like Victoria.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2414,11 +2414,11 @@
                 <p>Sebastian Blackwood watched boredly from a concealed booth on the second floor.</p>
                 <p>&#34;Bro, you promised the special lady would be here today. The audition&#39;s almost over. Where is she?&#34;</p>
                 <p>&#34;Exactly! Where&#39;s Mommy? These women are all so boring and plain. They think they&#39;re so chic. I&#39;m getting sleepy...&#34; Oliver mumbled, his eyelids heavy.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2438,11 +2438,11 @@
                 <p>Sebastian felt the verbal slaps keep coming. What had he done to deserve this?</p>
                 <p>Suddenly, a wave of excited murmurs and appreciative noises rippled through the crowd below.</p>
                 <p>The three of them stopped their bickering instantly. Their attention snapped toward the stage.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5007,29 +5007,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

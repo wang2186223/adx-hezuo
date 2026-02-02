@@ -2379,38 +2379,38 @@
                 <p>Liam&#39;s decision to let Olivia stay with the Kensingtons had been temporary. Though they appeared welcoming, he suspected darker motives might be at play.</p>
                 <p>Donovan wasn&#39;t surprised by Liam&#39;s words. That first encounter with Olivia had sparked an inexplicable sense of recognition that lingered long after their meeting.</p>
                 <p>When their eyes met, Donovan was instantly transported back to childhood memories of his aunt, though they&#39;d spent little time together. Alistair&#39;s visible excitement upon seeing Olivia only confirmed Donovan&#39;s growing certainty about their blood relation.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;Thank you, Liam,&#34; Donovan said with genuine appreciation before subtly creating distance between them.</p>
-                <!-- AdSense Ad Unit: banner7 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Meanwhile, Seraphina&#39;s rage was a living thing, twisting her delicate features into something ugly. But she was powerless to act.</p>
-                <!-- AdSense Ad Unit: banner2 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Donovan now held the family reins firmly in his grasp. Seraphina knew one wrong move could give him the excuse he needed to cast her out - a threat that haunted her every waking moment.</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner8"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Meanwhile, Seraphina&#39;s rage was a living thing, twisting her delicate features into something ugly. But she was powerless to act.</p>
+                <!-- AdSense Ad Unit: banner5 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner5"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Donovan now held the family reins firmly in his grasp. Seraphina knew one wrong move could give him the excuse he needed to cast her out - a threat that haunted her every waking moment.</p>
+                <!-- AdSense Ad Unit: banner1 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2428,11 +2428,11 @@
                 <p>As the party wound down and guests departed, the Kensingtons prepared to return to their separate lives. Olivia was leaving - this morning she&#39;d hidden in a kitchen supply van just to get here. Desperate to avoid further attention, Seraphina reluctantly allowed Olivia to share her car.</p>
                 <p>The journey had been grueling for Olivia. Now she finally had a moment of comfort in the Kensington family car. Donovan assisted Olivia with unexpected gentleness that didn&#39;t escape Seraphina&#39;s notice, fueling her simmering jealousy.</p>
                 <p>Celeste Dumont, sensing Seraphina&#39;s dark mood, cautiously approached to open the car door. Instead of entering, Seraphina fixed her assistant with an icy, penetrating glare that promised consequences.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5125,29 +5125,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

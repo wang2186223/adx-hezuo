@@ -2380,21 +2380,21 @@
                 <p>Rachel responded with an embarrassed chuckle.</p>
                 <p>While queuing for their meals, Evelyn accidentally tripped over someone&#39;s outstretched leg. Only Rachel&#39;s quick reflexes prevented her from tumbling to the floor. The offender—a man lounging with his beret covering his face—nearly toppled from his chair from the impact.</p>
                 <p>Snatching off his hat, he sprang up angrily. &#34;Who the hell—&#34; His furious tirade died mid-sentence when he saw Evelyn&#39;s delicate features. The anger melted into stunned admiration. &#34;Oh... it&#39;s... never mind.&#34;</p>
-                <!-- AdSense Ad Unit: banner7 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Evelyn offered a polite nod before quickly moving away with Rachel.</p>
-                <p>A companion waved a hand in front of the dazed man&#39;s face. &#34;Earth to Felix Boucher! She&#39;s gone!&#34;</p>
                 <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner1"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Evelyn offered a polite nod before quickly moving away with Rachel.</p>
+                <p>A companion waved a hand in front of the dazed man&#39;s face. &#34;Earth to Felix Boucher! She&#39;s gone!&#34;</p>
+                <!-- AdSense Ad Unit: banner7 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2420,11 +2420,11 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;His family connections make him untouchable. While we&#39;re here training, he treats this place like his personal playground—you&#39;ll rarely see him in actual sessions.&#34;</p>
                 <p>Evelyn merely smiled. Her sole purpose here was passing the assessments; camp politics held no interest for her.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2435,11 +2435,11 @@
                 <p>&#34;That won&#39;t be necessary,&#34; Evelyn replied coolly.</p>
                 <p>Rachel tensed beside her, beads of sweat forming on her forehead. &#39;This is dangerous. If he loses his temper...&#39;</p>
                 <p>But Felix merely grinned wider, clearly enjoying the challenge. His eyes gleamed with predatory interest as he studied Evelyn&#39;s unimpressed expression. The game, it seemed, had only just begun.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5012,29 +5012,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

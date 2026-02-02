@@ -2381,22 +2381,22 @@
                 <p>Evelyn&#39;s lips pressed into a thin line, her lashes fluttering rapidly.</p>
                 <p>Chloe moved to adjust her pillows when she saw Evelyn struggling to sit up. Only after Nathan&#39;s call had she learned the shocking truth - Evelyn was carrying his child.</p>
                 <p>After a prolonged silence, Evelyn spoke with eerie calm. &#34;Please...I need to be alone.&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Chloe hesitated, but Sophia squeezed her shoulder. &#34;Of course. We&#39;ll check on you later.&#34; Richard nodded in agreement, casting one last worried glance before following them out.</p>
                 <p>Left alone, Evelyn leaned against the cold headboard, staring blankly at the rain-streaked window. Her eyes held the emptiness of a battlefield after the war.</p>
                 <p>Meanwhile, at the Goldmann estate...</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2414,17 +2414,6 @@
                 <p>&#34;That girl with Evelyn?&#34; Theodore interrupted with a scoff. &#34;Unless someone&#39;s dying, it can wait.&#34; Compared to his grandson&#39;s condition, a fainting spell meant nothing.</p>
                 <p>As Theodore marched toward Nathan&#39;s room, Oliver blurted, &#34;Sir, about the divorce papers—&#34;</p>
                 <p>&#34;What about them?&#34; Theodore whirled around, eyes blazing. &#34;The announcement&#39;s already made. Do you want this farce to continue indefinitely?&#34; His voice turned glacial. &#34;If Nathan won&#39;t end it, I will.&#34;</p>
-                <!-- AdSense Ad Unit: banner7 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Oliver swallowed his protest. He understood Nathan&#39;s cruel strategy - pushing Evelyn to leave voluntarily rather than through legal force.</p>
-                <p>Theodore&#39;s phone rang abruptly - undoubtedly Nichs calling about the scandalous headlines.</p>
-                <p>Three days later...</p>
                 <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2433,16 +2422,27 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Oliver swallowed his protest. He understood Nathan&#39;s cruel strategy - pushing Evelyn to leave voluntarily rather than through legal force.</p>
+                <p>Theodore&#39;s phone rang abruptly - undoubtedly Nichs calling about the scandalous headlines.</p>
+                <p>Three days later...</p>
+                <!-- AdSense Ad Unit: banner7 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner7"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Evelyn stood by the hospital window, watching pedestrians navigate the freshly washed sidewalks. The post-storm air carried the earthy fragrance of damp soil and new grass.</p>
                 <p>Chloe entered with a food tray, gasping when she saw Evelyn upright. &#34;You shouldn&#39;t be out of bed!&#34;</p>
                 <p>&#34;Just stretching my legs,&#34; Evelyn murmured without turning.</p>
                 <p>Then, the question Chloe had been dreading: &#34;When can I leave?&#34;</p>
                 <p>After three days of confinement, Evelyn&#39;s patience wore thin. Worse, she&#39;d forbidden Richard and Chloe from telling the children about her hospitalization, terrified they&#39;d see her weakness.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5015,29 +5015,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

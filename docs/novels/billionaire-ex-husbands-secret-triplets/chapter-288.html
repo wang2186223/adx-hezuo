@@ -2381,33 +2381,33 @@
                 <p>&#34;Think about it, Rachel,&#34; Winifred pressed, her voice dripping with false concern. &#34;If she truly considered you a friend, why would she hide so much from you? Why keep defending someone who doesn&#39;t trust you?&#34;</p>
                 <p>The words struck a chord with Rachel&#39;s already wavering resolve.</p>
                 <p>She had genuinely considered Evelyn a friend, yet the woman had shared virtually nothing about her personal life. What kind of friendship was built on such secrecy?</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Meanwhile, in the private dining area, Evelyn stared at the lavish spread covering the entire table, with the personal chef standing attentively behind Nathan. If not for the military tents visible through the windows, she might have thought herself in a five-star restaurant. The contrast with her standard-issue meal box was almost comical.</p>
                 <p>Nathan rested his chin on one hand, watching her with amusement. &#34;I had these specially prepared for you. You&#39;ve lost too much weight - time to replenish those nutrients.&#34; As he spoke, a bodyguard discreetly removed her meager meal box while another pulled out a chair for her.</p>
                 <p>Evelyn sat slowly, eyeing the feast. &#34;Nathan, this is enough food for an entire platoon.&#34;</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>His expression turned playfully wounded. &#34;It breaks my heart seeing you so thin.&#34;</p>
                 <p>Truthfully, the camp&#39;s terrible food had whittled away his beautiful wife&#39;s curves. What if she became too weak to defend herself against all these vipers?</p>
                 <p>Evelyn could only sigh at his dramatics.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2425,11 +2425,11 @@
                 <p>The evaluation consisted of two parts: slow fire and rapid fire. The slow fire segment required sixty precise shots at fifty yards - the farthest standard distance with the smallest bullseye diameter. Total points determined the final score.</p>
                 <p>It was the most demanding test of accuracy in marksmanship, and arguably the most crucial evaluation.</p>
                 <p>For someone who&#39;d never handled firearms before, passing both assessments seemed nearly impossible - especially with the added pressure of rapid fire.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2439,11 +2439,11 @@
                 <p>His piercing gaze demanded answers.</p>
                 <p>Her mother had been a de Arma. Miranda had connections to Morwich&#39;s elite circles. The pieces fit together too neatly.</p>
                 <p>Moreover, Edmund Lincoln clearly held Evelyn in high regard. It wasn&#39;t difficult to deduce he&#39;d been the one to teach her those impressive combat skills.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5016,29 +5016,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

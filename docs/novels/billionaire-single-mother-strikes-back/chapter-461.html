@@ -2382,11 +2382,11 @@
                 <p>Panic surged, but she forced it down. “The emergency kit! Now!” she barked, her voice cutting through the cabin’s hum.</p>
                 <p>Maxwell Carter was already moving. He retrieved the advanced medical kit, stocked with experimental drugs and cutting-edge resuscitation equipment.</p>
                 <p>Isabella’s fingers flew through the contents. She seized a single, unmarked white pill. Reborn. A prototype developed by her mentor, Silas Granger, and his top research team. It was designed for catastrophic organ failure, a last-chance gamble that had to be administered within thirty seconds of clinical death.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2406,11 +2406,11 @@
                 <p>Maxwell nodded grimly, understanding the unspoken danger. He clipped small electronic nodes to Benjamin’s palms and the soles of his feet. They emitted a low-frequency current, designed to prevent neuromuscular lock-up and stimulate neural activity.</p>
                 <p>Sweat beaded on both their foreheads. The only sound was the mechanical thump of the CPR device and the low hum of the nodes.</p>
                 <p>Isabella’s mind raced. He couldn’t die. Not like this. Victoria Kensington had manipulated him his entire life. He had only just begun to see the truth. He deserved a chance to live it.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2418,11 +2418,11 @@
                 <p>Her will became a tangible force. She poured every ounce of her focus into the fight for his life.</p>
                 <p>Nearly an hour later, a miracle. Benjamin’s index finger twitched.</p>
                 <p>“He’s back!” Maxwell exclaimed, relief washing over his face. “Vitals are stabilizing!”</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2430,11 +2430,11 @@
                 <p>She immediately shut down all the devices, removing the pads and clips. She leaned close to his ear, her voice low and fierce.</p>
                 <p>“Fight, Benjamin. Do you hear me? Your grandfather is waiting. Everyone is waiting. Victoria needs to be exposed. You can’t leave this unfinished. You will not drag me down with your failure. Stay. Alive.”</p>
                 <p>He remained unconscious, unresponsive, trapped in a fragile state between life and death.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2442,11 +2442,11 @@
                 <p>The jet finally touched down at the Westchester private terminal. Maxwell’s team was already waiting on the tarmac with a stretcher. They carefully transferred Benjamin’s still form.</p>
                 <p>Isabella never left his side. She slid into the back of the waiting SUV beside the stretcher.</p>
                 <p>“Grace Memorial Hospital. Now,” she instructed the driver. It was the largest, most secure private hospital in the city, located mercifully close to the airport. Their exorbitant fees guaranteed immediate, discreet, and top-tier medical attention. It was his best chance.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5011,29 +5011,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

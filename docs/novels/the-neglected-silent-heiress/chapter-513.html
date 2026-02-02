@@ -2380,11 +2380,11 @@
                 <p>A chuckle escaped Olivia as she remembered Isabelle&#39;s preschool teacher&#39;s comments. Her daughter was brilliant - absorbing knowledge like a sponge in every subject except mathematics. The moment numbers appeared, Isabelle&#39;s eyelids would grow heavy, her attention wandering to more colorful pursuits. Arithmetic simply wasn&#39;t in her DNA.</p>
                 <p>Olivia carried secret dreams for her daughter. She wanted to give Isabelle the world, yet refused to cage her potential with predetermined expectations. Children were like unopened flower buds - why obsess over what color they&#39;d bloom when the magic lay in watching them unfold?</p>
                 <p>She never stressed about Isabelle&#39;s future path. Whatever destiny held, this bright-eyed girl would always be her greatest treasure. Every late night at the office, every business deal closed, was for one purpose - to ensure Isabelle&#39;s future remained full of possibilities.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2410,16 +2410,6 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>The doctor adjusted her glasses, offering a reassuring smile. &#34;Nearly impossible isn&#39;t the same as completely impossible. Your recent health improvements have been remarkable - better nutrition, reduced stress, overall wellness. And the baby&#39;s father must be quite healthy too. Still, I recommend frequent checkups. We&#39;ve confirmed the pregnancy, but carrying to term will depend on the coming months&#39; developments.&#34;</p>
                 <p>&#34;How far along am I?&#34; Olivia asked, fingers unconsciously drifting to her still-flat stomach.</p>
-                <!-- AdSense Ad Unit: banner8 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>&#34;Approximately four weeks,&#34; the doctor replied.</p>
-                <p>Four weeks? Olivia&#39;s mind reeled. She&#39;d noticed nothing unusual these past weeks.</p>
                 <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2428,15 +2418,25 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>&#34;Approximately four weeks,&#34; the doctor replied.</p>
+                <p>Four weeks? Olivia&#39;s mind reeled. She&#39;d noticed nothing unusual these past weeks.</p>
+                <!-- AdSense Ad Unit: banner3 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner3"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Leaving the examination room, Olivia wandered the hospital corridors in a daze. The medical report in her hands felt heavier than lead. Should she keep this child? Logic screamed no. Her relationship with Liam was shattered beyond repair. Isabelle already grew up without a complete family. Bringing another life into this complicated situation seemed cruel.</p>
                 <p>Yet...</p>
                 <p>Her fingers trembled as they traced the ultrasound image. A tiny heartbeat fluttered beneath the grainy black-and-white surface. How could something so small already feel so precious?</p>
                 <p>The war inside Olivia raged on as she stepped into the afternoon sunlight, her shadow stretching long behind her. One path led to practicality and reason. The other... the other led somewhere terrifying and beautiful all at once.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5129,29 +5129,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

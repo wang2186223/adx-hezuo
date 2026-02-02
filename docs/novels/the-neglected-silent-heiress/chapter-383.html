@@ -2379,11 +2379,11 @@
                 <p>Isabelle let out a scornful laugh. &#34;Need I remind you who created this scene? Who tried to throw my daughter out without hearing both sides? I know you look down on us, but my daughter is my line in the sand. Come after her, and you come after me.&#34;</p>
                 <p>A hush fell over the gathered guests, though Victoria still muttered under her breath, &#34;Is that a threat? Who do you think you are? The audacity!&#34;</p>
                 <p>Despite Victoria&#39;s obvious contempt, the crowd knew better than to cross Olivia Sinclair. News of her recent acquisition of Newport&#39;s largest auction house had spread like wildfire through high society. The Sinclair name now carried weight none could ignore.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2397,6 +2397,15 @@
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Catherine froze at Olivia&#39;s words, her dramatic display faltering momentarily.</p>
+                <!-- AdSense Ad Unit: banner7 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner7"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>A flicker of panic crossed her features before she composed herself. After all, the Kensington family&#39;s influence in Crestwood far surpassed that of the Blackwoods. With this thought, Catherine regained some confidence. She rose from her kneeling position, maintaining her carefully crafted look of distress. &#34;Olivia, I know you resent me for our past disagreements. I don&#39;t want to fight, but you shouldn&#39;t have dragged my child into this. You forced Lillian to confess to protect Isabelle. Is this how you raise your daughter?&#34;</p>
                 <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2405,21 +2414,12 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>A flicker of panic crossed her features before she composed herself. After all, the Kensington family&#39;s influence in Crestwood far surpassed that of the Blackwoods. With this thought, Catherine regained some confidence. She rose from her kneeling position, maintaining her carefully crafted look of distress. &#34;Olivia, I know you resent me for our past disagreements. I don&#39;t want to fight, but you shouldn&#39;t have dragged my child into this. You forced Lillian to confess to protect Isabelle. Is this how you raise your daughter?&#34;</p>
-                <!-- AdSense Ad Unit: banner5 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Olivia&#39;s lips curled in a cold smile. Clearly, Catherine had found herself a powerful ally.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2428,11 +2428,11 @@
                 <p>Victoria smirked. &#34;And who are you? My cousin merely married into your family. That doesn&#39;t make you important. Move aside or I&#39;ll have you removed too.&#34;</p>
                 <p>Seeing Victoria&#39;s determination, Olivia knew the woman would follow through. Having accomplished what she came for, Olivia saw no reason to stay. She turned to Catherine, who now cowered behind Victoria. &#34;Catherine, that painting you begged me to give you freely now serves as your gift to Beatrice Ellington. Is this how you repay kindness?&#34;</p>
                 <p>Feeling the weight of judgmental stares, Catherine quickly denied the accusation. &#34;No! Everyone, please listen! I paid good money for that painting. Olivia, stop spreading lies! How could it possibly be a gift from you? Mrs. Ellington loves the painting, and now you&#39;re trying to steal my credit, aren&#39;t you?&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5125,29 +5125,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

@@ -2390,16 +2390,6 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>The moment Liam extricated himself from Seraphina, he practically sprinted to his car. As the door slammed shut, his carefully maintained composure shattered. He collapsed against the leather seats, eyes squeezed shut, exhaustion carving deep lines into his face.</p>
                 <p>Sebastian studied his employer with concern. &#34;Mr. Blackwood, you haven&#39;t slept properly since dispatching teams to locate Victor Blackwood&#39;s estate. If you continue at this pace, you&#39;ll collapse.&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Liam ignored the warning, his gaze fixed on the passing cityscape. &#34;Where the hell could Olivia be? Do you think they&#39;re hurting her? She can&#39;t even call for help.&#34; His voice cracked. &#34;I swore to protect her, and now she&#39;s vanished again. This is all my fault. My damned arrogance blinded me to the danger.&#34;</p>
-                <p>Sebastian sighed. &#34;With all due respect, sir, your wife lived with the Winslow family for years as their ward. Your grandfather included her in his will. Even without your involvement, she would have been dragged into this mess eventually.&#34;</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2408,13 +2398,23 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Truthfully, without Liam&#39;s protection these past years, Olivia might have suffered far worse at the hands of the Winslow family.</p>
-                <p>Aside from Henry and Liam, the Winslows weren&#39;t exactly known for their kindness. For reasons no one understood, they&#39;d always treated Olivia with particular cruelty.</p>
+                <p>Liam ignored the warning, his gaze fixed on the passing cityscape. &#34;Where the hell could Olivia be? Do you think they&#39;re hurting her? She can&#39;t even call for help.&#34; His voice cracked. &#34;I swore to protect her, and now she&#39;s vanished again. This is all my fault. My damned arrogance blinded me to the danger.&#34;</p>
+                <p>Sebastian sighed. &#34;With all due respect, sir, your wife lived with the Winslow family for years as their ward. Your grandfather included her in his will. Even without your involvement, she would have been dragged into this mess eventually.&#34;</p>
                 <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner3"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Truthfully, without Liam&#39;s protection these past years, Olivia might have suffered far worse at the hands of the Winslow family.</p>
+                <p>Aside from Henry and Liam, the Winslows weren&#39;t exactly known for their kindness. For reasons no one understood, they&#39;d always treated Olivia with particular cruelty.</p>
+                <!-- AdSense Ad Unit: banner4 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2431,11 +2431,11 @@
                 <p>Sebastian nodded quickly. &#34;Yes, the story about your overseas treatment is spreading as planned.&#34;</p>
                 <p>&#34;Good,&#34; Liam said tersely.</p>
                 <p>Sebastian hesitated. Previously, Liam had guarded his health condition fiercely. Why suddenly announce this very public trip abroad?</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5128,29 +5128,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

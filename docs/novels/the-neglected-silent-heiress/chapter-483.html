@@ -2380,21 +2380,21 @@
                 <p>&#34;Why should I apologize?&#34; Olivia countered, her voice steady despite the pounding in her chest. &#34;The front desk staff and security are on their way. The truth will be clear soon enough.&#34;</p>
                 <p>Olivia maintained her composure while Margaret and the man exchanged nervous glances. Suddenly, the man grabbed Olivia&#39;s wrist and yanked her toward the room. &#34;Fine. We&#39;ll wait for them. But you&#39;re not going anywhere. We&#39;re settling this now. Get inside and explain yourself.&#34;</p>
                 <p>Margaret shoved Olivia forward, adding, &#34;If you&#39;re innocent, prove it. Walk in there and clear this up.&#34;</p>
-                <!-- AdSense Ad Unit: banner5 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Panic surged through Olivia as she struggled against their grip. She wasn&#39;t naive - she knew exactly what being forced into that room meant. She couldn&#39;t verify anything under these circumstances. But with Margaret in front and the man behind, they were effectively trapping her.</p>
-                <p>&#34;What&#39;s happening here?&#34; A deep, icy voice cut through the tension like a knife.</p>
                 <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner2"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Panic surged through Olivia as she struggled against their grip. She wasn&#39;t naive - she knew exactly what being forced into that room meant. She couldn&#39;t verify anything under these circumstances. But with Margaret in front and the man behind, they were effectively trapping her.</p>
+                <p>&#34;What&#39;s happening here?&#34; A deep, icy voice cut through the tension like a knife.</p>
+                <!-- AdSense Ad Unit: banner8 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2420,22 +2420,22 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Liam reached Olivia and gently took her hand. Though wearing a mask, the concern in his eyes was unmistakable. &#34;Are you hurt? This is my fault. I shouldn&#39;t have been late. Please don&#39;t be angry. Yell at me if you must, just don&#39;t shut me out.&#34;</p>
                 <p>Olivia pulled her hand away with a scoff. &#34;Mr. Blackwood, haven&#39;t you noticed? Miss Sinclair seems eager for your attention. I&#39;ll leave you to it.&#34;</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Liam quickly caught Olivia&#39;s hand again, stopping her retreat. Always careful with his words around her, he said deliberately, &#34;Olivia, I was detained. I apologize. And Miss Sinclair, you said? Who exactly is she? I don&#39;t recall.&#34;</p>
                 <p>At his words, Margaret staggered as if physically struck. Her face drained of color, yet she forced herself closer. &#34;Sir, it&#39;s me. You rescued me the other day. You took me into your home. You must remember me. Did Miss Sinclair say something about me? I&#39;ve been wondering why you sent me away that day.&#34;</p>
                 <p>Margaret&#39;s carefully crafted words sowed confusion among her live stream audience.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5128,29 +5128,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

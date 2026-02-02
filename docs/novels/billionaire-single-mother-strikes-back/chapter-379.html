@@ -2381,28 +2381,17 @@
                 <p>Victoria turned to Penelope. &#34;What did you find out?&#34;</p>
                 <p>Not satisfied with just planting Benjamin as a spy, Victoria had sent Penelope to track Isabella&#39;s movements. She wanted to know exactly where Isabella lived, ideally to block access and trap her inside!</p>
                 <p>Penelope reported, &#34;I followed Isabella back to Rosewood Manor. I was going to proceed as instructed, but I discovered two shocking revelations!&#34;</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Penelope closed the door, approached Victoria, and whispered, &#34;Isabella is living with Nathaniel! They&#39;re both at Rosewood Manor. Also, someone else was following and observing them.&#34;</p>
                 <p>&#34;After further investigation, I identified the stalker as Vivienne&#39;s assistant, Cassandra!&#34;</p>
                 <p>Victoria frowned. Nathaniel was still with Isabella?</p>
-                <!-- AdSense Ad Unit: banner5 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>She thought Nathaniel was just toying with Isabella. Why was he still involved with her?</p>
-                <p>As for Vivienne? Anyone familiar with Nathaniel knew Vivienne. She came from generations of aristocracy and education—an exceptionally talented and extraordinary woman. Although her reputation was briefly tarnished by the Genevieve scandal, she recently issued several research and development patents that silenced critics. Since her patents benefited the public, who would dare insult a renowned researcher?</p>
-                <p>This new information seemed insignificant, but for Victoria, it presented more advantages than drawbacks!</p>
                 <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2411,14 +2400,25 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Her red lips curled into a slow smile. Vivienne was investigating Isabella… That meant she was also keeping tabs on Isabella!</p>
-                <p>No matter how clever Isabella was, she couldn&#39;t defeat Vivienne, who had vast resources. Victoria simply needed to wait for Vivienne to crush Isabella and then seize the opportunity!</p>
-                <p>Victoria eyed Penelope. &#34;Did you find out what Vivienne is planning?&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <p>She thought Nathaniel was just toying with Isabella. Why was he still involved with her?</p>
+                <p>As for Vivienne? Anyone familiar with Nathaniel knew Vivienne. She came from generations of aristocracy and education—an exceptionally talented and extraordinary woman. Although her reputation was briefly tarnished by the Genevieve scandal, she recently issued several research and development patents that silenced critics. Since her patents benefited the public, who would dare insult a renowned researcher?</p>
+                <p>This new information seemed insignificant, but for Victoria, it presented more advantages than drawbacks!</p>
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner4"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Her red lips curled into a slow smile. Vivienne was investigating Isabella… That meant she was also keeping tabs on Isabella!</p>
+                <p>No matter how clever Isabella was, she couldn&#39;t defeat Vivienne, who had vast resources. Victoria simply needed to wait for Vivienne to crush Isabella and then seize the opportunity!</p>
+                <p>Victoria eyed Penelope. &#34;Did you find out what Vivienne is planning?&#34;</p>
+                <!-- AdSense Ad Unit: banner5 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2440,11 +2440,11 @@
                 <p>Benjamin had just finished arranging his new room when he received Victoria&#39;s text. He replied: [Don&#39;t worry, Sis. Everything is perfect.]</p>
                 <p>All the daily necessities were brand new, and Nathaniel had even sent someone to install a new curved-screen computer in his room. He could play games to his heart&#39;s content.</p>
                 <p>Victoria texted: [How is Isabella&#39;s manor? Is she lonely living by herself? Invite her to come home and live with us—it&#39;s better for everyone to be together.] Benjamin thought about how cozy everything felt and sent a reassuring reply.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5009,29 +5009,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

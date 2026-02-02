@@ -2379,15 +2379,6 @@
                 <p>Rage and frustration made Seraphina&#39;s breath come in short gasps. Seeing her distress, Celeste swiftly produced the medication. After swallowing the pills, Seraphina&#39;s fury gradually subsided into cold calculation.</p>
                 <p>Celeste seized the moment to appeal to reason. &#34;Please, Miss Kensington, calm yourself. Someone as insignificant as me isn&#39;t worth disturbing your peace. You can deal with my failures later. Once I&#39;ve secured a replacement, punish me however you see fit. I&#39;ll accept it without complaint.&#34;</p>
                 <p>Seraphina&#39;s icy gaze softened marginally, though she remained silent for a long moment. &#34;I&#39;ll spare you this time,&#34; she finally said, her deceptively soft tone laced with steel. &#34;As for those incompetents, I never want to see them again. Make them disappear by any means necessary.&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>That musical voice, usually so refined, now carried chilling finality. The brutality of the order would have frozen anyone&#39;s blood. Celeste felt no pity for her doomed subordinates - survival in Seraphina&#39;s service demanded ruthlessness and cunning.</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2396,21 +2387,30 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Just as Celeste began to rise in relief, Seraphina&#39;s cold voice stopped her. &#34;In such a hurry? Your failures have ruined my mood. As punishment, you&#39;ll crawl back to the house. Understood?&#34;</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <p>That musical voice, usually so refined, now carried chilling finality. The brutality of the order would have frozen anyone&#39;s blood. Celeste felt no pity for her doomed subordinates - survival in Seraphina&#39;s service demanded ruthlessness and cunning.</p>
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner7"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Just as Celeste began to rise in relief, Seraphina&#39;s cold voice stopped her. &#34;In such a hurry? Your failures have ruined my mood. As punishment, you&#39;ll crawl back to the house. Understood?&#34;</p>
+                <!-- AdSense Ad Unit: banner4 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Celeste paled at the cruel command. &#34;But Miss Kensington, it&#39;s nearly half a mile to the estate.&#34; Walking that distance would be arduous enough - crawling could cause permanent damage.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2426,11 +2426,11 @@
                 <p>The unspoken threat left no room for argument. Resigned, Celeste began her humiliating journey under the confused stares of passersby. Though Seraphina had booked the entire hotel for her event, staff and delivery personnel still moved about freely.</p>
                 <p>Onlookers whispered and pointed at the crawling woman, their expressions ranging from concern to morbid curiosity. With each painful movement, Seraphina&#39;s mood visibly improved, her lips curling in satisfaction.</p>
                 <p>Meanwhile, Olivia stepped into the Kensington estate with mixed emotions. Donovan&#39;s demeanor toward her had been surprisingly gentle throughout their return journey, offering multiple apologies that shocked her given his position as head of the Kensington family.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5123,29 +5123,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

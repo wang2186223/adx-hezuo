@@ -2382,30 +2382,6 @@
                 <p>“What good is money if you’ve got no real talent?”</p>
                 <p>They stared at Isabella with open contempt, as if she were nothing but a circus act.</p>
                 <p>Just as Isabella pulled off her helmet, ready to respond—</p>
-                <!-- AdSense Ad Unit: banner1 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>“Isabella! Isabella! Isabella!”</p>
-                <p>A roar of voices cut through the air. Everyone turned to see a flood of people rushing toward her. Some sprinted, shouting as they ran.</p>
-                <p>“Isabella, I’m your biggest fan! What are you wearing today? I want to wear the exact same thing!”</p>
-                <p>“Isabella! I’m from Royal S Magazine—can I get a quick interview?”</p>
-                <!-- AdSense Ad Unit: banner5 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>“Look over here! I represent Tina Jewelry! Would you consider being our brand ambassador?”</p>
-                <p>“I don’t want to bother you, but could you please sign this? It’ll only take a second!”</p>
-                <p>A crowd of eager admirers swarmed around her, thrusting business cards and autograph books into her hands. Among them were celebrities, journalists, jewelry executives, singers, and even company owners—each one a recognizable name.</p>
-                <p>Were these high-profile individuals truly her fans? Had they canceled their appointments just to see her here?</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2414,15 +2390,39 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>“Isabella! Isabella! Isabella!”</p>
+                <p>A roar of voices cut through the air. Everyone turned to see a flood of people rushing toward her. Some sprinted, shouting as they ran.</p>
+                <p>“Isabella, I’m your biggest fan! What are you wearing today? I want to wear the exact same thing!”</p>
+                <p>“Isabella! I’m from Royal S Magazine—can I get a quick interview?”</p>
+                <!-- AdSense Ad Unit: banner7 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner7"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>“Look over here! I represent Tina Jewelry! Would you consider being our brand ambassador?”</p>
+                <p>“I don’t want to bother you, but could you please sign this? It’ll only take a second!”</p>
+                <p>A crowd of eager admirers swarmed around her, thrusting business cards and autograph books into her hands. Among them were celebrities, journalists, jewelry executives, singers, and even company owners—each one a recognizable name.</p>
+                <p>Were these high-profile individuals truly her fans? Had they canceled their appointments just to see her here?</p>
+                <!-- AdSense Ad Unit: banner1 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner1"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Victoria’s face darkened with fury. Though she had many fans, Isabella’s supporters were influential figures. Even at the peak of her own career, Victoria had never attracted this level of elite attention. Important people usually sent assistants or subordinates in their place.</p>
                 <p>Victoria’s fans fell silent, recognizing famous faces in the crowd. They quickly pulled out their phones, scrambling to capture the moment.</p>
                 <p>How lucky to witness so many luminaries in one day!</p>
                 <p>The scene had flipped entirely. Now Isabella was the one surrounded, while Victoria stood ignored.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2444,11 +2444,11 @@
                 <p>“She’s signing with a lipstick that expensive? She really is the Diamond Boss!”</p>
                 <p>“Sign my shirt, Isabella! Please!”</p>
                 <p>Even some of Victoria’s fans broke away, rushing toward Isabella, begging for a signature worth more than most cars.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5013,29 +5013,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

@@ -2380,21 +2380,21 @@
                 <p>Just as she&#39;d anticipated, the space overflowed with Kensington family members. Alistair occupied the central armchair, his clouded gaze flickering with confusion. His mental state had declined sharply in recent years, making recognition of faces nearly impossible.</p>
                 <p>Though Alistair typically ignored everyone&#39;s presence, he always brightened at the sight of Olivia.</p>
                 <p>&#34;Grandfather.&#34; Olivia&#39;s face lit up as she approached him. &#34;Did you take your medicine like the doctor instructed?&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Alistair nodded absently, patting her hand. &#34;Sweet girl, you seem familiar. Who might you be?&#34;</p>
-                <p>&#34;I&#39;m Olivia, your granddaughter,&#34; she replied, swallowing the familiar lump in her throat. She&#39;d repeated this exchange countless times, yet remained prepared to do so indefinitely.</p>
                 <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner2"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Alistair nodded absently, patting her hand. &#34;Sweet girl, you seem familiar. Who might you be?&#34;</p>
+                <p>&#34;I&#39;m Olivia, your granddaughter,&#34; she replied, swallowing the familiar lump in her throat. She&#39;d repeated this exchange countless times, yet remained prepared to do so indefinitely.</p>
+                <!-- AdSense Ad Unit: banner1 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2410,11 +2410,11 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;Enough with the saintly act,&#34; Gwendolyn hissed, her expression dark. &#34;You&#39;ve been here long enough. Have you even acknowledged the other elders? Or is dear Alistair the only one worthy of your attention?&#34;</p>
                 <p>Margaret scoffed from her nearby seat. &#34;She clearly thinks herself above greeting the rest of us. Winning over Alistair is her only objective—with his favor, she needs no one else.&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2432,11 +2432,11 @@
                 <p>Ignoring the outburst, Olivia turned back to take her seat beside Alistair.</p>
                 <p>Margaret shot Olivia a glacial look before exchanging a subtle nod with Gwendolyn. The silent communication served its purpose—Gwendolyn&#39;s anger visibly cooled as she remembered their agenda.</p>
                 <p>With startling abruptness, Gwendolyn&#39;s sneer transformed into a saccharine smile.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5129,29 +5129,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

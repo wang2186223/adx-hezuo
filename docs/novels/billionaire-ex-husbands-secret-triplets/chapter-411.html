@@ -2381,17 +2381,6 @@
                 <p>Julian swung his golf club, but the ball veered off course.</p>
                 <p>The blue-haired guy nearby chuckled. &#34;Ms. Zara seems to be a natural.&#34;</p>
                 <p>His gaze lingered on Evelyn, and Julian followed it. Not far away, Evelyn adjusted her grip and sent the ball sailing straight into the hole.</p>
-                <!-- AdSense Ad Unit: banner6 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>&#34;Impressive,&#34; Julian murmured, admiration flickering in his eyes. Women who could play golf were rare in his circles—most socialites preferred less strenuous pastimes.</p>
-                <p>Evelyn was so absorbed she didn’t notice Julian approaching. When he spotted the sweat glistening on her forehead, he pulled out his handkerchief.</p>
-                <p>Chloe Lawson suddenly appeared, gripping his wrist. &#34;What do you think you’re doing?&#34;</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2400,25 +2389,36 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Evelyn startled, turning to stare at him in disbelief. Julian froze, caught off guard. Flustered, he withdrew his hand.</p>
-                <p>&#34;My apologies if I made you uncomfortable. It’s just habit—I’d do the same for any of my female friends.&#34;</p>
-                <p>Chloe narrowed her eyes. She didn’t trust this guy one bit.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <p>&#34;Impressive,&#34; Julian murmured, admiration flickering in his eyes. Women who could play golf were rare in his circles—most socialites preferred less strenuous pastimes.</p>
+                <p>Evelyn was so absorbed she didn’t notice Julian approaching. When he spotted the sweat glistening on her forehead, he pulled out his handkerchief.</p>
+                <p>Chloe Lawson suddenly appeared, gripping his wrist. &#34;What do you think you’re doing?&#34;</p>
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner5"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Evelyn startled, turning to stare at him in disbelief. Julian froze, caught off guard. Flustered, he withdrew his hand.</p>
+                <p>&#34;My apologies if I made you uncomfortable. It’s just habit—I’d do the same for any of my female friends.&#34;</p>
+                <p>Chloe narrowed her eyes. She didn’t trust this guy one bit.</p>
+                <!-- AdSense Ad Unit: banner6 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Evelyn smiled politely. &#34;That’s very considerate of you, Mr. Abascal.&#34;</p>
                 <p>So he does this for all his female friends? Charming, but still inappropriate.</p>
                 <p>Julian grinned. &#34;Shouldn’t we be kind to the women in our lives?&#34;</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2437,11 +2437,11 @@
                 <p>Evelyn’s eyes widened in shock. The crowd gasped.</p>
                 <p>She shoved him away, her cheeks flushed. Nathan barely restrained the hunger in his gaze as he tightened his grip on her waist.</p>
                 <p>&#34;Enjoying yourself, sweetheart?&#34; he murmured, voice low and dangerous.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5014,29 +5014,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

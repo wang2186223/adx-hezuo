@@ -2381,28 +2381,39 @@
                 <p>Though they favored Isabella Montgomery, Victoria carried a child—a son. How could they allow her to terminate the pregnancy?</p>
                 <p>Alexander Whitmore entered the ward at that moment.</p>
                 <p>The instant he crossed the threshold, Benjamin&#39;s fist connected hard with his jaw.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;Alexander! You coward! How could you do this to my sister?!&#34; He lunged again, but the Whitmore family bodyguards swiftly restrained him.</p>
                 <p>The Kensingtons made no move to intervene.</p>
                 <p>Protected by his security, Alexander wiped the blood from his lip with his thumb. Fury burned in his eyes.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Victoria knew that look. She recognized his rage. &#34;Benjamin, stop! It&#39;s not his fault! It&#39;s mine! All mine... Alexander had already ended things. He was set to marry Isabella. I approached him at their wedding. I brought this shame upon myself...&#34;</p>
                 <p>&#34;Stop defending him, Victoria! He strung you along for five years! He did this to you, and you still shield him?&#34; Eleanor cried out, torn between pain and anger.</p>
                 <p>Tears streamed down Victoria&#39;s cheeks. &#34;Please don&#39;t make this worse. If Alexander doesn&#39;t want me, let me end this. Let me have the surgery and disappear from his life. I&#39;ll be fine. I&#39;ll survive...&#34;</p>
+                <!-- AdSense Ad Unit: banner4 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner4"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Her voice broke into desperate sobs. &#34;Doctor! Where is the doctor?! I&#39;m ready for the procedure...! I don&#39;t want this child! I don&#39;t want it!&#34;</p>
+                <p>Her raw, agonizing wails shattered the hearts of everyone present.</p>
+                <p>Margaret Whitmore finally stepped forward. &#34;Victoria, you have a bleeding disorder. The surgery could kill you! Don&#39;t be reckless... We will support you!&#34;</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2411,25 +2422,14 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Her voice broke into desperate sobs. &#34;Doctor! Where is the doctor?! I&#39;m ready for the procedure...! I don&#39;t want this child! I don&#39;t want it!&#34;</p>
-                <p>Her raw, agonizing wails shattered the hearts of everyone present.</p>
-                <p>Margaret Whitmore finally stepped forward. &#34;Victoria, you have a bleeding disorder. The surgery could kill you! Don&#39;t be reckless... We will support you!&#34;</p>
+                <p>She then turned a sharp gaze to Alexander. &#34;What are you waiting for? Apologize to her right now. Propose!&#34;</p>
+                <p>A bodyguard immediately handed Alexander a velvet box. Inside was the heirloom diamond ring from his engagement to Isabella—passed down for generations. How many times had he imagined slipping this very ring onto Victoria&#39;s finger? But now...</p>
+                <p>Putting it on her meant losing Isabella forever. Isabella would never take him back.</p>
                 <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner3"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>She then turned a sharp gaze to Alexander. &#34;What are you waiting for? Apologize to her right now. Propose!&#34;</p>
-                <p>A bodyguard immediately handed Alexander a velvet box. Inside was the heirloom diamond ring from his engagement to Isabella—passed down for generations. How many times had he imagined slipping this very ring onto Victoria&#39;s finger? But now...</p>
-                <p>Putting it on her meant losing Isabella forever. Isabella would never take him back.</p>
-                <!-- AdSense Ad Unit: banner5 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5008,29 +5008,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

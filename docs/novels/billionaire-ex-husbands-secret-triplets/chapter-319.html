@@ -2394,18 +2394,6 @@
                 <p>The first bite silenced him completely.</p>
                 <p>Daisy beamed, eyes sparkling. &#34;Isn&#39;t my brother&#39;s spaghetti amazing?&#34;</p>
                 <p>&#34;Hmph. Who taught you to cook? It&#39;s... adequate.&#34;</p>
-                <!-- AdSense Ad Unit: banner3 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>&#34;Mommy.&#34; Liam&#39;s simple answer made Theodore&#39;s hand tremble. Suddenly the food lost its appeal.</p>
-                <p>&#34;That woman taught him?&#34;</p>
-                <p>He set down his fork with a clatter. &#34;What kind of mother lets children cook at your age? First she fails at parenting, now she encourages this recklessness.&#34;</p>
-                <p>&#34;You have no idea what she endured for us!&#34; Liam&#39;s voice cracked with emotion.</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2414,15 +2402,27 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>&#34;Mommy.&#34; Liam&#39;s simple answer made Theodore&#39;s hand tremble. Suddenly the food lost its appeal.</p>
+                <p>&#34;That woman taught him?&#34;</p>
+                <p>He set down his fork with a clatter. &#34;What kind of mother lets children cook at your age? First she fails at parenting, now she encourages this recklessness.&#34;</p>
+                <p>&#34;You have no idea what she endured for us!&#34; Liam&#39;s voice cracked with emotion.</p>
+                <!-- AdSense Ad Unit: banner7 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner7"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Daisy pouted. &#34;Mommy raised us alone overseas. She worked so hard to feed us. Shouldn&#39;t we help her?&#34;</p>
                 <p>&#34;She was alone abroad?&#34; Theodore&#39;s eyebrows shot up. He knew nothing of Evelyn and the children&#39;s past.</p>
                 <p>Caleb nodded solemnly. &#34;No one helped when she was pregnant. She suffered everything alone.&#34;</p>
                 <p>Daisy added softly, &#34;No one can replace Mommy in our hearts. She comes first, then Daddy.&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2430,11 +2430,11 @@
                 <p>Abandoning his meal, he retreated to his chambers.</p>
                 <p>The children&#39;s bond with their mother was unbreakable. Having been by Evelyn&#39;s side since birth, their loyalty ran deep.</p>
                 <p>Pity their mother was a Vanderbilt. He&#39;d never allow his grandson to become that family&#39;s pawn.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2445,11 +2445,11 @@
                 <p>With his filming complete, he&#39;d be staying home for now.</p>
                 <p>As he turned to re-enter the mansion, he collided with Rosalind exiting the building.</p>
                 <p>Though Rosalind despised the children, Theodore&#39;s presence kept her in check. They were just kids - she could handle them easily.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5022,29 +5022,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

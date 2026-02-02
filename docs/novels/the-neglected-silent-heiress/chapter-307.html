@@ -2380,6 +2380,16 @@
                 <p>As she absorbed the contents of the letter, a wave of melancholy washed over Olivia. Rumors of Liam&#39;s financial downfall had reached her, yet here he was, against all odds, returning her inheritance—and then some.</p>
                 <p>Touched by his gesture, Olivia accepted the legacy without hesitation, recognizing it as her birthright. She resolved to return the checks Liam had sent through Donovan Kensington as a sign of her newfound determination. Money wasn&#39;t her priority. Her focus was on the larger inheritance—the companies her parents had left behind.</p>
                 <p>Fueled by resolve, Olivia sought out Donovan. It was time to set things right, to reclaim what had been stolen, and to face those who had wronged her. She laid out her intentions clearly, her path unwavering.</p>
+                <!-- AdSense Ad Unit: banner8 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner8"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Donovan sighed reluctantly. &#34;I want to help, Olivia, but Liam told me he&#39;s leaving today. He&#39;s probably already boarded the plane.&#34;</p>
+                <p>The news caught her off guard. Liam was gone? The thought unsettled her. His departure felt out of character—unlike the relentless man she knew. It was a concession she hadn’t anticipated, especially now, when she expected him to fight for his place in Crestwood.</p>
                 <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2388,8 +2398,8 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Donovan sighed reluctantly. &#34;I want to help, Olivia, but Liam told me he&#39;s leaving today. He&#39;s probably already boarded the plane.&#34;</p>
-                <p>The news caught her off guard. Liam was gone? The thought unsettled her. His departure felt out of character—unlike the relentless man she knew. It was a concession she hadn’t anticipated, especially now, when she expected him to fight for his place in Crestwood.</p>
+                <p>After a moment of reflection, she began to understand. Betrayal, especially from those closest to him, could break even the strongest will.</p>
+                <p>Part of her wanted to scorn his retreat, but instead, she felt an unexpected pang of regret—a softening toward him.</p>
                 <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2398,8 +2408,8 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>After a moment of reflection, she began to understand. Betrayal, especially from those closest to him, could break even the strongest will.</p>
-                <p>Part of her wanted to scorn his retreat, but instead, she felt an unexpected pang of regret—a softening toward him.</p>
+                <p>With a sigh, she turned to leave.</p>
+                <p>&#34;Wait.&#34; Donovan&#39;s voice stopped her, his expression grave. &#34;There&#39;s something we need to discuss. It&#39;s long overdue.&#34;</p>
                 <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2408,23 +2418,13 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>With a sigh, she turned to leave.</p>
-                <p>&#34;Wait.&#34; Donovan&#39;s voice stopped her, his expression grave. &#34;There&#39;s something we need to discuss. It&#39;s long overdue.&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Olivia&#39;s pulse quickened, a mix of unease and curiosity stirring within her as she turned back to face him.</p>
                 <p>Meanwhile, at Mercy Hospital, tension hung thick in the air. Julian Kensington entered Seraphina Kensington&#39;s ward, his entourage trailing behind, arms laden with ornately wrapped gifts.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5127,29 +5127,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

@@ -2380,11 +2380,11 @@
                 <p>A slow, calculating smile spread across Julian&#39;s face as he turned to Seraphina. &#34;This is our opening. I&#39;ve been searching for the perfect opportunity - fate has delivered it to us.&#34;</p>
                 <p>Seraphina bit her lip, uncertainty flashing in her eyes. &#34;Are you absolutely certain this will work, Julian?&#34;</p>
                 <p>His expression darkened. &#34;You&#39;re missing the strategic advantage here. I wouldn&#39;t waste my time on a lost cause. Yes, Donovan and Alistair favor Olivia, but as you&#39;ve said yourself - she&#39;s an imposter. They&#39;re clinging to any semblance of family legacy. But you? You&#39;re Alistair&#39;s true granddaughter. Your lineage is undisputed, and your delicate health is well-documented. Find a secluded spot, provoke her into an argument, then collapse dramatically. I&#39;ll arrive just in time to &#39;save&#39; you. The family will see Olivia for the viper she is.&#34;</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2400,6 +2400,16 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>She stood abruptly, smoothing the expensive fabric of her designer gown with irritation. &#34;I should never have worn this dress. All this effort wasted on an outfit for a performance.&#34;</p>
                 <p>Their eyes met in silent understanding. &#34;Julian,&#34; she said quietly, &#34;don&#39;t fail me.&#34;</p>
+                <!-- AdSense Ad Unit: banner3 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner3"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>His answering smile was thin but reassuring. &#34;I won&#39;t.&#34;</p>
+                <p>As Olivia stepped into the hallway, she nearly collided with Winston.</p>
                 <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2408,23 +2418,13 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>His answering smile was thin but reassuring. &#34;I won&#39;t.&#34;</p>
-                <p>As Olivia stepped into the hallway, she nearly collided with Winston.</p>
-                <!-- AdSense Ad Unit: banner7 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>The butler approached with urgency. &#34;Miss Sinclair, Mr. Donovan Kensington requests your presence immediately. Would you spare him a moment?&#34;</p>
                 <p>Confusion flickered across Olivia&#39;s face, but she nodded in agreement.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2435,11 +2435,11 @@
                 <p>A flutter of anticipation stirred in Olivia&#39;s chest. &#34;Someone I know?&#34; she typed, curiosity winning over hesitation.</p>
                 <p>Donovan gave a solemn nod. &#34;The choice is yours. I can return it unopened. But if you accept, there&#39;s a message to deliver.&#34;</p>
                 <p>Olivia&#39;s fingers hovered over the box&#39;s clasp. She thought she knew who had sent it.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5132,29 +5132,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

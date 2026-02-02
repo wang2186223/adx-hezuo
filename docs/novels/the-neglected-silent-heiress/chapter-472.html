@@ -2380,31 +2380,31 @@
                 <p>Though the farmhouse showed signs of neglect, Evelyn and Beatrice had done everything possible to make Olivia comfortable. They offered their best bedding and prepared a simple but heartfelt meal. Olivia felt an unexpected lump form in her throat.</p>
                 <p>Seeing Olivia&#39;s genuine intentions, Beatrice finally dropped her defensive stance and offered a warm, grandmotherly smile.</p>
                 <p>&#34;Miss Sinclair, you&#39;re truly Evelyn&#39;s guardian angel. She was meant for greatness—such a gifted young woman—yet she&#39;s been trapped in this difficult life because of me. My failure with Frederick weighs heavily on her.&#34; Beatrice&#39;s voice cracked. &#34;I... I can never repay your kindness. If there&#39;s anything this old woman can do for you, just ask.&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Olivia gently brushed Beatrice&#39;s silver-streaked hair. &#34;Please, don&#39;t mention it. Evelyn did me a tremendous favor by sharing her story. Truthfully, my company is facing collapse, and uncovering the truth about the plagiarism scandal is my only hope. We&#39;re helping each other equally.&#34;</p>
                 <p>Beatrice clenched her wrinkled hands, frustration radiating from her frail frame. &#34;Frederick and Margaret are utterly heartless. After all these years, they still won&#39;t let go.&#34; Tears glistened in her aged eyes. &#34;They&#39;re not my blood, and they&#39;ve made their contempt perfectly clear.&#34;</p>
-                <!-- AdSense Ad Unit: banner5 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Later that night, after Beatrice retired, Evelyn shared another painful family secret. Beatrice had once had a biological child. When she adopted Frederick out of compassion, her own son was still alive.</p>
-                <p>Then came that fateful summer day when both boys went swimming. For reasons never explained, Beatrice&#39;s real son drowned saving Frederick&#39;s life.</p>
                 <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner6"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Later that night, after Beatrice retired, Evelyn shared another painful family secret. Beatrice had once had a biological child. When she adopted Frederick out of compassion, her own son was still alive.</p>
+                <p>Then came that fateful summer day when both boys went swimming. For reasons never explained, Beatrice&#39;s real son drowned saving Frederick&#39;s life.</p>
+                <!-- AdSense Ad Unit: banner1 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2420,11 +2420,11 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>The surrounding neighbors turned a blind eye, offering no assistance. When Beatrice reached out to Frederick for help, his response chilled her: &#34;You brought this shame upon yourself, and now you dare ask for my help? I warned you to abandon her. Let her suffer the consequences alone!&#34; Their argument escalated until Frederick threatened to cut off all financial support.</p>
                 <p>Yet Beatrice remained unwavering in her commitment to protect Evelyn.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2433,11 +2433,11 @@
                 <p>The fire crackled in the hearth, casting flickering shadows across their faces.</p>
                 <p>Outside, the wind howled through the trees, carrying whispers of past regrets and future possibilities.</p>
                 <p>The night stretched before them, heavy with unspoken truths and the weight of decisions yet to be made.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5130,29 +5130,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

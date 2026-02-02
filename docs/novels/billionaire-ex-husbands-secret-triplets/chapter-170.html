@@ -2382,11 +2382,11 @@
                 <p>&#34;I take full responsibility,&#34; Chloe admitted, her military-trained posture rigid with tension. &#34;Liam vanished suddenly. Mr. Goldmann and I split up to search, but then I lost contact with both of them.&#34;</p>
                 <p>This marked Chloe&#39;s first major failure. Despite her extensive knowledge of the area&#39;s terrain, she&#39;d managed to lose a child right under her nose - an unforgivable lapse for someone of her training.</p>
                 <p>&#34;If Nathan went searching for Liam, they might be in the wilderness,&#34; Evelyn reasoned aloud, her mind racing. Kidnappers wouldn&#39;t stay in crowded areas; they&#39;d head somewhere isolated.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2406,18 +2406,6 @@
                 <p>&#34;Liam!&#34;</p>
                 <p>Hearing Nathan&#39;s voice, Liam pressed himself against the rough bark, holding his breath.</p>
                 <p>Nathan had followed suspicious figures heading this direction - he needed to investigate.</p>
-                <!-- AdSense Ad Unit: banner6 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Who were these people?</p>
-                <p>If they meant harm to his son, they&#39;d regret ever being born.</p>
-                <p>Just as Liam prepared to spring his trap, a terrifying sound froze him in place.</p>
-                <p>Slowly turning, his blood ran cold at the sight of a coiled viper mere feet away, its forked tongue flicking the air.</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2426,15 +2414,27 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Who were these people?</p>
+                <p>If they meant harm to his son, they&#39;d regret ever being born.</p>
+                <p>Just as Liam prepared to spring his trap, a terrifying sound froze him in place.</p>
+                <p>Slowly turning, his blood ran cold at the sight of a coiled viper mere feet away, its forked tongue flicking the air.</p>
+                <!-- AdSense Ad Unit: banner3 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner3"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>He edged backward, but the snake reared up, ready to strike.</p>
                 <p>&#34;Ah!&#34; Liam&#39;s foot caught on a gnarled root as he tried to flee. The world tilted as he fell, his terrified eyes watching the serpent launch toward him.</p>
                 <p>Snatching up a fallen branch, he saw a blur of movement as Nathan threw himself between them. The viper&#39;s fangs sank deep into his forearm.</p>
                 <p>With a snarl, Nathan grabbed the snake and hurled it into the underbrush. Drawing a knife from his boot, he made quick work of the reptile, its death throes stilling within seconds.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2447,11 +2447,11 @@
                 <p>&#34;Mr. Goldmann! Liam!&#34;</p>
                 <p>At the town hospital...</p>
                 <p>When Oliver&#39;s call came through, Evelyn raced to find Liam sitting on a waiting room bench. The boy looked utterly wrecked - clothes torn, face smeared with dirt, his small frame shaking with residual fear.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5024,29 +5024,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

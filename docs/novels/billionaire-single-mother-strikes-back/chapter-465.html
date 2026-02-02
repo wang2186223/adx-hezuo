@@ -2380,26 +2380,6 @@
                 <p>She never anticipated this.</p>
                 <p>A heavy weight settled in her chest. What could she possibly say to him now? How could she explain this tangled web?</p>
                 <p>Would the one person in this family who had shown her genuine trust ever believe her again?</p>
-                <!-- AdSense Ad Unit: banner1 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>A long, weary sigh finally escaped Theodore. &#34;We will discuss this when Benjamin wakes,&#34; he declared, his voice heavy with exhaustion. &#34;His recovery is our only priority now. Richard, use every resource. Contact the finest medical specialists globally. Money is no object.&#34;</p>
-                <p>Richard nodded, though his sharp, blade-like glare never left Isabella. &#34;This isn&#39;t over. Once he&#39;s conscious, we will have our answers. Be ready with those transfer documents.&#34; He turned on his heel and strode away.</p>
-                <!-- AdSense Ad Unit: banner4 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Eleanor was equally furious. Her face was a mask of cold rage. &#34;Your grandfather&#39;s patience is not ours! Get out. We will care for Benjamin. You are no longer a part of this family. Do not ever call me your mother again. I regret the day we brought such a viper into our home!&#34;</p>
-                <p>Her words were ice, meant to wound.</p>
                 <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2408,8 +2388,18 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Before Isabella could respond, Victoria clutched her arm, her voice a trembling whisper. &#34;Mother, please… don&#39;t say such things. You&#39;ll upset Isabella…&#34;</p>
-                <p>A cold, mocking laugh escaped Isabella&#39;s lips. Her eyes locked onto Victoria&#39;s feigned concern. &#34;Enjoy your performance while it lasts, Victoria. It ends the moment Benjamin opens his eyes.&#34;</p>
+                <p>A long, weary sigh finally escaped Theodore. &#34;We will discuss this when Benjamin wakes,&#34; he declared, his voice heavy with exhaustion. &#34;His recovery is our only priority now. Richard, use every resource. Contact the finest medical specialists globally. Money is no object.&#34;</p>
+                <p>Richard nodded, though his sharp, blade-like glare never left Isabella. &#34;This isn&#39;t over. Once he&#39;s conscious, we will have our answers. Be ready with those transfer documents.&#34; He turned on his heel and strode away.</p>
+                <!-- AdSense Ad Unit: banner8 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner8"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Eleanor was equally furious. Her face was a mask of cold rage. &#34;Your grandfather&#39;s patience is not ours! Get out. We will care for Benjamin. You are no longer a part of this family. Do not ever call me your mother again. I regret the day we brought such a viper into our home!&#34;</p>
+                <p>Her words were ice, meant to wound.</p>
                 <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2418,13 +2408,23 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Her tone was a promise, laced with frost.</p>
-                <p>She turned and walked out, leaving a chill in her wake.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <p>Before Isabella could respond, Victoria clutched her arm, her voice a trembling whisper. &#34;Mother, please… don&#39;t say such things. You&#39;ll upset Isabella…&#34;</p>
+                <p>A cold, mocking laugh escaped Isabella&#39;s lips. Her eyes locked onto Victoria&#39;s feigned concern. &#34;Enjoy your performance while it lasts, Victoria. It ends the moment Benjamin opens his eyes.&#34;</p>
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner1"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Her tone was a promise, laced with frost.</p>
+                <p>She turned and walked out, leaving a chill in her wake.</p>
+                <!-- AdSense Ad Unit: banner4 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5002,29 +5002,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

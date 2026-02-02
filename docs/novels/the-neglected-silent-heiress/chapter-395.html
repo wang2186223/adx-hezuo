@@ -2380,16 +2380,6 @@
                 <p>Before he could fully reveal himself, Olivia - overwhelmed by a storm of emotions she couldn&#39;t name - grabbed a shard of broken glass and slashed it across his right cheek with all her strength.</p>
                 <p>Years of pent-up rage, confusion, and heartbreak poured out in that single violent gesture.</p>
                 <p>Liam didn&#39;t flinch. Didn&#39;t retaliate. He simply stared at her with those dark, mesmerizing eyes as he finally removed the mask completely, exposing the horrific scar marring his left cheek.</p>
-                <!-- AdSense Ad Unit: banner5 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>To her shock, he smiled. &#34;I was afraid this might frighten you. But seeing you now... I realize you&#39;re stronger than that. Olivia, it&#39;s been years. You&#39;ve changed exactly how Henry and I always hoped you would.&#34;</p>
-                <p>Her breath caught as she stared at the grotesque scar. Her heart pounded wildly.</p>
                 <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2398,8 +2388,8 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Fresh blood dripped from the wound she&#39;d inflicted on his right cheek, stark against his pale skin. Instead of repulsing her, it made him more magnetic, more dangerously alluring.</p>
-                <p>Almost against her will, Olivia reached toward him. At the last second, she hesitated - but Liam was faster. His hand shot out, capturing her wrist.</p>
+                <p>To her shock, he smiled. &#34;I was afraid this might frighten you. But seeing you now... I realize you&#39;re stronger than that. Olivia, it&#39;s been years. You&#39;ve changed exactly how Henry and I always hoped you would.&#34;</p>
+                <p>Her breath caught as she stared at the grotesque scar. Her heart pounded wildly.</p>
                 <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2408,13 +2398,23 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>With deliberate force, he pressed her palm against the bleeding cut. His eyes locked onto hers, filled with sorrow and something deeper, something that made her pulse race.</p>
-                <p>&#34;See this, Olivia?&#34; His voice was rough with emotion. &#34;This is what I earned by betraying you. Do you hate me now? I&#39;m not asking for forgiveness. I don&#39;t deserve it.&#34;</p>
+                <p>Fresh blood dripped from the wound she&#39;d inflicted on his right cheek, stark against his pale skin. Instead of repulsing her, it made him more magnetic, more dangerously alluring.</p>
+                <p>Almost against her will, Olivia reached toward him. At the last second, she hesitated - but Liam was faster. His hand shot out, capturing her wrist.</p>
                 <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner7"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>With deliberate force, he pressed her palm against the bleeding cut. His eyes locked onto hers, filled with sorrow and something deeper, something that made her pulse race.</p>
+                <p>&#34;See this, Olivia?&#34; His voice was rough with emotion. &#34;This is what I earned by betraying you. Do you hate me now? I&#39;m not asking for forgiveness. I don&#39;t deserve it.&#34;</p>
+                <!-- AdSense Ad Unit: banner5 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5132,29 +5132,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

@@ -2381,33 +2381,33 @@
                 <p>&#34;Really? A lobster roll? I want a lobster roll!&#34; Oliver chirped, jumping with uncontainable joy.</p>
                 <p>&#34;Absolutely.&#34; Isabella took his small hand and led him toward the kitchen. She didn&#39;t even bother to shut down the computer; her sole focus was on spending precious time with Oliver.</p>
                 <p>Meanwhile, Nathaniel Blackwood&#39;s intense gaze remained fixed on the computer screen. It displayed a sophisticated management platform teeming with thousands of video recordings. His eyes darkened with intrigue. What other remarkable capabilities did this woman possess?</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Isabella guided Oliver into the expansive kitchen. All the maids immediately lowered their heads in a respectful greeting. &#34;Ms. Montgomery.&#34;</p>
                 <p>&#34;You may all take a break. I&#39;ll handle lunch preparation myself,&#34; Isabella stated calmly, her eyes already scanning the room. She spotted a basket brimming with high-quality, sustainably farmed lobsters in the corner. They were impressively large and impeccably clean.</p>
                 <p>The maids exchanged nervous glances, shaking their heads in unison. &#34;Ms. Montgomery, that&#39;s highly inappropriate! Please, simply instruct us on the menu for today...!&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;Don&#39;t worry. Consider it a direct order. Go and rest,&#34; Isabella insisted firmly, settling beside the basket and gesturing for Oliver to join her.</p>
                 <p>Oliver shot the maids a decisive look, and they reluctantly filed out of the kitchen. He skipped over to Isabella, his face alight with excitement. &#34;Mommy, are these lobsters? Is it okay for children to eat them?&#34;</p>
                 <p>&#34;Of course! Mommy will make you a tomato lobster roll. It&#39;s packed with calcium and magnesium, excellent for strengthening your immune system,&#34; she explained warmly.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2425,11 +2425,11 @@
                 <p>&#34;Naturally! When I was in Africa, I always cooked for myself. During my training, I even—&#34; Isabella abruptly cut herself off, realizing she had ventured into forbidden territory. She glanced at Oliver and swiftly changed the subject. &#34;Anyway, Mommy is full of surprises. I&#39;ll make you the most delicious lobster roll. Why don&#39;t you go help me chop some onions?&#34;</p>
                 <p>&#34;Okay! Yes!&#34; Oliver agreed happily, hopping to his feet.</p>
                 <p>However, most of the fresh vegetables and herbs were cultivated in the estate&#39;s extensive outdoor garden, harvested only as needed. Oliver, accompanied by a few maids, headed out to gather the ingredients.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2438,11 +2438,11 @@
                 <p>That was odd. A prickle of suspicion ran down her spine. Isabella turned her head cautiously, her eyes scanning the kitchen.</p>
                 <p>Her blood ran cold.</p>
                 <p>Dozens of massive pythons were slithering directly toward her!</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5007,29 +5007,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

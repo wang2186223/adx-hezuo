@@ -2392,17 +2392,6 @@
                 <p>Frederick Kensington approached eagerly, his voice laced with cautious hope. &#34;Father, you still recognize me, don&#39;t you?&#34;</p>
                 <p>Alistair gave him a sidelong glance. &#34;My mind is perfectly clear today.&#34;</p>
                 <p>Frederick&#39;s shoulders relaxed with visible relief. &#34;Thank heavens! I knew it was wise of Donovan to bring you here for treatment. That boy is truly dependable, unlike Julian who&#39;s always off chasing frivolities instead of tending to family matters.&#34;</p>
-                <!-- AdSense Ad Unit: banner7 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>He threw a pointed glare over his shoulder at Julian as he spoke.</p>
-                <p>Olivia&#39;s initial impression of Frederick&#39;s family wasn&#39;t favorable, yet she found herself studying him. Was his concern genuine, or was he simply skilled at playing the crowd? Either way, he knew how to work a room.</p>
-                <p>She knew perfectly well that Alistair had been brought to this country during a crisis, with Donovan having to search tirelessly for him.</p>
                 <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2411,14 +2400,25 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Yet Frederick painted a picture of the dutiful grandson Donovan, bringing Alistair here solely for medical treatment.</p>
-                <p>Julian stepped forward, his smile mirroring his father&#39;s—sly as a fox with a dangerous glint in his eyes. But his attention was fixed elsewhere.</p>
-                <p>His smile widened as he turned to Olivia. &#34;Grandfather, this must be our cousin? Olivia Sinclair, if I&#39;m not mistaken? May I call you Olivia? You&#39;re absolutely breathtaking. You have your mother&#39;s eyes. I remember seeing a portrait of my aunt when I was a boy.&#34;</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <p>He threw a pointed glare over his shoulder at Julian as he spoke.</p>
+                <p>Olivia&#39;s initial impression of Frederick&#39;s family wasn&#39;t favorable, yet she found herself studying him. Was his concern genuine, or was he simply skilled at playing the crowd? Either way, he knew how to work a room.</p>
+                <p>She knew perfectly well that Alistair had been brought to this country during a crisis, with Donovan having to search tirelessly for him.</p>
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner5"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Yet Frederick painted a picture of the dutiful grandson Donovan, bringing Alistair here solely for medical treatment.</p>
+                <p>Julian stepped forward, his smile mirroring his father&#39;s—sly as a fox with a dangerous glint in his eyes. But his attention was fixed elsewhere.</p>
+                <p>His smile widened as he turned to Olivia. &#34;Grandfather, this must be our cousin? Olivia Sinclair, if I&#39;m not mistaken? May I call you Olivia? You&#39;re absolutely breathtaking. You have your mother&#39;s eyes. I remember seeing a portrait of my aunt when I was a boy.&#34;</p>
+                <!-- AdSense Ad Unit: banner4 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2436,11 +2436,11 @@
                 <p>Seeing Frederick&#39;s distress, Olivia stepped forward, offering a polite smile to the others.</p>
                 <p>Gwendolyn Kensington cut in with a sneer. &#34;Look at you all, acting so sentimental. She doesn&#39;t seem particularly thrilled to see us. We&#39;ve been standing here like decorations, and she hasn&#39;t even offered a proper greeting.&#34;</p>
                 <p>Seraphina let out a loud, mocking laugh.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5133,29 +5133,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

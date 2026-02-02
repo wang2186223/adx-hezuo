@@ -2380,6 +2380,16 @@
                 <p>&#34;No invitation?&#34; Donovan&#39;s eyebrows arched as he made a subtle gesture to an attendant.</p>
                 <p>The attendant promptly produced an engraved invitation, presenting it to Liam with both hands.</p>
                 <p>&#34;My apologies for the late delivery, Mr. Blackwood. We weren&#39;t certain of your current residence,&#34; Donovan explained smoothly.</p>
+                <!-- AdSense Ad Unit: banner1 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner1"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Liam&#39;s gaze flickered toward Julian, noting the poorly concealed disdain.</p>
+                <p>&#34;It seems Mr. Julian Kensington objects to my presence.&#34;</p>
                 <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2388,23 +2398,13 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Liam&#39;s gaze flickered toward Julian, noting the poorly concealed disdain.</p>
-                <p>&#34;It seems Mr. Julian Kensington objects to my presence.&#34;</p>
+                <p>Julian&#39;s lips curled in a sneer. &#34;I wouldn&#39;t dare. It&#39;s just that your... reputation precedes you throughout Crestwood.&#34;</p>
+                <p>Liam took three deliberate steps forward, his imposing presence making the space between them feel suddenly smaller.</p>
                 <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner2"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Julian&#39;s lips curled in a sneer. &#34;I wouldn&#39;t dare. It&#39;s just that your... reputation precedes you throughout Crestwood.&#34;</p>
-                <p>Liam took three deliberate steps forward, his imposing presence making the space between them feel suddenly smaller.</p>
-                <!-- AdSense Ad Unit: banner3 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2420,11 +2420,11 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Julian, caught off guard by the direct challenge, recovered with forced sarcasm. &#34;Mr. Blackwood, are you suggesting your own family wronged you? That your expulsion from the Blackwood estate was unjust?&#34;</p>
                 <p>Liam turned toward the police officers present. &#34;The authorities are right here. Accusations require evidence. Ask them if they&#39;ve found any proof of these alleged crimes.&#34;</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2435,11 +2435,11 @@
                 <p>Before anyone could react, Donovan confirmed, &#34;That&#39;s exactly what happened.&#34;</p>
                 <p>Liam continued, his voice carrying through the hall, &#34;As for the identical dress - Olivia&#39;s outfit tonight is quite distinctive. Anyone could have copied it to frame her. And if Olivia truly wanted to harm Seraphina, why would she approach in such recognizable attire rather than changing first?&#34;</p>
                 <p>Julian scrambled for a response. &#34;Perhaps it was... an impulsive act of malice.&#34; His voice lacked conviction.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5132,29 +5132,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

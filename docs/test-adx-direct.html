@@ -181,7 +181,27 @@
             if (iframe) {
                 status.hasIframe = true;
                 status.iframeHeight = iframe.offsetHeight || iframe.getBoundingClientRect().height;
-                status.iframeSrc = iframe.src.substring(0, 50) + '...';
+                status.iframeSrc = iframe.src;
+                status.iframeSrcShort = iframe.src.substring(0, 80) + '...';
+                
+                // 检查 iframe 是否有广告内容的URL
+                status.hasAdUrl = iframe.src.includes('googleads.g.doubleclick.net') || 
+                                 iframe.src.includes('tpc.googlesyndication.com');
+                
+                // 尝试检查 iframe 内容
+                try {
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc && iframeDoc.body) {
+                        status.iframeBodyChildren = iframeDoc.body.children.length;
+                        status.iframeBodyHTML = iframeDoc.body.innerHTML.length;
+                    } else {
+                        status.iframeBodyChildren = 'cross-origin';
+                        status.iframeBodyHTML = 'cross-origin';
+                    }
+                } catch (e) {
+                    status.iframeBodyChildren = 'blocked';
+                    status.iframeBodyHTML = 'blocked';
+                }
             }
 
             // 检查 Google 查询ID
@@ -201,22 +221,22 @@
             let isSuccess = false;
             let reason = '';
 
-            if (status.adsbyGoogleStatus === 'done' || status.clientRendered === 'done') {
-                if (status.iframeHeight > 50) {
+            // 更严格的成功判断
+            if (status.hasIframe && status.iframeHeight > 10) {
+                if (status.hasAdUrl) {
                     isSuccess = true;
-                    reason = '✅ 状态为 done 且 iframe 高度 > 50px';
+                    reason = '✅ 有广告 URL 的 iframe (googleads/tpc)';
+                } else if (status.iframeSrc.includes('about:blank') || status.iframeSrc === '') {
+                    reason = '❌ iframe 是空白页面 (about:blank)';
+                } else if (status.iframeHeight === 280 && !status.hasAdUrl) {
+                    reason = '⚠️ iframe 高度等于设置值但无广告 URL (可能是空容器)';
                 } else {
-                    reason = '⚠️ 状态为 done 但 iframe 高度不足';
+                    reason = `⚠️ 有 iframe (${status.iframeHeight}px) 但 URL 不确定`;
                 }
-            } else if (status.hasIframe && status.iframeHeight > 50) {
-                isSuccess = true;
-                reason = '✅ 有有效 iframe (高度 > 50px)';
             } else if (status.hasIframe) {
-                reason = `⚠️ 有 iframe 但高度不足 (${status.iframeHeight}px)`;
-            } else if (status.hasGoogleQueryId || status.hasGoogleAdsIframe) {
-                reason = '⚠️ 有 Google 容器但无有效 iframe';
+                reason = `❌ iframe 高度不足 (${status.iframeHeight}px)`;
             } else if (status.innerHTML > 0) {
-                reason = `⚠️ 容器有内容 (${status.innerHTML} 字符) 但无广告元素`;
+                reason = `⚠️ 容器有内容 (${status.innerHTML} 字符) 但无 iframe`;
             } else {
                 reason = '❌ 容器为空，广告未请求或请求失败';
             }
@@ -236,10 +256,13 @@
                 <div><strong>容器高度:</strong> ${status.containerHeight}px</div>
                 <div><strong>有 iframe:</strong> ${status.hasIframe ? '是' : '否'}</div>
                 ${status.hasIframe ? `<div><strong>iframe 高度:</strong> ${status.iframeHeight}px</div>` : ''}
-                ${status.iframeSrc ? `<div><strong>iframe src:</strong> ${status.iframeSrc}</div>` : ''}
+                ${status.hasIframe ? `<div><strong>有广告 URL:</strong> ${status.hasAdUrl ? '是' : '否'}</div>` : ''}
+                ${status.iframeSrcShort ? `<div><strong>iframe src:</strong> <span style="font-size:10px;word-break:break-all;">${status.iframeSrcShort}</span></div>` : ''}
+                ${status.iframeBodyChildren !== undefined ? `<div><strong>iframe body 子元素:</strong> ${status.iframeBodyChildren}</div>` : ''}
+                ${status.iframeBodyHTML !== undefined ? `<div><strong>iframe body HTML 长度:</strong> ${status.iframeBodyHTML}</div>` : ''}
                 <div><strong>有 Google 查询ID:</strong> ${status.hasGoogleQueryId ? '是 (' + (status.googleQueryId || 'N/A') + ')' : '否'}</div>
                 <div><strong>有 Google Ads iframe:</strong> ${status.hasGoogleAdsIframe ? '是' : '否'}</div>
-                <div><strong>innerHTML 长度:</strong> ${status.innerHTML} 字符</div>
+                <div><strong>容器 innerHTML 长度:</strong> ${status.innerHTML} 字符</div>
             `;
 
             return { isSuccess, status, reason };

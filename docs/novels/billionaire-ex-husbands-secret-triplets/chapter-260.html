@@ -2381,17 +2381,28 @@
                 <p>&#34;It was Elder Master Goldmann&#39;s decision.&#34; The unspoken warning in his words made Chloe press her lips together.</p>
                 <p>Evelyn watched the silent exchange, understanding dawning. Theodore Goldmann was testing her. The realization sent both apprehension and determination coursing through her veins.</p>
                 <p>&#34;Anyway,&#34; Chloe brightened, pulling the man beside her forward. &#34;Evelyn, meet Harrison - mine and Oliver&#39;s older brother.&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Harrison&#39;s keen eyes assessed Evelyn with professional detachment, though curiosity flickered beneath the surface. He&#39;d heard much about Nathan&#39;s mysterious wife from Chloe&#39;s letters.</p>
                 <p>&#34;Welcome, Ms. Vanderbilt,&#34; he said with a respectful nod, scratching his stubbled chin.</p>
                 <p>&#34;Please, just call me Evelyn.&#34; She offered a small smile. &#34;I&#39;m here to train like everyone else for the next two weeks.&#34;</p>
+                <!-- AdSense Ad Unit: banner6 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner6"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Chloe exchanged a doubtful glance with her brothers. The last female recruit had lasted three days before quitting. &#34;Our training regimen is... intense.&#34;</p>
+                <p>Evelyn squared her shoulders. &#34;I&#39;ll manage.&#34;</p>
+                <p>Something in her tone made Chloe&#39;s eyes spark with admiration. This was why Nathan had chosen her.</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2400,25 +2411,14 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Chloe exchanged a doubtful glance with her brothers. The last female recruit had lasted three days before quitting. &#34;Our training regimen is... intense.&#34;</p>
-                <p>Evelyn squared her shoulders. &#34;I&#39;ll manage.&#34;</p>
-                <p>Something in her tone made Chloe&#39;s eyes spark with admiration. This was why Nathan had chosen her.</p>
-                <!-- AdSense Ad Unit: banner1 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;Let me show you around, Zoe,&#34; Chloe said, using the affectionate nickname.</p>
                 <p>As they walked toward the barracks, Harrison turned to Oliver. &#34;What&#39;s Elder Master thinking? She looks like a strong wind could knock her over.&#34;</p>
                 <p>Oliver adjusted his glasses. &#34;Theodore&#39;s orders are clear - no special treatment. If she can&#39;t survive the fortnight, she&#39;ll never be accepted into the family.&#34;</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2439,11 +2439,11 @@
                 <p>&#34;You two get acquainted,&#34; Chloe said, already moving toward the door. &#34;Rachel can show you the ropes. And Evelyn?&#34; She paused, her expression softening. &#34;My door&#39;s always open if you need anything.&#34;</p>
                 <p>As Chloe&#39;s footsteps faded down the hall, Rachel turned to Evelyn with undisguised curiosity. &#34;So... what&#39;s a fancy lady like you doing in hell&#39;s boot camp?&#34;</p>
                 <p>Evelyn smiled as she ran her fingers over the coarse fabric of her new uniform. &#34;Proving I belong.&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5016,29 +5016,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

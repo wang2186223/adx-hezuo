@@ -2381,33 +2381,33 @@
                 <p>&#34;Of course,&#34; Victoria said, patting the seat beside her in invitation.</p>
                 <p>She launched into a detailed account of Olivia’s supposed schemes, sparing no detail. &#34;I know about her past with your husband. He’s a gentleman, but Olivia exploits her connection to Natalie Bennett to get close to him. And it’s not just him—she’s also entangled with Alexander Hayes. Somehow, she’s wrapped him around her finger too. She juggles men effortlessly. I can’t fathom what spell she’s cast over them.&#34;</p>
                 <p>As Victoria spoke, Evelyn’s face darkened. &#34;I haven’t been in this city long, so I don’t know much about Olivia. I only knew she had ties to my husband’s family. Without your insight, I’d have remained in the dark. I had no idea she was so… skilled.&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Noticing Evelyn’s distress, Victoria took her hand sympathetically. &#34;It infuriates me to see someone like you being played. I know you’re not the type to tolerate this. Why don’t we team up against her? I have no ulterior motives—I just want her to learn her place. After tonight’s party, come to my place. We’ll strategize.&#34;</p>
                 <p>Victoria’s eyes gleamed with cunning. She was already envisioning how Evelyn’s influence could crush Olivia once and for all.</p>
                 <p>&#34;Unfortunately, I have prior engagements tonight,&#34; Evelyn replied, her polite refusal catching Victoria off guard.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Victoria pressed on. &#34;No worries. If tonight doesn’t work, we’ll find another time. Let’s exchange contacts.&#34;</p>
                 <p>Evelyn didn’t reach for her phone. Instead, she offered a cool, distant smile and adjusted her hair with effortless grace.</p>
                 <p>&#34;While I’ve enjoyed our chat, you must understand—I don’t form alliances lightly. Besides, if you’re married into the Hartley family and hoping to use my connection to the Ellingtons for your own ends, you’ve misjudged me.&#34; Her tone was firm, leaving no room for argument.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2425,11 +2425,11 @@
                 <p>She turned and strode away, leaving Victoria fuming. A servant quickly intervened, whispering a reminder—too many eyes were watching, and their real target tonight was Julian Hawthorne’s plan against Olivia.</p>
                 <p>Victoria forced composure, glaring at Evelyn’s retreating figure. &#34;She’ll regret this.&#34;</p>
                 <p>Olivia, observing from a distance, didn’t catch their words, but Evelyn’s icy departure and Victoria’s stormy expression told her enough. She excused herself, feigning a need for air, and hurried after Evelyn.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5136,29 +5136,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

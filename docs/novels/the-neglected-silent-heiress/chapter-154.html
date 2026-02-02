@@ -2383,11 +2383,11 @@
                 <p>Alexander rubbed his temples, feeling the onset of a migraine. He couldn&#39;t believe the audacity of this mid-level manager, speaking to him with such disrespect. Yet he had no choice. He needed to understand the client&#39;s grievances. If resolving them required concessions, he was prepared to comply.</p>
                 <p>The manager lifted his chin arrogantly. &#34;Mr. Whitmore, how about we share a meal first? Then perhaps I&#39;ll consider discussing business matters. Though I may require a small favor in return. I hope that won&#39;t be too much to ask.&#34;</p>
                 <p>Alexander&#39;s eye twitched, his expression turning glacial. &#34;As long as your requests remain reasonable, I&#39;ll see to them immediately. Just remember your end of the bargain.&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2396,11 +2396,11 @@
                 <p>Dropping his earlier bravado, the manager whispered urgently, &#34;Did it work? Can we really pull this off?&#34;</p>
                 <p>&#34;Without question,&#34; Julian replied confidently. &#34;I&#39;ve sent all the photographic evidence. He&#39;s definitely coming. Just maintain your composure, and your future is secured. Don&#39;t forget our agreement when the time comes.&#34;</p>
                 <p>When the scheduled meeting time arrived, Alexander had intended to send Isabella and Olivia home first. But chaos erupted.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2435,11 +2435,11 @@
                 <p>Noticing the dangerous glint in Liam&#39;s eyes, Sebastian leaned in to whisper, &#34;Mr. Blackwood, since you&#39;re meeting Olivia today anyway, why not ask her directly?&#34;</p>
                 <p>Liam merely grunted, restraining himself from storming in immediately.</p>
                 <p>Alexander had already taken charge of the situation. He settled into his seat, graciously accepting several drinks, hoping the manager might reveal something.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2451,11 +2451,11 @@
                 <p>Julian dared not speak, attempting to blend into the background. Things weren&#39;t going as planned. He&#39;d sent Liam substantial &#34;evidence&#34; of Alexander and Olivia together. What man could tolerate such betrayal?</p>
                 <p>Moreover, Olivia remained by Alexander&#39;s side in the private dining room, while Liam - despite knowing their whereabouts - avoided confrontation.</p>
                 <p>Just as Julian&#39;s anxiety peaked, an icy voice cut through from the doorway. &#34;Mr. Whitmore, let&#39;s not escalate this. Not everything he&#39;s told you is false.&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5148,29 +5148,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

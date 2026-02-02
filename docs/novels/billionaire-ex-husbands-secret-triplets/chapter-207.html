@@ -2381,28 +2381,17 @@
                 <p>If Zoe had been summoned instead, she might’ve actually slapped the kid. And if she’d come with Mr. Goldmann—</p>
                 <p>&#34;You—&#34; The woman scoffed. &#34;My son would never say such a thing! Ask him yourself if you don’t believe me!&#34;</p>
                 <p>The boy refused to meet Sophia’s gaze, his jaw clenched as he muttered, &#34;I... I didn’t say that.&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;See?&#34; The woman smirked triumphantly. &#34;Your son attacked mine, and that’s a fact. I won’t let this go unless he apologizes!&#34;</p>
                 <p>Sophia crossed her arms, unimpressed. &#34;Fine. Let’s settle this, then.&#34;</p>
                 <p>&#34;You—!&#34; The woman turned to the teacher, seething. &#34;Look at her! What kind of parent encourages this behavior? Like godmother, like godson. A child like him has no place in this academy!&#34;</p>
-                <!-- AdSense Ad Unit: banner1 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Sophia knew Caleb wouldn’t lash out without reason. Though she wasn’t his birth mother, she was his godmother—and she refused to let anyone bully him.</p>
-                <p>&#34;You believe your son’s denial, yet you dismiss my godson’s word? Hypocrisy at its finest.&#34;</p>
-                <p>&#34;Godson?&#34; The woman sneered. &#34;So this brat couldn’t even call his real mother? No wonder he’s so ill-mannered—raised by someone like you, it’s no surprise.&#34;</p>
                 <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2411,25 +2400,36 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Sophia’s chin lifted, her gaze icy.</p>
-                <p>The woman’s mocking laughter filled the room. &#34;Ah, I see. He probably doesn’t even have a mother. No wonder he’s so wild—an orphan with no one to teach him manners.&#34;</p>
-                <p>Caleb’s small fists tightened, his face darkening.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <p>Sophia knew Caleb wouldn’t lash out without reason. Though she wasn’t his birth mother, she was his godmother—and she refused to let anyone bully him.</p>
+                <p>&#34;You believe your son’s denial, yet you dismiss my godson’s word? Hypocrisy at its finest.&#34;</p>
+                <p>&#34;Godson?&#34; The woman sneered. &#34;So this brat couldn’t even call his real mother? No wonder he’s so ill-mannered—raised by someone like you, it’s no surprise.&#34;</p>
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner7"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Sophia’s chin lifted, her gaze icy.</p>
+                <p>The woman’s mocking laughter filled the room. &#34;Ah, I see. He probably doesn’t even have a mother. No wonder he’s so wild—an orphan with no one to teach him manners.&#34;</p>
+                <p>Caleb’s small fists tightened, his face darkening.</p>
+                <!-- AdSense Ad Unit: banner5 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Before anyone could react, Sophia’s palm struck the woman’s cheek with a sharp crack.</p>
                 <p>Even Caleb froze, stunned. His godmother was usually playful and carefree—he’d never seen her so fierce.</p>
                 <p>The teacher shot to her feet. &#34;Miss Hill! You can’t just hit someone!&#34;</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5018,29 +5018,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

@@ -2380,26 +2380,16 @@
                 <p>Isabelle beamed up at her mother. &#34;Mommy, Alexander is so nice!&#34;</p>
                 <p>Olivia&#39;s breath caught. &#34;Do you... like Alexander?&#34;</p>
                 <p>Before the child could answer, Liam scooped her up possessively, putting distance between them. Alexander&#39;s smile faltered for just a second before he recovered.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Liam pretended to pout. &#34;Isabelle, didn&#39;t you promise you&#39;d only say that about me?&#34;</p>
                 <p>The little girl considered this seriously before amending, &#34;Okay, then Alexander is second best. First place is only for you.&#34; The declaration made Alexander&#39;s jaw tighten as he glared at Liam.</p>
-                <!-- AdSense Ad Unit: banner3 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>&#34;You shouldn&#39;t manipulate a child,&#34; Alexander snapped.</p>
-                <p>&#34;Did you actually see any manipulation?&#34; Liam shot back.</p>
                 <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2408,23 +2398,33 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>As their argument escalated, Olivia stepped between them protectively. Alexander turned to her with a charming smile. &#34;Olivia, I&#39;ve arranged a small celebration for Isabelle&#39;s discharge. Let&#39;s make it special.&#34;</p>
-                <p>Olivia offered a polite but distant smile. &#34;That&#39;s kind, but unnecessary. The doctors recommended rest. We&#39;ll be going straight home.&#34;</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <p>&#34;You shouldn&#39;t manipulate a child,&#34; Alexander snapped.</p>
+                <p>&#34;Did you actually see any manipulation?&#34; Liam shot back.</p>
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Liam deliberately shouldered past Alexander. &#34;I&#39;ll drive you,&#34; he stated bluntly.</p>
-                <p>Olivia ignored him completely, gathering Isabelle in her arms and walking away. Alexander seized the moment to taunt, &#34;Seems she doesn&#39;t want anything to do with you.&#34;</p>
+                <p>As their argument escalated, Olivia stepped between them protectively. Alexander turned to her with a charming smile. &#34;Olivia, I&#39;ve arranged a small celebration for Isabelle&#39;s discharge. Let&#39;s make it special.&#34;</p>
+                <p>Olivia offered a polite but distant smile. &#34;That&#39;s kind, but unnecessary. The doctors recommended rest. We&#39;ll be going straight home.&#34;</p>
                 <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner2"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Liam deliberately shouldered past Alexander. &#34;I&#39;ll drive you,&#34; he stated bluntly.</p>
+                <p>Olivia ignored him completely, gathering Isabelle in her arms and walking away. Alexander seized the moment to taunt, &#34;Seems she doesn&#39;t want anything to do with you.&#34;</p>
+                <!-- AdSense Ad Unit: banner7 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5130,29 +5130,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

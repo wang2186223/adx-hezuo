@@ -2392,6 +2392,17 @@
                 <p>Isabella took the paper. A tender scene unfolded under soft window light—herself reclining gracefully on the sofa. The artwork was remarkably detailed and skilled, far beyond his years.</p>
                 <p>Yet...</p>
                 <p>Oliver had drawn a large white circle over her abdomen, with a peaceful baby girl sleeping inside. Isabella&#39;s lips twitched slightly. Was he truly this desperate for a sister?</p>
+                <!-- AdSense Ad Unit: banner6 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner6"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Ever since that night, Oliver had constantly hinted at a sibling—through drawings, preparing toys, even excitedly building a small crib. When he discovered the truth, he might be... Her gaze drifted to Nathaniel, seated nearby.</p>
+                <p>Nathaniel sat in a single armchair, documents resting on his lap. His posture was impeccably elegant, exuding an aura of sharp intelligence and refined coldness. He looked like he belonged on the cover of a luxury magazine.</p>
+                <p>Even after living together, her heart still raced uncontrollably whenever she watched him. The wound on his arm stood out starkly against his flawless skin.</p>
                 <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2400,36 +2411,25 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Ever since that night, Oliver had constantly hinted at a sibling—through drawings, preparing toys, even excitedly building a small crib. When he discovered the truth, he might be... Her gaze drifted to Nathaniel, seated nearby.</p>
-                <p>Nathaniel sat in a single armchair, documents resting on his lap. His posture was impeccably elegant, exuding an aura of sharp intelligence and refined coldness. He looked like he belonged on the cover of a luxury magazine.</p>
-                <p>Even after living together, her heart still raced uncontrollably whenever she watched him. The wound on his arm stood out starkly against his flawless skin.</p>
-                <!-- AdSense Ad Unit: banner2 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>She remembered how he&#39;d shielded her that day, and all the moments they&#39;d shared since. A strange thought surfaced: Perhaps having his child wouldn&#39;t be so terrible.</p>
                 <p>She knew how sincerely Nathaniel treated her. He seemed genuinely committed to their relationship.</p>
                 <p>Suddenly, the doorbell chimed.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Isabella frowned. Who would visit Rosewood Manor at this hour? Could it be Eleanor arriving so soon?</p>
                 <p>She rose and opened the door. A woman stood there, barely five feet tall. Her delicate, palm-sized face wore a pitiable expression, eyes glistening with unshed tears. She wore a faded, cheap white dress that made her appear fragile and meek.</p>
                 <p>She resembled a pure white lily—so delicate and gentle she might be swept away by the wind. This was the genuine article, unlike Victoria&#39;s artificial performance.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5006,29 +5006,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

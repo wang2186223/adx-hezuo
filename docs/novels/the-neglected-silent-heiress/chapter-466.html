@@ -2380,11 +2380,11 @@
                 <p>&#34;Really?&#34; Eleanor&#39;s eyes lit up with interest as she leaned closer, her whisper barely audible.</p>
                 <p>Oliver looked genuinely shocked. &#34;But Miss, I saw her leaving Mr. Liam&#39;s estate with my own eyes. Doesn&#39;t that raise any red flags?&#34;</p>
                 <p>This was Newport&#39;s most exclusive neighborhood - sprawling mansions hidden behind towering privacy hedges. Liam Blackwood&#39;s estate stood alone, isolated from prying eyes.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2400,6 +2400,16 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Meanwhile, Olivia Sinclair had been consulting with the director about visiting the designer embroiled in the plagiarism controversy.</p>
                 <p>She&#39;d discovered the designer was Margaret&#39;s exact contemporary - same university, same department, even the same graduating class.</p>
+                <!-- AdSense Ad Unit: banner8 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner8"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Back in her student days, the designer had been considered a prodigy. Despite humble beginnings, her raw talent and relentless drive had caught the attention of Sinclair Enterprises. They&#39;d offered her the chief designer position upon graduation - an unprecedented opportunity.</p>
+                <p>What should have been a fairytale success story had instead exploded into a career-ending scandal.</p>
                 <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2408,23 +2418,13 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Back in her student days, the designer had been considered a prodigy. Despite humble beginnings, her raw talent and relentless drive had caught the attention of Sinclair Enterprises. They&#39;d offered her the chief designer position upon graduation - an unprecedented opportunity.</p>
-                <p>What should have been a fairytale success story had instead exploded into a career-ending scandal.</p>
-                <!-- AdSense Ad Unit: banner4 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>When the plagiarism allegations surfaced, the designer had vehemently denied copying anyone&#39;s work. But without drafts or supporting evidence, her protests fell on deaf ears. Ultimately, she&#39;d issued a public apology and vanished from the design world entirely.</p>
                 <p>Rumors suggested her current circumstances were... less than ideal.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2433,11 +2433,11 @@
                 <p>She could hardly believe her eyes. Even with the plagiarism scandal, this was a university graduate - a once-promising talent. How had she ended up in such squalor?</p>
                 <p>The answer came sooner than expected. An elderly woman with snow-white hair shuffled past Olivia. The octogenarian moved with painful slowness, her hunched frame barely able to support itself. She paused at the door, wheezing from the exertion.</p>
                 <p>Just then, the yard&#39;s rusted gate creaked open. A strikingly beautiful but painfully thin young woman emerged, her movements uneven. Strands of loose hair framed a face that was both delicate and hauntingly lovely.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5130,29 +5130,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

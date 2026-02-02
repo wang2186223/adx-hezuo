@@ -2381,28 +2381,17 @@
                 <p>Yet beneath his admiration simmered frustration. Why wouldn&#39;t this woman let him protect her?</p>
                 <p>#Zara Outshines New Designer Vivian Vanderbilt#</p>
                 <p>The Summerton Auction Hall&#39;s revelation of identical pieces last night had catapulted both Zara and Vivian to trending status.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>The comparison spoke for itself. Social media erupted with accusations of Vivian plagiarizing Zara&#39;s designs, the evidence undeniable.</p>
                 <p>Netizens even dug up Vivian&#39;s previous gothic-style collections, pointing out striking similarities to Zara&#39;s vintage-inspired works.</p>
                 <p>@SavannahWood: Did Vivian really think she could plagiarize her way to fame?</p>
-                <!-- AdSense Ad Unit: banner6 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>@PeterHammer: Zara&#39;s designs have always maintained visual comfort through balanced simplicity. Her embellishments serve as perfect accents rather than overwhelming statements.</p>
-                <p>@SamuelNorton: Every designer has their own style. Just because Zara&#39;s more famous doesn&#39;t automatically mean plagiarism.</p>
-                <p>Reporters swarmed Viana Jewelry&#39;s entrance, forcing Vivian to barricade herself in her office.</p>
                 <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2411,14 +2400,25 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>She trembled with rage reading the online accusations.</p>
-                <p>Laura peered through the blinds at the persistent reporters before rushing to Vivian&#39;s side. &#34;Sweetheart, we have Frederick&#39;s original sketches. We&#39;ll post a statement on all platforms immediately.&#34;</p>
-                <p>&#39;With the sketches and enough money to buy Frederick&#39;s silence, we can turn this around,&#39; Laura thought confidently.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <p>@PeterHammer: Zara&#39;s designs have always maintained visual comfort through balanced simplicity. Her embellishments serve as perfect accents rather than overwhelming statements.</p>
+                <p>@SamuelNorton: Every designer has their own style. Just because Zara&#39;s more famous doesn&#39;t automatically mean plagiarism.</p>
+                <p>Reporters swarmed Viana Jewelry&#39;s entrance, forcing Vivian to barricade herself in her office.</p>
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner5"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>She trembled with rage reading the online accusations.</p>
+                <p>Laura peered through the blinds at the persistent reporters before rushing to Vivian&#39;s side. &#34;Sweetheart, we have Frederick&#39;s original sketches. We&#39;ll post a statement on all platforms immediately.&#34;</p>
+                <p>&#39;With the sketches and enough money to buy Frederick&#39;s silence, we can turn this around,&#39; Laura thought confidently.</p>
+                <!-- AdSense Ad Unit: banner6 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2439,11 +2439,11 @@
                 <p>The post detonated across social media like a bomb. Debates raged - was this legitimate accusation or clever marketing? Some defended Vivian, others questioned Soul Studio&#39;s motives, while conspiracy theorists speculated about coordinated PR stunts.</p>
                 <p>Vivian stared at her screen in shock.</p>
                 <p>&#39;Soul Jewelry Studio? What the hell is this?&#39;</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5016,29 +5016,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

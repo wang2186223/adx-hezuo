@@ -2382,11 +2382,11 @@
                 <p>Isabella held her ground, a soft smile gracing her lips. “A woman is foolish if she isn’t willing to make sacrifices for the man she loves.”</p>
                 <p>Her voice was calm, gentle. Dressed in her wedding gown, she radiated the image of the perfect devoted wife and future mother. The crowd envied the depth of her love for Alexander. The live stream chat exploded with emotional fans.</p>
                 <p>(Ah!!!! This is what real LOVE looks like! I finally believe in true love!)</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2406,11 +2406,11 @@
                 <p>Nathaniel’s eyes narrowed dangerously. His future wife, gone?</p>
                 <p>He couldn’t just stand by.</p>
                 <p>Meanwhile, Margaret Whitmore and Eleanor Kensington moved to stand beside Isabella. Margaret genuinely liked Isabella; her presence had drawn Nathaniel to the wedding. Isabella brought immense prestige to the Whitmore name, enough to last a decade! Plus, she owned a diamond mine, a fortune that would skyrocket the Whitmore wealth.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2418,18 +2418,6 @@
                 <p>“And to all the producers and directors here,” Eleanor seized the moment to shift attention to Victoria. “Please consider our Victoria. She’s exceptionally skilled in acting and modeling. For the record, Isabella learned a great deal from her.” With Isabella seemingly settled and Victoria struggling, Eleanor wanted to help her daughter regain footing.</p>
                 <p>Mention of Victoria redirected the crowd’s praise.</p>
                 <p>“That’s true. Victoria is also remarkable! Her five-year modeling career sets a superb example.”</p>
-                <!-- AdSense Ad Unit: banner1 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>“I heard she’s been creating short video content lately. She’s truly riding the new wave, a pioneer with unique vision.”</p>
-                <p>“Most importantly, Victoria’s eyes possess a rare purity. They radiate innocence and kindness, a truly harmless quality. She’d be perfect for a youth idol drama.”</p>
-                <p>“Speaking of Victoria, where is she? I haven’t seen her today. I have some projects I’d like to discuss with her.”</p>
-                <p>The admiring guests glanced around, searching for Victoria.</p>
                 <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2438,16 +2426,28 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>“I heard she’s been creating short video content lately. She’s truly riding the new wave, a pioneer with unique vision.”</p>
+                <p>“Most importantly, Victoria’s eyes possess a rare purity. They radiate innocence and kindness, a truly harmless quality. She’d be perfect for a youth idol drama.”</p>
+                <p>“Speaking of Victoria, where is she? I haven’t seen her today. I have some projects I’d like to discuss with her.”</p>
+                <p>The admiring guests glanced around, searching for Victoria.</p>
+                <!-- AdSense Ad Unit: banner6 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner6"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Eleanor scanned the room but couldn’t spot her daughter either. She turned back to the crowd. “She’s the maid of honor today, so she’s probably busy handling some details. That girl… always so thoughtful, treating Isabella like a real sister, wanting only the best for her.”</p>
                 <p>This reminded everyone of the online buzz, deepening their admiration for Victoria. It couldn’t be easy, willingly serving as maid of honor for her ex-lover and rival. Victoria was truly a good soul.</p>
                 <p>Click!</p>
                 <p>Suddenly, the main lobby screen flickered to life. The speakers crackled, then emitted the unmistakable sound of someone moaning.</p>
                 <p>The noise!</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5012,29 +5012,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

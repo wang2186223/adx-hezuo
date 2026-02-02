@@ -2403,6 +2403,28 @@
                 <p>The four men stood and hurried from the study, each retiring to a guest room.</p>
                 <p>Isabella smiled faintly at their retreating backs. She wished she had used that excuse sooner. It would have saved her from their lengthy lecture.</p>
                 <p>She returned to her bedroom and lay down. A cool sensation touched her neck.</p>
+                <!-- AdSense Ad Unit: banner4 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner4"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Her fingers found the necklace Nathaniel had given her. She recalled trying to remove it initially. Over time, she had forgotten it was there, wearing it almost unconsciously now…</p>
+                <p>She had been hesitant about Nathaniel. But her uncles’ revelations changed everything. It explained his strange behavior whenever Oliver’s mother was mentioned. A powerful man like him, taken advantage of by a woman? Of course he would be embarrassed.</p>
+                <p>Knowing Nathaniel had also been violated made her feel they were equals. There was nothing left to fret over.</p>
+                <!-- AdSense Ad Unit: banner1 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner1"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>She and Nathaniel were the same.</p>
+                <p>This thought brought a smile to her lips as her eyes closed.</p>
+                <p>Isabella enjoyed the most restful sleep she had experienced in a very long time.</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2411,38 +2433,16 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Her fingers found the necklace Nathaniel had given her. She recalled trying to remove it initially. Over time, she had forgotten it was there, wearing it almost unconsciously now…</p>
-                <p>She had been hesitant about Nathaniel. But her uncles’ revelations changed everything. It explained his strange behavior whenever Oliver’s mother was mentioned. A powerful man like him, taken advantage of by a woman? Of course he would be embarrassed.</p>
-                <p>Knowing Nathaniel had also been violated made her feel they were equals. There was nothing left to fret over.</p>
-                <!-- AdSense Ad Unit: banner6 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>She and Nathaniel were the same.</p>
-                <p>This thought brought a smile to her lips as her eyes closed.</p>
-                <p>Isabella enjoyed the most restful sleep she had experienced in a very long time.</p>
-                <!-- AdSense Ad Unit: banner3 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Morning arrived. Her phone rang on the nightstand. It was a video call from Oliver.</p>
                 <p>Isabella sat up and answered. Oliver’s adorable, round face filled the screen. He waved excitedly. “Mommy! Mommy! I saw the news! That’s you, right?”</p>
                 <p>“Hmm? What news?” Isabella was confused.</p>
                 <p>Oliver continued, his eyes wide. “Eternal Champions! Someone deposited a billion dollars to challenge Takashi Yamamoto! Everyone is guessing who it is. Daddy and I both knew it had to be you! It is you, isn’t it?” He blinked his adorable doe eyes, looking like a curious little teddy bear.</p>
                 <p>Isabella frowned. The news spread that fast? Should she tell Oliver? If she told him…</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5007,29 +5007,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

@@ -2380,11 +2380,11 @@
                 <p>The warmth of his hand grounded her, but the conflict inside her raged on. She lowered her voice to a whisper. &#34;Eleanor is the only one who can protect your identity as Mr. Jack. This is reckless, Liam. Have you completely lost your mind?&#34;</p>
                 <p>His dark eyes burned with resolve. &#34;I told you, I love you. I failed you before. I won’t make that mistake again.&#34; His grip tightened slightly. &#34;Olivia, you and Isabelle don’t have to be afraid anymore. I’ll take care of you both.&#34;</p>
                 <p>Her breath hitched. Tears welled in her eyes, blurring her vision.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2400,31 +2400,31 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>With that, he led them away, leaving the stunned onlookers behind. The evidence Liam had presented was irrefutable, dismantling every accusation against Olivia in one swift motion. Victoria Ellington stood frozen, her face ashen. She hadn’t expected Eleanor—Mr. Jack’s own sister—to side with Liam at the most critical moment.</p>
                 <p>Now, Victoria had nothing left. A cold dread slithered down her spine as her legs gave out, sending her crumpling to the floor. Just then, her phone buzzed—Daniel’s name flashing across the screen.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>She snatched it up, her voice raw with hysteria. &#34;Are you happy now? Now that I’m going to rot in prison? You must be laughing, aren’t you? With me gone, nothing stands between you and Olivia anymore!&#34;</p>
                 <p>Silence stretched on the other end before Daniel finally spoke, his voice eerily calm. &#34;You know I never loved you. I married you out of obligation. I tried to be a decent husband. You saw that—you just refused to accept it. Instead, you blamed Olivia for everything. Even if she had never come back, you would have found someone else to hate.&#34; His tone hardened. &#34;I thought I could keep pretending. But I was wrong.&#34;</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Tears spilled down Victoria’s cheeks. &#34;You never loved me—not even a little! Then why did you marry me?&#34; Her voice cracked. &#34;You’re the reason I became like this!&#34;</p>
                 <p>&#34;Yes,&#34; Daniel admitted, bitterness lacing his words. &#34;It’s my fault. And I’ve made my decision. I’ll spend the rest of my life atoning for my mistakes. I won’t return to the Bennett family. I won’t seek love. I’ll tend to your mother’s grave until the day I die.&#34;</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2434,11 +2434,11 @@
                 <p>The door burst open with a violent crash.</p>
                 <p>Police officers swarmed the room.</p>
                 <p>Victoria had known this was coming. She’d returned to the country knowing Liam’s men would hunt her down if she stayed abroad. But now, faced with the inevitable, she realized—no one could predict what awaited her next.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5131,29 +5131,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {

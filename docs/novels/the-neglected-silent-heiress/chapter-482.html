@@ -2380,11 +2380,11 @@
                 <p>Yet his social media profile had featured a woman&#39;s photo and all his comments used distinctly feminine language.</p>
                 <p>A cold realization washed over Olivia. She&#39;d been mere moments away from walking into a predator&#39;s trap. Had Margaret not collided with her at the entrance, the consequences could have been unthinkable.</p>
                 <p>But gratitude was the furthest thing from Olivia&#39;s mind. Behind her shocked expression, wheels of malice were already turning.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2400,26 +2400,16 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Drawing a steadying breath, Margaret leveled an icy glare at both the man and Olivia. &#34;I came onto you?&#34; Her voice dripped with disdain.</p>
                 <p>Olivia&#39;s acting skills surfaced instantly. Tears welled in her eyes as she joined the man&#39;s accusations. &#34;Margaret, how could you? I know your company&#39;s struggling, but targeting my fan? This is despicable!&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>The live chat exploded with venom:</p>
                 <p>&#34;Pathetic! Some heiress she turned out to be.&#34;</p>
-                <!-- AdSense Ad Unit: banner3 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>&#34;Obviously watched Olivia&#39;s stream yesterday about meeting a fan here.&#34;</p>
-                <p>&#34;Classic gold-digger move. Probably planned to blackmail him.&#34;</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2428,16 +2418,26 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>&#34;Obviously watched Olivia&#39;s stream yesterday about meeting a fan here.&#34;</p>
+                <p>&#34;Classic gold-digger move. Probably planned to blackmail him.&#34;</p>
+                <!-- AdSense Ad Unit: banner6 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner6"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;Wait, isn&#39;t the real issue this creep pretending to be a woman?&#34;</p>
                 <p>Olivia&#39;s tear-streaked face twisted in betrayal. &#34;First you bully me professionally, now you set up this disgusting ambush?&#34;</p>
                 <p>Margaret straightened her jacket with deliberate calm. &#34;First,&#34; her voice carried crisp authority, &#34;I reserved this room three days ago for a business meeting. Second, this man immediately made inappropriate advances when I entered.&#34;</p>
                 <p>She pulled out her phone. &#34;I&#39;m happy to involve the police. They can determine who&#39;s telling the truth.&#34; Her gaze locked onto Olivia. &#34;You claim this is your reservation? Show me the confirmation.&#34;</p>
                 <p>Olivia&#39;s tears froze mid-swipe. Panic flashed across her face. She hadn&#39;t booked the room—her &#34;fan&#34; had assured her it would be empty. With her celebrity status, she&#39;d assumed the restaurant would accommodate her. Never anticipating Margaret would be the actual reservation holder, Olivia now stood exposed without proof.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5130,29 +5130,58 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute + valid iframe
-                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
-                                  adElement.dataset.adsbygoogleStatus === 'done';
+                // Check if AdSense marked it as filled
+                const dataStatus = adElement.dataset.adsbygoogleStatus;
                 
-                // Method 2: Check if there is a valid iframe with sufficient height
+                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
+                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
-                if (iframe) {
-                    const iframeRect = iframe.getBoundingClientRect();
-                    // Must have valid height (> 50px) to be considered filled
-                    if (iframeRect.height > 50) {
-                        return true;
-                    }
+                
+                if (!iframe) {
+                    // No iframe at all = not filled
+                    return false;
                 }
                 
-                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
-                // Only return true if BOTH status is done AND we have confirmed content
-                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                // Check iframe dimensions
+                const iframeRect = iframe.getBoundingClientRect();
+                const iframeHeight = iframeRect.height;
+                
+                // If iframe height is 0 or very small, it's collapsed = no fill
+                if (iframeHeight < 10) {
+                    return false;
+                }
+                
+                // Check if iframe has actual content (not just empty)
+                try {
+                    // For same-origin iframes, we can check contentWindow
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc) {
+                        const body = iframeDoc.body;
+                        if (body && body.children.length === 0) {
+                            // Empty body = no ad content
+                            return false;
+                        }
+                    }
+                } catch (e) {
+                    // Cross-origin iframe, can't access content directly
+                    // Fall back to other checks
+                }
+                
+                // Check for specific AdSense success indicators
+                const hasAdContent = 
+                    iframe.src.includes('googleads.g.doubleclick.net') ||
+                    iframe.src.includes('tpc.googlesyndication.com');
+                
+                // If status is done and iframe exists with good height and ad URL, consider it filled
+                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
                     return true;
                 }
                 
-                // Don't trust empty containers or containers without iframes
-                // If no valid iframe found, consider it not filled yet
-                return false;
+                // Additional check: look for visible ad elements inside the container
+                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
+                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
+                
+                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
             }
             
             recordSuccessAd(adElement) {
