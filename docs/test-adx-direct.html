@@ -155,6 +155,12 @@
         // 检测广告加载状态
         function checkAdStatus(adElement) {
             const testId = adElement.dataset.testId;
+            
+            // 如果没有testId，跳过（可能是脚本自动生成的额外元素）
+            if (!testId) {
+                return { isSuccess: false, status: { testId: 'unknown', slot: 'unknown' }, reason: '跳过：无testId' };
+            }
+            
             const infoDiv = document.getElementById(`info-${testId}`);
             
             const status = {
@@ -216,6 +222,11 @@
             }
 
             // 更新信息显示
+            if (!infoDiv) {
+                console.warn(`找不到info-${testId}元素，跳过显示`);
+                return { isSuccess, status, reason };
+            }
+            
             const statusClass = isSuccess ? 'status-success' : (status.innerHTML > 0 ? 'status-pending' : 'status-failed');
             infoDiv.className = `ad-info ${statusClass}`;
             infoDiv.innerHTML = `
@@ -242,6 +253,12 @@
 
             ads.forEach(ad => {
                 const result = checkAdStatus(ad);
+                
+                // 跳过没有testId的广告（可能是脚本插入的额外元素）
+                if (result.status.testId === 'unknown') {
+                    return;
+                }
+                
                 if (result.isSuccess) {
                     successCount++;
                     log(`广告 ${result.status.testId} [${result.status.slot}]: ${result.reason}`, 'success');
