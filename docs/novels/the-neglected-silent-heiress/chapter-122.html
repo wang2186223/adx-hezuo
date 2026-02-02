@@ -974,8 +974,8 @@
       gtag('config', 'G-E94B4SVMD4');
     </script>
     
-    <!-- Google AdSense Script -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5058896253332104" crossorigin="anonymous"></script>
+    <!-- Google AdSense/AdX Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle_direct.js?client=ca-pub-5058896253332104" crossorigin="anonymous"></script>
     
     <!-- Facebook Pixel Code -->
     <script>
@@ -2382,11 +2382,11 @@
                 <p>&#34;Understanding?&#34; Liam&#39;s laugh was razor-sharp as he crossed his arms. His glacial stare made Beatrice shrink back. &#34;What exactly would that entail?&#34;</p>
                 <p>The Hartleys exchanged hopeful glances.</p>
                 <p>Beatrice ventured, &#34;This is all a misunderstanding. Olivia may feel slighted, but publicly humiliating Evelyn was unacceptable. If Olivia apologizes at Evelyn&#39;s bedside, we can put this unpleasantness behind us.&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2394,11 +2394,11 @@
                 <p>&#34;An outsider?&#34; Liam&#39;s smile vanished.</p>
                 <p>He stood abruptly, looming over them. &#34;I knew from the start Olivia never pushed Evelyn. I came to verify Evelyn&#39;s injuries myself - to ensure no mysterious bruises appeared on Olivia later.&#34;</p>
                 <p>Frederick&#39;s smile faltered. &#34;What are you suggesting?&#34;</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2430,11 +2430,11 @@
                 <p>Satisfied, Liam released him with a disgusted shove. Storm clouds gathered in his eyes as he stalked out, the door slamming behind him like a gunshot.</p>
                 <p>The moment he left, the room&#39;s tension shattered. Beatrice collapsed into hysterical weeping. &#34;Our Evelyn&#39;s chances with Liam are ruined!&#34;</p>
                 <p>&#34;Stop your blubbering,&#34; Frederick snapped, face mottled with shame and rage. &#34;Liam and Olivia&#39;s breakup was inevitable. She was the Reeves&#39; charity case - of course he&#39;d defend her out of obligation. But Evelyn went too far fabricating that story about the push. For now, she must stay away from their drama. When Liam cools off, he&#39;ll remember their years together. He can&#39;t possibly—&#34;</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2444,11 +2444,11 @@
                 <p>The terrible truth dawned on her - Liam&#39;s supposed affection had always been a performance to make Olivia jealous.</p>
                 <p>Evelyn&#39;s nails bit into her palms. There was only one solution now. Olivia Sinclair needed to disappear. Permanently. With her gone, Liam would have no reason to reject Evelyn.</p>
                 <p>Her whisper was venomous as she clutched Beatrice&#39;s wrist. &#34;Mother... we need to talk.&#34;</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5104,11 +5104,82 @@
                 setInterval(checkForAds, 2000);
             }
             
-            // Legacy method - no longer used, replaced by batch checking
-            checkAdValidity(adElement) {
-                // This method is deprecated and replaced by checkPendingAds()
-                // Kept for compatibility only
-                console.warn('Ad Guide: checkAdValidity() is deprecated, using batch checking instead');   this.totalAdsSeen++;
+            startBatchChecking() {
+                // Single global timer to check all pending ads
+                setInterval(() => {
+                    this.checkPendingAds();
+                }, 2000); // Check every 2 seconds
+            }
+            
+            checkPendingAds() {
+                if (this.pendingAds.size === 0) return;
+                
+                const now = Date.now();
+                const timeout = 10000; // 10 seconds timeout
+                
+                this.pendingAds.forEach((firstSeenTime, adElement) => {
+                    const elapsed = now - firstSeenTime;
+                    
+                    // Check if ad is successfully filled
+                    const isFilled = this.isAdFilled(adElement);
+                    
+                    if (isFilled) {
+                        // Success: remove from queue, count as success
+                        this.pendingAds.delete(adElement);
+                        adElement.dataset.guideProcessed = 'true';
+                        delete adElement.dataset.guideChecking;
+                        this.recordSuccessAd(adElement);
+                    } else if (elapsed >= timeout) {
+                        // Timeout failure: remove from queue, count as failure
+                        this.pendingAds.delete(adElement);
+                        adElement.dataset.guideProcessed = 'true';
+                        delete adElement.dataset.guideChecking;
+                        this.recordFailedAd(adElement);
+                    }
+                    // Otherwise continue waiting for next check
+                });
+            }
+            
+            isAdFilled(adElement) {
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    return true;
+                }
+                
+                // Method 2: Check if there is a valid iframe with content
+                const iframe = adElement.querySelector('iframe');
+                if (iframe) {
+                    const iframeRect = iframe.getBoundingClientRect();
+                    if (iframeRect.height > 50) {
+                        return true;
+                    }
+                }
+                
+                // Method 3: Check for AdSense generated content containers
+                const hasGoogleContainer = 
+                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
+                    adElement.querySelector('[data-google-query-id]') !== null ||
+                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                
+                return hasGoogleContainer;
+            }
+            
+            recordSuccessAd(adElement) {
+                // Validate height
+                const rect = adElement.getBoundingClientRect();
+                const isValidHeight = rect.height > 100 && rect.height <= 650;
+                
+                if (!isValidHeight) {
+                    console.log(`Ad Guide: Success ad but invalid height (${rect.height.toFixed(0)}px), ignoring`);
+                    return;
+                }
+                
+                // Add to current page ads list
+                if (!this.currentPageAds.includes(adElement)) {
+                    this.currentPageAds.push(adElement);
+                    
+                    // Accumulate total ad count (cross-page)
+                    this.totalAdsSeen++;
                     this.saveTotalAdsSeen();
                     
                     console.log(`Ad Guide: ✅ Success ad detected, current page: ${this.currentPageAds.length}, total: ${this.totalAdsSeen}, threshold: ${this.nextTriggerThreshold}`);
@@ -5130,84 +5201,6 @@
                 // Check failed ad limit for protection system
                 if (typeof checkFailedAdLimit === 'function') {
                     checkFailedAdLimit();
-                }
-            }
-
-            checkAdValidity(adElement) {
-                // If PC browser, skip ad detection
-                if (this.isPCBrowser) return;
-                
-                // Skip if already processed (both success and failure)
-                if (adElement.dataset.guideProcessed) return;
-                
-                // Critical: Check if ad is truly filled (not just placeholder)
-                let isFilled = false;
-                
-                // Method 1: Check AdSense status attribute (most reliable)
-                // AdSense sets data-adsbygoogle-status="done" after successful fill
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    isFilled = true;
-                }
-                
-                // Method 2: Check if there is a valid iframe with content
-                if (!isFilled) {
-                    const iframe = adElement.querySelector('iframe');
-                    if (iframe) {
-                        const iframeRect = iframe.getBoundingClientRect();
-                        // Iframe must have actual height (not just 0)
-                        isFilled = iframeRect.height > 50;
-                    }
-                }
-                
-                // Method 3: Check for AdSense generated content containers
-                if (!isFilled) {
-                    // Look for Google-generated ad containers (indicates successful fill)
-                    const hasGoogleContainer = adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                                              adElement.querySelector('[data-google-query-id]') !== null ||
-                                              adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
-                    isFilled = hasGoogleContainer;
-                }
-                
-                // Only mark as processed and count if we have a definitive result
-                // This prevents counting empty placeholder ads
-                if (!isFilled) {
-                    // Check if ad has any child elements (empty ads have no children)
-                    const hasChildren = adElement.children.length > 0;
-                    if (!hasChildren) {
-                        // Empty placeholder - don't process yet, may still be loading
-                        return;
-                    }
-                }
-
-                // Mark as processed to avoid double counting
-                adElement.dataset.guideProcessed = 'true';
-                
-                // Validate height only after confirming ad is filled
-                const rect = adElement.getBoundingClientRect();
-                const isValidHeight = rect.height > 100 && rect.height <= 650;
-
-                if (isFilled && isValidHeight) {
-                    // Success: valid and filled ad
-                    if (!this.currentPageAds.includes(adElement)) {
-                        this.currentPageAds.push(adElement);
-                        
-                        // Accumulate total ad count (cross-page)
-                        this.totalAdsSeen++;
-                        this.saveTotalAdsSeen();
-                        
-                        console.log(`Ad Guide: New ad found, current page: ${this.currentPageAds.length}, total: ${this.totalAdsSeen}, threshold: ${this.nextTriggerThreshold}`);
-                        this.updateDebugInfo();
-                        
-                        // Check if trigger condition is met (based on accumulated count reaching threshold)
-                        if (this.totalAdsSeen >= this.nextTriggerThreshold) {
-                            this.considerTriggeringGuide();
-                        }
-                    }
-                } else {
-                    // Failure: invalid height or unfilled ad
-                    const totalFailedAds = this.getTotalFailedAds() + 1;
-                    this.saveTotalFailedAds(totalFailedAds);
-                    console.log(`Ad Guide: Failed ad detected (height: ${rect.height.toFixed(0)}px, filled: ${isFilled}), total failed: ${totalFailedAds}`);
                 }
             }
 

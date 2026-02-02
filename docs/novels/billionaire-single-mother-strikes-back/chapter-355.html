@@ -974,8 +974,8 @@
       gtag('config', 'G-E94B4SVMD4');
     </script>
     
-    <!-- Google AdSense Script -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5058896253332104" crossorigin="anonymous"></script>
+    <!-- Google AdSense/AdX Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle_direct.js?client=ca-pub-5058896253332104" crossorigin="anonymous"></script>
     
     <!-- Facebook Pixel Code -->
     <script>
@@ -2382,11 +2382,11 @@
                 <p>Meanwhile, Alexander was furious.</p>
                 <p>He had even arranged for bats, hoping to play the hero and protect Isabella. Damn it, his plan had backfired completely!</p>
                 <p>To make matters worse, Vincent had been exposed. Isabella would definitely take action now.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2394,11 +2394,11 @@
                 <p>“Then why did you do what you did five years ago if you were going to be this scared now?” Alexander snapped at her.</p>
                 <p>Five years ago, he had asked Isabella to meet him at The Grand Monarch, all so he could pressure her into asking Senior Theodore for the 15 percent family shares. Everything that happened afterward wasn’t part of his original plan, but he had to adapt.</p>
                 <p>Because of that mess, Isabella had hated him all these years!</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2418,11 +2418,11 @@
                 <p>Everyone in the Montgomery family had been giving her the cold shoulder since the failed wedding ceremony between Alexander and Isabella. Now Alexander was joining them!</p>
                 <p>Hah! What a family! What a bunch of hypocrites! Victoria had become a mere pawn, something everyone could discard!</p>
                 <p>It was ironic, considering how much they had once adored her.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2444,11 +2444,11 @@
                 <p>Vincent replied, “I looked into Madam Whitmore. Her favorite thing is a skincare brand called Jules. Their products aren’t available to the public. Only the elite can get them. Wealthy socialites love this brand, but the producer only makes a hundred bottles per year. They go on sale on eBay at random times and sell out instantly. Madam Whitmore missed out this year. She’s very upset about it.”</p>
                 <p>Victoria frowned. She had heard of this brand; it launched three years ago. Rumor had it a genius developed the formulas in a lab. Coincidentally, Eleanor also adored this skincare line.</p>
                 <p>Victoria had tried to bid on a bottle for Eleanor to win her favor. She even attempted to buy the entire brand for her. But the seller only appeared on eBay. They never revealed their identity or responded to any messages.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4976,11 +4976,82 @@
                 setInterval(checkForAds, 2000);
             }
             
-            // Legacy method - no longer used, replaced by batch checking
-            checkAdValidity(adElement) {
-                // This method is deprecated and replaced by checkPendingAds()
-                // Kept for compatibility only
-                console.warn('Ad Guide: checkAdValidity() is deprecated, using batch checking instead');   this.totalAdsSeen++;
+            startBatchChecking() {
+                // Single global timer to check all pending ads
+                setInterval(() => {
+                    this.checkPendingAds();
+                }, 2000); // Check every 2 seconds
+            }
+            
+            checkPendingAds() {
+                if (this.pendingAds.size === 0) return;
+                
+                const now = Date.now();
+                const timeout = 10000; // 10 seconds timeout
+                
+                this.pendingAds.forEach((firstSeenTime, adElement) => {
+                    const elapsed = now - firstSeenTime;
+                    
+                    // Check if ad is successfully filled
+                    const isFilled = this.isAdFilled(adElement);
+                    
+                    if (isFilled) {
+                        // Success: remove from queue, count as success
+                        this.pendingAds.delete(adElement);
+                        adElement.dataset.guideProcessed = 'true';
+                        delete adElement.dataset.guideChecking;
+                        this.recordSuccessAd(adElement);
+                    } else if (elapsed >= timeout) {
+                        // Timeout failure: remove from queue, count as failure
+                        this.pendingAds.delete(adElement);
+                        adElement.dataset.guideProcessed = 'true';
+                        delete adElement.dataset.guideChecking;
+                        this.recordFailedAd(adElement);
+                    }
+                    // Otherwise continue waiting for next check
+                });
+            }
+            
+            isAdFilled(adElement) {
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    return true;
+                }
+                
+                // Method 2: Check if there is a valid iframe with content
+                const iframe = adElement.querySelector('iframe');
+                if (iframe) {
+                    const iframeRect = iframe.getBoundingClientRect();
+                    if (iframeRect.height > 50) {
+                        return true;
+                    }
+                }
+                
+                // Method 3: Check for AdSense generated content containers
+                const hasGoogleContainer = 
+                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
+                    adElement.querySelector('[data-google-query-id]') !== null ||
+                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                
+                return hasGoogleContainer;
+            }
+            
+            recordSuccessAd(adElement) {
+                // Validate height
+                const rect = adElement.getBoundingClientRect();
+                const isValidHeight = rect.height > 100 && rect.height <= 650;
+                
+                if (!isValidHeight) {
+                    console.log(`Ad Guide: Success ad but invalid height (${rect.height.toFixed(0)}px), ignoring`);
+                    return;
+                }
+                
+                // Add to current page ads list
+                if (!this.currentPageAds.includes(adElement)) {
+                    this.currentPageAds.push(adElement);
+                    
+                    // Accumulate total ad count (cross-page)
+                    this.totalAdsSeen++;
                     this.saveTotalAdsSeen();
                     
                     console.log(`Ad Guide: ✅ Success ad detected, current page: ${this.currentPageAds.length}, total: ${this.totalAdsSeen}, threshold: ${this.nextTriggerThreshold}`);
@@ -5002,84 +5073,6 @@
                 // Check failed ad limit for protection system
                 if (typeof checkFailedAdLimit === 'function') {
                     checkFailedAdLimit();
-                }
-            }
-
-            checkAdValidity(adElement) {
-                // If PC browser, skip ad detection
-                if (this.isPCBrowser) return;
-                
-                // Skip if already processed (both success and failure)
-                if (adElement.dataset.guideProcessed) return;
-                
-                // Critical: Check if ad is truly filled (not just placeholder)
-                let isFilled = false;
-                
-                // Method 1: Check AdSense status attribute (most reliable)
-                // AdSense sets data-adsbygoogle-status="done" after successful fill
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    isFilled = true;
-                }
-                
-                // Method 2: Check if there is a valid iframe with content
-                if (!isFilled) {
-                    const iframe = adElement.querySelector('iframe');
-                    if (iframe) {
-                        const iframeRect = iframe.getBoundingClientRect();
-                        // Iframe must have actual height (not just 0)
-                        isFilled = iframeRect.height > 50;
-                    }
-                }
-                
-                // Method 3: Check for AdSense generated content containers
-                if (!isFilled) {
-                    // Look for Google-generated ad containers (indicates successful fill)
-                    const hasGoogleContainer = adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                                              adElement.querySelector('[data-google-query-id]') !== null ||
-                                              adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
-                    isFilled = hasGoogleContainer;
-                }
-                
-                // Only mark as processed and count if we have a definitive result
-                // This prevents counting empty placeholder ads
-                if (!isFilled) {
-                    // Check if ad has any child elements (empty ads have no children)
-                    const hasChildren = adElement.children.length > 0;
-                    if (!hasChildren) {
-                        // Empty placeholder - don't process yet, may still be loading
-                        return;
-                    }
-                }
-
-                // Mark as processed to avoid double counting
-                adElement.dataset.guideProcessed = 'true';
-                
-                // Validate height only after confirming ad is filled
-                const rect = adElement.getBoundingClientRect();
-                const isValidHeight = rect.height > 100 && rect.height <= 650;
-
-                if (isFilled && isValidHeight) {
-                    // Success: valid and filled ad
-                    if (!this.currentPageAds.includes(adElement)) {
-                        this.currentPageAds.push(adElement);
-                        
-                        // Accumulate total ad count (cross-page)
-                        this.totalAdsSeen++;
-                        this.saveTotalAdsSeen();
-                        
-                        console.log(`Ad Guide: New ad found, current page: ${this.currentPageAds.length}, total: ${this.totalAdsSeen}, threshold: ${this.nextTriggerThreshold}`);
-                        this.updateDebugInfo();
-                        
-                        // Check if trigger condition is met (based on accumulated count reaching threshold)
-                        if (this.totalAdsSeen >= this.nextTriggerThreshold) {
-                            this.considerTriggeringGuide();
-                        }
-                    }
-                } else {
-                    // Failure: invalid height or unfilled ad
-                    const totalFailedAds = this.getTotalFailedAds() + 1;
-                    this.saveTotalFailedAds(totalFailedAds);
-                    console.log(`Ad Guide: Failed ad detected (height: ${rect.height.toFixed(0)}px, filled: ${isFilled}), total failed: ${totalFailedAds}`);
                 }
             }
 

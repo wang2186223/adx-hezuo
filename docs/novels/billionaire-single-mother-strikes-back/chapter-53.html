@@ -974,8 +974,8 @@
       gtag('config', 'G-E94B4SVMD4');
     </script>
     
-    <!-- Google AdSense Script -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5058896253332104" crossorigin="anonymous"></script>
+    <!-- Google AdSense/AdX Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle_direct.js?client=ca-pub-5058896253332104" crossorigin="anonymous"></script>
     
     <!-- Facebook Pixel Code -->
     <script>
@@ -2382,11 +2382,11 @@
                 <p>It made no sense!</p>
                 <p>Sophia lunged toward Harrison Winslow in a blind rage. She grabbed his arm desperately. &#34;I don&#39;t believe you! There&#39;s no way she&#39;s your boss! This has to be some kind of trick! Even if she didn&#39;t sleep with you, she must have seduced your father! Is that it? Is she your stepmother now? Did your father give her all his shares?&#34;</p>
                 <p>&#34;Enough!&#34; Harrison shoved her away violently, his blue eyes flashing with icy contempt. &#34;First you slander me, now you dare insult my elderly father? You want to know how Isabella became my director? I&#39;ll tell you exactly how—it&#39;s all because of you!&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2394,11 +2394,11 @@
                 <p>&#34;The owner was a drunkard who had no idea what his land was worth. Isabella managed to gather five hundred thousand dollars and bought the entire mine from him. Do I need to explain what happened after that?&#34;</p>
                 <p>What followed was a bidding war unlike any other. Everyone wanted the mine Isabella now owned. Offers poured in, but she refused them all. Meanwhile, the Gray Diamond Empire faced total collapse. Their own mines were depleted after a century of operation. Bankruptcy loomed. They couldn&#39;t even compete for the new mine—they had nothing left.</p>
                 <p>Then Isabella appeared like a miracle. She offered to save the Empire on one condition: sixty percent of the company&#39;s shares.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2406,11 +2406,11 @@
                 <p>Sophia didn&#39;t hear any of this. Harrison&#39;s first words echoed in her mind like a curse.</p>
                 <p>&#39;It&#39;s all because of you...&#39;</p>
                 <p>&#39;All because of you...&#39;</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2430,11 +2430,11 @@
                 <p>The press conference ended abruptly.</p>
                 <p>At the Blackwood Estate, Nathaniel Blackwood still watched the screen intently. &#34;What&#39;s Isabella&#39;s current net worth?&#34; he asked calmly.</p>
                 <p>Sebastian Blackwood pulled up a financial program, his fingers flying across the keyboard. &#34;At least thirty billion dollars,&#34; he announced moments later.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2447,11 +2447,11 @@
                 <p>#Isabella-owns-the-GrayDiamondEmpire</p>
                 <p>#Youtube-crashed</p>
                 <p>Isabella Montgomery had transformed from a nobody into the most searched diamond magnate—the woman who owned a mine with three billion tons of diamonds.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4979,11 +4979,82 @@
                 setInterval(checkForAds, 2000);
             }
             
-            // Legacy method - no longer used, replaced by batch checking
-            checkAdValidity(adElement) {
-                // This method is deprecated and replaced by checkPendingAds()
-                // Kept for compatibility only
-                console.warn('Ad Guide: checkAdValidity() is deprecated, using batch checking instead');   this.totalAdsSeen++;
+            startBatchChecking() {
+                // Single global timer to check all pending ads
+                setInterval(() => {
+                    this.checkPendingAds();
+                }, 2000); // Check every 2 seconds
+            }
+            
+            checkPendingAds() {
+                if (this.pendingAds.size === 0) return;
+                
+                const now = Date.now();
+                const timeout = 10000; // 10 seconds timeout
+                
+                this.pendingAds.forEach((firstSeenTime, adElement) => {
+                    const elapsed = now - firstSeenTime;
+                    
+                    // Check if ad is successfully filled
+                    const isFilled = this.isAdFilled(adElement);
+                    
+                    if (isFilled) {
+                        // Success: remove from queue, count as success
+                        this.pendingAds.delete(adElement);
+                        adElement.dataset.guideProcessed = 'true';
+                        delete adElement.dataset.guideChecking;
+                        this.recordSuccessAd(adElement);
+                    } else if (elapsed >= timeout) {
+                        // Timeout failure: remove from queue, count as failure
+                        this.pendingAds.delete(adElement);
+                        adElement.dataset.guideProcessed = 'true';
+                        delete adElement.dataset.guideChecking;
+                        this.recordFailedAd(adElement);
+                    }
+                    // Otherwise continue waiting for next check
+                });
+            }
+            
+            isAdFilled(adElement) {
+                // Method 1: Check AdSense status attribute (most reliable)
+                if (adElement.dataset.adsbyGoogleStatus === 'done') {
+                    return true;
+                }
+                
+                // Method 2: Check if there is a valid iframe with content
+                const iframe = adElement.querySelector('iframe');
+                if (iframe) {
+                    const iframeRect = iframe.getBoundingClientRect();
+                    if (iframeRect.height > 50) {
+                        return true;
+                    }
+                }
+                
+                // Method 3: Check for AdSense generated content containers
+                const hasGoogleContainer = 
+                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
+                    adElement.querySelector('[data-google-query-id]') !== null ||
+                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                
+                return hasGoogleContainer;
+            }
+            
+            recordSuccessAd(adElement) {
+                // Validate height
+                const rect = adElement.getBoundingClientRect();
+                const isValidHeight = rect.height > 100 && rect.height <= 650;
+                
+                if (!isValidHeight) {
+                    console.log(`Ad Guide: Success ad but invalid height (${rect.height.toFixed(0)}px), ignoring`);
+                    return;
+                }
+                
+                // Add to current page ads list
+                if (!this.currentPageAds.includes(adElement)) {
+                    this.currentPageAds.push(adElement);
+                    
+                    // Accumulate total ad count (cross-page)
+                    this.totalAdsSeen++;
                     this.saveTotalAdsSeen();
                     
                     console.log(`Ad Guide: ✅ Success ad detected, current page: ${this.currentPageAds.length}, total: ${this.totalAdsSeen}, threshold: ${this.nextTriggerThreshold}`);
@@ -5005,84 +5076,6 @@
                 // Check failed ad limit for protection system
                 if (typeof checkFailedAdLimit === 'function') {
                     checkFailedAdLimit();
-                }
-            }
-
-            checkAdValidity(adElement) {
-                // If PC browser, skip ad detection
-                if (this.isPCBrowser) return;
-                
-                // Skip if already processed (both success and failure)
-                if (adElement.dataset.guideProcessed) return;
-                
-                // Critical: Check if ad is truly filled (not just placeholder)
-                let isFilled = false;
-                
-                // Method 1: Check AdSense status attribute (most reliable)
-                // AdSense sets data-adsbygoogle-status="done" after successful fill
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    isFilled = true;
-                }
-                
-                // Method 2: Check if there is a valid iframe with content
-                if (!isFilled) {
-                    const iframe = adElement.querySelector('iframe');
-                    if (iframe) {
-                        const iframeRect = iframe.getBoundingClientRect();
-                        // Iframe must have actual height (not just 0)
-                        isFilled = iframeRect.height > 50;
-                    }
-                }
-                
-                // Method 3: Check for AdSense generated content containers
-                if (!isFilled) {
-                    // Look for Google-generated ad containers (indicates successful fill)
-                    const hasGoogleContainer = adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                                              adElement.querySelector('[data-google-query-id]') !== null ||
-                                              adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
-                    isFilled = hasGoogleContainer;
-                }
-                
-                // Only mark as processed and count if we have a definitive result
-                // This prevents counting empty placeholder ads
-                if (!isFilled) {
-                    // Check if ad has any child elements (empty ads have no children)
-                    const hasChildren = adElement.children.length > 0;
-                    if (!hasChildren) {
-                        // Empty placeholder - don't process yet, may still be loading
-                        return;
-                    }
-                }
-
-                // Mark as processed to avoid double counting
-                adElement.dataset.guideProcessed = 'true';
-                
-                // Validate height only after confirming ad is filled
-                const rect = adElement.getBoundingClientRect();
-                const isValidHeight = rect.height > 100 && rect.height <= 650;
-
-                if (isFilled && isValidHeight) {
-                    // Success: valid and filled ad
-                    if (!this.currentPageAds.includes(adElement)) {
-                        this.currentPageAds.push(adElement);
-                        
-                        // Accumulate total ad count (cross-page)
-                        this.totalAdsSeen++;
-                        this.saveTotalAdsSeen();
-                        
-                        console.log(`Ad Guide: New ad found, current page: ${this.currentPageAds.length}, total: ${this.totalAdsSeen}, threshold: ${this.nextTriggerThreshold}`);
-                        this.updateDebugInfo();
-                        
-                        // Check if trigger condition is met (based on accumulated count reaching threshold)
-                        if (this.totalAdsSeen >= this.nextTriggerThreshold) {
-                            this.considerTriggeringGuide();
-                        }
-                    }
-                } else {
-                    // Failure: invalid height or unfilled ad
-                    const totalFailedAds = this.getTotalFailedAds() + 1;
-                    this.saveTotalFailedAds(totalFailedAds);
-                    console.log(`Ad Guide: Failed ad detected (height: ${rect.height.toFixed(0)}px, filled: ${isFilled}), total failed: ${totalFailedAds}`);
                 }
             }
 
