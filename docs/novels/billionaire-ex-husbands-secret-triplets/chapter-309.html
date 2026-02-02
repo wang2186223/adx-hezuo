@@ -2384,11 +2384,11 @@
                 <p>Theodore’s reply was smooth. “I’ve sent Oliver on a business trip. Is Rosalind not qualified enough to take his place?”</p>
                 <p>Nathan’s jaw tightened.</p>
                 <p>Theodore had deliberately removed Oliver and replaced him with Rosalind. It was obvious—he was forcing Rosalind into Nathan’s life.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2398,11 +2398,11 @@
                 <p>Nathan’s grip on the phone turned white-knuckled, his expression icy.</p>
                 <p>Evelyn noticed the shift immediately. She stepped closer and wrapped her fingers around his cold hand.</p>
                 <p>“If your grandfather insists on Rosalind being your assistant, just accept it.”</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2412,11 +2412,11 @@
                 <p>She tugged lightly on his tie, her smile turning wicked. “That depends entirely on your performance.”</p>
                 <p>Nathan chuckled despite himself. This woman had him wrapped around her finger.</p>
                 <p>Mischievous little minx.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2426,11 +2426,11 @@
                 <p>She couldn’t tell Sophia everything—her best friend was terrible at keeping secrets, and the kids would find out in no time.</p>
                 <p>“Oh, by the way,” Sophia added, “Mrs. Laurent has been asking about you a lot lately. She is your aunt, you know. Are you really going to keep avoiding her?”</p>
                 <p>Evelyn lowered her gaze. “I suppose it’s time I met her.”</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2440,11 +2440,11 @@
                 <p>“Is Mrs. Laurent home?”</p>
                 <p>“Yes, she is.”</p>
                 <p>The maid stepped aside, and Sophia strode in with Evelyn trailing behind. “Mrs. Laurent!”</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5033,27 +5033,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

@@ -2379,20 +2379,20 @@
                 <p>&#34;Pregnant?&#34; Evelyn&#39;s shrill voice cut through the hospital corridor. &#34;Again? Who&#39;s the unfortunate father this time? Or do you even know?&#34; She let out a cruel laugh. &#34;Some things never change, do they? Still spreading your legs for any man who glances your way.&#34;</p>
                 <p>Olivia saw red. Before she could stop herself, her palm connected with Evelyn&#39;s cheek in a resounding slap that echoed down the hallway. The impact sent Evelyn staggering backward, the report fluttering to the floor.</p>
                 <p>&#34;None of your damn business,&#34; Olivia hissed through clenched teeth as she retrieved the document.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Evelyn clutched her stinging cheek, outrage flashing in her eyes. &#34;You bitch! How dare you—&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2406,20 +2406,20 @@
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Evelyn&#39;s face contorted with rage. This wasn&#39;t the meek Olivia she&#39;d once bullied into submission. The transformation was startling—and infuriating.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Undeterred, Evelyn raised her voice, broadcasting Olivia&#39;s pregnancy to the growing crowd. &#34;Look at this shameless woman! Knocked up with some random man&#39;s bastard! What kind of mother—&#34;</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2427,11 +2427,11 @@
                 <p>&#34;Yeah, who are you to judge?&#34; another bystander chimed in. &#34;Divorce doesn&#39;t mean she can&#39;t find love again.&#34;</p>
                 <p>The tide of public opinion turned swiftly against Evelyn. Her confident sneer faltered as more people voiced their disapproval. &#34;That&#39;s not what I—I only meant her!&#34; Evelyn sputtered, pointing at Olivia. &#34;She&#39;s been with half the men in Newport! This child probably doesn&#39;t even know its own father!&#34;</p>
                 <p>&#34;Enough!&#34; A deep voice thundered through the corridor. Sebastian Whitmore pushed through the crowd, his jaw clenched so tightly the muscle twitched visibly. His stormy gaze pinned Evelyn in place like a butterfly to a board.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5124,27 +5124,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

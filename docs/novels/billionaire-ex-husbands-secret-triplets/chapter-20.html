@@ -2394,11 +2394,11 @@
                 <p>Inside the VIP suite, Evelyn had staff bring out authentic versions of the disputed pieces. &#34;As our apology, please accept these complimentary replacements,&#34; she said, arranging them on the conference table. &#34;All refunds have been processed through your original payment platforms and should reflect shortly. We deeply regret today&#39;s incident.&#34;</p>
                 <p>She rose and bowed formally.</p>
                 <p>The lead client chuckled, waving a hand. &#34;No need for such formality. We understand the situation now, and your explanation was thorough. Consider the matter closed.&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2406,11 +2406,11 @@
                 <p>Her buoyant mood evaporated the moment the elevator doors reopened on her floor. Nathan stood waiting by the floor-to-ceiling windows, his silhouette stark against the cityscape.</p>
                 <p>&#34;Mr. Goldmann,&#34; she said coolly, &#34;you do realize this isn&#39;t Vivian&#39;s floor?&#34;</p>
                 <p>&#34;I was waiting for you.&#34; He turned slowly, his piercing gaze locking onto hers.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2430,11 +2430,11 @@
                 <p>&#34;Does it bother you that I defended Vivian today?&#34;</p>
                 <p>Evelyn blinked in genuine surprise.</p>
                 <p>&#39;What?&#39;</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2446,11 +2446,11 @@
                 <p>&#34;Evelyn Vander—&#34;</p>
                 <p>&#34;Mr. Goldmann,&#34; she cut him off flatly, &#34;you know nothing of my experiences, so you have no right to judge. Whatever fairy tales Vivian has spun for you, I&#39;ll say this with absolute certainty - I was the one wronged six years ago.&#34;</p>
                 <p>Without waiting for a response, she turned and strode into her office, the door clicking shut with finality behind her.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5023,27 +5023,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

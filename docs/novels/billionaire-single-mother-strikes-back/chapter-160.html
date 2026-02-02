@@ -2379,33 +2379,6 @@
                 <p>Isabella nearly scoffed aloud. The audacity of this man, lying with such conviction. He was utterly repulsive.</p>
                 <p>Before she could interject, William Kensington’s voice cut through the tension. “You proposed to Victoria! You can’t just oscillate between sisters. It’s disrespectful!”</p>
                 <p>“Grandfather Kensington,” Alexander implored, his expression the picture of solemn sincerity. “You’ve known me my whole life. You know my character. I would never intentionally toy with anyone’s affections. My history with Isabella… our engagement, the tokens we exchanged… it spans fifteen years. From when she was just a child. What I had with Victoria was brief in comparison.” His performance was masterful, dripping with a pain that felt almost real.</p>
-                <!-- AdSense Ad Unit: banner6 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Even William, initially furious, seemed momentarily swayed by the emotional display. “So,” he asked, his tone gentler, “you truly hold no regard for the incident five years ago against her?”</p>
-                <!-- AdSense Ad Unit: banner4 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Alexander drew himself up, embodying noble forgiveness. “None whatsoever. As Mrs. Kensington said, everyone makes mistakes. Isabella was young. I was immature. It’s in the past.”</p>
-                <!-- AdSense Ad Unit: banner1 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>William sighed, turning his attention to his granddaughter. “Isabella? What are your thoughts on this?”</p>
                 <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2414,12 +2387,39 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>He knew of her long-held affection for this man. Her feelings had to be considered.</p>
+                <p>Even William, initially furious, seemed momentarily swayed by the emotional display. “So,” he asked, his tone gentler, “you truly hold no regard for the incident five years ago against her?”</p>
+                <!-- AdSense Ad Unit: banner6 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner6"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Alexander drew himself up, embodying noble forgiveness. “None whatsoever. As Mrs. Kensington said, everyone makes mistakes. Isabella was young. I was immature. It’s in the past.”</p>
                 <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner3"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>William sighed, turning his attention to his granddaughter. “Isabella? What are your thoughts on this?”</p>
+                <!-- AdSense Ad Unit: banner1 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner1"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>He knew of her long-held affection for this man. Her feelings had to be considered.</p>
+                <!-- AdSense Ad Unit: banner4 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4998,27 +4998,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

@@ -2400,6 +2400,26 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>A cruel smile twisted the fiancée&#39;s lips, momentarily transforming her delicate features.</p>
                 <p>&#34;Excellent work. Continue serving me faithfully after my marriage into the Whitmore family, and you&#39;ll find yourself handsomely rewarded.&#34;</p>
+                <!-- AdSense Ad Unit: banner7 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner7"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>The butler practically vibrated with excitement as he nodded vigorously.</p>
+                <p>The auction commenced with modest opening bids for the initial lots. The room hummed with restrained energy as seasoned collectors concealed their true intentions behind polite smiles.</p>
+                <!-- AdSense Ad Unit: banner1 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner1"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Sebastian had strategically placed the Blackwood family directly across from Olivia&#39;s suite. From her vantage point, Olivia had an unobstructed view into Suite Four.</p>
+                <p>The occupant surprised her - Catherine Winslow, still clinging to the Blackwood family after all these years. Catherine&#39;s lavish attire suggested prosperity, but Olivia&#39;s brow furrowed at the noticeable absence of Richard.</p>
                 <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2408,36 +2428,16 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>The butler practically vibrated with excitement as he nodded vigorously.</p>
-                <p>The auction commenced with modest opening bids for the initial lots. The room hummed with restrained energy as seasoned collectors concealed their true intentions behind polite smiles.</p>
-                <!-- AdSense Ad Unit: banner3 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Sebastian had strategically placed the Blackwood family directly across from Olivia&#39;s suite. From her vantage point, Olivia had an unobstructed view into Suite Four.</p>
-                <p>The occupant surprised her - Catherine Winslow, still clinging to the Blackwood family after all these years. Catherine&#39;s lavish attire suggested prosperity, but Olivia&#39;s brow furrowed at the noticeable absence of Richard.</p>
-                <!-- AdSense Ad Unit: banner2 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Before long, Catherine grew visibly restless. She turned sharply to her companion.</p>
                 <p>&#34;What kind of establishment is this?&#34; she snapped. &#34;You assured me this was Crestwood&#39;s premier auction house. These offerings are pedestrian at best. Are you certain this is where my desired item will appear?&#34;</p>
                 <p>Her companion shifted uncomfortably. &#34;The information came from Valtierra&#39;s most reliable underground source. There can&#39;t be any mistake.&#34;</p>
                 <p>With no alternative, Catherine settled back into her seat, though her tapping foot betrayed her impatience.</p>
                 <p>These days, the Blackwood empire existed solely under Victor&#39;s iron grip. Richard had become little more than a figurehead, stripped of all meaningful authority. Catherine&#39;s position had never been more precarious.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5130,27 +5130,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

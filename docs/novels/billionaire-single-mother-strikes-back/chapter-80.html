@@ -2387,11 +2387,11 @@
                 <p>Nathaniel joined them at the boarding platform, presenting their tickets. The attendant promptly opened the gated entrance with respectful deference. Oliver clung to both their hands, bouncing between them with unrestrained joy.</p>
                 <p>Isabella studied the boy&#39;s ecstatic expression. &#34;Christopher, why are you so fascinated with Ferris wheels?&#34;</p>
                 <p>She found it peculiar. Weren&#39;t spinning teacups or roller coasters more appealing to young boys? The Ferris wheel offered nothing but stationary seating and slow movement.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2404,11 +2404,11 @@
                 <p>Nathaniel took the opposite bench, removing his mask. His strikingly handsome features seemed even more pronounced in the confined space.</p>
                 <p>Despite having seen him countless times, Isabella&#39;s breath caught. Mere meters separated them in the intimate cabin. His fresh, earthy scent filled the small space, making her heart pound erratically against her ribs.</p>
                 <p>The close proximity created palpable tension. The air thickened with unspoken possibilities.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2421,11 +2421,11 @@
                 <p>Nathaniel&#39;s voice broke the silence, low and intimate. &#34;He&#39;s never been this happy with anyone else.&#34;</p>
                 <p>She refused to meet his eyes. &#34;Children are easily amused.&#34;</p>
                 <p>&#34;Not this one,&#34; Nathaniel countered softly. &#34;He&#39;s particular about people.&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2438,11 +2438,11 @@
                 <p>Oliver sighed contentedly in his sleep, snuggling closer to her side. The innocent gesture tugged at something deep within her.</p>
                 <p>Nathaniel watched the interaction, his expression unreadable yet intense. &#34;He&#39;s chosen you, Isabella.&#34;</p>
                 <p>The use of her full name sent an unexpected shiver through her. She finally met his gaze, finding raw sincerity in those深邃 eyes.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2455,11 +2455,11 @@
                 <p>Oliver tugged her other hand impatiently. &#34;Please, Isabella? One more time?&#34;</p>
                 <p>Nathaniel&#39;s hand remained extended, his gaze holding hers captive. The choice hovered between them, weighted with unspoken implications.</p>
                 <p>The Ferris wheel continued turning behind them, its cyclical motion mirroring the patterns of fate. Each rotation brought new beginnings, new possibilities.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2474,11 +2474,11 @@
                 <p>Nathaniel kept her hand securely in his, his thumb tracing subtle circles on her skin. The simple contact felt more intimate than any embrace.</p>
                 <p>The Ferris wheel continued its endless cycles behind them, each cabin carrying its own stories, its own potential romances.</p>
                 <p>But for now, three figures moved toward new adventures, their joined hands forming an unbreakable chain under the starlit Westchester sky.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5043,27 +5043,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

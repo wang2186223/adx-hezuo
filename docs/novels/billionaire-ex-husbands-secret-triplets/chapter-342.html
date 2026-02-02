@@ -2394,18 +2394,6 @@
                 <p>Evelyn Vanderbilt simply smiled. &#34;No rush. We&#39;ll discuss it when everything&#39;s finished.&#34;</p>
                 <p>Gregory raised an eyebrow. &#34;Funny how you were so eager to move before, but now you&#39;re perfectly content to wait?&#34;</p>
                 <p>Evelyn pouted, caught red-handed. &#34;What? I&#39;m just being reasonable. Viana&#39;s a massive space - renovations take time.&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>&#39;And maybe I&#39;m not quite ready to leave yet,&#39; she thought silently.</p>
-                <p>Gregory chuckled knowingly but said nothing further.</p>
-                <p>Evelyn&#39;s phone buzzed unexpectedly. An unknown number flashed on the screen.</p>
-                <p>After a moment&#39;s hesitation, she answered. Theodore Goldmann&#39;s voice demanded her presence at the mansion immediately.</p>
                 <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2414,15 +2402,27 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>&#39;And maybe I&#39;m not quite ready to leave yet,&#39; she thought silently.</p>
+                <p>Gregory chuckled knowingly but said nothing further.</p>
+                <p>Evelyn&#39;s phone buzzed unexpectedly. An unknown number flashed on the screen.</p>
+                <p>After a moment&#39;s hesitation, she answered. Theodore Goldmann&#39;s voice demanded her presence at the mansion immediately.</p>
+                <!-- AdSense Ad Unit: banner5 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner5"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>During the drive, Evelyn mentally prepared herself. &#39;This must be about mine and Nathan&#39;s marriage.&#39;</p>
                 <p>The mansion&#39;s grand doors swung open as she arrived. Theodore sat stiffly in the parlor while Mr. Chester poured tea.</p>
                 <p>&#34;You wanted to see me?&#34; Evelyn approached calmly.</p>
                 <p>Theodore slammed his teacdown, the china rattling. &#34;So you went through with marrying Nathan after all.&#34;</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2430,11 +2430,11 @@
                 <p>She took a steadying breath. &#34;My mother was never involved, and neither will I be.&#34;</p>
                 <p>&#34;Pretty words,&#34; Theodore scoffed. &#34;Do you know why Nathan&#39;s mother was kidnapped fifteen years ago? The de Armas wanted leverage against our family.&#34;</p>
                 <p>His piercing stare made Evelyn&#39;s skin prickle. &#34;Now Harrison de Armas knows you&#39;re married to my grandson. What do you think will happen?&#34;</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2446,11 +2446,11 @@
                 <p>&#34;You don&#39;t need to worry,&#34; Evelyn said firmly. &#34;I won&#39;t allow myself to become a weapon against Nathan.&#34;</p>
                 <p>She straightened her shoulders. &#34;My only family is Richard Vanderbilt. Even if I&#39;m biologically related to the de Armas, they mean nothing to me.&#34;</p>
                 <p>Her voice grew stronger. &#34;I was raised a Vanderbilt. After my mother died, my father was my whole world. Blood doesn&#39;t make family - love does.&#34;</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5023,27 +5023,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

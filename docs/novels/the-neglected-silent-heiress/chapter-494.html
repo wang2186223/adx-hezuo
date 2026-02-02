@@ -2380,31 +2380,31 @@
                 <p>Liam&#39;s expression twisted in disgust at her absurd question, his eyes flashing with cold contempt.</p>
                 <p>&#34;I only helped you because you claimed to have connections. I needed help finding Isabelle&#39;s grandfather.&#34; His voice turned icy. &#34;Then I discovered your involvement with Olivia. She was furious with me back then, wouldn&#39;t even speak to me. I thought you might be useful, but clearly, I overestimated you.&#34;</p>
                 <p>Margaret&#39;s face paled. She&#39;d never imagined Liam&#39;s interest in her was solely because of Olivia. Her voice rose to a shrill pitch.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;Look at her, Liam! She doesn&#39;t care about you at all! She knew it was dangerous for you to come, yet she let you! What if I wanted you dead? She&#39;d sacrifice you for her daughter without hesitation!&#34;</p>
                 <p>Olivia felt her stomach twist with conflicting emotions. She wasn&#39;t sure what choice she would have made if Margaret had demanded Liam&#39;s life. But before she could dwell on it, Liam&#39;s voice cut through her thoughts.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;I don&#39;t need her to choose. I owe them both. Even if she hadn&#39;t asked, I&#39;d give my life willingly. There&#39;s nothing I wouldn&#39;t do for them.&#34;</p>
                 <p>His words were absolute, spoken with the calm certainty of stating an undeniable truth.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2420,22 +2420,22 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>The pain in her chest intensified with each passing second. Did Liam truly love Olivia that much? Enough to throw away everything, even his life?</p>
                 <p>Eleanor&#39;s fists clenched, her dark eyes swirling with turbulent emotions - heartbreak warring with something far more dangerous. Margaret&#39;s pulse raced as she saw the deadly resolve in Liam&#39;s eyes. Fear gripped her, but all she could do was silently pray Eleanor had escaped already.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Before Margaret could react, Liam lunged forward, grabbing her wrist. She shrieked, instinctively swinging the needle she held toward him.</p>
                 <p>With lightning reflexes, Liam dodged and pinned her to the ground with brutal efficiency. His security team swarmed in instantly, restraining Margaret effortlessly.</p>
                 <p>Olivia rushed to Isabelle, her hands trembling as she knelt beside her daughter. Tears welled in her eyes. &#34;Mummy...&#34; Isabelle&#39;s small voice quivered with fear as she sobbed uncontrollably. Gently, Liam wiped the tears from both Olivia and Isabelle&#39;s faces, his touch surprisingly tender.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5128,27 +5128,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

@@ -2381,11 +2381,11 @@
                 <p>Within minutes, Vivian issued a desperate statement blaming Frederick Fuller, claiming he was a rogue designer from Hailey &amp; Co. Jewelry.</p>
                 <p>But Hailey &amp; Co. struck back faster than a viper.</p>
                 <p>#HaileyOfficial: We have no designer named Frederick Fuller and never collaborated with @VianaJewelry. Pro tip: verify your partners before signing contracts. #DueDiligence</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2425,11 +2425,11 @@
                 <p>Vivian&#39;s nails bit into her palms. &#39;Who needs Viana? I&#39;m still a de Armas heiress.&#39;</p>
                 <p>Later, watching her father&#39;s televised apology on behalf of Viana Jewelry, Evelyn&#39;s chest constricted. Though she now understood her parents&#39; fractured history, the public dismissal still stung.</p>
                 <p>&#39;At least Father won&#39;t trust Vivian with the company again.&#39; Her fingers tightened around her coffee mug. &#39;But Laura and Grandmother won&#39;t surrender control so easily.&#39;</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2437,11 +2437,11 @@
                 <p>Evelyn startled, turning abruptly—only for her lips to brush against Nathan&#39;s. He&#39;d leaned over her desk, close enough to steal the oxygen from her lungs. The smirk playing on his mouth confirmed this was exactly the outcome he&#39;d engineered.</p>
                 <p>&#34;Taking liberties, Mr. Goldmann?&#34;</p>
                 <p>Her eyelashes fluttered as she put space between them. Nathan merely arched a brow. &#34;Says the woman who just kissed me.&#34;</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5014,27 +5014,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

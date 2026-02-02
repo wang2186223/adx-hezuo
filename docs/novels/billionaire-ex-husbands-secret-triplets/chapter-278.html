@@ -2381,11 +2381,11 @@
                 <p>&#34;That&#39;s Ms. Summers,&#34; someone murmured behind her. &#34;She&#39;s the deputy examiner today.&#34;</p>
                 <p>&#34;Isn&#39;t she stunning?&#34; another trainee sighed.</p>
                 <p>The whispers of admiration filled the hall. Rosalind had joined the training camp years ago, part of the same elite batch as Harrison and Chloe Lawson. Her senior status was undisputed. But the real commotion began when the doors opened again.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2403,6 +2403,17 @@
                 <p>Rachel gasped beside Evelyn. &#34;I can&#39;t believe we&#39;re seeing the legendary Mr. Goldmann in person!&#34;</p>
                 <p>Evelyn&#39;s breath caught in her throat. What was he doing here?</p>
                 <p>Winifred, standing nearby with her clique, scowled at the awestruck trainees. &#34;Don&#39;t even bother dreaming, girls. Mr. Goldmann would never look at any of you. Only Rosalind is worthy of him.&#34;</p>
+                <!-- AdSense Ad Unit: banner4 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner4"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Winifred truly believed Rosalind was perfection incarnate, the only woman who could match Nathan Goldmann. Rosalind herself stood abruptly when she spotted Nathan. &#34;Nathan? What brings you here?&#34;</p>
+                <p>His response was ice cold, meant for her ears alone. &#34;I don&#39;t trust you.&#34;</p>
+                <p>Harrison Lawson, the original head examiner, immediately surrendered his seat to Nathan. The entire hall erupted in shocked whispers.</p>
                 <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2411,25 +2422,14 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Winifred truly believed Rosalind was perfection incarnate, the only woman who could match Nathan Goldmann. Rosalind herself stood abruptly when she spotted Nathan. &#34;Nathan? What brings you here?&#34;</p>
-                <p>His response was ice cold, meant for her ears alone. &#34;I don&#39;t trust you.&#34;</p>
-                <p>Harrison Lawson, the original head examiner, immediately surrendered his seat to Nathan. The entire hall erupted in shocked whispers.</p>
-                <!-- AdSense Ad Unit: banner6 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;Mr. Goldmann is the examiner now?&#34;</p>
                 <p>Rosalind&#39;s smile faltered at Nathan&#39;s words. Had he figured something out? A flicker of panic crossed her features before she schooled them back into calm. She hadn&#39;t personally interfered with Evelyn&#39;s assessment - she wasn&#39;t that stupid. Now she could only hope Winifred&#39;s arrangements wouldn&#39;t fail her.</p>
                 <p>Evelyn refused to look at the stage. Nathan as examiner? Watching him and Rosalind sitting together, so perfectly matched, made her stomach churn. He&#39;d clearly chosen to believe Rosalind about the ring incident.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2439,11 +2439,11 @@
                 <p>Nathan&#39;s brows furrowed as he scanned the assessment sheet. Whose idea was this arrangement?</p>
                 <p>A cold satisfaction gleamed in Rosalind&#39;s eyes. Winifred hadn&#39;t disappointed her after all.</p>
                 <p>Winifred turned to smirk at Evelyn, her expression dripping with smug superiority. &#34;How unfortunate for you, facing Lillian right away. Don&#39;t expect any mercy from her.&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5016,27 +5016,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

@@ -2380,11 +2380,11 @@
                 <p>He glanced up, his dark eyes meeting hers. “You’re finally awake. Lunch is on the table.” His voice was a low, smooth baritone.</p>
                 <p>“Excellent.” Isabella let out a soft, almost imperceptible sigh. How did he manage to look so perfect constantly?</p>
                 <p>She moved to the dining table and began to eat. A question suddenly popped into her mind. She looked over at him. “Actually, I meant to ask. Did you find the bed… strange last night? Any nightmares? Or perhaps some unexpected memories surfaced?”</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2400,21 +2400,21 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>A shadow passed behind Nathaniel’s eyes. Was she referring to the incident with Vincent Moreau? Did she dream about that man? His expression tightened almost imperceptibly, but his voice was calm. “It was likely the storm. The lightning, the rain. It can affect one’s subconscious. Don’t dwell on it. The past is over.”</p>
                 <p>Isabella nodded again and resumed eating, though a faint crease remained on her forehead. Was it really just the weather? She had spent the last five years hardening herself, training to be immune to such external influences.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>“Isabella.” Nathaniel’s voice cut through her thoughts.</p>
                 <p>She looked up, meeting his intense gaze. “Hmm?”</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2431,11 +2431,11 @@
                 <p>Nathaniel watched her. Her evasion was obvious, but he didn’t press further. “Agreed.”</p>
                 <p>After changing into the fresh clothes Dominic had delivered, Isabella was ready to leave. She opened the suite door and peeked into the hallway. Her eyes narrowed instantly. A hotel staff member was positioned discreetly at the far end. Without hesitation, she stepped back inside and closed the door firmly.</p>
                 <p>The corridor was far from empty. If she walked out with Nathaniel now, the entire world would know they had spent the night together in the same suite.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5000,27 +5000,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

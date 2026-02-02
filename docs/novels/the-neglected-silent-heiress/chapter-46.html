@@ -2381,33 +2381,33 @@
                 <p>Olivia rose quickly, caught off guard by the unexpected apology. She assured him the incident was already forgotten, especially considering the priceless set of azure porcelain he&#39;d gifted her as compensation.</p>
                 <p>&#34;Your grandfather was instrumental in my early career,&#34; Jerome continued, his voice tinged with regret. &#34;I wish I could have supported you better through your difficulties.&#34; His meaningful glance hinted at deeper concerns about her marriage.</p>
                 <p>Olivia understood the unspoken implication. Despite being married to Liam and the carefully maintained facade of their perfect union, she preferred keeping her marital struggles private. She offered Jerome a warm but guarded smile, silently conveying her appreciation while maintaining her dignity.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Jerome&#39;s expression brightened as he changed topics. &#34;I hear you&#39;re considering starting your own venture.&#34; Leaning forward conspiratorially, he added with a chuckle, &#34;I might have an interesting proposition for you.&#34;</p>
                 <p>Olivia hesitated. Liam had been visibly displeased when she began apprenticing at Gregory&#39;s studio. Taking on another professional commitment would undoubtedly provoke his temper further. But did his approval still matter? The thought brought a pang of sadness.</p>
                 <p>She&#39;d come to realize his opinions shouldn&#39;t dictate her choices. After years of marriage, she knew exactly what to expect.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;At least hear me out before refusing,&#34; Jerome urged, noticing her hesitation.</p>
                 <p>Olivia met his gaze directly, signaling her willingness to listen.</p>
                 <p>&#34;As you know, antique collecting has always been my passion - both as hobby and business venture.&#34; Jerome&#39;s eyes sparkled with enthusiasm. &#34;I&#39;m establishing a new company specializing in antiques. While Alexander will handle operations, we need an expert consultant. Olivia, would you consider joining us?&#34;</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2425,11 +2425,11 @@
                 <p>Olivia maintained her composure. It was natural for others to doubt her capabilities after years as a sheltered society wife.</p>
                 <p>Gregory quickly came to her defense. &#34;Olivia&#39;s restoration skills are exceptional.&#34;</p>
                 <p>&#34;But consultancy requires more than restoration expertise,&#34; Alexander countered. &#34;Gregory, when you opened your studio, it wasn&#39;t just about your technical skills, was it?&#34;</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5136,27 +5136,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

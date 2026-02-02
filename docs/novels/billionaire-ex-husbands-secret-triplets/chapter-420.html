@@ -2394,6 +2394,18 @@
                 <p>The screech of tires announced the arrival of several black SUVs. A man in a trench coat stepped out, adjusting his steel-rimmed glasses with one finger. &#34;Mr. Kent, it appears you&#39;ve miscalculated this time.&#34;</p>
                 <p>&#34;Edmund Lincoln?&#34; Dominic&#39;s surprise was evident. &#34;What business does the Metropolis have here?&#34;</p>
                 <p>Edmund smiled thinly. &#34;Our reasons are irrelevant. Suffice to say, if you value your position, the Kents would do well to stand down.&#34;</p>
+                <!-- AdSense Ad Unit: banner7 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner7"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>With a frustrated growl, Dominic signaled his men to lower their weapons.</p>
+                <p>Rosalind, clutching her wounded arm, stared in shock at Dominic&#39;s deference. She hadn&#39;t realized the Goldmanns had connections to the powerful Metropolis organization from Morwich.</p>
+                <p>Unlike the Night Banquet, the Metropolis operated with royal sanction, holding extraordinary governmental privileges and even royal authority in Morwich.</p>
+                <p>As Nathan led Evelyn forward, her eyes widened at the sight of Edmund. &#34;Uncle Edmund?&#34;</p>
                 <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2402,27 +2414,15 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>With a frustrated growl, Dominic signaled his men to lower their weapons.</p>
-                <p>Rosalind, clutching her wounded arm, stared in shock at Dominic&#39;s deference. She hadn&#39;t realized the Goldmanns had connections to the powerful Metropolis organization from Morwich.</p>
-                <p>Unlike the Night Banquet, the Metropolis operated with royal sanction, holding extraordinary governmental privileges and even royal authority in Morwich.</p>
-                <p>As Nathan led Evelyn forward, her eyes widened at the sight of Edmund. &#34;Uncle Edmund?&#34;</p>
-                <!-- AdSense Ad Unit: banner3 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>He gave a brief nod.</p>
                 <p>Rosalind paled.</p>
                 <p>&#39;So Evelyn is the one connected to them! Damn it all!&#39;</p>
                 <p>She couldn&#39;t bring herself to meet Dominic&#39;s gaze, already feeling the weight of his murderous glare.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2430,11 +2430,11 @@
                 <p>&#39;We could have blamed any harm to Evelyn on the Goldmanns, deepening their feud with the de Armas. That&#39;s what the leftists wanted! But now...&#39;</p>
                 <p>The plan had unraveled spectacularly.</p>
                 <p>Evelyn approached Edmund, glancing between the men. Suddenly, Dominic&#39;s earlier words made sense.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2444,11 +2444,11 @@
                 <p>Nathan didn&#39;t even glance her way.</p>
                 <p>At the hospital...</p>
                 <p>After her examination, Evelyn sat wrapped in Nathan&#39;s coat, listening to the doctor&#39;s report outside. &#34;Aside from the sedative and psychological trauma, the young lady has no serious injuries.&#34;</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5021,27 +5021,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

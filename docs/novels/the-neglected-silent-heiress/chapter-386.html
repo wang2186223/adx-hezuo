@@ -2380,21 +2380,21 @@
                 <p>Beatrice&#39;s expression remained icy, forcing Catherine to reassess the situation with her limited understanding.</p>
                 <p>&#34;You can&#39;t treat me like this!&#34; Catherine shrieked. &#34;I invested my entire savings in that gift! You accepted it, and now you&#39;re betraying me?&#34;</p>
                 <p>The moment the words left her mouth, Catherine regretted them, but desperation had taken over.</p>
-                <!-- AdSense Ad Unit: banner2 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Confusion clouded Catherine&#39;s mind. She couldn&#39;t comprehend what had angered Beatrice. The thought of reclaiming the painting crossed her mind - perhaps she could sell it later for some much-needed cash.</p>
-                <p>Now completely financially dependent on Victor, every extravagant purchase required signing an IOU. Catherine had dreamed of a better life after cutting ties with Liam, but her current situation was far worse than before.</p>
                 <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner3"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Confusion clouded Catherine&#39;s mind. She couldn&#39;t comprehend what had angered Beatrice. The thought of reclaiming the painting crossed her mind - perhaps she could sell it later for some much-needed cash.</p>
+                <p>Now completely financially dependent on Victor, every extravagant purchase required signing an IOU. Catherine had dreamed of a better life after cutting ties with Liam, but her current situation was far worse than before.</p>
+                <!-- AdSense Ad Unit: banner7 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2420,11 +2420,11 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;My dear,&#34; Beatrice began with a warm smile. &#34;Were you surprised by my invitation? After all, you had no prior connection to our family. Truthfully, it was all for my daughter&#39;s sake.&#34;</p>
                 <p>Olivia frowned slightly. &#34;Mrs. Ellington, what do you mean?&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2434,11 +2434,11 @@
                 <p>Beatrice&#39;s face lit up with genuine pleasure. &#34;I adored it. Yours was my absolute favorite gift.&#34;</p>
                 <p>Olivia&#39;s gift hadn&#39;t been extravagant. She had hand-carved a crane symbolizing longevity - an intricate piece full of meaning, yet not particularly valuable.</p>
                 <p>Amelia had worried the present might seem inadequate. But Olivia understood Beatrice better. Far from ordinary, Beatrice required a different approach. Having devoted her life to her family, all she truly valued was sincerity.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5131,27 +5131,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

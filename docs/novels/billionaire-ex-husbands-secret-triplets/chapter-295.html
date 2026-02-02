@@ -2381,11 +2381,11 @@
                 <p>The camp doctor stood nearby, honored to assist the legendary Professor Lennox as he examined Evelyn. The professor drew a vial of blood and handed it to the doctor. &#34;Test this immediately.&#34;</p>
                 <p>The doctor hesitated, curiosity flickering in his eyes, but he didn&#39;t dare question the order. He took the sample and hurried to the lab.</p>
                 <p>Adrian noticed the unusual excitement in Professor Lennox&#39;s demeanor. Intrigued, he asked, &#34;Professor, why test her blood?&#34;</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2403,11 +2403,11 @@
                 <p>&#34;I haven&#39;t even administered the serum I brought,&#34; Professor Lennox continued. &#34;Given how unique her blood is, I wanted to analyze it first.&#34;</p>
                 <p>Her blood is special? Nathan pressed his lips together, his mind racing. What other secrets is she hiding?</p>
                 <p>The doctor soon returned with the test results. &#34;Professor Lennox, here you are.&#34;</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2425,11 +2425,11 @@
                 <p>Nathan approached Evelyn&#39;s bedside. &#34;If she&#39;s fine, why hasn&#39;t she woken up yet?&#34;</p>
                 <p>&#34;Do you think she&#39;s invincible?&#34; Professor Lennox scoffed, still absorbed in the report. &#34;Be grateful she&#39;s alive. It&#39;ll take time for her to regain consciousness.&#34;</p>
                 <p>Nathan brushed his fingers against Evelyn&#39;s forehead, relieved to find her temperature normal—no fever, no signs of distress.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2440,11 +2440,11 @@
                 <p>Harrison continued, &#34;Other witnesses confirmed Winifred has been targeting Ms. Vanderbilt. She was the one who lured her into the restricted area and arranged the match against Lillian.&#34;</p>
                 <p>&#34;It wasn&#39;t me!&#34; Winifred&#39;s desperate voice echoed from the detention room as an instructor dragged her inside. &#34;I didn&#39;t put that snake here!&#34;</p>
                 <p>She reached out, gripping the instructor&#39;s sleeve in a frantic attempt to stop him from leaving.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5017,27 +5017,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

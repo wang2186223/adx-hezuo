@@ -2381,33 +2381,33 @@
                 <p>When Evelyn remained silent, Sebastian spoke again, measured. &#34;The choice is yours. I won&#39;t compel you.&#34;</p>
                 <p>&#34;I&#39;ll go,&#34; Evelyn declared, resolve hardening her features. &#34;Though I want nothing from the de Armas, I won&#39;t let others steal what&#39;s rightfully theirs.&#34;</p>
                 <p>A faint smile touched Sebastian&#39;s lips. &#34;Very well. Sadie will accompany you.&#34;</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>With a gesture, he summoned his aide. Evelyn&#39;s eyes widened at the androgynous figure who appeared.</p>
                 <p>&#34;Sir,&#34; the person acknowledged.</p>
                 <p>Evelyn turned to Sebastian incredulously. &#34;Is that a girl or boy?&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Sadie&#39;s youthful face and masculine attire created striking contrast. Though Evelyn knew nothing of Sadie&#39;s past, the weight of untold stories lingered in those world-weary eyes.</p>
                 <p>Sebastian chuckled. &#34;Sadie&#39;s been my most trusted companion since age fifteen. Her skills are unmatched. With her representing me, I can rest assured. My people will meet you upon arrival.&#34;</p>
                 <p>Three days later...</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2425,11 +2425,11 @@
                 <p>As the car pulled away, unnoticed, a man in the adjacent vehicle lowered his window, withdrawing his surveillance.</p>
                 <p>Nathan adjusted his Bluetooth earpiece, amber eyes scanning the data streaming across his tablet.</p>
                 <p>Oliver turned from the passenger seat after ending his call. &#34;Mr. Goldmann, our sources confirm Mr. Henry&#39;s operatives have entered Stoslo. Could Metropolis be involved in this affair?&#34;</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2437,11 +2437,11 @@
                 <p>Though they&#39;d traced Evelyn to Saint Page, locating her in that vast city proved impossible—especially if Edmund had hidden her somewhere as formidable as Metropolis. Rumors swirled about Mr. Henry adopting his late lover&#39;s daughter, though media knew nothing of her appearance. His obsessive protection ensured no leaks from Hanns Place.</p>
                 <p>Initial suspicions about her paternity were disproven when Mr. Henry publicly released DNA results—Evelyn remained Richard&#39;s biological daughter, eliminating blood ties to Mr. Henry. His sudden interest in Stoslo raised alarming questions.</p>
                 <p>Nathan&#39;s brow furrowed deeply as he stared through the window. The light in his amber eyes dimmed to smoldering embers.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5014,27 +5014,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

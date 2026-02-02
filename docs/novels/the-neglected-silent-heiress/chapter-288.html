@@ -2380,6 +2380,16 @@
                 <p>&#34;That insufferable wretch! Who does she think she is, flaunting herself like royalty?&#34; Evelyn seethed internally.</p>
                 <p>While everyone knew the Kensington family&#39;s immense wealth, Olivia&#39;s extravagant attire for a simple banquet still took everyone&#39;s breath away.</p>
                 <p>Her entourage was even more impressive - an army of staff including maids, physicians, and chefs, every possible attendant one could imagine.</p>
+                <!-- AdSense Ad Unit: banner4 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner4"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>As some guests whispered, this was all due to Alistair&#39;s deep affection for Olivia. Now that she was pregnant, his doting had reached new heights. Each attendant had specific duties to ensure her comfort throughout the pregnancy.</p>
+                <p>Olivia&#39;s gaze swept across the crowd. Certain faces triggered a storm of emotions within her. Those who had once mocked and scorned her now regarded her with awe and deference.</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2388,28 +2398,8 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>As some guests whispered, this was all due to Alistair&#39;s deep affection for Olivia. Now that she was pregnant, his doting had reached new heights. Each attendant had specific duties to ensure her comfort throughout the pregnancy.</p>
-                <p>Olivia&#39;s gaze swept across the crowd. Certain faces triggered a storm of emotions within her. Those who had once mocked and scorned her now regarded her with awe and deference.</p>
-                <!-- AdSense Ad Unit: banner3 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>The lesson was clear - in this world, wealth and power commanded respect.</p>
                 <p>Today, Alistair was in unusually high spirits. His illness hadn&#39;t flared up since Olivia&#39;s return.</p>
-                <!-- AdSense Ad Unit: banner2 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Leaning on an attendant for support, Alistair stood proudly beside Olivia, his eyes shining with paternal pride. &#34;You truly are my granddaughter. You resemble your mother so much. Your bearing carries the unmistakable stamp of the Kensington bloodline.&#34;</p>
-                <p>Other Kensington relatives trailed behind them.</p>
                 <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2418,13 +2408,23 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Though Seraphina had prepared herself, seeing the radiant Olivia still made her jaw clench in bitterness. She shot Julian a look heavy with accusation.</p>
-                <p>Julian dipped his head slightly and murmured a warning only they could hear, &#34;Remember our plans. Don&#39;t let petty jealousy ruin everything.&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <p>Leaning on an attendant for support, Alistair stood proudly beside Olivia, his eyes shining with paternal pride. &#34;You truly are my granddaughter. You resemble your mother so much. Your bearing carries the unmistakable stamp of the Kensington bloodline.&#34;</p>
+                <p>Other Kensington relatives trailed behind them.</p>
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner2"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Though Seraphina had prepared herself, seeing the radiant Olivia still made her jaw clench in bitterness. She shot Julian a look heavy with accusation.</p>
+                <p>Julian dipped his head slightly and murmured a warning only they could hear, &#34;Remember our plans. Don&#39;t let petty jealousy ruin everything.&#34;</p>
+                <!-- AdSense Ad Unit: banner3 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5131,27 +5131,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

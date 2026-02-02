@@ -2381,33 +2381,33 @@
                 <p>“I’ll drop you here,” Sebastian announced from the driver’s seat. “I have to pick up a friend. I’ll return for you later.”</p>
                 <p>“Understood,” Nathaniel replied smoothly. He secured his own mask, scooped Oliver into his arms, and stepped out. He held the car door open for her, a picture of effortless chivalry.</p>
                 <p>A chorus of excited squeals erupted from a group of girls nearby. “Oh my god! Look at his height! He has to be over six foot three!”</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>“And so gentlemanly! A man who treats his woman like that is so rare!” another sighed dreamily.</p>
                 <p>“I want a husband like that!” a woman whined, elbowing her own partner.</p>
                 <p>Still inside the car, Isabella frowned. ‘Even with half his face covered, Nathaniel causes a scene. These women are ridiculous,’ she thought, irritation prickling under her skin. Preferring anonymity, she quickly fastened her own mask before exiting the vehicle.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>The three of them stood together. Nathaniel, tall and commanding, exuded a powerful, refined aura. Isabella, nearly five-foot-seven herself, carried a vibrant, energetic grace. And between them was precious Oliver, soft and cute enough to melt the hardest heart.</p>
                 <p>They became an instant spectacle. Heads turned. Whispers followed. Phones were raised, cameras clicking excitedly to capture the striking trio.</p>
                 <p>Isabella ignored it all. She had promised Oliver a fun day, and that was her only focus. She took the boy’s small hand in hers. “It’s very crowded, sweetheart. You must hold my hand or your father’s the entire time. No running off.”</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2425,11 +2425,11 @@
                 <p>“Mommy! Look!” Oliver suddenly shrieked, pointing a chubby finger at the giant Ferris wheel dominating the skyline. “It’s huge! Can we go? Please? Oliver wants to ride it!”</p>
                 <p>“The Ferris wheel?” Isabella tried to gently dissuade him. “It’s not very exciting, darling. It just goes around slowly.”</p>
                 <p>“But it is exciting!” he insisted, stomping his little foot. “Ethan told me! He went on the carousel with his mommy and daddy. I want to go on rides with my mommy and daddy too!”</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2439,11 +2439,11 @@
                 <p>A faint, involuntary smile touched her lips as she watched him go. The man was undeniably magnetic. Oliver peeked up at her, a secret, knowing grin spreading across his face.</p>
                 <p>Maybe Mommy didn’t dislike Daddy so much after all.</p>
                 <p>He giggled, a sound of pure joy. “Mommy, my daddy is the handsomest. He works super hard. And he’s responsible! He never lets other Aunties get close!” He puffed out his chest, imitating his father. “Daddy says a real man’s pride isn’t having lots of girls. It’s loving one person with his whole heart. Forever and ever. That’s what makes him proud.”</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5008,27 +5008,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

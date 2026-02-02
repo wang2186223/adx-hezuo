@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdX Direct 广告测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .ad-container {
+            margin: 20px 0;
+            padding: 10px;
+            border: 2px dashed #ccc;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .ad-info {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f9f9f9;
+            border-left: 4px solid #4CAF50;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .log-area {
+            background: #000;
+            color: #0f0;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        .status-success { color: #4CAF50; }
+        .status-failed { color: #f44336; }
+        .status-pending { color: #FF9800; }
+    </style>
+</head>
+<body>
+    <h1>🧪 AdX Direct 广告加载测试</h1>
+    
+    <div class="test-section">
+        <h2>测试信息</h2>
+        <div class="ad-info">
+            <div><strong>客户端ID:</strong> ca-pub-5058896253332104</div>
+            <div><strong>广告脚本:</strong> adsbygoogle_direct.js</div>
+            <div><strong>测试时间:</strong> <span id="test-time"></span></div>
+        </div>
+        <button onclick="checkAllAds()">🔍 检查所有广告状态</button>
+        <button onclick="clearLogs()">🗑️ 清除日志</button>
+        <button onclick="location.reload()">🔄 刷新页面</button>
+    </div>
+
+    <div class="test-section">
+        <h2>广告单元测试</h2>
+        
+        <!-- Ad Unit 1 -->
+        <h3>Banner 1 (adx-23335185836-banner1)</h3>
+        <div class="ad-container" id="ad-wrapper-1">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:336px;height:280px"
+                 data-ad-client="ca-pub-5058896253332104"
+                 data-ad-slot="adx-23335185836-banner1"
+                 data-tag-src="gamtg"
+                 data-test-id="1"></ins>
+        </div>
+        <div class="ad-info" id="info-1">等待检测...</div>
+
+        <!-- Ad Unit 2 -->
+        <h3>Banner 2 (adx-23335185836-banner2)</h3>
+        <div class="ad-container" id="ad-wrapper-2">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:336px;height:280px"
+                 data-ad-client="ca-pub-5058896253332104"
+                 data-ad-slot="adx-23335185836-banner2"
+                 data-tag-src="gamtg"
+                 data-test-id="2"></ins>
+        </div>
+        <div class="ad-info" id="info-2">等待检测...</div>
+
+        <!-- Ad Unit 3 -->
+        <h3>Banner 3 (adx-23335185836-banner3)</h3>
+        <div class="ad-container" id="ad-wrapper-3">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:336px;height:280px"
+                 data-ad-client="ca-pub-5058896253332104"
+                 data-ad-slot="adx-23335185836-banner3"
+                 data-tag-src="gamtg"
+                 data-test-id="3"></ins>
+        </div>
+        <div class="ad-info" id="info-3">等待检测...</div>
+    </div>
+
+    <div class="test-section">
+        <h2>实时日志</h2>
+        <div class="log-area" id="log-area">等待广告加载...</div>
+    </div>
+
+    <!-- AdX Direct Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle_direct.js?client=ca-pub-5058896253332104"
+            crossorigin="anonymous"></script>
+
+    <script>
+        // 日志功能
+        const logArea = document.getElementById('log-area');
+        let logBuffer = [];
+        
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString('zh-CN', { hour12: false });
+            const prefix = type === 'error' ? '❌' : type === 'success' ? '✅' : type === 'warning' ? '⚠️' : 'ℹ️';
+            const logMessage = `[${timestamp}] ${prefix} ${message}`;
+            logBuffer.push(logMessage);
+            logArea.textContent = logBuffer.join('\n');
+            logArea.scrollTop = logArea.scrollHeight;
+            console.log(logMessage);
+        }
+
+        function clearLogs() {
+            logBuffer = [];
+            logArea.textContent = '日志已清除';
+        }
+
+        // 设置测试时间
+        document.getElementById('test-time').textContent = new Date().toLocaleString('zh-CN');
+
+        // 检测广告加载状态
+        function checkAdStatus(adElement) {
+            const testId = adElement.dataset.testId;
+            const infoDiv = document.getElementById(`info-${testId}`);
+            
+            const status = {
+                testId: testId,
+                slot: adElement.dataset.adSlot,
+                adsbyGoogleStatus: adElement.dataset.adsbyGoogleStatus || 'undefined',
+                clientRendered: adElement.dataset.adsbygoogleStatus || 'undefined',
+                hasIframe: false,
+                iframeHeight: 0,
+                containerHeight: adElement.offsetHeight,
+                hasGoogleQueryId: false,
+                hasGoogleAdsIframe: false,
+                innerHTML: adElement.innerHTML.length
+            };
+
+            // 检查 iframe
+            const iframe = adElement.querySelector('iframe');
+            if (iframe) {
+                status.hasIframe = true;
+                status.iframeHeight = iframe.offsetHeight || iframe.getBoundingClientRect().height;
+                status.iframeSrc = iframe.src.substring(0, 50) + '...';
+            }
+
+            // 检查 Google 查询ID
+            const googleQueryElement = adElement.querySelector('[data-google-query-id]');
+            if (googleQueryElement) {
+                status.hasGoogleQueryId = true;
+                status.googleQueryId = googleQueryElement.dataset.googleQueryId;
+            }
+
+            // 检查 Google Ads iframe
+            const googleAdsIframe = adElement.querySelector('iframe[id^="google_ads_iframe"]');
+            if (googleAdsIframe) {
+                status.hasGoogleAdsIframe = true;
+            }
+
+            // 判断加载状态
+            let isSuccess = false;
+            let reason = '';
+
+            if (status.adsbyGoogleStatus === 'done' || status.clientRendered === 'done') {
+                if (status.iframeHeight > 50) {
+                    isSuccess = true;
+                    reason = '✅ 状态为 done 且 iframe 高度 > 50px';
+                } else {
+                    reason = '⚠️ 状态为 done 但 iframe 高度不足';
+                }
+            } else if (status.hasIframe && status.iframeHeight > 50) {
+                isSuccess = true;
+                reason = '✅ 有有效 iframe (高度 > 50px)';
+            } else if (status.hasIframe) {
+                reason = `⚠️ 有 iframe 但高度不足 (${status.iframeHeight}px)`;
+            } else if (status.hasGoogleQueryId || status.hasGoogleAdsIframe) {
+                reason = '⚠️ 有 Google 容器但无有效 iframe';
+            } else if (status.innerHTML > 0) {
+                reason = `⚠️ 容器有内容 (${status.innerHTML} 字符) 但无广告元素`;
+            } else {
+                reason = '❌ 容器为空，广告未请求或请求失败';
+            }
+
+            // 更新信息显示
+            const statusClass = isSuccess ? 'status-success' : (status.innerHTML > 0 ? 'status-pending' : 'status-failed');
+            infoDiv.className = `ad-info ${statusClass}`;
+            infoDiv.innerHTML = `
+                <div><strong>状态判定:</strong> ${reason}</div>
+                <div><strong>data-adsbygoogle-status:</strong> ${status.clientRendered}</div>
+                <div><strong>data-adsby-google-status:</strong> ${status.adsbyGoogleStatus}</div>
+                <div><strong>容器高度:</strong> ${status.containerHeight}px</div>
+                <div><strong>有 iframe:</strong> ${status.hasIframe ? '是' : '否'}</div>
+                ${status.hasIframe ? `<div><strong>iframe 高度:</strong> ${status.iframeHeight}px</div>` : ''}
+                ${status.iframeSrc ? `<div><strong>iframe src:</strong> ${status.iframeSrc}</div>` : ''}
+                <div><strong>有 Google 查询ID:</strong> ${status.hasGoogleQueryId ? '是 (' + (status.googleQueryId || 'N/A') + ')' : '否'}</div>
+                <div><strong>有 Google Ads iframe:</strong> ${status.hasGoogleAdsIframe ? '是' : '否'}</div>
+                <div><strong>innerHTML 长度:</strong> ${status.innerHTML} 字符</div>
+            `;
+
+            return { isSuccess, status, reason };
+        }
+
+        function checkAllAds() {
+            log('开始检查所有广告状态...', 'info');
+            const ads = document.querySelectorAll('.adsbygoogle');
+            let successCount = 0;
+            let failedCount = 0;
+
+            ads.forEach(ad => {
+                const result = checkAdStatus(ad);
+                if (result.isSuccess) {
+                    successCount++;
+                    log(`广告 ${result.status.testId} [${result.status.slot}]: ${result.reason}`, 'success');
+                } else {
+                    failedCount++;
+                    log(`广告 ${result.status.testId} [${result.status.slot}]: ${result.reason}`, result.status.innerHTML > 0 ? 'warning' : 'error');
+                }
+            });
+
+            log(`检查完成: ${successCount} 个成功, ${failedCount} 个失败/待加载`, 'info');
+        }
+
+        // 广告加载监控
+        log('页面加载完成，开始监控广告...', 'info');
+
+        // 尝试推送广告
+        window.addEventListener('load', () => {
+            log('window.load 事件触发', 'info');
+            
+            // 检查 adsbygoogle 是否已加载
+            if (typeof (adsbygoogle) !== 'undefined') {
+                log('✅ adsbygoogle 对象已存在', 'success');
+                
+                const ads = document.querySelectorAll('.adsbygoogle');
+                log(`找到 ${ads.length} 个广告单元`, 'info');
+                
+                ads.forEach((ad, index) => {
+                    try {
+                        log(`尝试推送广告 ${index + 1} [${ad.dataset.adSlot}]...`, 'info');
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        log(`✅ 广告 ${index + 1} 推送成功`, 'success');
+                    } catch (e) {
+                        log(`❌ 广告 ${index + 1} 推送失败: ${e.message}`, 'error');
+                    }
+                });
+                
+                // 3秒后首次检查
+                setTimeout(() => {
+                    log('--- 3秒后首次检查 ---', 'info');
+                    checkAllAds();
+                }, 3000);
+                
+                // 10秒后第二次检查
+                setTimeout(() => {
+                    log('--- 10秒后第二次检查 ---', 'info');
+                    checkAllAds();
+                }, 10000);
+                
+            } else {
+                log('❌ adsbygoogle 对象未找到，脚本可能未加载', 'error');
+            }
+        });
+
+        // 监听 adsbygoogle 脚本加载
+        let checkScriptInterval = setInterval(() => {
+            if (typeof (adsbygoogle) !== 'undefined') {
+                clearInterval(checkScriptInterval);
+                log('✅ adsbygoogle 脚本已加载', 'success');
+            }
+        }, 100);
+
+        // 10秒后停止检查
+        setTimeout(() => {
+            clearInterval(checkScriptInterval);
+        }, 10000);
+    </script>
+</body>
+</html>

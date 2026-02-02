@@ -2381,28 +2381,17 @@
                 <p>Edmund raised an eyebrow as she asked calmly, &#34;Was my mother&#39;s illness connected to that virus?&#34;</p>
                 <p>The atmosphere in the study turned glacial.</p>
                 <p>After what felt like an eternity, Edmund lowered his eyes and murmured, &#34;Yes.&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>His gaze drifted toward the window. &#34;She contracted a rare dormant strain linked to the pandemic three decades prior. Your mother was among those infected.&#34;</p>
                 <p>&#34;The outbreak thirty years ago?&#34; Evelyn whispered, pieces clicking together from the reports she&#39;d seen.</p>
                 <p>Edmund recognized the futility of concealment now that she&#39;d become a target. As long as Evelyn remained in Stoslo, danger would follow.</p>
-                <!-- AdSense Ad Unit: banner1 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>&#34;Your mother volunteered during the crisis. Hundreds were infected in Cornelia then, though it wasn&#39;t the initial outbreak. Besides the princess incident, the epidemic thirty years back was the second major occurrence.&#34;</p>
-                <p>Evelyn gasped. &#34;The princess was—&#34;</p>
-                <p>Edmund nodded grimly. &#34;Do you honestly believe the royal family would announce their princess died from a virus?&#34;</p>
                 <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2411,25 +2400,36 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>The answer was obvious.</p>
-                <p>With the princess infected, the palace had claimed she succumbed to natural illness.</p>
-                <p>Evelyn fell silent. Though born years after these events, she&#39;d studied this history. The princess&#39;s epidemic had been far deadlier than the later outbreak, wiping out nearly half of Stoslo&#39;s population. Over 390,000 lives lost—truth would have sparked chaos.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <p>&#34;Your mother volunteered during the crisis. Hundreds were infected in Cornelia then, though it wasn&#39;t the initial outbreak. Besides the princess incident, the epidemic thirty years back was the second major occurrence.&#34;</p>
+                <p>Evelyn gasped. &#34;The princess was—&#34;</p>
+                <p>Edmund nodded grimly. &#34;Do you honestly believe the royal family would announce their princess died from a virus?&#34;</p>
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner1"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>The answer was obvious.</p>
+                <p>With the princess infected, the palace had claimed she succumbed to natural illness.</p>
+                <p>Evelyn fell silent. Though born years after these events, she&#39;d studied this history. The princess&#39;s epidemic had been far deadlier than the later outbreak, wiping out nearly half of Stoslo&#39;s population. Over 390,000 lives lost—truth would have sparked chaos.</p>
+                <!-- AdSense Ad Unit: banner4 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>The later outbreak infected a thousand, with only a dozen fatalities thanks to advanced treatments.</p>
                 <p>Public records claimed the epidemic&#39;s containment resulted from a vaccine breakthrough. During the princess&#39;s era, no such remedy existed.</p>
                 <p>&#34;But if there was a vaccine, why couldn&#39;t my mother—&#34;</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5013,27 +5013,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

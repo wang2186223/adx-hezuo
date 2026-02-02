@@ -2394,11 +2394,11 @@
                 <p>She had expected some lowlife scum, but seeing his actual face made her physically ill. This repulsive monster had stolen her innocence? This vile animal had shattered her entire life?</p>
                 <p>She had trusted Victoria completely. Treated her like a real sister. Never once imagined harming her. Yet all along, Victoria had been plotting this unspeakable betrayal.</p>
                 <p>Isabella wanted to storm into Victoria&#39;s room and beat her to a pulp right now. But she forced herself to breathe. Not yet. The timing wasn&#39;t right. She needed to wait just one more month. Then she would destroy Victoria completely.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2406,11 +2406,11 @@
                 <p>She grabbed a bottle of bourbon from the kitchen. The gaming room welcomed her with its familiar hum. She booted up the system and took a long swallow of whiskey. Since she couldn&#39;t unleash her rage physically, the digital world would suffer her wrath instead.</p>
                 <p>Her headphones muffled the outside world. Her fingers flew across the keyboard. The mouse clicked rapidly under her control. Her expression remained frozen in icy fury.</p>
                 <p>Nathaniel watched silently from the doorway. He observed her violent keyboard strikes. He saw the aggressive mouse movements. He noted the frequent, deep drinks of alcohol. Even from behind, her rage radiated like heat from a furnace.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2418,11 +2418,11 @@
                 <p>He had never seen Isabella in this state before. He considered entering, but decided against it. He simply stood guard, allowing her this catharsis.</p>
                 <p>Isabella played for hours, her anger fueling a bloody rampage through the game. She slaughtered everything in her path. Chaos erupted in the global chat.</p>
                 <p>Holy shit! Boss is insane tonight!</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2445,11 +2445,11 @@
                 <p>Benjamin was also online, playing his own match. He kept seeing global notifications flash across his screen.</p>
                 <p>Congratulations to Boss for achieving 5 consecutive kills!</p>
                 <p>Congratulations to Boss for solo killing the Dragon!</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5014,27 +5014,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

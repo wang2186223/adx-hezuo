@@ -2410,16 +2410,6 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Olivia enunciated each word carefully, ensuring Lillian understood the gravity. &#34;This hotel has comprehensive surveillance. The value of this bracelet constitutes grand larceny. I&#39;m calling the police immediately.&#34; She paused deliberately. &#34;I won&#39;t name names, but the mastermind should know that police involvement means arrest records. A conviction stays with you forever.&#34;</p>
                 <p>As predicted, Lillian collapsed to her knees, her face ghostly pale. &#34;I&#39;m sorry, Olivia! I took the bracelet and framed Isabelle! I didn&#39;t mean to! Please don&#39;t call the police!&#34;</p>
-                <!-- AdSense Ad Unit: banner3 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Olivia&#39;s disappointment cut deep. Their encounter days earlier had softened her toward the girl, assuming Lillian suffered under Catherine Winslow&#39;s roof. She never imagined such cunning from one so young—a perfect reflection of Catherine&#39;s worst traits.</p>
-                <p>The sudden confession stunned the crowd. Lillian knelt sobbing, as if suddenly realizing the magnitude of her actions. She began bowing repeatedly. &#34;I&#39;m sorry! It was me! Please don&#39;t make me leave!&#34;</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2428,15 +2418,25 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Olivia&#39;s disappointment cut deep. Their encounter days earlier had softened her toward the girl, assuming Lillian suffered under Catherine Winslow&#39;s roof. She never imagined such cunning from one so young—a perfect reflection of Catherine&#39;s worst traits.</p>
+                <p>The sudden confession stunned the crowd. Lillian knelt sobbing, as if suddenly realizing the magnitude of her actions. She began bowing repeatedly. &#34;I&#39;m sorry! It was me! Please don&#39;t make me leave!&#34;</p>
+                <!-- AdSense Ad Unit: banner1 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner1"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>A bystander spoke up. &#34;She&#39;s just a child. She didn&#39;t know any better. Let it go.&#34;</p>
                 <p>&#34;Yes, she&#39;s young and foolish. Don&#39;t be so harsh,&#34; another added.</p>
                 <p>Olivia&#39;s lips curled at their hypocrisy. Where was this mercy when they&#39;d condemned Isabelle without evidence? She&#39;d never intended to punish Lillian—only to clear her daughter&#39;s name.</p>
                 <p>As Olivia reached to help Lillian up, someone moved faster.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5129,27 +5129,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

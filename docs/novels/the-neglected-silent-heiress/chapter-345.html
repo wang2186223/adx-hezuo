@@ -2380,16 +2380,6 @@
                 <p>Olivia opened her mouth to refuse when Donovan&#39;s expression darkened, his voice turning glacial. &#34;If you decline, I&#39;ll ensure you never leave Westhaven.&#34;</p>
                 <p>She didn&#39;t doubt his power for a second.</p>
                 <p>With a weary sigh, Donovan&#39;s tone softened. &#34;As your cousin, I&#39;ve failed you. My life&#39;s consumed by obligations, leaving little to give. If you reject this, I&#39;ll never forgive myself.&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>A sudden tightness gripped Olivia&#39;s chest, emotions swelling like a tidal wave. The urge to cry became overwhelming.</p>
-                <p>Memories surfaced of her early days with the Winslow family, when Henry was still alive and she was married to Liam. Those rare moments of familial warmth now seemed like fragments of a fading dream.</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2398,23 +2388,33 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Later, kind souls had entered her orbit - the warmth from the Whitmores and Bennetts. Gregory&#39;s kindness hadn&#39;t faded from memory either.</p>
-                <p>Olivia cherished these gestures profoundly. Perhaps because she&#39;d spent most of her life as the Winslows&#39; adopted daughter, constantly scrutinized, she&#39;d never permitted herself to depend on anyone.</p>
-                <!-- AdSense Ad Unit: banner7 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Before she realized, hot tears spilled down her cheeks.</p>
-                <p>Donovan noticed immediately, brushing them away with his thumb. &#34;Hey now, none of that. My fault - shouldn&#39;t have gotten sentimental. Everything&#39;s arranged. Take my private jet tomorrow. Just rest now, alright?&#34;</p>
+                <p>A sudden tightness gripped Olivia&#39;s chest, emotions swelling like a tidal wave. The urge to cry became overwhelming.</p>
+                <p>Memories surfaced of her early days with the Winslow family, when Henry was still alive and she was married to Liam. Those rare moments of familial warmth now seemed like fragments of a fading dream.</p>
                 <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner5"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Later, kind souls had entered her orbit - the warmth from the Whitmores and Bennetts. Gregory&#39;s kindness hadn&#39;t faded from memory either.</p>
+                <p>Olivia cherished these gestures profoundly. Perhaps because she&#39;d spent most of her life as the Winslows&#39; adopted daughter, constantly scrutinized, she&#39;d never permitted herself to depend on anyone.</p>
+                <!-- AdSense Ad Unit: banner1 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner1"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Before she realized, hot tears spilled down her cheeks.</p>
+                <p>Donovan noticed immediately, brushing them away with his thumb. &#34;Hey now, none of that. My fault - shouldn&#39;t have gotten sentimental. Everything&#39;s arranged. Take my private jet tomorrow. Just rest now, alright?&#34;</p>
+                <!-- AdSense Ad Unit: banner6 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2434,11 +2434,11 @@
                 <p>Despite its recent opening, the Crestwood auction house thrived. The manager reported every event sold out completely.</p>
                 <p>To meet demand, he&#39;d hired additional staff and promised to introduce them later.</p>
                 <p>Olivia found the notion tedious and declined. She trusted her managers implicitly - each carefully selected for their expertise. Micromanaging hires wasn&#39;t her style.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5131,27 +5131,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

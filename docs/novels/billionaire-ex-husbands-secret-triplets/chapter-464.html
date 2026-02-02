@@ -2380,6 +2380,16 @@
                 <p>Evelyn’s lips parted, but no words came out.</p>
                 <p>Adrian spoke slowly, as if recalling distant memories. &#34;My family elders were always strict. As a child, I was drilled in etiquette, tradition, and endless books to expand my knowledge. Private school only added more burdens. There was no time to play, let alone hope for friendships.&#34;</p>
                 <p>Evelyn understood. Noble birth granted privilege, but the chains of expectation were suffocating.</p>
+                <!-- AdSense Ad Unit: banner5 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner5"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>&#34;How did you and Nathan meet?&#34; she asked suddenly, curiosity sparking about Nathan’s past.</p>
+                <p>Adrian’s expression softened. &#34;Once, my family punished me by making me kneel before our ancestors’ portraits for a mistake I’d made. I was so angry, I ran away from the manor. That’s when I stumbled upon Nathan and his mother on the street.&#34;</p>
                 <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2388,33 +2398,23 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>&#34;How did you and Nathan meet?&#34; she asked suddenly, curiosity sparking about Nathan’s past.</p>
-                <p>Adrian’s expression softened. &#34;Once, my family punished me by making me kneel before our ancestors’ portraits for a mistake I’d made. I was so angry, I ran away from the manor. That’s when I stumbled upon Nathan and his mother on the street.&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>He had been just a child then, and Nathan only a year older. Victoria had found him crying in a corner and, after hearing his story, brought him home to the Goldmann mansion.</p>
                 <p>From that day, he and Nathan became inseparable. The Goldmann estate was the only place Adrian ever felt free—where warmth and laughter replaced cold discipline.</p>
-                <!-- AdSense Ad Unit: banner3 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Victoria treated him like a second son, baking his favorite treats whenever he visited.</p>
-                <p>Nathan, however, hadn’t been so welcoming at first. Jealous of his mother’s affection for Adrian, he’d been combative, always picking fights. And when he lost, he’d cry.</p>
                 <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner6"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Victoria treated him like a second son, baking his favorite treats whenever he visited.</p>
+                <p>Nathan, however, hadn’t been so welcoming at first. Jealous of his mother’s affection for Adrian, he’d been combative, always picking fights. And when he lost, he’d cry.</p>
+                <!-- AdSense Ad Unit: banner3 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5009,27 +5009,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

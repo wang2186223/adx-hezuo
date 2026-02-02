@@ -2392,17 +2392,6 @@
                 <p>&#34;Maybe we should bring in an expert to handle this.&#34;</p>
                 <p>&#34;The best solution is to involve Kirk. He can solve this and help the Boss! He&#39;d be thrilled to help!&#34;</p>
                 <p>As soon as someone said that, everyone pulled out their phones, ready to take action. Julian rushed over and said coolly, &#34;Everyone, go home and wait calmly for news.&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>&#34;Huh? Why should we? Julian, why are you so unconcerned about the Boss? You&#39;ve worked together for five years! You should be the most worried about her!&#34; Maxwell said, his face full of confusion.</p>
-                <p>Julian&#39;s expression turned serious. &#34;She went in willingly. Besides, she has her own strategy. No one is allowed to ruin her plan!&#34;</p>
-                <p>&#34;Plan? No way! Is it like what she did at the Auto Show? Or that time at the Guci showdown? Does she have a plan to turn the tables?&#34; someone asked.</p>
                 <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2411,9 +2400,9 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>&#34;Exactly. This time, when her plan succeeds, it will draw blood. Just wait and see,&#34; Julian replied.</p>
-                <p>Everyone there started to feel excited and cheered. &#34;Hurray! The Boss has a plan! This is the best news!&#34;</p>
-                <p>&#34;Why did the Boss tell you her plans and not us? Does she like you?&#34;</p>
+                <p>&#34;Huh? Why should we? Julian, why are you so unconcerned about the Boss? You&#39;ve worked together for five years! You should be the most worried about her!&#34; Maxwell said, his face full of confusion.</p>
+                <p>Julian&#39;s expression turned serious. &#34;She went in willingly. Besides, she has her own strategy. No one is allowed to ruin her plan!&#34;</p>
+                <p>&#34;Plan? No way! Is it like what she did at the Auto Show? Or that time at the Guci showdown? Does she have a plan to turn the tables?&#34; someone asked.</p>
                 <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2422,14 +2411,25 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Julian froze. &#39;Why would she like me?&#39;</p>
-                <p>He glanced at the luxury cars driving away in the distance, pushed away his inappropriate feelings, and responded indifferently, &#34;You talk too much. Do you want to lose your tongue? Everyone, go home. Don&#39;t you dare ruin her plan! If you do, I won&#39;t let any of you get away!&#34;</p>
-                <p>&#34;Yes, yes, yes, the Boss&#39;s husband!&#34; the crowd teased as they dispersed.</p>
+                <p>&#34;Exactly. This time, when her plan succeeds, it will draw blood. Just wait and see,&#34; Julian replied.</p>
+                <p>Everyone there started to feel excited and cheered. &#34;Hurray! The Boss has a plan! This is the best news!&#34;</p>
+                <p>&#34;Why did the Boss tell you her plans and not us? Does she like you?&#34;</p>
                 <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner6"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Julian froze. &#39;Why would she like me?&#39;</p>
+                <p>He glanced at the luxury cars driving away in the distance, pushed away his inappropriate feelings, and responded indifferently, &#34;You talk too much. Do you want to lose your tongue? Everyone, go home. Don&#39;t you dare ruin her plan! If you do, I won&#39;t let any of you get away!&#34;</p>
+                <p>&#34;Yes, yes, yes, the Boss&#39;s husband!&#34; the crowd teased as they dispersed.</p>
+                <!-- AdSense Ad Unit: banner8 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5006,27 +5006,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

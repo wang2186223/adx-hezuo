@@ -2381,6 +2381,17 @@
                 <p>Isabella: Maintain surveillance. Identify their patterns and vulnerabilities. Do not engage until I give the order.</p>
                 <p>Maxwell: Understood.</p>
                 <p>Isabella pocketed her phone, the online headlines flashing through her mind. She turned to Oliver.</p>
+                <!-- AdSense Ad Unit: banner2 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner2"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>“Momo, are you getting bored staying indoors? Would you like to go out with Mommy?”</p>
+                <p>“Yes! Yes!” Oliver bounced with excitement.</p>
+                <p>Since Nathaniel and Oliver had moved into her residence, they had avoided public outings. The fear of McKenzie’s photographers kept them confined. The mere prospect of leaving the house thrilled him.</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2389,25 +2400,14 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>“Momo, are you getting bored staying indoors? Would you like to go out with Mommy?”</p>
-                <p>“Yes! Yes!” Oliver bounced with excitement.</p>
-                <p>Since Nathaniel and Oliver had moved into her residence, they had avoided public outings. The fear of McKenzie’s photographers kept them confined. The mere prospect of leaving the house thrilled him.</p>
-                <!-- AdSense Ad Unit: banner6 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>But then…</p>
                 <p>“Won’t the bad Auntie find us? What if she tells Grandpa and Grandma to take me away?” Oliver’s lower lip trembled.</p>
                 <p>Isabella ruffled his hair. “Don’t worry, sweetheart. No one will recognize us. Mommy will give you a makeover.”</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2425,11 +2425,11 @@
                 <p>Isabella smiled warmly. “I’m glad you like it.”</p>
                 <p>She then turned her attention to herself. With skillful application, she softened her own striking features, creating a more subdued, ordinary appearance. A simple white dress completed the look of a typical, unassuming stay-at-home mother.</p>
                 <p>She studied her reflection, a satisfied smirk playing on her lips. So, Victoria thought she could just stay, did she? She had clearly pushed her into a corner, but Victoria wasn’t finished. She must have another card to play before she’d finally leave.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2440,11 +2440,11 @@
                 <p>Seeing his anticipation, Isabella took him straight to the fifth floor. It was the mall’s main entertainment level, packed with arcade games, children’s play areas, dart boards, and bowling alleys.</p>
                 <p>The main attraction, however, was the long rows of gleaming claw machines. They were filled with an array of adorable plush toys—Hello Kitty, Mickey Mouse, and various other cute animals.</p>
                 <p>Isabella scanned the area. The person she expected to see wasn’t there yet. Her eyes narrowed slightly. It seemed they would have to wait a little longer.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5009,27 +5009,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

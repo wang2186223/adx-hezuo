@@ -2384,11 +2384,11 @@
                 <p>Richard&#39;s expression turned icy. &#34;You&#39;ve failed to give me an heir. What&#39;s wrong with seeking company elsewhere? I&#39;ve nothing to fear from scandal. If anything, you should be the embarrassed one when this gets out.&#34;</p>
                 <p>Contempt flashed in Catherine&#39;s eyes, her gaze turning arctic with undisguised revulsion.</p>
                 <p>&#34;Richard, Catherine&#39;s concern is valid,&#34; a new voice interjected. &#34;With our mother still in critical condition, media spotting you with other women would ruin your carefully crafted image as the devoted son.&#34; Both Winslows turned to see Liam approaching.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2398,11 +2398,11 @@
                 <p>Liam remained unruffled by their accusations, even managing an amused smile. &#34;Richard, you know exactly why I couldn&#39;t come earlier. Isn&#39;t this what you wanted?&#34;</p>
                 <p>Richard&#39;s composure cracked. &#34;What are you implying? I contacted you immediately after the accident! If you truly wanted to see Mother, who could have stopped you?&#34;</p>
                 <p>A cold laugh escaped Liam&#39;s lips. &#34;You were too busy causing problems at Grandfather&#39;s gravesite. Had I tried visiting then, you&#39;d have found some excuse to turn me away, wouldn&#39;t you?&#34;</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2412,11 +2412,11 @@
                 <p>Noting Richard&#39;s reaction, Liam chuckled darkly, clapping a hand on his brother&#39;s shoulder. &#34;Richard, I know you&#39;re not the brightest, but next time? Clean up your messes properly. Before conspiring with someone, investigate whether they have ulterior motives. That man betrayed you the moment I confronted him. Your partnership wasn&#39;t as solid as you imagined.&#34;</p>
                 <p>Richard&#39;s face darkened instantly. He shrugged off Liam&#39;s hand. &#34;What nonsense are you spouting? I&#39;ve been buried in Mother&#39;s medical paperwork! I haven&#39;t had time for anything else!&#34;</p>
                 <p>Yet the flicker of panic in his eyes betrayed his guilt.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2440,11 +2440,11 @@
                 <p>Sebastian paled at the implication. &#34;But she&#39;s his mother. Margaret&#39;s always been his staunchest supporter. It&#39;s unthinkable he&#39;d go that far.&#34;</p>
                 <p>Liam&#39;s laugh held no mirth. &#34;Perhaps Margaret&#39;s &#39;accident&#39; wasn&#39;t so accidental after all.&#34;</p>
                 <p>Sebastian recoiled, struggling to process this. He&#39;d always viewed Richard as merely petty - engaging in childish rivalries with Liam, lacking proper elder brother qualities.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2455,11 +2455,11 @@
                 <p>Before Catherine could react, Richard whirled and struck Beatrice across the face. &#34;Get out!&#34;</p>
                 <p>Clutching her cheek, the humiliated woman scrambled to collect her belongings and fled.</p>
                 <p>A perverse satisfaction warmed Catherine&#39;s heart. However strained their marriage, they were undeniably bound together now. Richard would find it impossible to discard her.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5152,27 +5152,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

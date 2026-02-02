@@ -2392,17 +2392,28 @@
                 <p>Isabella&#39;s gaze swept over him, noticing the shard of glass embedded in his forearm, blood staining his sleeve.</p>
                 <p>Her brow furrowed. She immediately retrieved the first-aid kit. &#34;Sit down,&#34; she instructed, her tone leaving no room for argument.</p>
                 <p>Nathaniel took the kit from her. &#34;I can manage. You should rest.&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;Be quiet,&#34; she countered sharply.</p>
                 <p>Though no medic, Isabella possessed competent emergency skills. With precise movements, she extracted the glass using tweezers, applying pressure with sterile gauze to stem the bleeding.</p>
                 <p>Oliver, observing from the sidelines, understood his cue. He retreated downstairs to give them privacy.</p>
+                <!-- AdSense Ad Unit: banner4 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner4"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>The lower level was chaos. Shattered windows littered the floor with glittering debris. The exterior walls bore ugly scars from the impact.</p>
+                <p>His small face hardened. How dare they attack his mother! Blood relation meant nothing when they acted like monsters.</p>
+                <p>Pulling out his phone, he dialed Dominic. &#34;Uncle Dominic, I need two snakes. Put them in those horrible people&#39;s car before they leave.&#34;</p>
                 <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2411,25 +2422,14 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>The lower level was chaos. Shattered windows littered the floor with glittering debris. The exterior walls bore ugly scars from the impact.</p>
-                <p>His small face hardened. How dare they attack his mother! Blood relation meant nothing when they acted like monsters.</p>
-                <p>Pulling out his phone, he dialed Dominic. &#34;Uncle Dominic, I need two snakes. Put them in those horrible people&#39;s car before they leave.&#34;</p>
-                <!-- AdSense Ad Unit: banner7 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>The reptiles would deliver a fitting scare without traceable evidence. Mommy would never suspect a thing.</p>
                 <p>Dominic approved the plan immediately, moving to execute it. Shortly after, Maxwell arrived with a repair crew. He had been monitoring the property from the shadows but held back upon recognizing Eleanor and Richard. He understood Isabella&#39;s deliberate pacing around the situation.</p>
                 <p>Even with Victoria&#39;s reputation in tatters, the Montgomerys still favored her. They discarded their true daughter for a malicious imposter. Fools.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5009,27 +5009,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

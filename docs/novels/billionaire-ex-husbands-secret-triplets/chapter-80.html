@@ -2383,11 +2383,11 @@
                 <p>Their mother clearly wasn&#39;t willing to accept their father. Today, they were determined to make him convince her.</p>
                 <p>&#34;Fine! Stay in there! I&#39;m getting the spare key.&#34; Evelyn scoffed.</p>
                 <p>Unbelievable. Her own children had chosen to hide that man in their room!</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2396,11 +2396,11 @@
                 <p>Evelyn turned to leave, but a small hand shoved her forward and the door clicked shut behind her.</p>
                 <p>She twisted the knob violently. &#34;Open this door immediately!&#34;</p>
                 <p>Warm breath tickled her ear as a muscular arm caged her against the door. &#34;Evelyn,&#34; Nathan murmured, &#34;I warned you there would be consequences for lying to me.&#34;</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2409,19 +2409,6 @@
                 <p>He stepped closer, his voice dropping to that dangerous register she knew too well. &#34;They&#39;ve clearly chosen sides. Gave us this lovely private space to... reconcile.&#34;</p>
                 <p>&#34;There&#39;s nothing to reconcile!&#34;</p>
                 <p>Evelyn swung at him, but he caught her wrist effortlessly. In one fluid motion, he lifted her and tossed her onto the bed.</p>
-                <!-- AdSense Ad Unit: banner1 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>&#34;Nathan, don&#39;t you dare—mmph!&#34; His mouth crashed down on hers, stealing both her protest and her breath.</p>
-                <p>She fought against him, but his scorching chest pressed against hers, igniting fires she&#39;d tried so hard to extinguish. His breathing grew ragged as his wandering hands threatened to unravel her completely.</p>
-                <p>No. This couldn&#39;t happen.</p>
-                <p>With a desperate shove, Evelyn broke free. &#34;Stop it, Nathan—&#34;</p>
-                <p>Her voice cracked. Hot tears spilled over as she finally deployed her most effective weapon.</p>
                 <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2430,16 +2417,29 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>&#34;Nathan, don&#39;t you dare—mmph!&#34; His mouth crashed down on hers, stealing both her protest and her breath.</p>
+                <p>She fought against him, but his scorching chest pressed against hers, igniting fires she&#39;d tried so hard to extinguish. His breathing grew ragged as his wandering hands threatened to unravel her completely.</p>
+                <p>No. This couldn&#39;t happen.</p>
+                <p>With a desperate shove, Evelyn broke free. &#34;Stop it, Nathan—&#34;</p>
+                <p>Her voice cracked. Hot tears spilled over as she finally deployed her most effective weapon.</p>
+                <!-- AdSense Ad Unit: banner6 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner6"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Nathan stilled at the sight.</p>
                 <p>She pounded her fists against his chest like a wild thing. &#34;You destroyed me six years ago! Why won&#39;t you leave me alone? You&#39;re just as vile as Vivian! Partners in crime! I hate you!&#34;</p>
                 <p>Nathan&#39;s expression darkened.</p>
                 <p>Gently, he wiped her tears away. &#34;I was never her partner.&#34;</p>
                 <p>But how could he possibly explain?</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5027,27 +5027,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

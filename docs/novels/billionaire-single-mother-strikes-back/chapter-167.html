@@ -2392,44 +2392,44 @@
                 <p>Nathaniel’s intense gaze remained fixed on Isabella, his brow furrowed. He wanted answers too.</p>
                 <p>Isabella twirled a strand of her hair, offering a faint smile. “It was nothing serious,” she explained casually, “though I might have provoked a conflict between Reginald and Genevieve...”</p>
                 <p>Julian was speechless. Those two were notoriously difficult personalities. He remembered specifically warning Isabella about them, yet she deliberately stirred trouble between them?</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Unbelievable.</p>
                 <p>“Lay low for now. I’ll handle damage control.” Julian ended the call abruptly.</p>
                 <p>Isabella set her phone aside and noticed Oliver watching her with an amused expression. She gently ruffled his hair. “My sweet Christopher, eat well and grow strong. If anyone bullies you, tolerate it twice but never a third time. Fight back exactly like Mommy does.”</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>“Okay!” Oliver nodded enthusiastically, already imagining himself standing up to villains just like his mother.</p>
                 <p>Isabella then turned her attention back to Nathaniel. “You were saying? You want to help GoldenPhoenix expand faster?”</p>
                 <p>Nathaniel saw no reason for subtlety and nodded firmly. “It’s the most efficient solution currently.”</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>“But Julian and Adrian are still conducting interviews. They’re building a dedicated team from scratch—people who share our vision, possess strong teamwork, and demonstrate loyalty. Only with the right foundation can we achieve sustainable growth, and that requires time,” Isabella countered.</p>
                 <p>Building a company was like constructing a building—the foundation determined its stability. They couldn’t afford to compromise on integrity for short-term gains.</p>
                 <p>Nathaniel had always viewed her as ambitious, but he was pleasantly surprised by her maturity during this crisis. “I agree. A successful company requires a solid team.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5009,27 +5009,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

@@ -2383,11 +2383,11 @@
                 <p>The door clicked open. Stiletto heels tapped across the floor. Then a shriek.</p>
                 <p>Olivia jerked upright, only to be pulled back down by Liam&#39;s unyielding arm.</p>
                 <p>Evelyn Hartley stood frozen in the doorway, breakfast tray nearly slipping from her fingers. &#34;You two—?&#34; Her eyes widened in horrified disbelief.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2409,11 +2409,11 @@
                 <p>&#34;Everything looks stable,&#34; the nurse said after checking the overnight heart monitor readings. &#34;Just need those numbers to stay consistent for full recovery.&#34;</p>
                 <p>&#34;Stay consistent?&#34; The words echoed ominously in Evelyn&#39;s mind. What had they done last night to cause instability? This was supposed to be a healing space!</p>
                 <p>Evelyn&#39;s nails bit into her palms. After years with Liam, she&#39;d never gotten this close. How did this mute nobody deserve such intimacy?</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2422,11 +2422,11 @@
                 <p>Steam rose from the opened thermos, but the aroma wasn&#39;t appetizing. &#34;From that place you love. I convinced them to open early just for you. Chef Sebastian personally prepared it—far better than anything homemade.&#34; Her pointed glance at Olivia dripped with condescension.</p>
                 <p>&#34;And I brought imported fruit,&#34; Evelyn added, smirking at Olivia&#39;s homemade meal.</p>
                 <p>Standing by the door, food container in hand, Olivia felt like an intruder in her own marriage. Her hours of careful cooking paled against Evelyn&#39;s effortless extravagance.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2435,11 +2435,11 @@
                 <p>Evelyn faltered, looking to Liam for support. &#34;It&#39;s from your favorite—&#34;</p>
                 <p>Before she could finish, Ryan&#39;s attention shifted to her perfume. &#34;Are you trying to gas us all? They should post signs: &#39;No Perfume Allowed! Oxygen Zone!&#39;&#34;</p>
                 <p>His nose wrinkled in disgust. &#34;Take that stuff and leave. Please.&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2450,11 +2450,11 @@
                 <p>Liam&#39;s icy stare could have frozen lava. &#34;Mistake?&#34;</p>
                 <p>&#34;Long shift. Tired hands,&#34; Ryan said without remorse. Then to Olivia: &#34;Since you&#39;re here, Mrs. Blackwood, why don&#39;t you feed your husband? Can&#39;t exactly re-stick him now.&#34;</p>
                 <p>Feed Liam? Olivia&#39;s cheeks burned as she stood frozen.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5147,27 +5147,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

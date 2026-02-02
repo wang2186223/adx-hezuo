@@ -2379,6 +2379,24 @@
                 <p>Victoria wore a mask of profound worry and guilt, her body shaking with sobs. “She wants all of you to despise me! To blame me for abducting Benjamin and causing him harm! Waa… Benjamin is so young! How could she possibly injure him? He’s completely innocent!” She broke down into tears once more.</p>
                 <p>Eleanor and Richard were visibly stunned. True, Benjamin had been a profound disappointment to the family, but he was still their blood relative. They never wished any actual physical harm upon him.</p>
                 <p>Who could have imagined Isabella was capable of such a monstrous, inhuman act!</p>
+                <!-- AdSense Ad Unit: banner3 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner3"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Richard’s voice was icy with contempt. “Prepare a car for Grace Memorial Hospital immediately! Ensure that ungrateful wretch Isabella is still there when we arrive!” Theodore followed them, his anxiety palpable. He had not seen the message Isabella had sent him.</p>
+                <!-- AdSense Ad Unit: banner6 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner6"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>At Grace Memorial Hospital.</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2387,30 +2405,12 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Richard’s voice was icy with contempt. “Prepare a car for Grace Memorial Hospital immediately! Ensure that ungrateful wretch Isabella is still there when we arrive!” Theodore followed them, his anxiety palpable. He had not seen the message Isabella had sent him.</p>
+                <p>After over an hour in the emergency room, Benjamin was finally transferred to a private ward. The lead physician approached Isabella, his tone deeply apologetic. “Ms. Montgomery, I regret to inform you that we have exhausted all immediate options. We have been unable to identify the specific toxin administered to Mr. Kensington. Based on his current vitals and neurological responses, it is highly probable he will not regain consciousness.”</p>
                 <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner5"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>At Grace Memorial Hospital.</p>
-                <!-- AdSense Ad Unit: banner4 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>After over an hour in the emergency room, Benjamin was finally transferred to a private ward. The lead physician approached Isabella, his tone deeply apologetic. “Ms. Montgomery, I regret to inform you that we have exhausted all immediate options. We have been unable to identify the specific toxin administered to Mr. Kensington. Based on his current vitals and neurological responses, it is highly probable he will not regain consciousness.”</p>
-                <!-- AdSense Ad Unit: banner1 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2425,11 +2425,11 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Isabella’s eyes darkened. Acute death? When she had boarded the private jet with Benjamin, there had been no signs of poisoning… Their environment had been secure.</p>
                 <p>At that moment, the rapid, heavy sound of approaching footsteps echoed down the corridor. Isabella turned. Theodore Montgomery, Richard, Eleanor, and Victoria were striding toward her, their faces contorted with pure, undiluted rage. They had evidently heard the doctor’s grave prognosis.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4994,27 +4994,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

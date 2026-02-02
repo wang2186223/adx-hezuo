@@ -2381,28 +2381,17 @@
                 <p>Victoria remained seated in the director&#39;s chair, her expression unwavering. &#34;Setting aside the financial aspect, is this not an exceptional project?&#34;</p>
                 <p>The board members exchanged uneasy glances. Silence fell across the room. They couldn&#39;t deny the project&#39;s potential brilliance.</p>
                 <p>Their nation was advancing sixth-generation garden properties, granting even modest homes the luxury of beautiful gardens. Major developers were testing similar projects in limited regions. If Montgomery Group launched this nationwide, they would dominate the industry within two years.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>But the risk was astronomical. One hundred billion dollars. Even utilizing all available Montgomery funds would leave them fifty billion in debt. Failure meant utter destruction.</p>
                 <p>&#34;I recognize your apprehensions,&#34; Victoria addressed the tense atmosphere. &#34;However, remember that I now hold the Director position. Any consequences will fall upon me. I accept full responsibility for this venture.&#34;</p>
                 <p>&#34;If I&#39;m willing to risk everything, why shouldn&#39;t you support me? Trust my judgment. I want what&#39;s best for this company. This risk promises the most substantial returns.&#34;</p>
-                <!-- AdSense Ad Unit: banner7 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>&#34;I will personally secure the loan. It won&#39;t take long.&#34;</p>
-                <p>The board gradually yielded to Victoria&#39;s determined conviction. She spoke truth—she controlled the majority shares and would bear the ultimate burden. Her fearlessness became their reassurance.</p>
-                <p>Success meant enormous dividends. Crucially, with Montgomery Group hemorrhaging money, securing bank loans would signal financial confidence to investors. The new project could reshape their perception entirely.</p>
                 <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2411,14 +2400,25 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>The proposal passed with full board endorsement.</p>
-                <p>Victoria proceeded directly to the bank negotiations, carrying the Montgomery Group&#39;s official seal. Alone in her car, pure malice glittered in her eyes. Her scheme was falling into place perfectly.</p>
-                <p>She would leave Isabella Montgomery a devastating farewell gift.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <p>&#34;I will personally secure the loan. It won&#39;t take long.&#34;</p>
+                <p>The board gradually yielded to Victoria&#39;s determined conviction. She spoke truth—she controlled the majority shares and would bear the ultimate burden. Her fearlessness became their reassurance.</p>
+                <p>Success meant enormous dividends. Crucially, with Montgomery Group hemorrhaging money, securing bank loans would signal financial confidence to investors. The new project could reshape their perception entirely.</p>
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner8"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>The proposal passed with full board endorsement.</p>
+                <p>Victoria proceeded directly to the bank negotiations, carrying the Montgomery Group&#39;s official seal. Alone in her car, pure malice glittered in her eyes. Her scheme was falling into place perfectly.</p>
+                <p>She would leave Isabella Montgomery a devastating farewell gift.</p>
+                <!-- AdSense Ad Unit: banner2 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2441,11 +2441,11 @@
                 <p>Just as Theodore prepared to speak, the dining room door swung open.</p>
                 <p>Click!</p>
                 <p>All eyes turned toward the entrance. Victoria stood framed in the doorway.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5010,27 +5010,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

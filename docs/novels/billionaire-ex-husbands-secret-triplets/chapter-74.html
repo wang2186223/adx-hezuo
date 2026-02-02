@@ -2381,22 +2381,22 @@
                 <p>Later that afternoon, Vivian presented the signed contract to her father, Richard Vanderbilt.</p>
                 <p>Richard&#39;s face lit up with pride when he realized his daughter had secured Hailey &amp; Co.&#39;s top designer. &#34;Vivian, my dear, you never cease to amaze me. I knew I could count on you.&#34;</p>
                 <p>Vivian wrapped her arms around her father&#39;s arm affectionately. &#34;It&#39;s nothing special, Father. I&#39;m just doing my part for the Vanderbilts and Viana.&#34;</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;You&#39;ve always been the responsible one.&#34; Richard sighed, his thoughts drifting to his other daughter, Evelyn.</p>
                 <p>It wasn&#39;t that he didn&#39;t love Evelyn. But her continuous disappointments had worn him down. Six years ago, he&#39;d hoped sending her away would teach her humility. Instead, she&#39;d returned more cunning than ever.</p>
                 <p>&#34;Speaking of which,&#34; Richard hesitated, &#34;how are things progressing with Mr. Goldmann?&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2414,22 +2414,22 @@
                 <p>&#34;What?!&#34; Richard&#39;s voice thundered through the study.</p>
                 <p>&#39;How could my own daughter sink to such disgraceful behavior!&#39;</p>
                 <p>&#34;Father, please don&#39;t blame Zoe,&#34; Vivian whispered, using Evelyn&#39;s childhood nickname. &#34;Perhaps it&#39;s my fault for being the illegitimate one.&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;Don&#39;t say that!&#34; Richard grasped her shoulders firmly. &#34;There&#39;s no such thing as illegitimate in this household. You&#39;re a Vanderbilt as much as anyone, and I won&#39;t have you thinking otherwise!&#34;</p>
                 <p>His mind raced with anger. &#39;If Evelyn truly bore Mr. Goldmann&#39;s children behind Vivian&#39;s back, this betrayal is unforgivable!&#39;</p>
                 <p>Meanwhile, at ckgold Group headquarters...</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2439,11 +2439,11 @@
                 <p>The final image captured Vivian leaving the room alone.</p>
                 <p>Now everything made sense. Evelyn had been the one in that hotel room all along.</p>
                 <p>This explained why he&#39;d only encountered Vivian when he went searching later - Evelyn had already been banished from the Vanderbilt estate by then.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5016,27 +5016,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

@@ -2380,11 +2380,11 @@
                 <p>Beatrice tugged Vivienne forward. “Vivienne comes from a good background. She’s healthy and decent. She doesn’t mind that you have a son—she’s even promised to treat Christopher well. What more could you want? Even if you found that woman, how could she possibly compare to Vivienne?”</p>
                 <p>Vivienne looked at Nathaniel with practiced grace, her red lips parting softly. “Your parents aren’t getting any younger. Do you really want them worrying about you forever? And Christopher… he needs a mother. A proper upbringing. I’ve spoken with your family. If we get engaged, I’ll publicly claim him as my own. He’ll carry the Blackwood name. He’ll be your heir.”</p>
                 <p>It was a significant concession. A generous offer.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2400,31 +2400,31 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>He set his glass down with a quiet click. “If you’re done, you can see yourselves out.” His tone offered no warmth, no negotiation.</p>
                 <p>Vivienne stiffened. She was beautiful, accomplished, from an impeccable family. Why did he look straight through her?</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Reginald struck the floor again with his cane, the sound sharp with fury. “Nathaniel! Are you trying to be the death of me? You moved out years ago! When will this rebellion end? Do you have any idea the embarrassment you’ve brought upon the Blackwood name? You should be grateful a woman like Vivienne would even consider you! How dare you be so ungrateful!”</p>
                 <p>“Perhaps you should marry her, then.” Nathaniel’s gaze was flat as he rose from his chair, ready to leave.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Reginald pointed a trembling finger. “You—! You—!” He choked, gasping for air, his face turning red.</p>
                 <p>Beatrice rushed to his side, rubbing his chest. She shot Nathaniel a furious glare. “How can you speak to your father like that? Are you trying to kill him?”</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2433,11 +2433,11 @@
                 <p>Beatrice took her hand, patting it gently. “Don’t take it to heart, Vivienne. He’s always been like this, stubborn and cold. You’ve both been busy with your companies. You haven’t had time to build a connection. Feelings need cultivation.” She smiled reassuringly. “Starting today, come by the estate every day. Spend a few hours with Christopher. Get to know them both.”</p>
                 <p>“But… wouldn’t that be inappropriate?” Vivienne murmured, lowering her eyes.</p>
                 <p>“Nonsense,” Beatrice said firmly. “I am still the lady of this house. You will come. Three to four hours a day. Make yourself at home.”</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5002,27 +5002,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

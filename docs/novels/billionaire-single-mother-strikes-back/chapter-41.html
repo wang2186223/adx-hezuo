@@ -2381,11 +2381,11 @@
                 <p>Nathaniel’s frown deepened, but he let the matter drop.</p>
                 <p>She retreated to Oliver’s room; the boy would be sleeping in her bed tonight.</p>
                 <p>Sleep, however, eluded her. Lying in the dark, she switched her phone to silent and opened Twitter. A torrent of criticism flooded her screen. Her response was swift and cutting.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2403,6 +2403,17 @@
                 <p>Her inner circle saw the post immediately.</p>
                 <p>Maxwell and his team rallied in the comments.</p>
                 <p>[Boss Montgomery’s courage is unmatched!]</p>
+                <!-- AdSense Ad Unit: banner7 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner7"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>[Fools should verify their facts before spewing nonsense.]</p>
+                <p>[Boss, I stand with you! Can I get priority on the next batch?]</p>
+                <p>Strange replies peppered the comments, but they were quickly buried under the avalanche of new messages every minute.</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2411,25 +2422,14 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>[Fools should verify their facts before spewing nonsense.]</p>
-                <p>[Boss, I stand with you! Can I get priority on the next batch?]</p>
-                <p>Strange replies peppered the comments, but they were quickly buried under the avalanche of new messages every minute.</p>
+                <p>Sophia nearly hurled her phone across the room. She had been certain Isabella was drowning in shame. Yet here she was, bold and unbroken. That infuriating spirit remained intact. Unacceptable. She needed a plan to crush her completely, utterly.</p>
+                <p>Her phone rang. “Sophia! Incredible news!” Lillian’s excited voice burst through. “A confidential source confirms Diamond Prince arrived in Westchester today. He’s staying at The Ritz-Carlton. Presidential Suite, room 8801.”</p>
+                <p>“Are you certain?” Sophia demanded, skepticism warring with hope.</p>
                 <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner5"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Sophia nearly hurled her phone across the room. She had been certain Isabella was drowning in shame. Yet here she was, bold and unbroken. That infuriating spirit remained intact. Unacceptable. She needed a plan to crush her completely, utterly.</p>
-                <p>Her phone rang. “Sophia! Incredible news!” Lillian’s excited voice burst through. “A confidential source confirms Diamond Prince arrived in Westchester today. He’s staying at The Ritz-Carlton. Presidential Suite, room 8801.”</p>
-                <p>“Are you certain?” Sophia demanded, skepticism warring with hope.</p>
-                <!-- AdSense Ad Unit: banner6 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2440,11 +2440,11 @@
                 <p>At The Ritz-Carlton, Presidential Suite 8801…</p>
                 <p>A strikingly handsome man, every bit the prince, watched the evening news. His doorbell chimed.</p>
                 <p>A soft, feminine voice filtered through the door. “Good evening, Sir. Your room service has arrived.”</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5009,27 +5009,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

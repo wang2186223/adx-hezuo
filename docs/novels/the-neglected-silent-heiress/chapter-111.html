@@ -2396,11 +2396,11 @@
                 <p>Olivia held his gaze for a long moment before turning wordlessly to leave.</p>
                 <p>Evelyn felt some tension ease from her shoulders. She shot Beatrice a venomous look. &#34;Why am I being blamed for this? Beatrice has been taunting me relentlessly with her snide remarks. I wonder who&#39;s putting her up to it. Liam, why do you tolerate such behavior? Someone like her should be dismissed immediately. And as for Olivia... I dread to think what might happen if she remains in this house. Perhaps—&#34;</p>
                 <p>Evelyn looked at Liam expectantly.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2435,11 +2435,11 @@
                 <p>Olivia nodded, then gestured that she preferred to be called by her first name rather than &#34;Madam.&#34;</p>
                 <p>Beatrice hesitated before speaking carefully. &#34;I don&#39;t believe Mr. Blackwood is as indifferent as he appears. For the record, I wasn&#39;t hired by Henry Winslow. If Mr. Blackwood truly cared for Evelyn, he would have dismissed me already. I believe he still respects your feelings. In his eyes, you remain his lawful wife, while Evelyn is merely an intruder. Perhaps when he tires of her, things will return to normal.&#34;</p>
                 <p>Olivia&#39;s expression darkened as she absorbed these words. Though unable to voice her thoughts, her gestures conveyed her resolve clearly. She signed emphatically that she refused to be merely one woman among many competing for Liam&#39;s attention. In a world that claimed to value equality, she couldn&#39;t comprehend why she, as his wife, should have to fight for his affection. The injustice of it rankled.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2448,11 +2448,11 @@
                 <p>Olivia managed a small smile. This was indeed good news. Yet the thought of Evelyn and Liam attending together soured her mood. Still, she felt powerless to change the situation. She&#39;d done nothing wrong and refused to hide. Avoiding them would only give Evelyn ammunition for rumors.</p>
                 <p>&#34;Olivia!&#34; A sharp feminine voice cut through the air.</p>
                 <p>Turning, Olivia saw Evelyn approaching, her elegant stride belying the determination in her eyes.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5145,27 +5145,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

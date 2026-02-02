@@ -2384,11 +2384,11 @@
                 <p>An attention-seeking influencer had leaked the guest list for Westfield University&#39;s anniversary, specifically highlighting Olivia&#39;s name and emphasizing her speech impairment.</p>
                 <p>The inflammatory caption read: &#34;A mute giving a lecture? Has Westfield University lost its mind?&#34;</p>
                 <p>Though Olivia had braced for criticism, the speed and cruelty of the online attack still shocked her.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2398,11 +2398,11 @@
                 <p>But soon, a flood of suspicious accounts drowned out the reasonable comments.</p>
                 <p>These trolls viciously attacked Olivia, claiming she&#39;d only achieved success through her husband and family connections. They accused her of using Liam for fame and secretly leveraging the Blackwood name. Far from the understanding wife aware of Liam&#39;s affairs, they painted Olivia as a cunning manipulator whose public image was just an act.</p>
                 <p>After his morning executive meeting, Liam learned about the situation from his team. &#34;Why wasn&#39;t this handled immediately?&#34; he demanded, his expression darkening as he grasped the severity of the smear campaign.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2426,11 +2426,11 @@
                 <p>Olivia resolved to apologize to Gregory immediately - this mess had started because of her after all.</p>
                 <p>As Olivia entered, Marcus and several concerned coworkers immediately approached. &#34;Olivia, are you okay?&#34;</p>
                 <p>&#34;We all saw what happened online, but don&#39;t let it get to you.&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2456,11 +2456,11 @@
                 <p>Olivia approached Nathaniel with a reassuring smile, gesturing her appreciation for how quickly he&#39;d contained the situation after the blogger&#39;s attack.</p>
                 <p>&#34;What?&#34; Nathaniel looked genuinely confused. &#34;But I didn&#39;t handle it. I thought your studio took care of everything!&#34;</p>
                 <p>Olivia&#39;s eyes widened in surprise - if not Nathaniel, then who? Resolving the crisis so swiftly required serious influence. Could Liam have been involved?</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5153,27 +5153,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

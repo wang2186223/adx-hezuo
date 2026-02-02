@@ -2382,11 +2382,11 @@
                 <p>The door exploded inward with a violent kick, making all three jump.</p>
                 <p>Winifred scrambled to her feet when Evelyn stormed in. &#34;Hey! You can&#39;t just—&#34;</p>
                 <p>The sharp crack of Evelyn&#39;s palm meeting Winifred&#39;s cheek echoed through the room. The other two girls gasped as Winifred stumbled back, clutching her face.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2394,18 +2394,6 @@
                 <p>Evelyn grabbed her collar and shoved her against the wall. &#34;Where. Is. Rachel.&#34;</p>
                 <p>Winifred&#39;s eyes flashed with defiance despite the stinging cheek. &#34;After attacking me, you think I&#39;ll tell you anything? You&#39;ll regret this!&#34;</p>
                 <p>She lunged forward, nails aimed at Evelyn&#39;s face.</p>
-                <!-- AdSense Ad Unit: banner4 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Evelyn caught her wrist mid-air and delivered another stinging slap that sent Winifred crashing to the floor.</p>
-                <p>Tears welled in Winifred&#39;s eyes as she cradled her swollen face. &#34;You—&#34;</p>
-                <p>Evelyn snatched a steel fork from the nearby table.</p>
-                <p>The other girls scrambled backward, but Evelyn only had eyes for Winifred. She hauled the sobbing girl up by her shirt collar, pressed her against the bed frame, and held the fork&#39;s sharp tines against her jugular.</p>
                 <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2414,15 +2402,27 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Evelyn caught her wrist mid-air and delivered another stinging slap that sent Winifred crashing to the floor.</p>
+                <p>Tears welled in Winifred&#39;s eyes as she cradled her swollen face. &#34;You—&#34;</p>
+                <p>Evelyn snatched a steel fork from the nearby table.</p>
+                <p>The other girls scrambled backward, but Evelyn only had eyes for Winifred. She hauled the sobbing girl up by her shirt collar, pressed her against the bed frame, and held the fork&#39;s sharp tines against her jugular.</p>
+                <!-- AdSense Ad Unit: banner3 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner3"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;Having fun tormenting people?&#34; Evelyn&#39;s voice was deadly calm.</p>
                 <p>Winifred&#39;s breath came in panicked gasps. &#34;E-Evelyn Vanderbilt, if you dare—&#34;</p>
                 <p>Evelyn&#39;s cold laugh cut her off. &#34;Try me. I&#39;ve never backed down from anything. Today&#39;s your lucky day - you&#39;ve managed to piss me off at just the right time.&#34;</p>
                 <p>She twisted Winifred&#39;s wrist painfully against the mattress. &#34;Let&#39;s see how brave you feel now.&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2444,11 +2444,11 @@
                 <p>Evelyn found Rachel locked in a bathroom stall, her weak knocks barely audible. The moment Evelyn removed the jammed broom, Rachel tumbled out, shivering violently in soaked clothes.</p>
                 <p>&#34;I&#39;m so sorry, Rachel.&#34; Evelyn caught her before she hit the floor.</p>
                 <p>Rachel burst into tears at the sight of her rescuer. Evelyn quickly helped her back to their room, where Rachel changed into dry clothes and huddled under blankets, still trembling from hours of cold and hunger.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5021,27 +5021,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

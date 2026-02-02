@@ -2379,6 +2379,15 @@
                 <p>Miranda recognized Olivia immediately and instinctively retreated behind Victoria, as if seeking protection. Victoria merely arched a perfectly sculpted eyebrow and struck a pose that radiated superiority, her protective stance toward Miranda speaking volumes about their alliance.</p>
                 <p>A bright-eyed college student approached Olivia with an enthusiastic greeting. &#34;You must be the brilliant businesswoman everyone&#39;s buzzing about online. The media doesn&#39;t do your beauty justice. I&#39;ve been following your negotiations with Sinclair Enterprises - your strategic moves are absolutely masterful.&#34;</p>
                 <p>The young woman had an infectious energy, with rosy cheeks and sparkling eyes that held a childlike wonder. When she smiled, deep dimples appeared, instantly brightening the atmosphere around her.</p>
+                <!-- AdSense Ad Unit: banner1 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner1"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Flattered by the genuine compliment, Olivia returned the smile. &#34;The media tends to exaggerate. It&#39;s lovely to meet you in person.&#34;</p>
                 <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2387,7 +2396,16 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Flattered by the genuine compliment, Olivia returned the smile. &#34;The media tends to exaggerate. It&#39;s lovely to meet you in person.&#34;</p>
+                <p>The girl&#39;s eyes widened in surprise. &#34;I didn&#39;t expect you to be so down-to-earth! I&#39;m Charlotte Bennett, a sophomore at Crestwood University. I&#39;m here for the incredible learning opportunity. Everyone here is so accomplished - you&#39;re barely older than me, yet you&#39;ve achieved so much!&#34;</p>
+                <!-- AdSense Ad Unit: banner7 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner7"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Charlotte&#39;s enthusiasm bubbled over as she continued showering the group with compliments. Olivia chuckled. &#34;I&#39;m actually quite a bit older than you look. I have a daughter.&#34;</p>
                 <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2396,30 +2414,12 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>The girl&#39;s eyes widened in surprise. &#34;I didn&#39;t expect you to be so down-to-earth! I&#39;m Charlotte Bennett, a sophomore at Crestwood University. I&#39;m here for the incredible learning opportunity. Everyone here is so accomplished - you&#39;re barely older than me, yet you&#39;ve achieved so much!&#34;</p>
+                <p>&#34;Isabelle, come say hello to everyone.&#34; Isabelle approached with a radiant smile, greeting each person with perfect manners.</p>
                 <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner4"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Charlotte&#39;s enthusiasm bubbled over as she continued showering the group with compliments. Olivia chuckled. &#34;I&#39;m actually quite a bit older than you look. I have a daughter.&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>&#34;Isabelle, come say hello to everyone.&#34; Isabelle approached with a radiant smile, greeting each person with perfect manners.</p>
-                <!-- AdSense Ad Unit: banner7 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5124,27 +5124,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

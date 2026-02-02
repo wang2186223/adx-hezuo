@@ -2383,11 +2383,11 @@
                 <p>When Olivia finished her explanation, the room fell into profound silence. The other apprentices suddenly realized how much they&#39;d struggled despite having the same reference photo. Their progress seemed embarrassingly slow compared to Olivia&#39;s effortless work. What had been a grueling test for them appeared as simple as child&#39;s play to her.</p>
                 <p>&#34;Now you&#39;ve all witnessed her skill firsthand!&#34; Gregory typed eagerly on his phone before displaying the message to the group, his pride evident.</p>
                 <p>Beaming, Gregory continued through his text-to-speech function, &#34;The puzzles she solved as a child were far more complex than this! I told you she was extraordinary. You simply wouldn&#39;t believe me. Marcus, wasn&#39;t there some wager you mentioned earlier? What say you now?&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2409,11 +2409,11 @@
                 <p>Her station by the second-floor window offered a breathtaking view of flowering cherry blossoms against a crystal blue sky - scenery guaranteed to inspire creativity.</p>
                 <p>Olivia gestured that she might not be able to come daily.</p>
                 <p>&#34;That&#39;s perfectly fine,&#34; Marcus reassured her. &#34;We maintain flexible hours here. Come when there&#39;s work or whenever inspiration strikes.&#34; He added her to the studio&#39;s group chat. &#34;If you need anything at all, just message here. We&#39;re all happy to help.&#34;</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2435,11 +2435,11 @@
                 <p>Concerned that Victoria might cause a scene and inadvertently put Gregory in a difficult position, Olivia rushed downstairs.</p>
                 <p>There stood Victoria, as haughty and disdainful as ever, draped in an ostentatious scarlet dress. She clutched a paper bag while surveying the studio with palpable contempt.</p>
                 <p>Spotting Olivia descending the stairs, Victoria&#39;s face twisted into a sneer. &#34;So it is you! Excellent. Fix this for me. I&#39;ll pay half a million.&#34;</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5145,27 +5145,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

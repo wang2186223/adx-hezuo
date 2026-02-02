@@ -2381,11 +2381,11 @@
                 <p>“Hmph. If that’s all, I’ll see you at The Ritz-Carlton. Nine sharp,” Isabella replied.</p>
                 <p>Eleanor had asked Isabella to come to the Montgomery manor so she could tell Victoria she was forgiven. That way, Victoria would never return to those dark places. Hearing Isabella’s agreement pleased Eleanor greatly.</p>
                 <p>“You sisters should always support each other like this,” Eleanor said warmly. “It keeps the gossip at bay.”</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2403,33 +2403,33 @@
                 <p>Her words carried a double meaning no one caught. Though Victoria sensed something odd, she brushed it off. She would stay alert during the ceremony. Isabella wouldn’t dare try anything obvious.</p>
                 <p>Besides, even if Isabella didn’t help her, she could seize opportunities on her own. The Blackwood men were drawn to Isabella—perhaps they could be drawn to her instead…</p>
                 <p>Each of them was lost in their own schemes.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>The wedding day arrived amid great anticipation. The Ritz-Carlton was packed with guests even early in the morning. Security teams maintained order while reporters weaved through the crowd, filming and live-streaming.</p>
                 <p>The hotel lobby was transformed into an enchanted forest dreamscape. Flower arches lined the path. Lush greenery and white jasmine blooms created an ethereal, breathtaking scene.</p>
                 <p>It wasn’t Isabella’s preferred style—it was Victoria’s favorite.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Victoria had imagined her own wedding to Alexander countless times. It always included jasmine flowers, a towering champagne fountain, an exquisite wedding cake…</p>
                 <p>She never dreamed she’d see it come to life at Isabella and Alexander’s wedding. When she arrived with Eleanor and the others at the hotel entrance, she was stunned. A red carpet ran beneath nine jasmine arches stretching all the way to the doors. The setting was opulent and gorgeous.</p>
                 <p>Envy clawed at her, threatening to drive her mad. Paparazzi swarmed around them, hurling questions.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2441,11 +2441,11 @@
                 <p>“Did you expect to gain seventy million followers in just a month?”</p>
                 <p>“Your fans have nicknamed you the ‘Country Angel.’ What are your thoughts?”</p>
                 <p>All attention was on Victoria, as if she were the star of the show.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5010,27 +5010,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

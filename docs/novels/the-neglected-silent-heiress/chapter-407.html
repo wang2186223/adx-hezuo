@@ -2380,11 +2380,11 @@
                 <p>He turned to Sebastian with determination. &#34;Start the car. We&#39;re following her.&#34;</p>
                 <p>Olivia had no idea Liam would trail her all the way home. Once inside, she busied herself in the kitchen, preparing dinner for Isabelle. As she carried the dishes out, a servant approached, murmuring about unexpected guests.</p>
                 <p>Confused, Olivia stepped into the living room—only to freeze at the sight of a familiar figure lounging on her sofa. Annoyance flared instantly, her voice icy. &#34;What are you doing here? Get out.&#34;</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2400,21 +2400,21 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Emotion tightened Liam&#39;s throat, but he refused to let go.</p>
                 <p>&#34;You&#39;ve got it wrong. I&#39;m not just here for you. I&#39;m here to protect you and Isabelle. I know you don’t care about gossip, but she’s just a kid. If rumors start spreading in high society, what do you think will happen to her? Do you really want to be forced to live abroad forever?&#34;</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Olivia&#39;s gaze flicked to Isabelle, her chest tightening. After a beat, her tone softened slightly. &#34;I understand what you&#39;re saying. But that doesn’t change the fact that I don’t want my life disrupted. You know what I mean.&#34;</p>
                 <p>Liam didn’t argue. Instead, he released her wrist and walked over to Isabelle, crouching to her level. His voice was warm, and soon, Isabelle’s laughter filled the room. Watching them bond so effortlessly twisted something inside Olivia.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5132,27 +5132,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

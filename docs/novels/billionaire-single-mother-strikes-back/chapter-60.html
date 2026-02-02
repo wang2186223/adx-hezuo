@@ -2381,11 +2381,11 @@
                 <p>“Her social media is still filled with posts about you, despite her massive following. She might be trying to get your attention.</p>
                 <p>“If we restart our original plan—making her obsessed with you again—she’ll likely transfer her shares and the diamond mine to you!”</p>
                 <p>Alexander’s gaze sharpened. Victoria was right. If he could marry Isabella, the shares and the mine would become his. Then, working with Victoria, they could secure the remaining family shares and take over the entire Montgomery empire!</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2403,33 +2403,33 @@
                 <p>Even if he did, Victoria had contingency plans to eliminate Isabella. She would ensure everything unfolded as she designed.</p>
                 <p>She continued, “Once you marry Isabella, you’ll control her diamond mine plus the family shares we acquire. You’ll become the wealthiest man in Westchester. I’d do anything for your success, even endure this separation.” She nestled into his arms.</p>
                 <p>A warm feeling spread through Alexander. He felt fortunate to have such a supportive fiancée.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>“Don’t worry, Victoria. I won’t let you down,” he vowed sincerely.</p>
                 <p>Night had fallen. Isabella had spent hours conversing with her grandfather but still couldn’t uncover what he was hiding. She finally left the manor after he fell asleep. As she approached her motorcycle, a sleek black Rolls-Royce pulled up beside her.</p>
                 <p>The window lowered, revealing Alexander in the backseat. He wore a tailored white suit, looking every bit the distinguished gentleman.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>“Get in. I’ll take you home,” he said, his tone condescending, as if bestowing a favor.</p>
                 <p>Isabella stared back coldly. “You? Drive me? You overestimate your importance.” She rolled her eyes and swung her leg over the bike.</p>
                 <p>Alexander was taken aback. Since when did the girl who once followed him everywhere speak to him with such contempt? It felt like she was looking down on him. Furious, he remembered the plan.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2438,11 +2438,11 @@
                 <p>Seeing her prepare to leave, he rushed in front of the motorcycle. “Isabella, can’t we have a conversation? I know you’re still angry about what happened five years ago, but it’s been so long. Why hold a grudge? Can’t we discuss this calmly? Why be so petty?”</p>
                 <p>“Me? Petty? Ha!” She laughed mockingly. “You’re right, I am petty. I crush anyone who crosses me.” With that, she revved the engine and sped directly toward him.</p>
                 <p>The motorcycle surged forward like a predator, heading straight for Alexander.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5007,27 +5007,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

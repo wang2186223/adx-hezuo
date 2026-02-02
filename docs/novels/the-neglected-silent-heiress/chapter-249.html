@@ -2379,38 +2379,38 @@
                 <p>&#34;Olivia never seemed to have any family connections. She had no relatives in Crestwood, which is probably why the Blackwood family took her in. Her parents and paternal grandparents are gone, but I’ve never heard anything about her maternal grandparents. Honestly, she bears a resemblance to the Kensington children. Don’t you think?&#34; Sebastian Montgomery remarked pointedly, catching Liam Blackwood’s subtle cue.</p>
                 <p>Liam’s intention was clear. Whether Olivia truly belonged to the Kensington lineage or not, they needed to fuel the rumors to make it believable. Besides, it was Alistair who had recognized her first. If she turned out not to be his granddaughter, the blame wouldn’t fall on her.</p>
                 <p>More importantly, the Kensingtons held a status far above the Whitmores and Blackwoods. With Alistair’s backing, no one would dare mistreat Olivia again.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Wrapped in Alistair’s embrace, Olivia felt an odd sense of familiarity. She could tell he was utterly convinced she was his granddaughter. Maybe it would be easier to just accept it.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>But Olivia couldn’t bring herself to take someone else’s place. Gently, she patted Alistair’s back in comfort before pulling away and signing to him. Her gestures conveyed, &#34;Sir, we’ve met before, and perhaps it’s fate. You think I look familiar, but you might be mistaken.&#34;</p>
+                <!-- AdSense Ad Unit: banner5 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner5"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Olivia had grown up with her parents. Stories about her maternal grandfather’s family were absent from her childhood. All she knew was that they had disapproved of her mother’s marriage to her father, leading to unforgivable actions. Because of that, her parents left with her and never looked back.</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner8"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Olivia had grown up with her parents. Stories about her maternal grandfather’s family were absent from her childhood. All she knew was that they had disapproved of her mother’s marriage to her father, leading to unforgivable actions. Because of that, her parents left with her and never looked back.</p>
-                <!-- AdSense Ad Unit: banner3 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2428,11 +2428,11 @@
                 <p>&#34;You are Vivienne’s daughter. I’m certain of it. You look just like she did at your age. How could I, your grandfather, be wrong? After all these years, Vivienne still refuses to come home. She must despise me and the Kensington name.&#34;</p>
                 <p>His voice trembled. &#34;Child, my memory may fail me these days, but seeing you brings back a sense of familiarity I can’t ignore. I don’t even need a DNA test to know you’re a Kensington. Please, stay. I want to make amends. I lost Vivienne. I can’t bear the thought of losing you too.&#34;</p>
                 <p>His words hung heavy in the air, leaving Olivia torn between the past she knew and the family she never expected to find.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5125,27 +5125,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

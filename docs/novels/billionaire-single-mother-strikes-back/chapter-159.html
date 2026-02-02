@@ -2381,17 +2381,6 @@
                 <p>She let her most loyal agent, Isadora, take the full blame.</p>
                 <p>The thought made his skin crawl. His image of the sweet, gentle Victoria was shattered forever.</p>
                 <p>The Montgomery family butler approached him. “Mr. Whitmore,” he said politely. “Would you care to stay for lunch?”</p>
-                <!-- AdSense Ad Unit: banner3 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Alexander glanced toward the dining hall. His eyes immediately found Isabella seated beside William.</p>
-                <p>Her outfit wasn’t particularly flashy today. Yet her powerful, striking presence was impossible to ignore.</p>
-                <p>For the first time, he looked at her without disgust. He almost found her… compelling.</p>
                 <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2400,14 +2389,25 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>He adjusted his suit jacket and walked over.</p>
-                <p>A maid promptly set a place for him. Eleanor noticed him and spoke in a concerned tone. “You’re here, Alexander? I assume you’ve heard what happened?”</p>
-                <p>Alexander nodded as he took his seat. The family members exchanged uneasy glances.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <p>Alexander glanced toward the dining hall. His eyes immediately found Isabella seated beside William.</p>
+                <p>Her outfit wasn’t particularly flashy today. Yet her powerful, striking presence was impossible to ignore.</p>
+                <p>For the first time, he looked at her without disgust. He almost found her… compelling.</p>
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner2"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>He adjusted his suit jacket and walked over.</p>
+                <p>A maid promptly set a place for him. Eleanor noticed him and spoke in a concerned tone. “You’re here, Alexander? I assume you’ve heard what happened?”</p>
+                <p>Alexander nodded as he took his seat. The family members exchanged uneasy glances.</p>
+                <!-- AdSense Ad Unit: banner3 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2441,11 +2441,11 @@
                 <p>The atmosphere at the table shifted immediately. Even William frowned. “A sister? Alexander, are you joking?”</p>
                 <p>After what happened to Isabella, Alexander had spent most of his time with Victoria. He had proposed to her multiple times. And now he called her a ‘little sister’?</p>
                 <p>Isabella leaned back in her chair, looking thoroughly amused. ‘This idiot is about to stir the pot again. Where’s my popcorn?’</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5010,27 +5010,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

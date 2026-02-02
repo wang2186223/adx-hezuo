@@ -2380,16 +2380,6 @@
                 <p>But Isabelle had inherited her mother&#39;s fiery spirit. Despite the pain, she glared back defiantly. &#34;You broke it. You clean it.&#34;</p>
                 <p>Richard&#39;s face darkened with rage. &#34;You insolent little brat!&#34;</p>
                 <p>The whiskey fueling his temper, Richard swung with brutal force. His palm connected with Isabelle&#39;s face in a sickening crack.</p>
-                <!-- AdSense Ad Unit: banner1 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>The impact sent her sprawling onto the shattered glass. Shards embedded in her palms and knees as blood bloomed across her clothes.</p>
-                <p>Yet Richard felt only vicious satisfaction watching her suffer. To his drunken mind, Isabelle wasn&#39;t just a child - she was the living image of Olivia Sinclair, the woman he despised.</p>
                 <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2398,23 +2388,33 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>For years, Richard had endured humiliation within the Winslow family. Powerless. Disrespected. But now, with this trembling girl before him, he finally felt control.</p>
-                <p>The woman and boy huddled in the corner watched with familiar terror. They knew Richard&#39;s drunken rages well - usually directed at them. Tonight, Isabelle had become his unfortunate target.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <p>The impact sent her sprawling onto the shattered glass. Shards embedded in her palms and knees as blood bloomed across her clothes.</p>
+                <p>Yet Richard felt only vicious satisfaction watching her suffer. To his drunken mind, Isabelle wasn&#39;t just a child - she was the living image of Olivia Sinclair, the woman he despised.</p>
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner8"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>For years, Richard had endured humiliation within the Winslow family. Powerless. Disrespected. But now, with this trembling girl before him, he finally felt control.</p>
+                <p>The woman and boy huddled in the corner watched with familiar terror. They knew Richard&#39;s drunken rages well - usually directed at them. Tonight, Isabelle had become his unfortunate target.</p>
+                <!-- AdSense Ad Unit: banner2 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>The child&#39;s whimpers of pain only enraged Richard further. &#34;Shut up!&#34; he roared, striking her again. &#34;Stop your crying! You look just like that whore Olivia - you deserve this!&#34;</p>
                 <p>&#34;Enough!&#34; A voice like frozen steel cut through the chaos.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2430,11 +2430,11 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Richard&#39;s legs gave way. He collapsed to the floor, body convulsing with terror. &#34;No... no... you&#39;re supposed to be dead!&#34; he babbled incoherently.</p>
                 <p>The nightmare had returned.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5127,27 +5127,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

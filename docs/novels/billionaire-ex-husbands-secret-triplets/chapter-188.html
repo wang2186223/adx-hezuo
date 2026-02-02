@@ -2382,11 +2382,11 @@
                 <p>But Nathan&#39;s next words extinguished that light, leaving only terror in its wake.</p>
                 <p>&#34;Break his arms and legs. Make it known that anyone who dares help him will face the same fate.&#34;</p>
                 <p>Nathan rose and strode away without a backward glance.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2394,11 +2394,11 @@
                 <p>Much later, Garrett arrived with his crew to assess the damage.</p>
                 <p>Taking in Nolan&#39;s battered state, Garrett shuddered. &#34;Look what happened to Nolan. Learn who not to cross, or you&#39;ll end up just like him.&#34; He warned his men sternly.</p>
                 <p>&#34;Yes, boss!&#34; They chorused, none willing to suffer a similar destiny.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2406,18 +2406,6 @@
                 <p>Given the choice, they&#39;d rather serve prison time with their bodies intact.</p>
                 <p>After several days of treatment, Evelyn&#39;s condition improved. The events of that day remained hazy, though she vaguely recalled harming someone.</p>
                 <p>When the doctor entered for his rounds, he asked, &#34;Ms. Vanderbilt, how are you feeling today?&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>&#34;Thank you. Much better now.&#34;</p>
-                <p>Seeing her coherent response, the doctor relaxed. &#34;You&#39;re fortunate the dosage wasn&#39;t higher. Otherwise, hospitalization would&#39;ve been the least of your concerns.&#34;</p>
-                <p>Rehabilitation would have been necessary - a far worse ordeal than her recent suffering.</p>
-                <p>Evelyn lifted her gaze. &#34;Doctor, may I know what was injected?&#34;</p>
                 <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2426,15 +2414,27 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>&#34;It&#39;s a hallucinogen called Dupin. Designed for medical research, it induces powerful visions.&#34;</p>
-                <p>&#34;Initial bodily rejection varies. Mild cases experience manageable hallucinations. But severe reactions, like yours, cause complete loss of consciousness.&#34;</p>
-                <p>&#34;It&#39;s highly addictive with difficult recovery,&#34; the doctor explained.</p>
-                <p>Evelyn pressed her lips together.</p>
+                <p>&#34;Thank you. Much better now.&#34;</p>
+                <p>Seeing her coherent response, the doctor relaxed. &#34;You&#39;re fortunate the dosage wasn&#39;t higher. Otherwise, hospitalization would&#39;ve been the least of your concerns.&#34;</p>
+                <p>Rehabilitation would have been necessary - a far worse ordeal than her recent suffering.</p>
+                <p>Evelyn lifted her gaze. &#34;Doctor, may I know what was injected?&#34;</p>
                 <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner5"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>&#34;It&#39;s a hallucinogen called Dupin. Designed for medical research, it induces powerful visions.&#34;</p>
+                <p>&#34;Initial bodily rejection varies. Mild cases experience manageable hallucinations. But severe reactions, like yours, cause complete loss of consciousness.&#34;</p>
+                <p>&#34;It&#39;s highly addictive with difficult recovery,&#34; the doctor explained.</p>
+                <p>Evelyn pressed her lips together.</p>
+                <!-- AdSense Ad Unit: banner8 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5020,27 +5020,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

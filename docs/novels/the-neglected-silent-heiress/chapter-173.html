@@ -2384,11 +2384,11 @@
                 <p>Clearing her throat, Isabella quickly changed the subject. &#34;I&#39;ll handle all the preparations. Since you&#39;re bringing me as your plus-one, you must promise to call me. Don&#39;t you dare forget!&#34;</p>
                 <p>Olivia nodded firmly in agreement.</p>
                 <p>The day before Evelyn&#39;s birthday gala, Olivia returned to the Blackwood estate.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2412,11 +2412,11 @@
                 <p>Cruel laughter filled the room. Olivia remained unshaken, though her fists clenched tighter. She retrieved her phone and typed: &#34;If my presence bothers you so much, take it up with Liam. One word from him, and I&#39;ll leave immediately.&#34;</p>
                 <p>Evelyn&#39;s smirk faltered. &#34;Liam only keeps you around out of pity. You&#39;re exploiting his kindness.&#34;</p>
                 <p>Olivia arched a challenging brow and typed: &#34;The world&#39;s full of pitiable souls. Why should his compassion be reserved for me alone?&#34;</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2426,11 +2426,11 @@
                 <p>&#34;Is that so?&#34; Liam&#39;s piercing gaze shifted to Olivia.</p>
                 <p>Olivia averted her eyes, her expression carefully blank as she stared into the distance.</p>
                 <p>A pang of sorrow struck Liam. This was how she always was with him - more distant than even during her arguments with Evelyn.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2440,11 +2440,11 @@
                 <p>Catherine and Richard avoided his gaze. Richard cleared his throat awkwardly. &#34;This is your family matter, Liam. We won&#39;t interfere.&#34;</p>
                 <p>Margaret&#39;s face hardened. &#34;You should have sent Olivia packing when the divorce was finalized. Bringing outsiders into our home brings bad luck. Since when did you become so soft-hearted?&#34;</p>
                 <p>Ignoring Margaret&#39;s barbed comments, Liam turned to Evelyn with a smile that didn&#39;t reach his eyes. &#34;If Olivia troubles you so, the solution is simple. Sebastian, confine her. Ensure she doesn&#39;t leave the estate for several days.&#34;</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5155,27 +5155,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

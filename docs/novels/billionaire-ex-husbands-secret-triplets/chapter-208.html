@@ -2382,18 +2382,6 @@
                 <p>Sophia met his gaze and scoffed. &#34;What? Going to blame me too? Mrs. Langley just called my godson an uneducated orphan with no mother to raise him. She even threatened to kick him out of Bassburgh. So what if I hit her?&#34;</p>
                 <p>She jabbed a finger at Mrs. Langley. &#34;You’d better apologize first because this kid’s parents aren’t people your family can mess with!&#34;</p>
                 <p>Mrs. Langley stiffened.</p>
-                <!-- AdSense Ad Unit: banner8 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>She dares say that in front of Mr. Laurent? Let’s see how far she gets.</p>
-                <p>&#34;You actually have the nerve—&#34;</p>
-                <p>&#34;Mrs. Langley.&#34; Lucas’s voice was icy. &#34;If you judge people by their status, you can’t even touch her—she’s backed by the Hills.&#34;</p>
-                <p>Mrs. Langley’s face paled.</p>
                 <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2402,15 +2390,27 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>She dares say that in front of Mr. Laurent? Let’s see how far she gets.</p>
+                <p>&#34;You actually have the nerve—&#34;</p>
+                <p>&#34;Mrs. Langley.&#34; Lucas’s voice was icy. &#34;If you judge people by their status, you can’t even touch her—she’s backed by the Hills.&#34;</p>
+                <p>Mrs. Langley’s face paled.</p>
+                <!-- AdSense Ad Unit: banner1 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner1"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>The… Hills?</p>
                 <p>Sophia smirked and waved a hand. &#34;And the Hills are nothing compared to Caleb’s family. Mrs. Langley, if you try to force him out of school, you’re smashing an egg against a rock.&#34;</p>
                 <p>Mrs. Langley’s mouth snapped shut.</p>
                 <p>The Hills might not be in business, but they’re still a scholarly family. Their eldest daughter married into the Bouchers. Pushing this further would only humiliate me.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2418,11 +2418,11 @@
                 <p>Sophia stepped closer, tilting her head with a mocking grin. &#34;If we’re apologizing, shouldn’t you go first?&#34;</p>
                 <p>Mrs. Langley’s expression twisted. She glanced at Lucas, who remained silent, then dragged her son forward. &#34;We… apologize.&#34;</p>
                 <p>Caleb scratched his cheek lazily. &#34;Fine, I’ll accept it.&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2443,11 +2443,11 @@
                 <p>The words hit Sophia like a slap.</p>
                 <p>&#34;A minor? Are you blind?&#34; she hissed.</p>
                 <p>&#34;You look like a teenager from head to toe.&#34; Lucas eyed her coldly. &#34;Flat-chested and short.&#34;</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5020,27 +5020,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

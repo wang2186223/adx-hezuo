@@ -2384,11 +2384,11 @@
                 <p>&#34;Competitors? We&#39;re simply clients. Are you admitting you can&#39;t handle such a simple job?&#34; A smug young man retorted, flanked by a haughty woman. Both lounged on the sofa, expressions dripping with contempt.</p>
                 <p>Olivia approached, her gaze falling to the open box before them. At first glance, it appeared empty.</p>
                 <p>Upon closer inspection, however, it contained countless glass fragments - as if someone had shattered an object and painstakingly ground it to dust. Clearly, they expected the studio to perform a miracle.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2398,11 +2398,11 @@
                 <p>&#34;We&#39;re offering premium rates. VIP treatment,&#34; the woman added mockingly. &#34;Or is your studio incompetent? Even Gregory can&#39;t handle this?&#34;</p>
                 <p>&#34;There&#39;s nothing Gregory can&#39;t restore! He&#39;s traveling abroad!&#34; Marcus&#39;s frustration mounted.</p>
                 <p>Clearly these two were here to cause trouble, not seek genuine service. Yet turning them away risked damaging the studio&#39;s reputation.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2412,11 +2412,11 @@
                 <p>Olivia met the woman&#39;s gaze and signed her response: she could indeed restore it.</p>
                 <p>&#34;You—&#34; Marcus, understanding Olivia&#39;s sign language, looked astonished. &#34;Are you certain?&#34;</p>
                 <p>Olivia nodded firmly, gesturing she&#39;d happily restore it to protect the studio&#39;s reputation, but would equally refuse if that better served their integrity.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2426,11 +2426,11 @@
                 <p>&#34;Looks like the mute wife from the Blackwood family - just a housewife,&#34; the woman sneered, recognizing Olivia with disdain.</p>
                 <p>Marcus frowned at the insult, but Olivia remained composed. She signed for Marcus to translate: &#34;They don&#39;t need to pay VIP rates. Standard fees will suffice. But after restoration, they must promote our services under their company name.&#34;</p>
                 <p>Marcus relayed Olivia&#39;s terms.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2454,11 +2454,11 @@
                 <p>Marcus scoffed. &#34;She says you&#39;re mistaken. This piece is barely two hundred years old.&#34;</p>
                 <p>&#34;Impossible!&#34;</p>
                 <p>In their stunned silence, Marcus added, &#34;Olivia also requests you stay back and refrain from stealing her techniques.&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5151,27 +5151,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

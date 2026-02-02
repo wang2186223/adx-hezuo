@@ -2381,11 +2381,11 @@
                 <p>&#34;My best interest?&#34; Nathan barked a humorless laugh, his voice cracking. &#34;Because of me, she lost our child. His &#39;good intentions&#39; have left me with a debt I can never repay.&#34;</p>
                 <p>The unborn child he&#39;d never known about. The truth that had been hidden from him for years. How was he supposed to face this? To make amends?</p>
                 <p>A violent cough wracked his body, crimson droplets staining his palm.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2403,11 +2403,11 @@
                 <p>Evelyn&#39;s fingers twisted together in her lap. The memories from three years ago played like a relentless film reel behind her eyelids.</p>
                 <p>She didn&#39;t hate Nathan. Not truly. But that single moment had cost her everything - her father, Chloe, their child. That was a price too steep to forgive.</p>
                 <p>As she&#39;d told him, there was no reason for hatred. Nathan had merely been forcing her hand in the divorce.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2425,11 +2425,11 @@
                 <p>The grand hall&#39;s opulence couldn&#39;t mask the tension as Evelyn entered. A sharply dressed Stoslo diplomat rose from the velvet settee, flanked by two stone-faced bodyguards.</p>
                 <p>&#34;Ms. Vanderbilt, I presume?&#34; The man&#39;s smile didn&#39;t reach his eyes. &#34;Sean Patterson, representing His Highness Prince Roger.&#34;</p>
                 <p>Evelyn inclined her head, taking the opposing seat. &#34;Mr. Patterson. To what do I owe this... unexpected visit?&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2439,11 +2439,11 @@
                 <p>The audacity. Attempting to seize the de Arma lands while her grandfather was absent. When Metropolis already controlled the region, this &#34;purchase&#34; was nothing but a thinly veiled power grab.</p>
                 <p>Leaning back, Evelyn adopted an apologetic smile. &#34;The offer is... generous, Mr. Patterson. But I find myself rather... financially secure at present.&#34;</p>
                 <p>&#34;Ms. Vanderbilt,&#34; Sean&#39;s tone turned diplomatic, &#34;Stoslo and Morwich have enjoyed generations of alliance. His Highness wishes to preserve that. Metropolis&#39; interference jeopardizes our mutual interests.&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5016,27 +5016,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

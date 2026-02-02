@@ -2379,15 +2379,6 @@
                 <p>Alexander Montgomery offered a polite nod and a practiced smile. &#34;Forgive my abruptness. My schedule is rather packed today. If we could proceed directly to business matters? Taking a seat would imply I&#39;m staying for pleasantries, which wouldn&#39;t serve either of us well.&#34;</p>
                 <p>Olivia wasn&#39;t surprised by his bluntness. Her research had revealed Alexander came from Montgomery Jewelers, the most prestigious gemstone dynasty in Newport, possibly all of Eldermere. Their family controlled multiple mines and pearl fisheries across three continents.</p>
                 <p>For Sinclair Enterprises&#39; future expansion, Olivia knew securing Alexander&#39;s favor was crucial.</p>
-                <!-- AdSense Ad Unit: banner6 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Despite his refusal to sit, Olivia calmly poured him a cup of coffee. Something about her graceful movements caught Alexander&#39;s attention, his gaze lingering longer than intended.</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2396,12 +2387,21 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>&#34;That aroma is exquisite,&#34; Alexander remarked, genuine appreciation coloring his tone. Olivia gestured invitingly. &#34;Would you care for a taste?&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <p>Despite his refusal to sit, Olivia calmly poured him a cup of coffee. Something about her graceful movements caught Alexander&#39;s attention, his gaze lingering longer than intended.</p>
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner1"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>&#34;That aroma is exquisite,&#34; Alexander remarked, genuine appreciation coloring his tone. Olivia gestured invitingly. &#34;Would you care for a taste?&#34;</p>
+                <!-- AdSense Ad Unit: banner7 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2428,11 +2428,11 @@
                 <p>&#34;Our families have done business before, but Sinclair Enterprises&#39; reputation has taken quite a hit recently. Frankly, most industry insiders are betting on your collapse.&#34;</p>
                 <p>Olivia nodded understandingly. &#34;Your concerns are valid. But please review this first.&#34; She slid a design portfolio across the table.</p>
                 <p>Alexander&#39;s expression shifted from skepticism to genuine admiration as he examined the sketches. &#34;This is remarkable work - lightyears beyond that plagiarism scandal.&#34; A shadow flickered through Olivia&#39;s eyes.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5125,27 +5125,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

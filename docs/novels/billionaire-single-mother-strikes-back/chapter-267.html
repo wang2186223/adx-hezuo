@@ -2381,28 +2381,17 @@
                 <p>&#34;We paid one-point-five billion for her contract termination,&#34; Julian added grimly. &#34;The Celestial Gala contract has a five-billion penalty clause if the artist can&#39;t perform.&#34;</p>
                 <p>Total potential loss: six-point-five billion. Plus incalculable reputational damage.</p>
                 <p>&#34;Understood. I&#39;m on my way.&#34; Isabella ended the call and strode from Violet Villa. She scrolled through news headlines while walking.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>(Top Model Arabella Fontaine Exposed as Mistress!)</p>
                 <p>Several compromising photos accompanied the article.</p>
                 <p>(Arabella signed with SilverPeak seven years ago. She consistently received preferential treatment, better resources, and a carefully crafted public persona. The reason? A longstanding affair with SilverPeak CEO Harrison Winslow! Her contract buyout was orchestrated through their illicit relationship!</p>
-                <!-- AdSense Ad Unit: banner8 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>(Harrison Winslow is a married man. His wife, Genevieve Beaumont, was a beloved actress! Seven years ago, Genevieve won the Golden Eagle Goddess Award for her charming looks and stellar performances. At just twenty-three, she became a national treasure!</p>
-                <p>(Her future seemed limitless. Then, at her career peak, she suddenly retired and vanished from public life.</p>
-                <p>(Rumors suggested she married a billionaire. No one imagined she wed Harrison Winslow!</p>
                 <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2411,25 +2400,36 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>(Genevieve captivated audiences as the girl-next-door in teen dramas. Despite her seven-year absence, no one has ever taken her &#39;Sweetest Goddess&#39; title.)</p>
-                <p>The internet erupted in fury.</p>
-                <p>(How dare Arabella wreck Genevieve&#39;s marriage!)</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <p>(Harrison Winslow is a married man. His wife, Genevieve Beaumont, was a beloved actress! Seven years ago, Genevieve won the Golden Eagle Goddess Award for her charming looks and stellar performances. At just twenty-three, she became a national treasure!</p>
+                <p>(Her future seemed limitless. Then, at her career peak, she suddenly retired and vanished from public life.</p>
+                <p>(Rumors suggested she married a billionaire. No one imagined she wed Harrison Winslow!</p>
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner6"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>(Genevieve captivated audiences as the girl-next-door in teen dramas. Despite her seven-year absence, no one has ever taken her &#39;Sweetest Goddess&#39; title.)</p>
+                <p>The internet erupted in fury.</p>
+                <p>(How dare Arabella wreck Genevieve&#39;s marriage!)</p>
+                <!-- AdSense Ad Unit: banner8 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>(My sweet Genevieve! She left for a quiet life! This is heartbreaking!)</p>
                 <p>(Arabella is disgusting! That gentle, foodie persona was a lie! She&#39;s a homewrecker!)</p>
                 <p>(She should die!)</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5010,27 +5010,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

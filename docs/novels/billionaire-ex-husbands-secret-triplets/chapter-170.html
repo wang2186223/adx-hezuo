@@ -2394,18 +2394,6 @@
                 <p>If she failed this mission, she might as well say goodbye to her military career.</p>
                 <p>At the forest&#39;s edge...</p>
                 <p>Liam darted between the trees, peeking out from behind a massive oak. He knew his grandfather&#39;s security detail was tracking him, so safety wasn&#39;t his primary concern.</p>
-                <!-- AdSense Ad Unit: banner4 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Guilt twisted in his stomach about worrying his father, but this was the only way to test whether his mother truly cared about Nathan!</p>
-                <p>&#34;Liam!&#34;</p>
-                <p>Hearing Nathan&#39;s voice, Liam pressed himself against the rough bark, holding his breath.</p>
-                <p>Nathan had followed suspicious figures heading this direction - he needed to investigate.</p>
                 <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2414,10 +2402,10 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Who were these people?</p>
-                <p>If they meant harm to his son, they&#39;d regret ever being born.</p>
-                <p>Just as Liam prepared to spring his trap, a terrifying sound froze him in place.</p>
-                <p>Slowly turning, his blood ran cold at the sight of a coiled viper mere feet away, its forked tongue flicking the air.</p>
+                <p>Guilt twisted in his stomach about worrying his father, but this was the only way to test whether his mother truly cared about Nathan!</p>
+                <p>&#34;Liam!&#34;</p>
+                <p>Hearing Nathan&#39;s voice, Liam pressed himself against the rough bark, holding his breath.</p>
+                <p>Nathan had followed suspicious figures heading this direction - he needed to investigate.</p>
                 <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2426,15 +2414,27 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Who were these people?</p>
+                <p>If they meant harm to his son, they&#39;d regret ever being born.</p>
+                <p>Just as Liam prepared to spring his trap, a terrifying sound froze him in place.</p>
+                <p>Slowly turning, his blood ran cold at the sight of a coiled viper mere feet away, its forked tongue flicking the air.</p>
+                <!-- AdSense Ad Unit: banner8 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner8"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>He edged backward, but the snake reared up, ready to strike.</p>
                 <p>&#34;Ah!&#34; Liam&#39;s foot caught on a gnarled root as he tried to flee. The world tilted as he fell, his terrified eyes watching the serpent launch toward him.</p>
                 <p>Snatching up a fallen branch, he saw a blur of movement as Nathan threw himself between them. The viper&#39;s fangs sank deep into his forearm.</p>
                 <p>With a snarl, Nathan grabbed the snake and hurled it into the underbrush. Drawing a knife from his boot, he made quick work of the reptile, its death throes stilling within seconds.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2447,11 +2447,11 @@
                 <p>&#34;Mr. Goldmann! Liam!&#34;</p>
                 <p>At the town hospital...</p>
                 <p>When Oliver&#39;s call came through, Evelyn raced to find Liam sitting on a waiting room bench. The boy looked utterly wrecked - clothes torn, face smeared with dirt, his small frame shaking with residual fear.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5024,27 +5024,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

@@ -2381,6 +2381,17 @@
                 <p>Nathaniel’s gaze darkened. Clearly, Benjamin was hiding something.</p>
                 <p>What really happened five years ago? Why wouldn’t he talk?</p>
                 <p>Meanwhile, Oliver pouted angrily. “Daddy, he’s so rude! How dare he call Mommy by her first name?”</p>
+                <!-- AdSense Ad Unit: banner3 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner3"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>“Don’t dwell on it. You must call him Uncle.” Nathaniel composed himself and ruffled Oliver’s hair. Then he reached down and helped Benjamin to his feet.</p>
+                <p>Oliver scoffed. “Uncle?”</p>
+                <p>Goosebumps rose on Benjamin’s skin. ‘Uncle’? The infamous little terror of Westchester was calling him ‘Uncle’? Was this a joke? And why did the kid keep calling Isabella ‘Mommy’? Was he really her son?</p>
                 <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2389,25 +2400,14 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>“Don’t dwell on it. You must call him Uncle.” Nathaniel composed himself and ruffled Oliver’s hair. Then he reached down and helped Benjamin to his feet.</p>
-                <p>Oliver scoffed. “Uncle?”</p>
-                <p>Goosebumps rose on Benjamin’s skin. ‘Uncle’? The infamous little terror of Westchester was calling him ‘Uncle’? Was this a joke? And why did the kid keep calling Isabella ‘Mommy’? Was he really her son?</p>
-                <!-- AdSense Ad Unit: banner7 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>That couldn’t be. The baby Isabella gave birth to five years ago was dead…</p>
                 <p>As Benjamin wrestled with his thoughts, Nathaniel placed Oliver in the backseat. Oliver tried to climb into the front, but Nathaniel stopped him. “Stay in the back. This seat is for Mommy.”</p>
                 <p>“Oh, okay!” Thinking of Isabella, Oliver obediently scooted back and sat beside Benjamin.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5008,27 +5008,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

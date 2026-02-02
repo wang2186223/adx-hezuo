@@ -2379,20 +2379,20 @@
                 <p>Olivia knew true justice wouldn&#39;t come through words, but by stripping away what Victoria cherished most. The door behind Victoria creaked open, revealing Daniel Bennett standing in the doorway. He&#39;d been there all along, his eyes bloodshot, hands trembling with barely contained emotion.</p>
                 <p>A shiver ran down Victoria&#39;s spine as she sensed his presence. With a subtle nod from Olivia, the security personnel released their grip on Victoria. Whirling around, Victoria&#39;s face paled at the sight of Daniel - it was like a physical blow to her chest.</p>
                 <p>&#34;When... when did you get here? How much did you hear?&#34; Victoria&#39;s voice quivered, clinging to a fragile thread of hope.</p>
-                <!-- AdSense Ad Unit: banner7 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>In a frantic attempt to regain control, Victoria pleaded, &#34;Whatever lies Olivia told you, don&#39;t believe them! I&#39;m your wife - the one you should trust. She&#39;s just jealous and wants to destroy what we have. Can&#39;t you see she&#39;s manipulating you? Her intentions are far from pure!&#34;</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner8"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>In a frantic attempt to regain control, Victoria pleaded, &#34;Whatever lies Olivia told you, don&#39;t believe them! I&#39;m your wife - the one you should trust. She&#39;s just jealous and wants to destroy what we have. Can&#39;t you see she&#39;s manipulating you? Her intentions are far from pure!&#34;</p>
+                <!-- AdSense Ad Unit: banner5 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2415,11 +2415,11 @@
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;I&#39;ve stood by your side all these years, Daniel,&#34; Victoria implored emotionally. &#34;I&#39;ve never bowed my head to anyone. I love you so much. What did I really do wrong? I&#39;ll apologize to Olivia. I&#39;ll make amends. From now on, I won&#39;t cause her any trouble. Can&#39;t we just move past this? For your sake, I&#39;m willing to let it all go.&#34;</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5126,27 +5126,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

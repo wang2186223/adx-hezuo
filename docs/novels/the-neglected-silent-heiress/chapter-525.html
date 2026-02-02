@@ -2390,16 +2390,6 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;That poor child doesn&#39;t stand a chance with that mother.&#34;</p>
                 <p>&#34;Notice how Miranda&#39;s the only one brave enough to call out privilege?&#34;</p>
-                <!-- AdSense Ad Unit: banner1 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>&#34;Everyone knows Miranda&#39;s the most authentic person in Hollywood.&#34;</p>
-                <p>The barrage of comments flashed across the massive studio screens. Isabelle&#39;s lower lip trembled as she absorbed the sudden hostility. Though young, she understood enough to know people were being cruel about her mother.</p>
                 <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2408,23 +2398,33 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Charlotte Bennett moved closer, murmuring, &#34;She&#39;s just a little girl. This is completely unnecessary.&#34;</p>
-                <p>Miranda stepped forward with theatrical solemnity. &#34;Children&#39;s words reflect their upbringing. We must hold parents accountable.&#34; Her gaze slid to Olivia, heavy with manufactured concern. &#34;Ms. Sinclair, I say this as someone who cares - filling a child&#39;s head with dreams of fame is irresponsible. There appear to be... concerning gaps in her moral education.&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <p>&#34;Everyone knows Miranda&#39;s the most authentic person in Hollywood.&#34;</p>
+                <p>The barrage of comments flashed across the massive studio screens. Isabelle&#39;s lower lip trembled as she absorbed the sudden hostility. Though young, she understood enough to know people were being cruel about her mother.</p>
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner7"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Charlotte Bennett moved closer, murmuring, &#34;She&#39;s just a little girl. This is completely unnecessary.&#34;</p>
+                <p>Miranda stepped forward with theatrical solemnity. &#34;Children&#39;s words reflect their upbringing. We must hold parents accountable.&#34; Her gaze slid to Olivia, heavy with manufactured concern. &#34;Ms. Sinclair, I say this as someone who cares - filling a child&#39;s head with dreams of fame is irresponsible. There appear to be... concerning gaps in her moral education.&#34;</p>
+                <!-- AdSense Ad Unit: banner5 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Isabelle&#39;s small hands balled into fists. Without warning, she gave Miranda&#39;s leg a light push. &#34;Don&#39;t talk about Mommy like that!&#34;</p>
                 <p>The contact was barely noticeable, yet Miranda collapsed like she&#39;d been struck by a truck. She landed in an undignified heap, knees scraping the floor as she cried out in exaggerated pain. Crew members rushed forward in a flurry of manufactured concern.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2432,11 +2432,11 @@
                 <p>Cameras zoomed in on Miranda&#39;s &#34;injuries.&#34;</p>
                 <p>Producers whispered frantically into headsets.</p>
                 <p>And through it all, Olivia stood perfectly still, her expression unreadable as a winter lake.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5129,27 +5129,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

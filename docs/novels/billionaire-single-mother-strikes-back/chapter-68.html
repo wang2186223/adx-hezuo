@@ -2390,31 +2390,31 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Before Isabella could respond, Beatrice Holloway arrived.</p>
                 <p>“Ms. Kensington, I had a feeling I’d find you here. Mrs. Montgomery heard you were working so hard on your magazine shoot all afternoon. She was terribly concerned. She prepared ambrosia specially and asked me to bring it to you.”</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>“Mrs. Montgomery dotes on you, Victoria,” Gabriella Martinez commented offhandedly, shooting a meaningful look toward Isabella. She accepted the ornate container to pass to Victoria.</p>
                 <p>“Give it to my sister,” Victoria instructed graciously. “She’s never had ambrosia made by our mother personally.”</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>“A fair point. Our Victoria has had it more times than she can remember. You may have this one.” Gabriella carried the container toward Isabella, her every movement dripping with condescending charity.</p>
                 <p>Isabella shot them a mocking glance. “Ambrosia has little nutritional value. It’s overloaded with refined sugar. Excessive consumption can lead to diabetes. Hypertension. If you desire something sweet and refreshing, yet far healthier, I’d suggest fruit. High in vitamins. Full of natural sugars. Far superior for you.”</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2434,11 +2434,11 @@
                 <p>Just then, another figure entered. “Ms. Kensington, our chairman has prepared a bowl of clam chowder for you. He hopes you will enjoy it.”</p>
                 <p>Isabella’s mood lifted visibly. Clam chowder?</p>
                 <p>“Clams are a type of shellfish,” Victoria interjected, her voice sugary sweet. “High in protein. Very low in carbohydrates and fat. Exceptional nutrient density. Full of beneficial vitamins and minerals. Iron. Vitamin B-12. Omega-3.” She arched a perfectly sculpted brow, a glint of pure mischief in her eyes. “You don’t have an issue with clam chowder, do you, dear sister?”</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5003,27 +5003,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

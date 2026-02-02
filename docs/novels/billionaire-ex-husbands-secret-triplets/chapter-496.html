@@ -2392,6 +2392,17 @@
                 <p>Evelyn took it, scanning the names. Wesley Donovan was among them.</p>
                 <p>&#34;Mr. Donovan is running for president?&#34; Shock rippled through her. Hadn&#39;t he just taken over Ashton Group?</p>
                 <p>Nathan nodded. &#34;Mr. Henry must have mentioned his background. His family has always been in politics. His grandfather was elected president two terms ago but was assassinated within three years.&#34;</p>
+                <!-- AdSense Ad Unit: banner7 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner7"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Evelyn studied him. When it came to work, Nathan slipped effortlessly into his usual composed demeanor—serious, restrained. &#34;Wesley knew his grandfather’s death wasn’t just an accident. That’s why he’s spent years pretending to be nothing more than a reckless businessman.&#34;</p>
+                <p>Nathan glanced up, catching her intense gaze. Deliberately—or perhaps not—he closed the distance between them. &#34;Do you have a question?&#34;</p>
+                <p>His face filled her vision, snapping her back to reality. She averted her eyes, feigning calm. &#34;So that’s why Mr. Donovan is working with you?&#34;</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2400,25 +2411,14 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Evelyn studied him. When it came to work, Nathan slipped effortlessly into his usual composed demeanor—serious, restrained. &#34;Wesley knew his grandfather’s death wasn’t just an accident. That’s why he’s spent years pretending to be nothing more than a reckless businessman.&#34;</p>
-                <p>Nathan glanced up, catching her intense gaze. Deliberately—or perhaps not—he closed the distance between them. &#34;Do you have a question?&#34;</p>
-                <p>His face filled her vision, snapping her back to reality. She averted her eyes, feigning calm. &#34;So that’s why Mr. Donovan is working with you?&#34;</p>
+                <p>Nathan’s lips curved. &#34;Yes.&#34;</p>
+                <p>Evelyn’s ears burned, just like they used to. Despite the years, some things never changed. She had grown sharper, more polished—but the core of her remained.</p>
+                <p>She could feel his eyes on her. Swallowing hard, she forced her voice steady. &#34;Then why involve me? You and Wesley are already collaborating. Neither Reginald nor I could secure a deal with him.&#34;</p>
                 <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner6"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Nathan’s lips curved. &#34;Yes.&#34;</p>
-                <p>Evelyn’s ears burned, just like they used to. Despite the years, some things never changed. She had grown sharper, more polished—but the core of her remained.</p>
-                <p>She could feel his eyes on her. Swallowing hard, she forced her voice steady. &#34;Then why involve me? You and Wesley are already collaborating. Neither Reginald nor I could secure a deal with him.&#34;</p>
-                <!-- AdSense Ad Unit: banner7 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2440,11 +2440,11 @@
                 <p>She gritted her teeth. &#34;Is this why you called me here? To use business as an excuse to manhandle me? Don’t forget—none of your men stand a chance against Sadie. I swear I’ll—&#34;</p>
                 <p>&#34;You won’t.&#34; Nathan nuzzled against her, his breath warm against her ear. &#34;You’d never let her hurt me.&#34;</p>
                 <p>Evelyn pressed her lips together, bitterness twisting her expression. &#34;Still so arrogant, Nathan.&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5017,27 +5017,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

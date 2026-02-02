@@ -2381,6 +2381,17 @@
                 <p>Margaret misread her fixation as profound hurt. “Isabella, you and Alexander grew up together. You know his heart belongs to you. Things were going so well between you lately! Don’t be too upset. Men have their weaknesses. I will watch him closely for you from now on,” she coaxed, gently reaching for Isabella’s hand.</p>
                 <p>“Hmph!” Isabella snatched her hand away with a cold scoff. Without a word, she tore the veil from her head. The necklace followed, clattering to the floor. Then the delicate lace gloves. Every accessory was violently discarded.</p>
                 <p>Each item was flung down with contempt. She stripped herself of everything but the wedding gown itself. Finally, she snarled, “I was ready to abandon my career for him. And this is his repayment? Compromise is not in my vocabulary. Not for Isabella Montgomery. The. Wedding. Is. Off.”</p>
+                <!-- AdSense Ad Unit: banner6 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner6"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Her words were sharp, final. She shoved the engagement ring into Margaret’s palm. Holding her gown, she stormed away. Tears glistened in her eyes, yet her stride was fierce and unyielding. She perfectly embodied the betrayed woman reclaiming her power.</p>
+                <p>Her team watching—Maxwell, Julian, Harrison—silently applauded her masterful performance.</p>
+                <p>The guests in the lobby and the live-stream audience erupted in praise and respect.</p>
                 <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2389,25 +2400,14 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Her words were sharp, final. She shoved the engagement ring into Margaret’s palm. Holding her gown, she stormed away. Tears glistened in her eyes, yet her stride was fierce and unyielding. She perfectly embodied the betrayed woman reclaiming her power.</p>
-                <p>Her team watching—Maxwell, Julian, Harrison—silently applauded her masterful performance.</p>
-                <p>The guests in the lobby and the live-stream audience erupted in praise and respect.</p>
+                <p>“Yes! That’s the way!”</p>
+                <p>“Boss Montgomery is incredible! She made the right choice!”</p>
+                <p>“Alexander is scum! Stay away from trash like him!”</p>
                 <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner1"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>“Yes! That’s the way!”</p>
-                <p>“Boss Montgomery is incredible! She made the right choice!”</p>
-                <p>“Alexander is scum! Stay away from trash like him!”</p>
-                <!-- AdSense Ad Unit: banner8 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2425,22 +2425,22 @@
                 <p>Paparazzi trying to follow were immediately blocked by family bodyguards. Behind the screens, Nathaniel stood, Oliver in his arms. They headed for the private VIP elevator.</p>
                 <p>On the second floor of The Ritz-Carlton…</p>
                 <p>Victoria knelt on the floor, tears streaming relentlessly down her face. Alexander knelt beside her. His father, Victor Whitmore, raged before them, his anger white-hot.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Eleanor, Richard, and Benjamin Kensington were also present. They stared, hearts broken, expressions复杂. Disbelief was etched on their faces.</p>
                 <p>Victoria was their beloved, their favorite. Especially Eleanor. She never imagined Victoria capable of such indecency. During the earlier interview, Eleanor truly believed in Victoria&#39;s kindness and generosity. This revelation was a devastating blow. Eleanor had only wanted to help Victoria recover financially, even hoping to introduce her to Sebastian Blackwood!</p>
                 <p>She never dreamed Victoria would entangle herself with Alexander behind their backs. Let alone sleep with him.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5005,27 +5005,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

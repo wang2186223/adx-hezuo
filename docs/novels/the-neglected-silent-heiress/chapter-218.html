@@ -2385,11 +2385,11 @@
                 <p>Olivia remained impassive despite Miranda&#39;s vitriol. She&#39;d grown accustomed to such treatment. Now she could even retort with icy composure.</p>
                 <p>Her fingers flew across her phone screen. &#34;If I&#39;m such a burden, make your choice. Either finish me or set me free.&#34;</p>
                 <p>As a physician, Miranda knew precisely how to torment Olivia without endangering the unborn child.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2400,11 +2400,11 @@
                 <p>Miranda noted Richard&#39;s hostile demeanor and sensed the day wouldn&#39;t end peacefully.</p>
                 <p>After a tense pause, Miranda seized Olivia&#39;s wrist.</p>
                 <p>Olivia looked up, bewildered.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2415,11 +2415,11 @@
                 <p>Miranda&#39;s heart clenched with anguish. She tightened her grip on Olivia&#39;s arm with bruising force and shoved her forward.</p>
                 <p>&#34;Richard, here&#39;s your problem. Do what you want with her, but leave Victor out of this,&#34; Miranda demanded.</p>
                 <p>Richard turned slowly, a chilling smile twisting his lips. His gaze flickered over Olivia&#39;s pallid face before settling on her barely visible baby bump.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2430,11 +2430,11 @@
                 <p>Olivia, standing frozen, absorbed every word. Her head snapped up in shock as she scanned the room. What did Richard mean about Liam not knowing? And Catherine&#39;s expression suggested she&#39;d known all along.</p>
                 <p>Recalling her hospitalization when Liam discovered her pregnancy, Olivia remembered Catherine&#39;s constant presence.</p>
                 <p>Suddenly, everything clicked with devastating clarity. Liam&#39;s apparent disdain for their child stemmed from believing it wasn&#39;t his. What monstrous lies had these people fed him?</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2445,11 +2445,11 @@
                 <p>Victor remained silent, calculation gleaming in his eyes.</p>
                 <p>Catherine added, &#34;We still have Evelyn, and others if needed. As long as we control Liam&#39;s circle, manipulating him is easy. Olivia&#39;s an unpredictable liability we can&#39;t afford.&#34;</p>
                 <p>Victor&#39;s gaze shifted to Olivia as he suddenly proposed, &#34;Shouldn&#39;t we hear Olivia&#39;s opinion?&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2460,11 +2460,11 @@
                 <p>Clenching her fists, Olivia shook her head in despair, conveying complete resignation.</p>
                 <p>Miranda&#39;s smile widened. &#34;See? She&#39;s given up. Whatever happens won&#39;t be on our conscience.&#34;</p>
                 <p>Richard declared, &#34;This is your final chance. Eliminate Olivia, or our partnership ends.&#34;</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5157,27 +5157,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

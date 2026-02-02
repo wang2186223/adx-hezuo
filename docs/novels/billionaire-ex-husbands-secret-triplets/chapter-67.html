@@ -2381,11 +2381,11 @@
                 <p>His lips quivered as he struggled to speak. &#34;That night… I—I—It was—&#34;</p>
                 <p>The sharp click of the weapon made his bladder nearly give out. &#34;It wasn’t Ms. Vivian! B-But I swear, I don’t know who it was!&#34;</p>
                 <p>He was telling the truth. He had no idea who the woman was. All he remembered was that Nathan Goldmann had entered the room shortly after her.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2403,6 +2403,17 @@
                 <p>Nathan’s gaze darkened. &#34;What happened to the woman?&#34;</p>
                 <p>&#34;I—I don’t know! Ms. Vivian said she was drunk. I checked—she was unconscious. A real beauty. Ms. Vivian brought her there to rest.&#34;</p>
                 <p>He hesitated, then added, &#34;When she left, she handed me the room key. I thought it was strange, but she told me to give it to a real estate tycoon named Victor Baldwin. But… I messed up. I accidentally gave it to your assistant instead. I only realized the next day when I checked the records.&#34;</p>
+                <!-- AdSense Ad Unit: banner7 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner7"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>It hadn’t seemed like a big deal at the time. But then Laura paid him to swear the woman in the room was Vivian, no matter who asked.</p>
+                <p>Nathan straightened. &#34;You can go.&#34;</p>
+                <p>The man blinked, his legs shaking as he stood. &#34;R-Really?&#34;</p>
                 <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2411,25 +2422,14 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>It hadn’t seemed like a big deal at the time. But then Laura paid him to swear the woman in the room was Vivian, no matter who asked.</p>
-                <p>Nathan straightened. &#34;You can go.&#34;</p>
-                <p>The man blinked, his legs shaking as he stood. &#34;R-Really?&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Nathan gave him a chilling look. &#34;Unless you’d rather stay.&#34;</p>
                 <p>The man bolted.</p>
                 <p>Oliver stepped forward. &#34;Mr. Goldmann, should I look into Victor?&#34;</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2440,11 +2440,11 @@
                 <p>&#34;Just like you said,&#34; Gregory mused, &#34;Viana is a sinking ship. No new designs in years, stagnant funds. Even with Nathan Goldmann’s backing, they won’t last.&#34;</p>
                 <p>&#34;They’ll collapse on their own,&#34; Gregory agreed, watching Evelyn.</p>
                 <p>Her eyes gleamed. &#34;Viana’s already finished. But I want to push Soul further ahead.&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5017,27 +5017,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

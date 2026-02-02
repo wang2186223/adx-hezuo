@@ -2380,16 +2380,6 @@
                 <p>Just as she&#39;d anticipated, the space overflowed with Kensington family members. Alistair occupied the central armchair, his clouded gaze flickering with confusion. His mental state had declined sharply in recent years, making recognition of faces nearly impossible.</p>
                 <p>Though Alistair typically ignored everyone&#39;s presence, he always brightened at the sight of Olivia.</p>
                 <p>&#34;Grandfather.&#34; Olivia&#39;s face lit up as she approached him. &#34;Did you take your medicine like the doctor instructed?&#34;</p>
-                <!-- AdSense Ad Unit: banner3 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Alistair nodded absently, patting her hand. &#34;Sweet girl, you seem familiar. Who might you be?&#34;</p>
-                <p>&#34;I&#39;m Olivia, your granddaughter,&#34; she replied, swallowing the familiar lump in her throat. She&#39;d repeated this exchange countless times, yet remained prepared to do so indefinitely.</p>
                 <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2398,13 +2388,23 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Without warning, sharp nails dug into Olivia&#39;s forearm, yanking her backward.</p>
-                <p>She turned to face Gwendolyn.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <p>Alistair nodded absently, patting her hand. &#34;Sweet girl, you seem familiar. Who might you be?&#34;</p>
+                <p>&#34;I&#39;m Olivia, your granddaughter,&#34; she replied, swallowing the familiar lump in her throat. She&#39;d repeated this exchange countless times, yet remained prepared to do so indefinitely.</p>
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner2"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Without warning, sharp nails dug into Olivia&#39;s forearm, yanking her backward.</p>
+                <p>She turned to face Gwendolyn.</p>
+                <!-- AdSense Ad Unit: banner7 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2420,11 +2420,11 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Olivia&#39;s gaze swept across the crowded room. Frederick&#39;s branch of the family had turned out in full force. Margaret sat positioned strategically near Alistair, while Julian&#39;s smug face made Olivia&#39;s skin crawl. She felt little warmth toward most present.</p>
                 <p>A sardonic smile curved Olivia&#39;s lips as she addressed Gwendolyn. &#34;I show respect where it&#39;s earned. Grandfather behaves as an elder should. You, on the other hand, greet me with nothing but barbs and backhanded compliments. Don&#39;t mistake my restraint for weakness.&#34;</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5129,27 +5129,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

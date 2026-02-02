@@ -2382,11 +2382,11 @@
                 <p>Her push had been feather-light!</p>
                 <p>&#34;Zoe, you&#39;re bleeding!&#34; Gregory examined her arm with growing panic.</p>
                 <p>Vivian barely concealed her smirk.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2394,6 +2394,18 @@
                 <p>&#34;I&#39;m fine, Uncle Gregory.&#34; Evelyn rose gracefully despite her disheveled appearance. Her cool gaze locked onto Penelope&#39;s ashen face.</p>
                 <p>&#34;Ms. Santiago, I was merely offering advice. I never expected such a violent reaction. La Pe&#39;s reputation has certainly... diminished in my eyes.&#34;</p>
                 <p>&#34;You planned this!&#34; Penelope snapped out of her daze, finger trembling as she pointed accusingly. &#34;That was barely a nudge! You&#39;re setting me up!&#34;</p>
+                <!-- AdSense Ad Unit: banner4 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner4"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Setting her up?</p>
+                <p>Evelyn couldn&#39;t deny she&#39;d exaggerated the fall. But sometimes, dramatic lessons were the most effective.</p>
+                <p>Security arrived swiftly. Seeing them, Penelope shrieked, &#34;She&#39;s causing a disturbance! Look at this mess! Remove her immediately!&#34;</p>
+                <p>The guards hesitated, recognizing the Santiago heiress. Not wanting to offend powerful guests, they moved toward Evelyn.</p>
                 <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2402,27 +2414,15 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Setting her up?</p>
-                <p>Evelyn couldn&#39;t deny she&#39;d exaggerated the fall. But sometimes, dramatic lessons were the most effective.</p>
-                <p>Security arrived swiftly. Seeing them, Penelope shrieked, &#34;She&#39;s causing a disturbance! Look at this mess! Remove her immediately!&#34;</p>
-                <p>The guards hesitated, recognizing the Santiago heiress. Not wanting to offend powerful guests, they moved toward Evelyn.</p>
+                <p>Vivian nearly vibrated with excitement. Perfect! Public humiliation would destroy Evelyn&#39;s social standing forever.</p>
+                <p>&#34;You have no authority to remove me.&#34; Evelyn produced a black embossed invitation just as the guards approached.</p>
+                <p>They froze mid-step.</p>
+                <p>Penelope&#39;s face twisted. &#34;Impossible! How did you—&#34; Even she couldn&#39;t obtain black-level invitations. Who was this woman?</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner8"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Vivian nearly vibrated with excitement. Perfect! Public humiliation would destroy Evelyn&#39;s social standing forever.</p>
-                <p>&#34;You have no authority to remove me.&#34; Evelyn produced a black embossed invitation just as the guards approached.</p>
-                <p>They froze mid-step.</p>
-                <p>Penelope&#39;s face twisted. &#34;Impossible! How did you—&#34; Even she couldn&#39;t obtain black-level invitations. Who was this woman?</p>
-                <!-- AdSense Ad Unit: banner3 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2442,11 +2442,11 @@
                 <p>Nathan emerged from the crowd like a panther stalking into spotlight. His tailored suit accentuated his powerful frame, amber eyes glinting with dangerous frost. The press of his lips betrayed barely contained fury.</p>
                 <p>&#34;Mr. Goldmann?&#34; Murmurs rippled through the crowd. &#34;Why is he here?&#34;</p>
                 <p>The atmosphere crackled with sudden tension as the billionaire positioned himself protectively beside Evelyn, his presence rewriting the entire power dynamic in the room.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5019,27 +5019,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

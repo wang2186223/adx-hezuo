@@ -2396,11 +2396,11 @@
                 <p>&#34;You don&#39;t owe me anything, Olivia. I owe Henry, and by extension, I owe you. Understood?&#34;</p>
                 <p>She wanted to refuse such generosity, but William&#39;s stubbornness left her no choice but to ept with gratitude.</p>
                 <p>&#34;Excellent. Once I find the perfect property and prepare it, you&#39;ll receive the keys. If trouble arises, you&#39;ll always have a safe haven.&#34;</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2409,11 +2409,11 @@
                 <p>As she prepared to voice her concern, William stood abruptly. &#34;Enough serious talk - let&#39;s go down for dinner.&#34;</p>
                 <p>The moment passed, and Olivia shelved her worries for now.</p>
                 <p>Descending the staircase together, they found the younger family members lined up in formal attire, offering respectful greetings.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2422,11 +2422,11 @@
                 <p>Then, addressing the room with a chuckle: &#34;It&#39;s just a family dinner, not a royal ball! You&#39;re all dressed like we&#39;re hosting the Queen!&#34;</p>
                 <p>&#34;Grandfather, we simply wish to show our respect,&#34; one rtive chimed in, sparking a chorus of agreement.</p>
                 <p>&#34;As long as it pleases you, that&#39;s what matters!&#34;</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2435,11 +2435,11 @@
                 <p>&#34;Grandfather!&#34; Victoria&#39;s sharp voice cut through the pleasantries. &#34;Olivia&#39;s deceiving you! Don&#39;t trust her act!&#34;</p>
                 <p>The room plunged into tense silence. Everyone remembered the last family gathering where Victoria had tried humiliating Olivia, only to be pped by William.</p>
                 <p>Now, with Victoria attacking again, all eyes turned to William. Would he side with his blood relative, shifting family dynamics? Or would he defend Olivia, cementing her position?</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2453,11 +2453,11 @@
                 <p>&#34;Grandfather, I—&#34;</p>
                 <p>But it was toote.</p>
                 <p>William&#39;s voice boomed. &#34;You orchestrated that bookstore fire that nearly killed Olivia, didn&#39;t you? And you spread those vile rumors online about Olivia cheating with Alexander behind Liam&#39;s back. Did you think I wouldn&#39;t discover the truth? Did you think I lacked proof?&#34;</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5150,27 +5150,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

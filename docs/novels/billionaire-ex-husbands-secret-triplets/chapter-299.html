@@ -2379,20 +2379,20 @@
                 <p>Evelyn&#39;s breath hitched. The intensity in his declaration caught her off guard, though she&#39;d recognized his constant vigil at her bedside these past days. The way his calloused fingers had trembled when checking her temperature. The dark circles beneath his eyes that spoke of sleepless nights.</p>
                 <p>&#39;Marrying Nathan...&#39; The thought didn&#39;t terrify her as much as it should. But reality came crashing back, and she placed a gentle hand against his chest, creating space between them. When she remained silent, Nathan&#39;s smile faltered. &#34;You&#39;re refusing me?&#34; he asked, the vulnerability in his voice nearly undoing her resolve.</p>
                 <p>&#34;It&#39;s not refusal,&#34; she countered, twisting the hospital blanket between her fingers. &#34;But I made a promise to your grandfather. If I marry you without passing his assessment first, I&#39;ll forever be the scheming social climber in his eyes.&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>She met his gaze squarely now. &#34;And let&#39;s not pretend your family isn&#39;t a political minefield. Becoming Mrs. Goldmann without understanding the battlefield? That&#39;s a recipe for disaster.&#34;</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2415,11 +2415,11 @@
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Evelyn&#39;s brows knitted together as Nathan continued, &#34;My great-grandfather co-founded an organization with Stoslo&#39;s crown princess called the Night Banquet. Publicly known as the Goldmann Banquet.&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2428,11 +2428,11 @@
                 <p>The story unfolded like something from a gothic novel - how Patrick Goldmann had clawed his way from the gutters to become the princess&#39;s personal enforcer, earning the moniker &#34;The Princess&#39;s Hyena&#34; for his brutal efficiency in eliminating her enemies. Their affair had produced Titus, a child the royal family refused to acknowledge.</p>
                 <p>&#34;To protect him from court politics,&#34; Nathan explained, his voice tight, &#34;the princess sent them to Zlokova with enough wealth to establish our family name.&#34; His jaw clenched. &#34;The year they left Stoslo was the year both Patrick and the princess died under... suspicious circumstances.&#34;</p>
                 <p>Evelyn&#39;s fingers found his, intertwining tightly as the weight of his family&#39;s history settled between them. The Goldmann legacy wasn&#39;t just wealth - it was written in blood and royal betrayal.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5005,27 +5005,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

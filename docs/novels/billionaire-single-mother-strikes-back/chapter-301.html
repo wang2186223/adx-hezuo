@@ -2380,6 +2380,16 @@
                 <p>She answered. “Vice President Montgomery,” Gregory’s voice came through, “given the mounting backlash, we’ll need to disclose your identity publicly. Are you in agreement?”</p>
                 <p>Isabella gave a faint smile. “Do I have a choice?”</p>
                 <p>“I’ll proceed then, Vice President Montgomery. I’ll handle the announcement immediately.” Gregory ended the call.</p>
+                <!-- AdSense Ad Unit: banner2 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner2"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Nathaniel’s eyes narrowed. Vice President Montgomery? So she was the vice president of Vertex Communications? He had suspected her connection to the company, but never imagined she held such a high position.</p>
+                <p>What other secrets was this woman keeping?</p>
                 <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2388,33 +2398,23 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Nathaniel’s eyes narrowed. Vice President Montgomery? So she was the vice president of Vertex Communications? He had suspected her connection to the company, but never imagined she held such a high position.</p>
-                <p>What other secrets was this woman keeping?</p>
-                <!-- AdSense Ad Unit: banner7 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Noticing the curious looks from Nathaniel and Oliver, Isabella explained casually, “Before Eleanor Kensington retired, Vertex was searching for her successor. I happened to assist them in securing the patent for fifth-gen wireless tech. That allowed Vertex to launch the industry’s first cellular tech package ahead of everyone else.”</p>
                 <p>She spoke with detached indifference, as though it were a trivial matter.</p>
-                <!-- AdSense Ad Unit: banner1 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Oliver’s eyes sparkled as he gazed at her with admiration. “Mommy is amazing! Just as amazing as Daddy! Last year, Daddy’s R&amp;D team created the first fully integrated fifth-gen wireless smart home system!”</p>
-                <p>“Quantum Systems?” Isabella asked.</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner8"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Oliver’s eyes sparkled as he gazed at her with admiration. “Mommy is amazing! Just as amazing as Daddy! Last year, Daddy’s R&amp;D team created the first fully integrated fifth-gen wireless smart home system!”</p>
+                <p>“Quantum Systems?” Isabella asked.</p>
+                <!-- AdSense Ad Unit: banner6 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2434,11 +2434,11 @@
                 <p>Seeing they finally had common ground, Oliver grinned and quietly slipped out of the room.</p>
                 <p>Nathaniel moved to the sofa and poured Isabella a glass of water, gesturing for her to sit. Once she was settled, he continued, “Quantum already addressed those concerns. Last year, we upgraded to a sixth-gen AI system. It no longer relies on remotes or phone apps.”</p>
                 <p>“It operates through built-in artificial intelligence, automating lights and appliances. It also responds to voice commands in nearly a thousand languages, including various dialects. As for security…” He paused. “Even if Quantum is compromised, no other system in the world would remain intact.”</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5003,27 +5003,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

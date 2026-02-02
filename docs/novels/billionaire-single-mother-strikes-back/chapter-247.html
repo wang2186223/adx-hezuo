@@ -2392,22 +2392,22 @@
                 <p>His mistress?</p>
                 <p>She shot him a sharp, icy glare. “Do I look like the type to be anyone’s mistress?”</p>
                 <p>“Then why the secrecy?” he pressed. “And why did that boy call you ‘Mommy’?”</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Isabella’s gaze flickered toward the luxury car idling in the distance. Her voice dropped to a hushed tone. “That’s none of your concern. I have my reasons. My own plans. If you breathe a word of this to anyone, I will make sure Grandfather reconsiders his decision about you.”</p>
                 <p>With that, she turned to leave.</p>
                 <p>Benjamin quickly grabbed her arm, his expression grave. “I don’t care what’s between you and Nathaniel Blackwood. But you need to understand… it can never work. He asked me about what happened five years ago. I didn’t tell him anything. But if he ever finds out the truth, he will leave you. You should end it now, before you get hurt.”</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2425,11 +2425,11 @@
                 <p>Isabella returned to the car. Out of habit, her hand moved toward the passenger door. But Benjamin’s warning echoed in her mind. She changed direction and slid into the backseat instead.</p>
                 <p>Nathaniel’s eyes flicked to the rearview mirror, noting the change. He said nothing, simply starting the engine and pulling away.</p>
                 <p>Inside the car, Oliver was curled against Isabella’s side. He peeked at Nathaniel in the front seat, then at Isabella beside him. Deciding to play asleep, he closed his eyes tightly. Soon, soft, rhythmic snores escaped him, like a contented little kitten.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2439,11 +2439,11 @@
                 <p>The car came to a stop at a red light. Nathaniel glanced up, his eyes meeting hers in the rearview mirror. After a moment of silence, he spoke. “Julian threatened you today?”</p>
                 <p>Isabella gave a noncommittal hum, not really wanting to discuss it.</p>
                 <p>Nathaniel’s voice was steady, his gaze intense even through the reflection. “No matter how difficult the situation,” he said, “you can always come to me.”</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5008,27 +5008,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

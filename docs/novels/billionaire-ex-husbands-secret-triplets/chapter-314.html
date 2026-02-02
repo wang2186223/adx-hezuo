@@ -2409,19 +2409,6 @@
                 <p>Before she could reply, her phone rang. Startled, she nearly dropped it before answering.</p>
                 <p>&#34;Hello?&#34;</p>
                 <p>Nathan&#39;s deep voice rumbled through the receiver. &#34;Why did you reject my friend request?&#34;</p>
-                <!-- AdSense Ad Unit: banner8 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>She gritted her teeth. &#34;Accidental misclick.&#34;</p>
-                <p>&#34;Send one back.&#34; His tone brooked no argument.</p>
-                <p>Evelyn reluctantly sent the Facebook friend request.</p>
-                <p>&#39;No wonder it seemed odd - he probably hasn&#39;t logged in for years.&#39;</p>
-                <p>Nathan added, &#34;I&#39;m waiting in my office.&#34;</p>
                 <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2430,16 +2417,29 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Arriving at the administrative suite, Evelyn knocked before entering at his permission.</p>
-                <p>Her breath caught at the lavish lunch spread across his coffee table.</p>
-                <p>Nathan set aside his documents, unfolding his long legs as he rose. &#34;You haven&#39;t eaten. Join me.&#34;</p>
-                <p>Without waiting for confirmation, he captured her wrist, guiding her to the sofa.</p>
-                <p>Evelyn sat rigidly beside him, last night&#39;s intimate memories flooding back. Heat prickled across her skin, her pulse accelerating.</p>
+                <p>She gritted her teeth. &#34;Accidental misclick.&#34;</p>
+                <p>&#34;Send one back.&#34; His tone brooked no argument.</p>
+                <p>Evelyn reluctantly sent the Facebook friend request.</p>
+                <p>&#39;No wonder it seemed odd - he probably hasn&#39;t logged in for years.&#39;</p>
+                <p>Nathan added, &#34;I&#39;m waiting in my office.&#34;</p>
                 <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner5"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Arriving at the administrative suite, Evelyn knocked before entering at his permission.</p>
+                <p>Her breath caught at the lavish lunch spread across his coffee table.</p>
+                <p>Nathan set aside his documents, unfolding his long legs as he rose. &#34;You haven&#39;t eaten. Join me.&#34;</p>
+                <p>Without waiting for confirmation, he captured her wrist, guiding her to the sofa.</p>
+                <p>Evelyn sat rigidly beside him, last night&#39;s intimate memories flooding back. Heat prickled across her skin, her pulse accelerating.</p>
+                <!-- AdSense Ad Unit: banner8 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2450,11 +2450,11 @@
                 <p>When his lips brushed her neck, Evelyn gasped, her protests dissolving into weak shivers.</p>
                 <p>&#34;You were quite eager last night,&#34; he murmured against her skin, fingers tilting her chin up. &#34;Don&#39;t tell me you&#39;ve forgotten?&#34;</p>
                 <p>Evelyn trembled as his proximity overwhelmed her senses. With effort, she shoved him away. &#34;Nathan! Be serious!&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5027,27 +5027,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

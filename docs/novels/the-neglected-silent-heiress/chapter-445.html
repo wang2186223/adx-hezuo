@@ -2380,6 +2380,16 @@
                 <p>&#34;Who?&#34; Eleanor&#39;s feigned confusion lasted only a second before realization dawned. Her hands balled into fists at her sides.</p>
                 <p>&#34;Open your eyes!&#34; she snapped. &#34;She doesn&#39;t care about you. Why chase someone who sneaked away without a word? She&#39;s clearly running from you. Have some self-respect!&#34;</p>
                 <p>Liam&#39;s eyes narrowed dangerously. &#34;So you had her followed.&#34;</p>
+                <!-- AdSense Ad Unit: banner5 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner5"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Caught in her own trap, Eleanor lifted her chin defiantly. &#34;Yes, I had people watching her. But I didn&#39;t interfere - I just wanted to understand what makes her so special to you.&#34;</p>
+                <p>Liam turned to leave, done with the conversation. &#34;Tell me where she is, or I&#39;ll have you removed from this estate immediately.&#34;</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2388,23 +2398,13 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Caught in her own trap, Eleanor lifted her chin defiantly. &#34;Yes, I had people watching her. But I didn&#39;t interfere - I just wanted to understand what makes her so special to you.&#34;</p>
-                <p>Liam turned to leave, done with the conversation. &#34;Tell me where she is, or I&#39;ll have you removed from this estate immediately.&#34;</p>
-                <!-- AdSense Ad Unit: banner1 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Eleanor crossed her arms. &#34;If you&#39;re so determined, find her yourself. It shouldn&#39;t be difficult for someone like you.&#34;</p>
                 <p>&#34;You know damn well it would be,&#34; Liam countered coldly. &#34;Not when you&#39;ve gone to such lengths to cover her tracks.&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2420,11 +2420,11 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;I owe your brother nothing,&#34; Liam stated flatly. &#34;What I did for him was a courtesy, not an obligation.&#34;</p>
                 <p>Eleanor refused to believe he felt nothing for her. &#34;Then why? Pity? Some lingering affection you can&#39;t admit to?&#34;</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2434,11 +2434,11 @@
                 <p>Eleanor&#39;s nails dug into her palms. &#34;I know how badly you want to find her. My request is simple - take me with you. I&#39;m in danger. Those men hunting me might track me here. I need protection.&#34;</p>
                 <p>Liam&#39;s expression darkened. Every instinct told him to refuse, but his history with her brother complicated matters. His lips pressed into a thin line before issuing a final warning.</p>
                 <p>&#34;One wrong move,&#34; he said icily, &#34;and I&#39;ll hold you personally responsible for any harm that comes to her.&#34;</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5131,27 +5131,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

@@ -2384,11 +2384,11 @@
                 <p>Without delay, Sebastian answered. The moment he processed the words on the other end, his expression darkened. &#34;Mr. Blackwood, there&#39;s been an accident. Your mother—&#34;</p>
                 <p>Margaret had been involved in a car crash while descending the mountain.</p>
                 <p>Liam preferred solitude, living in a secluded villa nestled in the mountains outside the city.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2398,11 +2398,11 @@
                 <p>The news unsettled Liam. Despite everything, Margaret was still his mother.</p>
                 <p>A gnawing suspicion took root in his mind. This didn&#39;t feel like an accident. Even if the investigation cleared him, his enemies would seize this opportunity to destroy him.</p>
                 <p>Seeing Liam&#39;s troubled expression, Sebastian suggested, &#34;Mr. Blackwood, perhaps we should announce that you&#39;ve been bedridden these past few days? That way, if they try to implicate you, there won&#39;t be any evidence to support their accusations.&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2412,11 +2412,11 @@
                 <p>In the VIP ward of Mercy Hospital, Margaret had undergone resuscitation for the third time.</p>
                 <p>The doctor assured them she was stable now but required close monitoring.</p>
                 <p>Richard stood motionless, barely reacting even as the doctor called his name repeatedly.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2440,11 +2440,11 @@
                 <p>The man remained unfazed, lighting a cigarette before turning to face Richard. His unscarred left profile was strikingly handsome, but his hollow cheeks and cold eyes gave him an eerie aura.</p>
                 <p>He exhaled smoke slowly. &#34;I warned you. High risk, high reward. You chose this path. I merely advised. Whether I&#39;m caught means nothing to me—I have nothing to lose. But you? A Blackwood heir? You can&#39;t afford to fall.&#34;</p>
                 <p>Richard&#39;s anger warred with fear. Yet he knew this man was his only ally now.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2455,11 +2455,11 @@
                 <p>Relieved, Richard&#39;s mood lifted. He regarded the man with newfound respect. &#34;I used to think you were just a brute. But you’re sharper than I gave you credit for. Keep working with me. It’ll be worth your while.&#34;</p>
                 <p>He clapped the man on the shoulder before turning to leave.</p>
                 <p>As Richard disappeared, the man&#39;s eyes glinted with icy disdain.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5152,27 +5152,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

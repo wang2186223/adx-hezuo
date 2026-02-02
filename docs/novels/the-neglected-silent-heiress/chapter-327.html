@@ -2380,11 +2380,11 @@
                 <p>Olivia&#39;s brow furrowed. Had they really summoned her all the way here just for this announcement? The Kensingtons couldn&#39;t possibly be ignorant of her strained relationship with Seraphina. There had to be another motive behind this gathering.</p>
                 <p>As if reading her thoughts, Gwendolyn continued, &#34;We need everyone present at the hospital during Seraphina&#39;s operation. Your presence will give her strength. The doctors emphasized how critical the recovery period is - it could determine the entire outcome. Hearing familiar voices might make all the difference.&#34;</p>
                 <p>Seraphina broke into theatrical sobs, covering her face with her hands. &#34;I&#39;m such a burden to this family with my constant health problems!&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2420,21 +2420,21 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Olivia arched an eyebrow. &#34;Aren&#39;t you all going to be there? Why does my presence matter so much?&#34;</p>
                 <p>Margaret&#39;s voice dripped with contempt. &#34;Is that really your attitude? It&#39;s sickening how you take everything the Kensingtons offer while giving nothing back. You won&#39;t be boarding any plane the day after tomorrow. You will stay for Seraphina&#39;s surgery. We&#39;re family, and it&#39;s time you started acting like it. Refuse, and I&#39;ll have no choice but to inform the elders about your shocking lack of compassion!&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>When Olivia remained unmoved, Margaret escalated her tactics. With a cruel smirk, she added, &#34;Or do you want your daughter Isabelle to grow up known as heartless as her mother? Don&#39;t come crying to me when she resents you for this someday.&#34;</p>
                 <p>Olivia felt the walls closing in, her stomach churning with frustration. The Kensingtons were determined to keep her trapped here. Even if she managed to escape, they&#39;d likely drag her back by force. What exactly were they planning?</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5127,27 +5127,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

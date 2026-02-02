@@ -2396,11 +2396,11 @@
                 <p>&#34;Why did you come?&#34; he questioned sharply.</p>
                 <p>Evelyn&#39;s flawless features tightened momentarily before she snapped, &#34;Weren&#39;t you the one who demanded my presence tonight? Imagine my surprise finding you waltzing with that silent doll! You even personally escorted her for hairstyling and dress selection while ignoring me!&#34;</p>
                 <p>Without regard for spectators, Evelyn entwined herself around Liam&#39;s arm and steered him toward the dance floor. Suddenly, she gasped theatrically, covering her ruby lips. &#34;Good heavens! Is that mute creature dancing with another man?&#34;</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2435,11 +2435,11 @@
                 <p>Olivia observed them blankly, again questioning why Liam refused to end their farce of a marriage.</p>
                 <p>&#34;Jealous, darling?&#34; Evelyn&#39;s saccharine voice sliced through Olivia&#39;s thoughts.</p>
                 <p>The blonde had materialized beside her, holding two glasses of blood-red wine. With a feline smile, she offered one to Olivia.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2449,11 +2449,11 @@
                 <p>Olivia instinctively stepped back, but Evelyn yanked sharply, sending dark wine cascading over Evelyn&#39;s pristine white gown.</p>
                 <p>&#34;Oh!&#34; Evelyn shrieked dramatically, recoiling as if struck. The spreading stain resembled blood. &#34;I only came to greet you, and this is how you respond!&#34;</p>
                 <p>Her shrill accusation sliced through the ballroom&#39;s buzz, instantly drawing every eye in their direction.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5146,27 +5146,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

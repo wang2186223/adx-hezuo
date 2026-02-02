@@ -2382,11 +2382,11 @@
                 <p>Her fingers flew in frantic gestures. Did Liam know she&#39;d fled to Alexander? Had her actions endangered them? What had he done?</p>
                 <p>Seeing Olivia&#39;s panic, Isabella rushed forward. &#34;Breathe, just breathe. Yes, Liam knows you&#39;re gone. But it&#39;s not what you think. He&#39;s just exchanging words with Mr. Hayes - no real action yet. We&#39;ve compiled evidence of everything the Blackwoods did to you, including that forced termination. Even if Liam refuses divorce, we can take it to court. If he dares retaliate, the media will crucify him.&#34;</p>
                 <p>Tears pricked Olivia&#39;s eyes at their loyalty, but sorrow twisted her heart. She never wanted this war with Liam. Their marriage had been doomed from the start - she&#39;d been the obstacle keeping him from Evelyn all these years. If he despised her now, she couldn&#39;t blame him.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2394,11 +2394,11 @@
                 <p>Isabella threw up her hands. &#34;After everything, you still believe he&#39;ll change?&#34;</p>
                 <p>Olivia shook her head, pressing both hands to her abdomen. She wouldn&#39;t let her child grow up knowing its parents&#39; hatred. That pain was too cruel.</p>
                 <p>Isabella&#39;s lips trembled as she regarded Olivia with heartbreaking understanding.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2418,11 +2418,11 @@
                 <p>Sebastian sighed inwardly.</p>
                 <p>Liam exhaled a cloud of smoke. &#34;No more negotiations with the Hayes family. Where she goes, what she does - it&#39;s none of my concern.&#34;</p>
                 <p>A sharp knock interrupted them.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2430,11 +2430,11 @@
                 <p>&#34;Mr. Blackwood isn&#39;t receiving visitors,&#34; Sebastian began smoothly.</p>
                 <p>The doctor shook his head. &#34;This can&#39;t wait. It&#39;s about his wife.&#34;</p>
                 <p>Sebastian signaled to the guards flanking the doorway. Their imposing stances left no room for argument.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2447,11 +2447,11 @@
                 <p>&#34;Mrs. Blackwood is approximately five weeks along. Given her medical history - particularly the previous termination - this is a high-risk pregnancy. She requires immediate specialized care, especially during the first trimester when complications are most likely.&#34;</p>
                 <p>The shattering of Liam&#39;s crystal tumbler against the wall was his only response.</p>
                 <p>With a violent sweep of his arm, Liam cleared his desk in one furious motion. Glass and wood splintered against the far wall as his roar of rage echoed through the penthouse.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5144,27 +5144,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

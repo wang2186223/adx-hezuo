@@ -2381,39 +2381,28 @@
                 <p>&#34;Let me drive you,&#34; Nathaniel offered.</p>
                 <p>&#34;Unnecessary. GoldenPhoenix will be crowded. Too much exposure risk.&#34; Isabella pulled on her gloves.</p>
                 <p>Nathaniel frowned. His expression turned serious. &#34;Exposure doesn&#39;t concern me.&#34;</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>His words stunned her. He didn&#39;t care? He was Nathaniel Blackwood! Why did he act like a lovesick teenager sometimes? Their relationship wasn&#39;t even official yet. How would she explain this to everyone?</p>
                 <p>&#34;We&#39;ll discuss it after you&#39;ve properly courted me.&#34; She secured her helmet. The motorcycle roared to life. She sped away.</p>
                 <p>Nathaniel watched her disappear. A thoughtful gaze settled on his face. Court her? How does one court a wild she-wolf? Taming an actual wolf might be easier...</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Sebastian pulled up just then. His car halted before Nathaniel. &#34;Brother. Progress. They collected skin cells from thirty women. All from the presidential suite&#39;s bedside. DNA investigation starts immediately.&#34;</p>
                 <p>Nathaniel remained impassive. No joy touched his features. This news would have thrilled him once. But now he had Isabella. What did finding that woman matter anymore?</p>
                 <p>What if that woman demanded responsibility? What if Isabella discovered his past? He accepted her history. But would she accept his?</p>
-                <!-- AdSense Ad Unit: banner5 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>His brow furrowed. &#34;Continue the investigation. Report the findings.&#34;</p>
-                <p>&#34;Understood.&#34; Sebastian sensed something off. Why did his brother seem displeased?</p>
-                <p>At GoldenPhoenix...</p>
                 <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2422,14 +2411,25 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Isabella parked in the underground garage. She took the elevator directly to the top-floor conference room.</p>
-                <p>Adrian spotted her. He hurried over. &#34;Isabella. The situation escalates. Celestial Gala&#39;s organizer refuses to engage. I exhausted all options. Even offered a luxury cruise. She declined. Julian is still negotiating. She appears immovable. Three of our artists have contracts with them. The total penalty approaches ten billion!&#34;</p>
-                <p>Ten billion. Even as the Diamond Boss, that sum made her wince.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <p>His brow furrowed. &#34;Continue the investigation. Report the findings.&#34;</p>
+                <p>&#34;Understood.&#34; Sebastian sensed something off. Why did his brother seem displeased?</p>
+                <p>At GoldenPhoenix...</p>
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner7"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Isabella parked in the underground garage. She took the elevator directly to the top-floor conference room.</p>
+                <p>Adrian spotted her. He hurried over. &#34;Isabella. The situation escalates. Celestial Gala&#39;s organizer refuses to engage. I exhausted all options. Even offered a luxury cruise. She declined. Julian is still negotiating. She appears immovable. Three of our artists have contracts with them. The total penalty approaches ten billion!&#34;</p>
+                <p>Ten billion. Even as the Diamond Boss, that sum made her wince.</p>
+                <!-- AdSense Ad Unit: banner5 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5005,27 +5005,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

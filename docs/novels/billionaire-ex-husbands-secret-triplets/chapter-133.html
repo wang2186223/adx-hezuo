@@ -2383,11 +2383,11 @@
                 <p>Evelyn shoved her face away. &#34;Are you a bloodhound? What are you doing here, anyway?&#34;</p>
                 <p>&#34;We haven&#39;t seen each other in ages, and you don’t even miss me? Ugh, you really are the type to ditch your best friend for a man.&#34; Sophia crossed her arms with a dramatic huff.</p>
                 <p>Evelyn sank into her chair. &#34;Oh please, like you&#39;re not dating someone too.&#34;</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2396,19 +2396,6 @@
                 <p>&#34;How?&#34;</p>
                 <p>&#34;I can’t go home right now. Speaking of—did you sell that beach villa yet? If not, can I hide out there for a while?&#34; She clasped Evelyn’s hands, eyes pleading.</p>
                 <p>&#34;You can stay. I never sold it.&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Sophia nearly teared up. &#34;Zoe, you’re a lifesaver. I love you!&#34;</p>
-                <p>She planted an exaggerated kiss on Evelyn’s hand.</p>
-                <p>Evelyn rolled her eyes.</p>
-                <p>Days later, a single photo ignited a firestorm online.</p>
-                <p>The hashtag #EdmundLincolnSeenWithMysteryWoman exploded across social media, with netizens tagging Edmund relentlessly.</p>
                 <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2417,11 +2404,11 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Just as speculation peaked, Edmund himself tweeted:</p>
-                <p>@EdmundLincoln: What’s wrong with playing chess with my niece for an hour?</p>
-                <p>Evelyn burst out laughing and retweeted:</p>
-                <p>@EvelynVanderbilt: Uncle @EdmundLincoln, should we make it two hours next time?</p>
-                <p>@NathanGoldmann: ???</p>
+                <p>Sophia nearly teared up. &#34;Zoe, you’re a lifesaver. I love you!&#34;</p>
+                <p>She planted an exaggerated kiss on Evelyn’s hand.</p>
+                <p>Evelyn rolled her eyes.</p>
+                <p>Days later, a single photo ignited a firestorm online.</p>
+                <p>The hashtag #EdmundLincolnSeenWithMysteryWoman exploded across social media, with netizens tagging Edmund relentlessly.</p>
                 <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2430,16 +2417,29 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>@MelonLover: @NathanGoldmann Sir, do you have questions?</p>
-                <p>@UnderTheLemonTree: Someone’s jealous.</p>
-                <p>@LilFishxoxoBigFish: Mr. Goldmann is sweating. So many questions, so little time!</p>
-                <p>@AdrianBoucher: @NathanGoldmann Since when do old-money CEOs lurk on Twitter?</p>
-                <p>The internet imploded.</p>
+                <p>Just as speculation peaked, Edmund himself tweeted:</p>
+                <p>@EdmundLincoln: What’s wrong with playing chess with my niece for an hour?</p>
+                <p>Evelyn burst out laughing and retweeted:</p>
+                <p>@EvelynVanderbilt: Uncle @EdmundLincoln, should we make it two hours next time?</p>
+                <p>@NathanGoldmann: ???</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
                      data-ad-slot="adx-23335185836-banner8"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>@MelonLover: @NathanGoldmann Sir, do you have questions?</p>
+                <p>@UnderTheLemonTree: Someone’s jealous.</p>
+                <p>@LilFishxoxoBigFish: Mr. Goldmann is sweating. So many questions, so little time!</p>
+                <p>@AdrianBoucher: @NathanGoldmann Since when do old-money CEOs lurk on Twitter?</p>
+                <p>The internet imploded.</p>
+                <!-- AdSense Ad Unit: banner3 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5028,27 +5028,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

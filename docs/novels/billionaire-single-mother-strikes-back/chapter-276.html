@@ -2380,6 +2380,16 @@
                 <p>A wave of cold dread washed over her. Panic, sharp and sudden, seized her. Her teeth sank into his lower lip with brutal force.</p>
                 <p>A sharp hiss of pain escaped him. His grip on her loosened instinctively.</p>
                 <p>She shoved him away, scrambling upright. Her eyes blazed with a defensive fury. &#34;What is the meaning of this, Mr. Blackwood? My past does not grant you the right to assault me.&#34;</p>
+                <!-- AdSense Ad Unit: banner7 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner7"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>He frowned, his thumb brushing the bead of blood at the corner of his mouth. &#34;That was not my intention—&#34;</p>
+                <p>&#34;I don&#39;t care about your intentions. I expect you to behave. I do not welcome being touched.&#34; She moved to stride past him, wanting only to put distance between them. His actions had unearthed a ghost she desperately tried to forget.</p>
                 <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2388,8 +2398,8 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>He frowned, his thumb brushing the bead of blood at the corner of his mouth. &#34;That was not my intention—&#34;</p>
-                <p>&#34;I don&#39;t care about your intentions. I expect you to behave. I do not welcome being touched.&#34; She moved to stride past him, wanting only to put distance between them. His actions had unearthed a ghost she desperately tried to forget.</p>
+                <p>His hand shot out, encircling her wrist, halting her retreat. &#34;My apologies,&#34; he said, his voice low and solemn. &#34;I lost control.&#34;</p>
+                <p>Her steps faltered. Before she could form a response, he continued. &#34;I merely wished to make something clear, Ms. Montgomery. Your past is of no consequence to me. Furthermore, the proposal I extended upon our first meeting remains open.&#34;</p>
                 <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2398,8 +2408,8 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>His hand shot out, encircling her wrist, halting her retreat. &#34;My apologies,&#34; he said, his voice low and solemn. &#34;I lost control.&#34;</p>
-                <p>Her steps faltered. Before she could form a response, he continued. &#34;I merely wished to make something clear, Ms. Montgomery. Your past is of no consequence to me. Furthermore, the proposal I extended upon our first meeting remains open.&#34;</p>
+                <p>The proposal still stands.</p>
+                <p>The implication hung heavy in the air. He would still marry her. Take a woman like her, soiled and unchaste, as his wife.</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2408,23 +2418,13 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>The proposal still stands.</p>
-                <p>The implication hung heavy in the air. He would still marry her. Take a woman like her, soiled and unchaste, as his wife.</p>
-                <!-- AdSense Ad Unit: banner6 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>A strange, foreign sensation bloomed in her chest. He turned her to face him, his gaze piercing. &#34;If that is the reason for your continued rejection, discard it. The one who should bear the shame is the monster who harmed you, not you. You have done nothing wrong. Why should you deny yourself the happiness you deserve?&#34;</p>
                 <p>His words, deep and resonant, were a balm and a challenge. They chipped away at the fortress around her heart.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5003,27 +5003,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

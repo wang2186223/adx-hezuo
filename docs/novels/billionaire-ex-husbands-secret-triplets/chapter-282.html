@@ -2381,22 +2381,22 @@
                 <p>Rosalind&#39;s sharp eyes took in Evelyn&#39;s flushed cheeks, disheveled hair, and the way she clutched her coat around herself. The implications were obvious.</p>
                 <p>The hatred flashing in Rosalind&#39;s eyes vanished instantly. &#39;Not yet,&#39; she reminded herself. &#39;The timing isn&#39;t right.&#39;</p>
                 <p>Winifred, who&#39;d always despised Evelyn, smirked maliciously. &#34;Well, well. Someone&#39;s been rolling in the sheets with some dirty man, haven&#39;t they?&#34;</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Evelyn&#39;s expression darkened momentarily. She gave Rosalind a sidelong glance but ignored Winifred completely.</p>
                 <p>Infuriated by the dismissal, Winifred grabbed Evelyn&#39;s coat in front of Rosalind.</p>
                 <p>When the coat slipped open, the love bites on Evelyn&#39;s neck were clearly visible. Rosalind&#39;s hands clenched into fists at her sides. She never imagined the usually cold and aloof Nathan could be so... passionate.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2414,22 +2414,22 @@
                 <p>Evelyn&#39;s smile widened. &#34;Ah, so you&#39;re calling me a slut. Got it.&#34; Realizing she&#39;d been tricked into repeating herself, Winifred&#39;s face darkened with rage. &#34;How dare you mock me!&#34;</p>
                 <p>Some people never learn. Winifred had already forgotten Evelyn&#39;s previous warnings as she raised her hand to strike.</p>
                 <p>Evelyn caught her wrist effortlessly. &#34;Do you think having one injured arm makes me incapable of hitting back?&#34;</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Before Winifred could react, Evelyn&#39;s left hand connected sharply with her cheek. The resounding slap left Winifred stunned, her face whipped to the side.</p>
                 <p>Rosalind privately thought Winifred deserved it for running her mouth, but Evelyn&#39;s audacity to strike right in front of her was unacceptable.</p>
                 <p>She stepped forward protectively. &#34;Miss Vanderbilt, while Winifred&#39;s words were harsh, was physical violence necessary?&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5016,27 +5016,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

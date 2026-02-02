@@ -2394,11 +2394,11 @@
                 <p>&#34;I disagree.&#34; Evelyn sat up straight. &#34;Nathan Goldmann, look at me.&#34;</p>
                 <p>When he finally met her gaze, the stubborn determination in her beautiful face struck him. But what truly burned him was the raw vulnerability shining through her eyes.</p>
                 <p>Text ? owned by N?velDrama.Org.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2406,18 +2406,6 @@
                 <p>Her fingers trembled slightly as they clutched her nightdress. Defeated, she lowered her gaze, biting her lip as she dressed once more.</p>
                 <p>&#34;I&#39;ll sleep with the children,&#34; she murmured, the words laced with unspoken bitterness.</p>
                 <p>As she moved to rise, a powerful force suddenly pinned her to the bed. Nathan&#39;s lips crashed against hers with desperate intensity.</p>
-                <!-- AdSense Ad Unit: banner2 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>&#34;Nathan—&#34; she gasped between breaths.</p>
-                <p>His eyes burned crimson, his movements growing increasingly rough. &#34;Isn&#39;t this what you wanted?&#34;</p>
-                <p>Evelyn stared up at him. Everywhere his lips touched ignited like wildfire, scorching her skin and searing her soul.</p>
-                <p>Just as she surrendered to the moment, anticipating his next move, he pulled away abruptly.</p>
                 <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2426,15 +2414,27 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>&#34;Nathan—&#34; she gasped between breaths.</p>
+                <p>His eyes burned crimson, his movements growing increasingly rough. &#34;Isn&#39;t this what you wanted?&#34;</p>
+                <p>Evelyn stared up at him. Everywhere his lips touched ignited like wildfire, scorching her skin and searing her soul.</p>
+                <p>Just as she surrendered to the moment, anticipating his next move, he pulled away abruptly.</p>
+                <!-- AdSense Ad Unit: banner2 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner2"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>The cruel truth dawned on her - he was torturing them both.</p>
                 <p>&#34;I&#39;ll sleep in the study,&#34; Nathan declared coldly, striding from the room without a backward glance.</p>
                 <p>Evelyn lay frozen, watching the door slam shut, her heart plummeting into darkness.</p>
                 <p>In the study, Nathan chain-smoked. Normally not a heavy smoker, he&#39;d found himself increasingly dependent on the habit lately. Gazing out at the misty night, his expression mirrored the cold darkness outside.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2447,11 +2447,11 @@
                 <p>At the Vanderbilt manor...</p>
                 <p>The three children&#39;s laughter filled the air as they chased Rusty around the garden, their joy infectious.</p>
                 <p>Richard observed the scene with mixed emotions. It had been years since the Vanderbilt estate had known such liveliness, especially with the children&#39;s presence. Turning to Evelyn, he ventured cautiously, &#34;Have you and Mr. Goldmann resolved your differences? Does he... truly intend to divorce?&#34;</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5024,27 +5024,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

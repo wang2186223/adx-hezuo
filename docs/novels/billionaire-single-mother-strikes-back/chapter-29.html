@@ -2394,18 +2394,6 @@
                 <p>A long, silken cape of the same ethereal hue flowed from her arms. It billowed with her movement, a swirl of spectral smoke, dreamlike and utterly captivating.</p>
                 <p>The sheer, skin-toned dress didn’t diminish her elegance. It elevated it. She was a celestial being descended from the heavens. Regal. Untouchable. Exquisite.</p>
                 <p>The lights plunged into total darkness, swallowing the hall.</p>
-                <!-- AdSense Ad Unit: banner2 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>A single, soft beam found the jade necklace at her collarbone. The faint green stone glowed with an enchanting light. Her dazzling dress, somehow, did not overpower it.</p>
-                <p>Then, a firefly sparked to life from the jade. Then another. And another. They swirled around her, a growing constellation of light. Dozens became hundreds, then thousands, flooding the pitch-black venue.</p>
-                <p>The air filled with a slow-dancing universe of ethereal light. The hall transformed into a scene from a fantasy realm, a magical world that stole the breath from every lung.</p>
-                <p>Awe was inescapable.</p>
                 <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2414,15 +2402,27 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>A single, soft beam found the jade necklace at her collarbone. The faint green stone glowed with an enchanting light. Her dazzling dress, somehow, did not overpower it.</p>
+                <p>Then, a firefly sparked to life from the jade. Then another. And another. They swirled around her, a growing constellation of light. Dozens became hundreds, then thousands, flooding the pitch-black venue.</p>
+                <p>The air filled with a slow-dancing universe of ethereal light. The hall transformed into a scene from a fantasy realm, a magical world that stole the breath from every lung.</p>
+                <p>Awe was inescapable.</p>
+                <!-- AdSense Ad Unit: banner1 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner1"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>“My God… It’s stunning!”</p>
                 <p>“Fireflies! Where did they all come from?”</p>
                 <p>“Is this a movie set? How is this possible?”</p>
                 <p>“This is unbelievable! Completely surreal!”</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2430,11 +2430,11 @@
                 <p>Only Nathaniel understood. He recognized the cutting-edge 3D holographic imaging. It projected hyper-realistic, three-dimensional illusions into space.</p>
                 <p>Very few corporations had access to this technology. How did an adopted woman like Isabella command it so flawlessly?</p>
                 <p>Alexander and his associates stared, utterly confounded. They had been desperately trying to acquire this exact patent from major tech firms. And here she was, wielding it for a fashion show? And with such devastating effect.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2446,11 +2446,11 @@
                 <p>Sophia, her jealousy momentarily forgotten, felt a vicious thrill.</p>
                 <p>‘Finally! The humiliation!’ she crowed internally. A fall here, in front of everyone, would end Isabella’s pathetic career before it began.</p>
                 <p>All watched, hearts lodged in throats, as her body tilted irrevocably toward the ground. Just as she was about to crash…</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5015,27 +5015,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

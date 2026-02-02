@@ -2382,18 +2382,6 @@
                 <p>&#34;Is that so?&#34; Evelyn&#39;s red lips curved into a dangerous smile. She twirled her sunglasses between manicured fingers. &#34;We&#39;ll see who regrets this, Mr. Peterson.&#34;</p>
                 <p>With that, she strode out with Gregory in tow.</p>
                 <p>The moment the door closed, Mr. Peterson collapsed into his leather chair, mopping his brow. &#34;Just some upstart jewelry studio,&#34; he muttered. &#34;What can they possibly do?&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>His answer came sooner than expected.</p>
-                <p>Within the hour, his secretary burst in, face ashen. &#34;Sir! There&#39;s—&#34;</p>
-                <p>She was shoved aside by black-suited security. Kyle entered with a sharply dressed lawyer in tow.</p>
-                <p>Mr. Peterson shot to his feet, knocking over his coffee.</p>
                 <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2402,10 +2390,10 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>The lawyer adjusted his gold-rimmed glasses and placed a business card on the mahogany desk. Donovan Golding, Esq. of Royal Legal Firm.</p>
-                <p>Mr. Peterson&#39;s hands trembled. Royal Legal Firm? The same firm that represented Edmund Lincoln?</p>
-                <p>Donovan slapped down a summons. &#34;My client, Soul Jewelry Studio, has instructed me to handle this breach of contract. I suggest you reconsider your position carefully, Mr. Peterson.&#34;</p>
-                <p>The unspoken message was clear: fight this, and Millennial Gemstone would lose spectacularly in court.</p>
+                <p>His answer came sooner than expected.</p>
+                <p>Within the hour, his secretary burst in, face ashen. &#34;Sir! There&#39;s—&#34;</p>
+                <p>She was shoved aside by black-suited security. Kyle entered with a sharply dressed lawyer in tow.</p>
+                <p>Mr. Peterson shot to his feet, knocking over his coffee.</p>
                 <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2414,15 +2402,27 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>The lawyer adjusted his gold-rimmed glasses and placed a business card on the mahogany desk. Donovan Golding, Esq. of Royal Legal Firm.</p>
+                <p>Mr. Peterson&#39;s hands trembled. Royal Legal Firm? The same firm that represented Edmund Lincoln?</p>
+                <p>Donovan slapped down a summons. &#34;My client, Soul Jewelry Studio, has instructed me to handle this breach of contract. I suggest you reconsider your position carefully, Mr. Peterson.&#34;</p>
+                <p>The unspoken message was clear: fight this, and Millennial Gemstone would lose spectacularly in court.</p>
+                <!-- AdSense Ad Unit: banner2 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner2"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>No one won against Royal Legal Firm&#39;s attorneys.</p>
                 <p>Mr. Peterson slumped into his chair, sweat soaking his collar. How had a small jewelry studio secured Edmund Lincoln&#39;s lawyer?</p>
                 <p>He was utterly screwed.</p>
                 <p>Meanwhile, in a sleek black Bentley...</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2430,11 +2430,11 @@
                 <p>Evelyn examined her flawless manicure. &#34;The Laurent family promised to cover their losses, didn&#39;t they? That&#39;s the only reason Millennial Gemstone dared breach contract.&#34;</p>
                 <p>No established company would risk their reputation otherwise. The Laurents had clearly bankrolled this move, betting Soul Jewelry wouldn&#39;t challenge them.</p>
                 <p>Her phone rang.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5020,27 +5020,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {

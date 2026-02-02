@@ -2382,11 +2382,11 @@
                 <p>&#34;I&#39;ve got work waiting,&#34; Liam replied sharply. &#34;Projects can&#39;t wait.&#34;</p>
                 <p>&#34;Typical you,&#34; Ryan shot back. &#34;Always pushing too hard. No wonder you collapsed.&#34; Liam entered the examination room.</p>
                 <p>&#34;The detailed scan will take about thirty minutes,&#34; Ryan told Olivia. &#34;You can wait somewhere comfortable.&#34;</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2406,11 +2406,11 @@
                 <p>Instead of responding, Olivia typed a message and showed Evelyn the screen: &#34;Would you dare say this where Liam could hear? Speculating about his death and inheritance - I&#39;m sure he&#39;d find that fascinating.&#34;</p>
                 <p>Evelyn&#39;s expression darkened. &#34;You know nothing! Even if you told him, he wouldn&#39;t believe you!&#34;</p>
                 <p>Olivia smiled slightly and typed another message: &#34;I recorded it.&#34;</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2418,11 +2418,11 @@
                 <p>&#34;What&#39;s going on here?&#34; Ryan demanded, frowning at Evelyn. &#34;This is a hospital, not a battleground.&#34;</p>
                 <p>Everyone knew Ryan favored Olivia, so Evelyn expected no sympathy. She retreated slightly, muttering, &#34;Just joking around.&#34;</p>
                 <p>Ryan pointed upward. &#34;Cameras everywhere,&#34; he stated, making clear Evelyn&#39;s intentions weren&#39;t hers to define.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2444,11 +2444,11 @@
                 <p>&#34;Bring me lunch?&#34; Liam looked at Olivia, amusement in his voice. &#34;Shouldn&#39;t I be bringing you meals?&#34;</p>
                 <p>Olivia flushed, remembering when Liam had brought her lunch after she&#39;d skipped meals. She glanced at him hesitantly, gesturing whether she could now bring him lunch to the office. Previously, receptionists hadn&#39;t even recognized her as his wife. Would that change?</p>
                 <p>Liam met her gaze but hesitated to respond, his thoughts unreadable. Olivia&#39;s heart sank slightly. Perhaps he still preferred Evelyn&#39;s care...</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5141,27 +5141,29 @@
             }
             
             isAdFilled(adElement) {
-                // Method 1: Check AdSense status attribute (most reliable)
-                if (adElement.dataset.adsbyGoogleStatus === 'done') {
-                    return true;
-                }
+                // Method 1: Check AdSense status attribute + valid iframe
+                const statusDone = adElement.dataset.adsbyGoogleStatus === 'done' || 
+                                  adElement.dataset.adsbygoogleStatus === 'done';
                 
-                // Method 2: Check if there is a valid iframe with content
+                // Method 2: Check if there is a valid iframe with sufficient height
                 const iframe = adElement.querySelector('iframe');
                 if (iframe) {
                     const iframeRect = iframe.getBoundingClientRect();
+                    // Must have valid height (> 50px) to be considered filled
                     if (iframeRect.height > 50) {
                         return true;
                     }
                 }
                 
-                // Method 3: Check for AdSense generated content containers
-                const hasGoogleContainer = 
-                    adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                    adElement.querySelector('[data-google-query-id]') !== null ||
-                    adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                // If status is 'done' but no valid iframe, it's likely collapsed (ad failed)
+                // Only return true if BOTH status is done AND we have confirmed content
+                if (statusDone && iframe && iframe.getBoundingClientRect().height > 50) {
+                    return true;
+                }
                 
-                return hasGoogleContainer;
+                // Don't trust empty containers or containers without iframes
+                // If no valid iframe found, consider it not filled yet
+                return false;
             }
             
             recordSuccessAd(adElement) {
