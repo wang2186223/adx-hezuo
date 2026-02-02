@@ -2390,16 +2390,6 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>There was history there. A story she did not know.</p>
                 <p>The image of his broad back leading the way, with her small, delicate figure following behind, was striking. It looked like a scene of a protector and his charge. It felt intimate.</p>
-                <!-- AdSense Ad Unit: banner6 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Isabella&#39;s hand tightened on the doorframe.</p>
-                <p>By the koi pond, they were alone. Nathaniel stood with one hand in his pocket, his posture rigid and imposing. He said nothing, simply waiting. Sophia stood behind him, wringing her hands nervously. Finally, she found her voice. &#34;Mr. Blackwood... I wouldn&#39;t have come if I had any other choice. I know I wronged you all those years ago...&#34;</p>
                 <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2408,13 +2398,23 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Back then, they were not officially together. Yet he was always there. Protecting her. Helping her. His world was sterile then. Just work, study, business deals. She had promised to show him a different life. The simple joys. The vibrant chaos of street food stalls. The beauty in small, everyday moments. But the very next day after making that promise, she took the money. She left Westchester without a word.</p>
-                <p>Sophia hung her head in shame. &#34;I know five million was too much for someone like me. Taking it was degrading. But my grandmother... she was sick. Kidney failure. The treatment costs were astronomical. I had no other options. And I knew I was never good enough for you. Being with me would have only brought you trouble. So I...&#34;</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <p>Isabella&#39;s hand tightened on the doorframe.</p>
+                <p>By the koi pond, they were alone. Nathaniel stood with one hand in his pocket, his posture rigid and imposing. He said nothing, simply waiting. Sophia stood behind him, wringing her hands nervously. Finally, she found her voice. &#34;Mr. Blackwood... I wouldn&#39;t have come if I had any other choice. I know I wronged you all those years ago...&#34;</p>
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner3"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Back then, they were not officially together. Yet he was always there. Protecting her. Helping her. His world was sterile then. Just work, study, business deals. She had promised to show him a different life. The simple joys. The vibrant chaos of street food stalls. The beauty in small, everyday moments. But the very next day after making that promise, she took the money. She left Westchester without a word.</p>
+                <p>Sophia hung her head in shame. &#34;I know five million was too much for someone like me. Taking it was degrading. But my grandmother... she was sick. Kidney failure. The treatment costs were astronomical. I had no other options. And I knew I was never good enough for you. Being with me would have only brought you trouble. So I...&#34;</p>
+                <!-- AdSense Ad Unit: banner6 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2431,11 +2431,11 @@
                 <p>&#34;I know you&#39;ve built a new life. I never intended to disrupt it. I never meant to break my promise to Ms. Delacroix or your mother. But... you know my history. I was an orphan. My parents abandoned me as a child. My grandmother raised me alone. When I returned with her ashes, I found them. My parents. They had come back. It turns out they were captured. Forced into slave labor at illegal brick kilns. Their captors only released them when they were completely broken. Used up...&#34;</p>
                 <p>Tears welled in Sophia&#39;s red-rimmed eyes. &#34;After Grandma died, they were all I had left. I couldn&#39;t just leave them here. But the five million... it was all spent on her medical bills. I had nothing left to take them away, to start over somewhere else. So I had to stay. I&#39;ve been here in Westchester for the past five years.&#34;</p>
                 <p>Nathaniel&#39;s expression darkened with each word she spoke. A jolt went through him at the phrase &#39;five years ago&#39;. His hand clenched inside his pocket. Five years. She returned five years ago. The timeline aligned perfectly. Was it true, then? Was she the one? Was Oliver truly her son? His son? Was Sophia Whitmore the woman from that fateful night?</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5000,81 +5000,22 @@
             }
             
             isAdFilled(adElement) {
-                const iframe = adElement.querySelector('iframe');
+                // Check official AdSense fill status attribute
+                const adStatus = adElement.dataset.adStatus;
                 
-                if (!iframe) {
-                    return false;
-                }
-                
-                // Check iframe dimensions
-                const iframeRect = iframe.getBoundingClientRect();
-                const iframeHeight = iframeRect.height;
-                
-                // If iframe height is collapsed (0 or very small), definitely no fill
-                if (iframeHeight < 10) {
-                    return false;
-                }
-                
-                // Check if iframe has ad URL
-                const hasAdUrl = iframe.src.includes('googleads.g.doubleclick.net') ||
-                                iframe.src.includes('tpc.googlesyndication.com') ||
-                                iframe.src.includes('googlesyndication.com/pagead');
-                
-                if (!hasAdUrl) {
-                    // No ad URL means no fill attempt
-                    return false;
-                }
-                
-                // CRITICAL: Having ad URL doesn't guarantee fill success
-                // AdSense can return empty iframe with fixed height even when no fill
-                // We need additional checks:
-                
-                // Check if height is suspiciously equal to our set height (280px)
-                // If it's exactly 280, it might just be the empty container
-                if (Math.abs(iframeHeight - 280) < 5) {
-                    // Height matches our setting exactly - could be empty
-                    // Try additional checks
-                    
-                    // Check for data attributes that indicate fill status
-                    const dataStatus = adElement.dataset.adsbygoogleStatus;
-                    const dataAdStatus = adElement.dataset.adStatus;
-                    
-                    // Check if there are visible elements inside (cross-origin might block this)
-                    try {
-                        const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
-                        if (iframeDoc && iframeDoc.body) {
-                            const hasContent = iframeDoc.body.children.length > 0 ||
-                                             iframeDoc.body.innerHTML.length > 100;
-                            if (!hasContent) {
-                                return false; // Confirmed empty
-                            }
-                            return true; // Confirmed has content
-                        }
-                    } catch (e) {
-                        // Cross-origin, can't access
-                        // Fall through to conservative logic
-                    }
-                    
-                    // Can't confirm content due to cross-origin
-                    // Be conservative: don't count it as filled
-                    // UNLESS we see other indicators
-                    if (dataStatus === 'done' || dataAdStatus === 'filled') {
-                        // Trust the status attribute
-                        return true;
-                    }
-                    
-                    // No confirmation - assume not filled
-                    return false;
-                }
-                
-                // Height is different from set height (e.g., collapsed or different size)
-                // This suggests dynamic content - likely filled
-                if (iframeHeight > 100 && iframeHeight !== 280) {
+                // filled = ad successfully filled
+                // unfilled = no fill (ad request sent but no ad returned)
+                if (adStatus === 'filled') {
                     return true;
                 }
                 
-                // Default: if we have ad URL and reasonable height, tentatively yes
-                return iframeHeight > 100;
+                if (adStatus === 'unfilled') {
+                    return false;
+                }
+                
+                // If data-ad-status not set yet (ad still loading), return false
+                // We'll check again in the next interval
+                return false;
             }
             
             recordSuccessAd(adElement) {

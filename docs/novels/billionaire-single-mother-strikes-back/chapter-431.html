@@ -2381,17 +2381,6 @@
                 <p>Isabella: Maintain surveillance. Identify their patterns and vulnerabilities. Do not engage until I give the order.</p>
                 <p>Maxwell: Understood.</p>
                 <p>Isabella pocketed her phone, the online headlines flashing through her mind. She turned to Oliver.</p>
-                <!-- AdSense Ad Unit: banner6 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>“Momo, are you getting bored staying indoors? Would you like to go out with Mommy?”</p>
-                <p>“Yes! Yes!” Oliver bounced with excitement.</p>
-                <p>Since Nathaniel and Oliver had moved into her residence, they had avoided public outings. The fear of McKenzie’s photographers kept them confined. The mere prospect of leaving the house thrilled him.</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2400,25 +2389,36 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>But then…</p>
-                <p>“Won’t the bad Auntie find us? What if she tells Grandpa and Grandma to take me away?” Oliver’s lower lip trembled.</p>
-                <p>Isabella ruffled his hair. “Don’t worry, sweetheart. No one will recognize us. Mommy will give you a makeover.”</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <p>“Momo, are you getting bored staying indoors? Would you like to go out with Mommy?”</p>
+                <p>“Yes! Yes!” Oliver bounced with excitement.</p>
+                <p>Since Nathaniel and Oliver had moved into her residence, they had avoided public outings. The fear of McKenzie’s photographers kept them confined. The mere prospect of leaving the house thrilled him.</p>
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner1"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>But then…</p>
+                <p>“Won’t the bad Auntie find us? What if she tells Grandpa and Grandma to take me away?” Oliver’s lower lip trembled.</p>
+                <p>Isabella ruffled his hair. “Don’t worry, sweetheart. No one will recognize us. Mommy will give you a makeover.”</p>
+                <!-- AdSense Ad Unit: banner4 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>She led him to her dressing room. Using special child-safe cosmetics, she transformed his features. His large, doe-like eyes were reshaped into a sharper, more angular shape. His full lips were made to appear thinner. Strategic contouring gave his face a less cherubic, more defined look.</p>
                 <p>She topped it off with a stylish golden wig and dressed him in a trendy, street-style outfit. The elegant little boy was gone, replaced by a cool, slightly spoiled-looking kid.</p>
                 <p>Oliver stared at his reflection, clapping his hands in delight. “Wow! I love it! I look like a little superhero! Ready to protect Mommy and my sister!”</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5009,81 +5009,22 @@
             }
             
             isAdFilled(adElement) {
-                const iframe = adElement.querySelector('iframe');
+                // Check official AdSense fill status attribute
+                const adStatus = adElement.dataset.adStatus;
                 
-                if (!iframe) {
-                    return false;
-                }
-                
-                // Check iframe dimensions
-                const iframeRect = iframe.getBoundingClientRect();
-                const iframeHeight = iframeRect.height;
-                
-                // If iframe height is collapsed (0 or very small), definitely no fill
-                if (iframeHeight < 10) {
-                    return false;
-                }
-                
-                // Check if iframe has ad URL
-                const hasAdUrl = iframe.src.includes('googleads.g.doubleclick.net') ||
-                                iframe.src.includes('tpc.googlesyndication.com') ||
-                                iframe.src.includes('googlesyndication.com/pagead');
-                
-                if (!hasAdUrl) {
-                    // No ad URL means no fill attempt
-                    return false;
-                }
-                
-                // CRITICAL: Having ad URL doesn't guarantee fill success
-                // AdSense can return empty iframe with fixed height even when no fill
-                // We need additional checks:
-                
-                // Check if height is suspiciously equal to our set height (280px)
-                // If it's exactly 280, it might just be the empty container
-                if (Math.abs(iframeHeight - 280) < 5) {
-                    // Height matches our setting exactly - could be empty
-                    // Try additional checks
-                    
-                    // Check for data attributes that indicate fill status
-                    const dataStatus = adElement.dataset.adsbygoogleStatus;
-                    const dataAdStatus = adElement.dataset.adStatus;
-                    
-                    // Check if there are visible elements inside (cross-origin might block this)
-                    try {
-                        const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
-                        if (iframeDoc && iframeDoc.body) {
-                            const hasContent = iframeDoc.body.children.length > 0 ||
-                                             iframeDoc.body.innerHTML.length > 100;
-                            if (!hasContent) {
-                                return false; // Confirmed empty
-                            }
-                            return true; // Confirmed has content
-                        }
-                    } catch (e) {
-                        // Cross-origin, can't access
-                        // Fall through to conservative logic
-                    }
-                    
-                    // Can't confirm content due to cross-origin
-                    // Be conservative: don't count it as filled
-                    // UNLESS we see other indicators
-                    if (dataStatus === 'done' || dataAdStatus === 'filled') {
-                        // Trust the status attribute
-                        return true;
-                    }
-                    
-                    // No confirmation - assume not filled
-                    return false;
-                }
-                
-                // Height is different from set height (e.g., collapsed or different size)
-                // This suggests dynamic content - likely filled
-                if (iframeHeight > 100 && iframeHeight !== 280) {
+                // filled = ad successfully filled
+                // unfilled = no fill (ad request sent but no ad returned)
+                if (adStatus === 'filled') {
                     return true;
                 }
                 
-                // Default: if we have ad URL and reasonable height, tentatively yes
-                return iframeHeight > 100;
+                if (adStatus === 'unfilled') {
+                    return false;
+                }
+                
+                // If data-ad-status not set yet (ad still loading), return false
+                // We'll check again in the next interval
+                return false;
             }
             
             recordSuccessAd(adElement) {

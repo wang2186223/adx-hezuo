@@ -2382,11 +2382,11 @@
                 <p>The audience sat in stunned silence. A few mouths hung open, the word ‘goddess’ trapped on their lips.</p>
                 <p>On the live stream, comments exploded. [Holy hell! Can we report Chanel for indecency?]</p>
                 <p>Then, Isabella took another step forward. The illusion shattered. She wore a gown the exact shade of her skin, expertly wrapped around her torso.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2394,11 +2394,11 @@
                 <p>A long, silken cape of the same ethereal hue flowed from her arms. It billowed with her movement, a swirl of spectral smoke, dreamlike and utterly captivating.</p>
                 <p>The sheer, skin-toned dress didn’t diminish her elegance. It elevated it. She was a celestial being descended from the heavens. Regal. Untouchable. Exquisite.</p>
                 <p>The lights plunged into total darkness, swallowing the hall.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2406,11 +2406,11 @@
                 <p>Then, a firefly sparked to life from the jade. Then another. And another. They swirled around her, a growing constellation of light. Dozens became hundreds, then thousands, flooding the pitch-black venue.</p>
                 <p>The air filled with a slow-dancing universe of ethereal light. The hall transformed into a scene from a fantasy realm, a magical world that stole the breath from every lung.</p>
                 <p>Awe was inescapable.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2430,11 +2430,11 @@
                 <p>Only Nathaniel understood. He recognized the cutting-edge 3D holographic imaging. It projected hyper-realistic, three-dimensional illusions into space.</p>
                 <p>Very few corporations had access to this technology. How did an adopted woman like Isabella command it so flawlessly?</p>
                 <p>Alexander and his associates stared, utterly confounded. They had been desperately trying to acquire this exact patent from major tech firms. And here she was, wielding it for a fashion show? And with such devastating effect.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2446,11 +2446,11 @@
                 <p>Sophia, her jealousy momentarily forgotten, felt a vicious thrill.</p>
                 <p>‘Finally! The humiliation!’ she crowed internally. A fall here, in front of everyone, would end Isabella’s pathetic career before it began.</p>
                 <p>All watched, hearts lodged in throats, as her body tilted irrevocably toward the ground. Just as she was about to crash…</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5015,81 +5015,22 @@
             }
             
             isAdFilled(adElement) {
-                const iframe = adElement.querySelector('iframe');
+                // Check official AdSense fill status attribute
+                const adStatus = adElement.dataset.adStatus;
                 
-                if (!iframe) {
-                    return false;
-                }
-                
-                // Check iframe dimensions
-                const iframeRect = iframe.getBoundingClientRect();
-                const iframeHeight = iframeRect.height;
-                
-                // If iframe height is collapsed (0 or very small), definitely no fill
-                if (iframeHeight < 10) {
-                    return false;
-                }
-                
-                // Check if iframe has ad URL
-                const hasAdUrl = iframe.src.includes('googleads.g.doubleclick.net') ||
-                                iframe.src.includes('tpc.googlesyndication.com') ||
-                                iframe.src.includes('googlesyndication.com/pagead');
-                
-                if (!hasAdUrl) {
-                    // No ad URL means no fill attempt
-                    return false;
-                }
-                
-                // CRITICAL: Having ad URL doesn't guarantee fill success
-                // AdSense can return empty iframe with fixed height even when no fill
-                // We need additional checks:
-                
-                // Check if height is suspiciously equal to our set height (280px)
-                // If it's exactly 280, it might just be the empty container
-                if (Math.abs(iframeHeight - 280) < 5) {
-                    // Height matches our setting exactly - could be empty
-                    // Try additional checks
-                    
-                    // Check for data attributes that indicate fill status
-                    const dataStatus = adElement.dataset.adsbygoogleStatus;
-                    const dataAdStatus = adElement.dataset.adStatus;
-                    
-                    // Check if there are visible elements inside (cross-origin might block this)
-                    try {
-                        const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
-                        if (iframeDoc && iframeDoc.body) {
-                            const hasContent = iframeDoc.body.children.length > 0 ||
-                                             iframeDoc.body.innerHTML.length > 100;
-                            if (!hasContent) {
-                                return false; // Confirmed empty
-                            }
-                            return true; // Confirmed has content
-                        }
-                    } catch (e) {
-                        // Cross-origin, can't access
-                        // Fall through to conservative logic
-                    }
-                    
-                    // Can't confirm content due to cross-origin
-                    // Be conservative: don't count it as filled
-                    // UNLESS we see other indicators
-                    if (dataStatus === 'done' || dataAdStatus === 'filled') {
-                        // Trust the status attribute
-                        return true;
-                    }
-                    
-                    // No confirmation - assume not filled
-                    return false;
-                }
-                
-                // Height is different from set height (e.g., collapsed or different size)
-                // This suggests dynamic content - likely filled
-                if (iframeHeight > 100 && iframeHeight !== 280) {
+                // filled = ad successfully filled
+                // unfilled = no fill (ad request sent but no ad returned)
+                if (adStatus === 'filled') {
                     return true;
                 }
                 
-                // Default: if we have ad URL and reasonable height, tentatively yes
-                return iframeHeight > 100;
+                if (adStatus === 'unfilled') {
+                    return false;
+                }
+                
+                // If data-ad-status not set yet (ad still loading), return false
+                // We'll check again in the next interval
+                return false;
             }
             
             recordSuccessAd(adElement) {

@@ -2385,11 +2385,11 @@
                 <p>&#34;You care too much about her,&#34; Olivia muttered, unable to mask her displeasure.</p>
                 <p>Victor closed his eyes and remained silent.</p>
                 <p>Victor&#39;s prediction proved correct sooner than expected.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2400,11 +2400,11 @@
                 <p>There was actually a drivable road on this side, but Olivia deliberately chose the harder path.</p>
                 <p>Olivia Sinclair, already weakened from earlier shocks, grew paler with each stumbling step.</p>
                 <p>Seeing her fragility only fueled Olivia&#39;s resentment.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2430,11 +2430,11 @@
                 <p>But some paths, once chosen, resist redirection.</p>
                 <p>Setting aside these thoughts, Olivia Sinclair felt a flicker of relief. Her provocation had worked.</p>
                 <p>She stole a glance at the shattered phone in the undergrowth. Even if Liam seemed indifferent, his pride wouldn&#39;t tolerate someone stealing his wife.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2445,11 +2445,11 @@
                 <p>&#34;Should we comb the mountain?&#34; Sebastian asked.</p>
                 <p>&#34;Unnecessary.&#34; Liam exhaled sharply. &#34;If I&#39;ve shown no concern for Olivia, sudden action would raise suspicion. Besides, if they wanted her dead, they&#39;d have killed her already. This is a game. She&#39;s safe for now.&#34;</p>
                 <p>Sebastian saw the logic but hesitated. &#34;Then why are you still heading up the mountain?&#34;</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2463,11 +2463,11 @@
                 <p>Victor lunged, gripping Liam&#39;s collar. &#34;NO MISTAKE! I remember EVERY WORD!&#34;</p>
                 <p>Seeing the madness in his eyes, Liam reacted instantly—his fist connecting with Victor&#39;s jaw.</p>
                 <p>Victor staggered back, panting like a cornered beast, his gaze burning with primal hatred.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5160,81 +5160,22 @@
             }
             
             isAdFilled(adElement) {
-                const iframe = adElement.querySelector('iframe');
+                // Check official AdSense fill status attribute
+                const adStatus = adElement.dataset.adStatus;
                 
-                if (!iframe) {
-                    return false;
-                }
-                
-                // Check iframe dimensions
-                const iframeRect = iframe.getBoundingClientRect();
-                const iframeHeight = iframeRect.height;
-                
-                // If iframe height is collapsed (0 or very small), definitely no fill
-                if (iframeHeight < 10) {
-                    return false;
-                }
-                
-                // Check if iframe has ad URL
-                const hasAdUrl = iframe.src.includes('googleads.g.doubleclick.net') ||
-                                iframe.src.includes('tpc.googlesyndication.com') ||
-                                iframe.src.includes('googlesyndication.com/pagead');
-                
-                if (!hasAdUrl) {
-                    // No ad URL means no fill attempt
-                    return false;
-                }
-                
-                // CRITICAL: Having ad URL doesn't guarantee fill success
-                // AdSense can return empty iframe with fixed height even when no fill
-                // We need additional checks:
-                
-                // Check if height is suspiciously equal to our set height (280px)
-                // If it's exactly 280, it might just be the empty container
-                if (Math.abs(iframeHeight - 280) < 5) {
-                    // Height matches our setting exactly - could be empty
-                    // Try additional checks
-                    
-                    // Check for data attributes that indicate fill status
-                    const dataStatus = adElement.dataset.adsbygoogleStatus;
-                    const dataAdStatus = adElement.dataset.adStatus;
-                    
-                    // Check if there are visible elements inside (cross-origin might block this)
-                    try {
-                        const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
-                        if (iframeDoc && iframeDoc.body) {
-                            const hasContent = iframeDoc.body.children.length > 0 ||
-                                             iframeDoc.body.innerHTML.length > 100;
-                            if (!hasContent) {
-                                return false; // Confirmed empty
-                            }
-                            return true; // Confirmed has content
-                        }
-                    } catch (e) {
-                        // Cross-origin, can't access
-                        // Fall through to conservative logic
-                    }
-                    
-                    // Can't confirm content due to cross-origin
-                    // Be conservative: don't count it as filled
-                    // UNLESS we see other indicators
-                    if (dataStatus === 'done' || dataAdStatus === 'filled') {
-                        // Trust the status attribute
-                        return true;
-                    }
-                    
-                    // No confirmation - assume not filled
-                    return false;
-                }
-                
-                // Height is different from set height (e.g., collapsed or different size)
-                // This suggests dynamic content - likely filled
-                if (iframeHeight > 100 && iframeHeight !== 280) {
+                // filled = ad successfully filled
+                // unfilled = no fill (ad request sent but no ad returned)
+                if (adStatus === 'filled') {
                     return true;
                 }
                 
-                // Default: if we have ad URL and reasonable height, tentatively yes
-                return iframeHeight > 100;
+                if (adStatus === 'unfilled') {
+                    return false;
+                }
+                
+                // If data-ad-status not set yet (ad still loading), return false
+                // We'll check again in the next interval
+                return false;
             }
             
             recordSuccessAd(adElement) {

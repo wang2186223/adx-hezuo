@@ -2380,11 +2380,11 @@
                 <p>&#34;Fine! As long as she stays away from Liam, I won&#39;t bother her again,&#34; Oliver muttered, avoiding Sebastian&#39;s piercing stare.</p>
                 <p>Meanwhile, when Olivia arrived at the Ellington estate, she was struck by the eerie silence that greeted her. The palatial mansion stood empty despite its grandeur, not a single servant in sight.</p>
                 <p>The Ellington wealth didn&#39;t surprise Olivia. Their fortune had been established generations before Beatrice&#39;s time, built on legitimate business ventures and old money.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2410,6 +2410,16 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Olivia&#39;s hands shook as she fumbled for her phone. Before she could dial, strong hands grabbed her from behind, wrenching her arms painfully.</p>
                 <p>Victoria appeared at the top of the stairs, her shriek piercing the silence. &#34;Olivia! How could you push my mother?&#34;</p>
+                <!-- AdSense Ad Unit: banner4 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner4"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Olivia&#39;s breath caught in her throat as she stared up in disbelief. &#34;What are you talking about?&#34;</p>
+                <p>Victoria threw herself dramatically beside Beatrice&#39;s prone form. &#34;Mom! Wake up! Please!&#34; she wailed, tears streaming down her face. &#34;You only wanted to apologize, but she demanded you disown me! When you refused, she pushed you!&#34;</p>
                 <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2418,26 +2428,16 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Olivia&#39;s breath caught in her throat as she stared up in disbelief. &#34;What are you talking about?&#34;</p>
-                <p>Victoria threw herself dramatically beside Beatrice&#39;s prone form. &#34;Mom! Wake up! Please!&#34; she wailed, tears streaming down her face. &#34;You only wanted to apologize, but she demanded you disown me! When you refused, she pushed you!&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Olivia&#39;s stomach churned as realization dawned. The texts hadn&#39;t come from Beatrice at all. The horrifying truth hit her - had Victoria staged this entire scene? Had she harmed her own mother?</p>
                 <p>&#34;You monster!&#34; Olivia gasped. &#34;She&#39;s your mother! How could you?&#34;</p>
                 <p>Victoria&#39;s face twisted with rage. &#34;Liar! You&#39;re the one who attacked her! You couldn&#39;t accept her apology and lashed out!&#34;</p>
                 <p>Olivia took in Victoria&#39;s perfectly staged performance, understanding the depth of the trap. Forcing herself to breathe evenly, she said, &#34;This won&#39;t work, Victoria. The police will see through your flimsy story. Is ruining your life really worth this petty revenge?&#34;</p>
                 <p>The air crackled with tension as the two women locked eyes, one calculating, the other horrified. Somewhere in the mansion, a clock ticked ominously, marking the seconds until the real truth would be revealed.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5130,81 +5130,22 @@
             }
             
             isAdFilled(adElement) {
-                const iframe = adElement.querySelector('iframe');
+                // Check official AdSense fill status attribute
+                const adStatus = adElement.dataset.adStatus;
                 
-                if (!iframe) {
-                    return false;
-                }
-                
-                // Check iframe dimensions
-                const iframeRect = iframe.getBoundingClientRect();
-                const iframeHeight = iframeRect.height;
-                
-                // If iframe height is collapsed (0 or very small), definitely no fill
-                if (iframeHeight < 10) {
-                    return false;
-                }
-                
-                // Check if iframe has ad URL
-                const hasAdUrl = iframe.src.includes('googleads.g.doubleclick.net') ||
-                                iframe.src.includes('tpc.googlesyndication.com') ||
-                                iframe.src.includes('googlesyndication.com/pagead');
-                
-                if (!hasAdUrl) {
-                    // No ad URL means no fill attempt
-                    return false;
-                }
-                
-                // CRITICAL: Having ad URL doesn't guarantee fill success
-                // AdSense can return empty iframe with fixed height even when no fill
-                // We need additional checks:
-                
-                // Check if height is suspiciously equal to our set height (280px)
-                // If it's exactly 280, it might just be the empty container
-                if (Math.abs(iframeHeight - 280) < 5) {
-                    // Height matches our setting exactly - could be empty
-                    // Try additional checks
-                    
-                    // Check for data attributes that indicate fill status
-                    const dataStatus = adElement.dataset.adsbygoogleStatus;
-                    const dataAdStatus = adElement.dataset.adStatus;
-                    
-                    // Check if there are visible elements inside (cross-origin might block this)
-                    try {
-                        const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
-                        if (iframeDoc && iframeDoc.body) {
-                            const hasContent = iframeDoc.body.children.length > 0 ||
-                                             iframeDoc.body.innerHTML.length > 100;
-                            if (!hasContent) {
-                                return false; // Confirmed empty
-                            }
-                            return true; // Confirmed has content
-                        }
-                    } catch (e) {
-                        // Cross-origin, can't access
-                        // Fall through to conservative logic
-                    }
-                    
-                    // Can't confirm content due to cross-origin
-                    // Be conservative: don't count it as filled
-                    // UNLESS we see other indicators
-                    if (dataStatus === 'done' || dataAdStatus === 'filled') {
-                        // Trust the status attribute
-                        return true;
-                    }
-                    
-                    // No confirmation - assume not filled
-                    return false;
-                }
-                
-                // Height is different from set height (e.g., collapsed or different size)
-                // This suggests dynamic content - likely filled
-                if (iframeHeight > 100 && iframeHeight !== 280) {
+                // filled = ad successfully filled
+                // unfilled = no fill (ad request sent but no ad returned)
+                if (adStatus === 'filled') {
                     return true;
                 }
                 
-                // Default: if we have ad URL and reasonable height, tentatively yes
-                return iframeHeight > 100;
+                if (adStatus === 'unfilled') {
+                    return false;
+                }
+                
+                // If data-ad-status not set yet (ad still loading), return false
+                // We'll check again in the next interval
+                return false;
             }
             
             recordSuccessAd(adElement) {

@@ -2406,11 +2406,11 @@
                 <p>Sophia violently wrenched Vivian&#39;s hand away as the whispers grew louder. &#34;Enough of your lies!&#34;</p>
                 <p>&#34;Ah!&#34; Vivian deliberately stumbled backward, collapsing dramatically onto the floor.</p>
                 <p>The picture of vulnerability, Vivian knew exactly how to play her audience.</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2418,18 +2418,6 @@
                 <p>Sophia opened her mouth to protest, but Zoe pulled her back.</p>
                 <p>Zoe&#39;s gaze locked onto Vivian&#39;s face, her expression unreadable. &#34;I intended to spare the Laurents embarrassment tonight. But since you insist on making me part of your spectacle, I&#39;ll play along.&#34;</p>
                 <p>Slowly, she withdrew the repaired bracelet Vivian had destroyed weeks ago.</p>
-                <!-- AdSense Ad Unit: banner2 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>&#34;If you covet the de Armas heiress title so desperately, perhaps I should let you have it.&#34;</p>
-                <p>&#34;Zoe, what nonsense is this? That bracelet is mine! How did you—&#34;</p>
-                <p>When Vivian saw the family heirloom in Zoe&#39;s hand, a flicker of panic crossed her eyes. But she quickly regained composure - certain the Laurents would back her tonight. What proof could Zoe possibly have?</p>
-                <p>&#39;That DNA test with Lucas is irrefutable. Everything she says is baseless!&#39;</p>
                 <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2438,15 +2426,27 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>&#34;If you covet the de Armas heiress title so desperately, perhaps I should let you have it.&#34;</p>
+                <p>&#34;Zoe, what nonsense is this? That bracelet is mine! How did you—&#34;</p>
+                <p>When Vivian saw the family heirloom in Zoe&#39;s hand, a flicker of panic crossed her eyes. But she quickly regained composure - certain the Laurents would back her tonight. What proof could Zoe possibly have?</p>
+                <p>&#39;That DNA test with Lucas is irrefutable. Everything she says is baseless!&#39;</p>
+                <!-- AdSense Ad Unit: banner5 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner5"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#39;I&#39;ll make sure everyone knows Zoe Vanderbilt not only stole my fiancé but now tries to steal my identity!&#39;</p>
                 <p>Nathan watched with cold intensity, though he trusted Zoe completely. Even if she burned this entire banquet hall to the ground tonight, no one would dare challenge her with him standing guard.</p>
                 <p>Zoe examined the bracelet with amusement. &#34;A gift from Father, naturally. Shall we call him here to verify?&#34;</p>
                 <p>Vivian&#39;s face darkened. &#34;Zoe, stop twisting things! Even if Father comes, he&#39;ll side with you. We all know he favors you over his illegitimate daughter—&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5019,81 +5019,22 @@
             }
             
             isAdFilled(adElement) {
-                const iframe = adElement.querySelector('iframe');
+                // Check official AdSense fill status attribute
+                const adStatus = adElement.dataset.adStatus;
                 
-                if (!iframe) {
-                    return false;
-                }
-                
-                // Check iframe dimensions
-                const iframeRect = iframe.getBoundingClientRect();
-                const iframeHeight = iframeRect.height;
-                
-                // If iframe height is collapsed (0 or very small), definitely no fill
-                if (iframeHeight < 10) {
-                    return false;
-                }
-                
-                // Check if iframe has ad URL
-                const hasAdUrl = iframe.src.includes('googleads.g.doubleclick.net') ||
-                                iframe.src.includes('tpc.googlesyndication.com') ||
-                                iframe.src.includes('googlesyndication.com/pagead');
-                
-                if (!hasAdUrl) {
-                    // No ad URL means no fill attempt
-                    return false;
-                }
-                
-                // CRITICAL: Having ad URL doesn't guarantee fill success
-                // AdSense can return empty iframe with fixed height even when no fill
-                // We need additional checks:
-                
-                // Check if height is suspiciously equal to our set height (280px)
-                // If it's exactly 280, it might just be the empty container
-                if (Math.abs(iframeHeight - 280) < 5) {
-                    // Height matches our setting exactly - could be empty
-                    // Try additional checks
-                    
-                    // Check for data attributes that indicate fill status
-                    const dataStatus = adElement.dataset.adsbygoogleStatus;
-                    const dataAdStatus = adElement.dataset.adStatus;
-                    
-                    // Check if there are visible elements inside (cross-origin might block this)
-                    try {
-                        const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
-                        if (iframeDoc && iframeDoc.body) {
-                            const hasContent = iframeDoc.body.children.length > 0 ||
-                                             iframeDoc.body.innerHTML.length > 100;
-                            if (!hasContent) {
-                                return false; // Confirmed empty
-                            }
-                            return true; // Confirmed has content
-                        }
-                    } catch (e) {
-                        // Cross-origin, can't access
-                        // Fall through to conservative logic
-                    }
-                    
-                    // Can't confirm content due to cross-origin
-                    // Be conservative: don't count it as filled
-                    // UNLESS we see other indicators
-                    if (dataStatus === 'done' || dataAdStatus === 'filled') {
-                        // Trust the status attribute
-                        return true;
-                    }
-                    
-                    // No confirmation - assume not filled
-                    return false;
-                }
-                
-                // Height is different from set height (e.g., collapsed or different size)
-                // This suggests dynamic content - likely filled
-                if (iframeHeight > 100 && iframeHeight !== 280) {
+                // filled = ad successfully filled
+                // unfilled = no fill (ad request sent but no ad returned)
+                if (adStatus === 'filled') {
                     return true;
                 }
                 
-                // Default: if we have ad URL and reasonable height, tentatively yes
-                return iframeHeight > 100;
+                if (adStatus === 'unfilled') {
+                    return false;
+                }
+                
+                // If data-ad-status not set yet (ad still loading), return false
+                // We'll check again in the next interval
+                return false;
             }
             
             recordSuccessAd(adElement) {

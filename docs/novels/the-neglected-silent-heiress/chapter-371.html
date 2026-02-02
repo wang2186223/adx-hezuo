@@ -2392,17 +2392,6 @@
                 <p>Miranda’s face drained of color as she listened to Victor’s cold, indifferent voice, betraying her without hesitation.</p>
                 <p>A bitter laugh escaped her lips before tears welled in her eyes. &#34;Five years… Five years of loyalty, and this is how you repay me, Victor? You know Olivia despises me, yet you handed me over to her anyway. How heartless can you be?&#34;</p>
                 <p>Olivia had no interest in Miranda’s self-pity. She turned to Amelia. &#34;Lock Miranda and Evelyn in the same room. Keep them under strict surveillance. No food or water until the day after tomorrow.&#34;</p>
-                <!-- AdSense Ad Unit: banner1 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Amelia frowned. &#34;Olivia, Evelyn is vicious. She even tried to attack you earlier—&#34;</p>
-                <p>&#34;Amelia.&#34; Olivia’s sharp tone cut her off, displeasure flashing in her eyes. &#34;Evelyn’s actions were despicable, but we won’t stoop to her level. There are better ways to punish her.&#34;</p>
-                <p>Amelia lowered her head, guilt flickering across her face. &#34;You’re right. I wasn’t thinking clearly.&#34;</p>
                 <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2411,14 +2400,25 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Olivia massaged her temples. &#34;Just make sure they’re uncomfortable. And hurry—we have guests arriving soon.&#34;</p>
-                <p>Evelyn had screamed herself hoarse during the ride. By the time she was shoved into the empty room, she was exhausted. &#34;Bitch!&#34; she muttered weakly, kicking the door in frustration.</p>
-                <p>When she turned around, she froze. Someone was crouched in the corner. Recognition flickered in her eyes.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <p>Amelia frowned. &#34;Olivia, Evelyn is vicious. She even tried to attack you earlier—&#34;</p>
+                <p>&#34;Amelia.&#34; Olivia’s sharp tone cut her off, displeasure flashing in her eyes. &#34;Evelyn’s actions were despicable, but we won’t stoop to her level. There are better ways to punish her.&#34;</p>
+                <p>Amelia lowered her head, guilt flickering across her face. &#34;You’re right. I wasn’t thinking clearly.&#34;</p>
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner3"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Olivia massaged her temples. &#34;Just make sure they’re uncomfortable. And hurry—we have guests arriving soon.&#34;</p>
+                <p>Evelyn had screamed herself hoarse during the ride. By the time she was shoved into the empty room, she was exhausted. &#34;Bitch!&#34; she muttered weakly, kicking the door in frustration.</p>
+                <p>When she turned around, she froze. Someone was crouched in the corner. Recognition flickered in her eyes.</p>
+                <!-- AdSense Ad Unit: banner1 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2436,11 +2436,11 @@
                 <p>Meanwhile, Olivia had just arrived home when a servant hurried over. &#34;Ma’am, your guest has arrived.&#34;</p>
                 <p>Amelia’s eyes widened as she turned to Olivia. &#34;How did you know they’d come today?&#34;</p>
                 <p>Olivia merely smiled.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5133,81 +5133,22 @@
             }
             
             isAdFilled(adElement) {
-                const iframe = adElement.querySelector('iframe');
+                // Check official AdSense fill status attribute
+                const adStatus = adElement.dataset.adStatus;
                 
-                if (!iframe) {
-                    return false;
-                }
-                
-                // Check iframe dimensions
-                const iframeRect = iframe.getBoundingClientRect();
-                const iframeHeight = iframeRect.height;
-                
-                // If iframe height is collapsed (0 or very small), definitely no fill
-                if (iframeHeight < 10) {
-                    return false;
-                }
-                
-                // Check if iframe has ad URL
-                const hasAdUrl = iframe.src.includes('googleads.g.doubleclick.net') ||
-                                iframe.src.includes('tpc.googlesyndication.com') ||
-                                iframe.src.includes('googlesyndication.com/pagead');
-                
-                if (!hasAdUrl) {
-                    // No ad URL means no fill attempt
-                    return false;
-                }
-                
-                // CRITICAL: Having ad URL doesn't guarantee fill success
-                // AdSense can return empty iframe with fixed height even when no fill
-                // We need additional checks:
-                
-                // Check if height is suspiciously equal to our set height (280px)
-                // If it's exactly 280, it might just be the empty container
-                if (Math.abs(iframeHeight - 280) < 5) {
-                    // Height matches our setting exactly - could be empty
-                    // Try additional checks
-                    
-                    // Check for data attributes that indicate fill status
-                    const dataStatus = adElement.dataset.adsbygoogleStatus;
-                    const dataAdStatus = adElement.dataset.adStatus;
-                    
-                    // Check if there are visible elements inside (cross-origin might block this)
-                    try {
-                        const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
-                        if (iframeDoc && iframeDoc.body) {
-                            const hasContent = iframeDoc.body.children.length > 0 ||
-                                             iframeDoc.body.innerHTML.length > 100;
-                            if (!hasContent) {
-                                return false; // Confirmed empty
-                            }
-                            return true; // Confirmed has content
-                        }
-                    } catch (e) {
-                        // Cross-origin, can't access
-                        // Fall through to conservative logic
-                    }
-                    
-                    // Can't confirm content due to cross-origin
-                    // Be conservative: don't count it as filled
-                    // UNLESS we see other indicators
-                    if (dataStatus === 'done' || dataAdStatus === 'filled') {
-                        // Trust the status attribute
-                        return true;
-                    }
-                    
-                    // No confirmation - assume not filled
-                    return false;
-                }
-                
-                // Height is different from set height (e.g., collapsed or different size)
-                // This suggests dynamic content - likely filled
-                if (iframeHeight > 100 && iframeHeight !== 280) {
+                // filled = ad successfully filled
+                // unfilled = no fill (ad request sent but no ad returned)
+                if (adStatus === 'filled') {
                     return true;
                 }
                 
-                // Default: if we have ad URL and reasonable height, tentatively yes
-                return iframeHeight > 100;
+                if (adStatus === 'unfilled') {
+                    return false;
+                }
+                
+                // If data-ad-status not set yet (ad still loading), return false
+                // We'll check again in the next interval
+                return false;
             }
             
             recordSuccessAd(adElement) {

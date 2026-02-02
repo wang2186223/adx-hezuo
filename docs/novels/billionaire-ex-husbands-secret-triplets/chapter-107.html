@@ -2392,17 +2392,6 @@
                 <p>Vivian&#39;s nails dug into her palms as she fantasized about silencing Evelyn&#39;s mocking lips permanently.</p>
                 <p>This was the burden Evelyn intended her to bear - the consequence of stealing another&#39;s legacy. She would make Vivian regret every stolen design, one excruciating moment at a time.</p>
                 <p>The carefully orchestrated humiliation had only just begun.</p>
-                <!-- AdSense Ad Unit: banner1 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>&#34;What&#39;s all this commotion about?&#34;</p>
-                <p>A sharp voice cut through the tension as the crowd parted respectfully.</p>
-                <p>Penelope Santiago approached in a cloud of expensive perfume, her stiletto heels clicking like a countdown. &#34;Ladies, this is a society event, not some jewelry trade show.&#34; She cast a dismissive glance at Vivian. &#34;Honestly, who cares about some upstart designer?&#34;</p>
                 <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2411,25 +2400,36 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Penelope&#39;s gaze swept over Vivian with undisguised contempt.</p>
-                <p>Such was the privilege of being a Santiago.</p>
-                <p>As the heiress to La Pe Group, second only to Taylor Jewelry and rivaling Hailey &amp; Co., Penelope moved through elite circles with effortless superiority. The Vanderbilts&#39; Viana Jewelry barely registered on her radar - let alone some newly &#34;discovered&#34; talent like Vivian.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <p>&#34;What&#39;s all this commotion about?&#34;</p>
+                <p>A sharp voice cut through the tension as the crowd parted respectfully.</p>
+                <p>Penelope Santiago approached in a cloud of expensive perfume, her stiletto heels clicking like a countdown. &#34;Ladies, this is a society event, not some jewelry trade show.&#34; She cast a dismissive glance at Vivian. &#34;Honestly, who cares about some upstart designer?&#34;</p>
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner1"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Penelope&#39;s gaze swept over Vivian with undisguised contempt.</p>
+                <p>Such was the privilege of being a Santiago.</p>
+                <p>As the heiress to La Pe Group, second only to Taylor Jewelry and rivaling Hailey &amp; Co., Penelope moved through elite circles with effortless superiority. The Vanderbilts&#39; Viana Jewelry barely registered on her radar - let alone some newly &#34;discovered&#34; talent like Vivian.</p>
+                <!-- AdSense Ad Unit: banner6 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>&#34;Penelope darling, there you are!&#34;</p>
                 <p>The two socialites immediately abandoned Vivian to flock around Penelope. Talent meant nothing compared to the power and connections of La Pe&#39;s princess.</p>
                 <p>Left standing alone, Vivian clenched her fists until her manicure threatened to crack. That spoiled heiress would learn what it felt like to be crushed beneath someone&#39;s designer heels.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2438,11 +2438,11 @@
                 <p>Irritation flickered across her features.</p>
                 <p>The Santiago heiress clearly hadn&#39;t inherited her father&#39;s intelligence.</p>
                 <p>Evelyn met Penelope&#39;s gaze with an amused smile. &#34;Ms. Santiago, your comment insults every guest here. We were all properly invited - unless you&#39;re suggesting this is your family&#39;s private function?&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5015,81 +5015,22 @@
             }
             
             isAdFilled(adElement) {
-                const iframe = adElement.querySelector('iframe');
+                // Check official AdSense fill status attribute
+                const adStatus = adElement.dataset.adStatus;
                 
-                if (!iframe) {
-                    return false;
-                }
-                
-                // Check iframe dimensions
-                const iframeRect = iframe.getBoundingClientRect();
-                const iframeHeight = iframeRect.height;
-                
-                // If iframe height is collapsed (0 or very small), definitely no fill
-                if (iframeHeight < 10) {
-                    return false;
-                }
-                
-                // Check if iframe has ad URL
-                const hasAdUrl = iframe.src.includes('googleads.g.doubleclick.net') ||
-                                iframe.src.includes('tpc.googlesyndication.com') ||
-                                iframe.src.includes('googlesyndication.com/pagead');
-                
-                if (!hasAdUrl) {
-                    // No ad URL means no fill attempt
-                    return false;
-                }
-                
-                // CRITICAL: Having ad URL doesn't guarantee fill success
-                // AdSense can return empty iframe with fixed height even when no fill
-                // We need additional checks:
-                
-                // Check if height is suspiciously equal to our set height (280px)
-                // If it's exactly 280, it might just be the empty container
-                if (Math.abs(iframeHeight - 280) < 5) {
-                    // Height matches our setting exactly - could be empty
-                    // Try additional checks
-                    
-                    // Check for data attributes that indicate fill status
-                    const dataStatus = adElement.dataset.adsbygoogleStatus;
-                    const dataAdStatus = adElement.dataset.adStatus;
-                    
-                    // Check if there are visible elements inside (cross-origin might block this)
-                    try {
-                        const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
-                        if (iframeDoc && iframeDoc.body) {
-                            const hasContent = iframeDoc.body.children.length > 0 ||
-                                             iframeDoc.body.innerHTML.length > 100;
-                            if (!hasContent) {
-                                return false; // Confirmed empty
-                            }
-                            return true; // Confirmed has content
-                        }
-                    } catch (e) {
-                        // Cross-origin, can't access
-                        // Fall through to conservative logic
-                    }
-                    
-                    // Can't confirm content due to cross-origin
-                    // Be conservative: don't count it as filled
-                    // UNLESS we see other indicators
-                    if (dataStatus === 'done' || dataAdStatus === 'filled') {
-                        // Trust the status attribute
-                        return true;
-                    }
-                    
-                    // No confirmation - assume not filled
-                    return false;
-                }
-                
-                // Height is different from set height (e.g., collapsed or different size)
-                // This suggests dynamic content - likely filled
-                if (iframeHeight > 100 && iframeHeight !== 280) {
+                // filled = ad successfully filled
+                // unfilled = no fill (ad request sent but no ad returned)
+                if (adStatus === 'filled') {
                     return true;
                 }
                 
-                // Default: if we have ad URL and reasonable height, tentatively yes
-                return iframeHeight > 100;
+                if (adStatus === 'unfilled') {
+                    return false;
+                }
+                
+                // If data-ad-status not set yet (ad still loading), return false
+                // We'll check again in the next interval
+                return false;
             }
             
             recordSuccessAd(adElement) {

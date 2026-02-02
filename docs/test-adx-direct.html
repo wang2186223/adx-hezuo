@@ -182,8 +182,8 @@
             const status = {
                 testId: testId,
                 slot: adElement.dataset.adSlot,
-                adsbyGoogleStatus: adElement.dataset.adsbyGoogleStatus || 'undefined',
-                clientRendered: adElement.dataset.adsbygoogleStatus || 'undefined',
+                adStatus: adElement.dataset.adStatus || 'undefined',
+                adsbygoogleStatus: adElement.dataset.adsbygoogleStatus || 'undefined',
                 hasIframe: false,
                 iframeHeight: 0,
                 containerHeight: adElement.offsetHeight,
@@ -237,39 +237,18 @@
             let isSuccess = false;
             let reason = '';
 
-            if (!status.hasIframe) {
-                reason = '❌ 没有 iframe，广告未请求';
-            } else if (status.iframeHeight < 10) {
-                reason = `❌ iframe 高度塌陷 (${status.iframeHeight}px)，填充失败`;
-            } else if (!status.hasAdUrl) {
-                if (status.iframeSrc.includes('about:blank') || status.iframeSrc === '') {
-                    reason = '❌ iframe 是空白页面 (about:blank)';
-                } else {
-                    reason = `⚠️ iframe URL 不是广告 (${status.iframeSrc.substring(0, 50)}...)`;
-                }
+            // 使用 AdSense 官方状态
+            const adStatus = adElement.dataset.adStatus;
+            
+            if (adStatus === 'filled') {
+                isSuccess = true;
+                reason = '✅ data-ad-status = filled (广告填充成功)';
+            } else if (adStatus === 'unfilled') {
+                isSuccess = false;
+                reason = '❌ data-ad-status = unfilled (无广告填充)';
             } else {
-                // 有广告URL，检查是否真的填充
-                const heightIsSetValue = Math.abs(status.iframeHeight - 280) < 5;
-                const contentUnknown = status.iframeBodyChildren === 'blocked' || status.iframeBodyChildren === 'cross-origin';
-                
-                if (status.iframeBodyChildren > 0 && status.iframeBodyHTML > 100) {
-                    // 确认有内容
-                    isSuccess = true;
-                    reason = `✅ 确认填充成功 (${status.iframeBodyChildren} 元素, ${status.iframeBodyHTML} 字符)`;
-                } else if (status.iframeBodyChildren === 0 || status.iframeBodyHTML === 0) {
-                    // 确认为空
-                    reason = '❌ iframe body 为空，无填充';
-                } else if (heightIsSetValue && contentUnknown) {
-                    // 高度=设置值 且 无法确认内容 → 很可能是空的
-                    reason = '❌ 高度=设置值280px且内容未知（跨域），判定为未填充';
-                } else if (!heightIsSetValue && status.hasAdUrl) {
-                    // 高度不等于设置值，说明可能被动态调整了
-                    isSuccess = true;
-                    reason = `✅ 高度动态调整(${status.iframeHeight}px≠280px)，可能有填充`;
-                } else {
-                    // 其他情况
-                    reason = '⚠️ 有广告URL但内容未知（跨域限制）';
-                }
+                // 状态尚未设置
+                reason = `⚠️ data-ad-status = ${adStatus || 'undefined'} (等待状态更新)`;
             }
 
             // 更新信息显示
@@ -278,12 +257,12 @@
                 return { isSuccess, status, reason };
             }
             
-            const statusClass = isSuccess ? 'status-success' : (status.innerHTML > 0 ? 'status-pending' : 'status-failed');
+            const statusClass = isSuccess ? 'status-success' : (adStatus === 'unfilled' ? 'status-failed' : 'status-pending');
             infoDiv.className = `ad-info ${statusClass}`;
             infoDiv.innerHTML = `
                 <div><strong>状态判定:</strong> ${reason}</div>
-                <div><strong>data-adsbygoogle-status:</strong> ${status.clientRendered}</div>
-                <div><strong>data-adsby-google-status:</strong> ${status.adsbyGoogleStatus}</div>
+                <div><strong>🔑 data-ad-status:</strong> <span style="color:#f00;font-weight:bold;">${adStatus || 'undefined'}</span></div>
+                <div><strong>data-adsbygoogle-status:</strong> ${status.adsbygoogleStatus}</div>
                 <div><strong>容器高度:</strong> ${status.containerHeight}px</div>
                 <div><strong>有 iframe:</strong> ${status.hasIframe ? '是' : '否'}</div>
                 ${status.hasIframe ? `<div><strong>iframe 高度:</strong> ${status.iframeHeight}px</div>` : ''}
