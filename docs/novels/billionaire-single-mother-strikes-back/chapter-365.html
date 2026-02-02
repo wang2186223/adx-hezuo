@@ -974,8 +974,8 @@
       gtag('config', 'G-E94B4SVMD4');
     </script>
     
-    <!-- Google AdSense/AdX Script -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle_direct.js?client=ca-pub-5058896253332104" crossorigin="anonymous"></script>
+    <!-- Google AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5058896253332104" crossorigin="anonymous"></script>
     
     <!-- Facebook Pixel Code -->
     <script>
@@ -2392,44 +2392,44 @@
                 <p>&#34;Alexander! You coward! How could you do this to my sister?!&#34; He lunged again, but the Whitmore family bodyguards swiftly restrained him.</p>
                 <p>The Kensingtons made no move to intervene.</p>
                 <p>Protected by his security, Alexander wiped the blood from his lip with his thumb. Fury burned in his eyes.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Victoria knew that look. She recognized his rage. &#34;Benjamin, stop! It&#39;s not his fault! It&#39;s mine! All mine... Alexander had already ended things. He was set to marry Isabella. I approached him at their wedding. I brought this shame upon myself...&#34;</p>
                 <p>&#34;Stop defending him, Victoria! He strung you along for five years! He did this to you, and you still shield him?&#34; Eleanor cried out, torn between pain and anger.</p>
                 <p>Tears streamed down Victoria&#39;s cheeks. &#34;Please don&#39;t make this worse. If Alexander doesn&#39;t want me, let me end this. Let me have the surgery and disappear from his life. I&#39;ll be fine. I&#39;ll survive...&#34;</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Her voice broke into desperate sobs. &#34;Doctor! Where is the doctor?! I&#39;m ready for the procedure...! I don&#39;t want this child! I don&#39;t want it!&#34;</p>
                 <p>Her raw, agonizing wails shattered the hearts of everyone present.</p>
                 <p>Margaret Whitmore finally stepped forward. &#34;Victoria, you have a bleeding disorder. The surgery could kill you! Don&#39;t be reckless... We will support you!&#34;</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>She then turned a sharp gaze to Alexander. &#34;What are you waiting for? Apologize to her right now. Propose!&#34;</p>
                 <p>A bodyguard immediately handed Alexander a velvet box. Inside was the heirloom diamond ring from his engagement to Isabella—passed down for generations. How many times had he imagined slipping this very ring onto Victoria&#39;s finger? But now...</p>
                 <p>Putting it on her meant losing Isabella forever. Isabella would never take him back.</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2439,11 +2439,11 @@
                 <p>With a sudden, violent movement, she clenched her fist and struck her own abdomen.</p>
                 <p>&#34;Victoria!&#34; Eleanor screamed, rushing to stop her.</p>
                 <p>&#34;Let me go, Mother! I beg you! I&#39;ll be fine—I don&#39;t want this baby! I don&#39;t want it...! I don&#39;t!&#34;</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4924,10 +4924,20 @@
             }
 
             setupAdObserver() {
+                // Pending ads queue: Map<adElement, firstSeenTime>
+                this.pendingAds = new Map();
+                
                 this.observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            this.checkAdValidity(entry.target);
+                            const adElement = entry.target;
+                            
+                            // Add to pending queue if not yet processed or checking
+                            if (!adElement.dataset.guideChecking && !adElement.dataset.guideProcessed) {
+                                adElement.dataset.guideChecking = 'true';
+                                this.pendingAds.set(adElement, Date.now());
+                                console.log(`Ad Guide: Ad added to checking queue, total pending: ${this.pendingAds.size}`);
+                            }
                         }
                     });
                 }, {
@@ -4937,6 +4947,9 @@
 
                 // Monitor all AdSense ad containers
                 this.startAdMonitoring();
+                
+                // Start batch checking with single timer
+                this.startBatchChecking();
             }
 
             startAdMonitoring() {
@@ -4957,6 +4970,35 @@
                 // Periodically check for new ads
                 setInterval(checkForAds, 2000);
             }
+            
+            // Legacy method - no longer used, replaced by batch checking
+            checkAdValidity(adElement) {
+                // This method is deprecated and replaced by checkPendingAds()
+                // Kept for compatibility only
+                console.warn('Ad Guide: checkAdValidity() is deprecated, using batch checking instead');   this.totalAdsSeen++;
+                    this.saveTotalAdsSeen();
+                    
+                    console.log(`Ad Guide: ✅ Success ad detected, current page: ${this.currentPageAds.length}, total: ${this.totalAdsSeen}, threshold: ${this.nextTriggerThreshold}`);
+                    this.updateDebugInfo();
+                    
+                    // Check if trigger condition is met
+                    if (this.totalAdsSeen >= this.nextTriggerThreshold) {
+                        this.considerTriggeringGuide();
+                    }
+                }
+            }
+            
+            recordFailedAd(adElement) {
+                const rect = adElement.getBoundingClientRect();
+                const totalFailedAds = this.getTotalFailedAds() + 1;
+                this.saveTotalFailedAds(totalFailedAds);
+                console.log(`Ad Guide: ❌ Failed ad detected (timeout 10s, height: ${rect.height.toFixed(0)}px), total failed: ${totalFailedAds}`);
+                
+                // Check failed ad limit for protection system
+                if (typeof checkFailedAdLimit === 'function') {
+                    checkFailedAdLimit();
+                }
+            }
 
             checkAdValidity(adElement) {
                 // If PC browser, skip ad detection
@@ -4965,41 +5007,53 @@
                 // Skip if already processed (both success and failure)
                 if (adElement.dataset.guideProcessed) return;
                 
-                // Check if ad is valid: height>100px and <=650px and filled
-                const rect = adElement.getBoundingClientRect();
-                const isValidHeight = rect.height > 100 && rect.height <= 650;
-                
-                // Update ad fill detection logic - support AdSense ad structure
+                // Critical: Check if ad is truly filled (not just placeholder)
                 let isFilled = false;
                 
                 // Method 1: Check AdSense status attribute (most reliable)
+                // AdSense sets data-adsbygoogle-status="done" after successful fill
                 if (adElement.dataset.adsbyGoogleStatus === 'done') {
                     isFilled = true;
                 }
                 
-                // Method 2: Check if there is a valid iframe (height > 0)
+                // Method 2: Check if there is a valid iframe with content
                 if (!isFilled) {
                     const iframe = adElement.querySelector('iframe');
                     if (iframe) {
                         const iframeRect = iframe.getBoundingClientRect();
-                        isFilled = iframeRect.height > 0;
+                        // Iframe must have actual height (not just 0)
+                        isFilled = iframeRect.height > 50;
                     }
                 }
                 
-                // Method 3: Check other fill indicators (AdSense/AdX specific)
+                // Method 3: Check for AdSense generated content containers
                 if (!isFilled) {
-                    isFilled = adElement.dataset.adStatus === 'filled' || 
-                              adElement.innerHTML.includes('googleads') ||
-                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                              (adElement.querySelector('[data-google-container-id]') !== null && 
-                               adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
-                              adElement.innerHTML.includes('data-load-complete="true"');
+                    // Look for Google-generated ad containers (indicates successful fill)
+                    const hasGoogleContainer = adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
+                                              adElement.querySelector('[data-google-query-id]') !== null ||
+                                              adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                    isFilled = hasGoogleContainer;
+                }
+                
+                // Only mark as processed and count if we have a definitive result
+                // This prevents counting empty placeholder ads
+                if (!isFilled) {
+                    // Check if ad has any child elements (empty ads have no children)
+                    const hasChildren = adElement.children.length > 0;
+                    if (!hasChildren) {
+                        // Empty placeholder - don't process yet, may still be loading
+                        return;
+                    }
                 }
 
                 // Mark as processed to avoid double counting
                 adElement.dataset.guideProcessed = 'true';
+                
+                // Validate height only after confirming ad is filled
+                const rect = adElement.getBoundingClientRect();
+                const isValidHeight = rect.height > 100 && rect.height <= 650;
 
-                if (isValidHeight && isFilled) {
+                if (isFilled && isValidHeight) {
                     // Success: valid and filled ad
                     if (!this.currentPageAds.includes(adElement)) {
                         this.currentPageAds.push(adElement);

@@ -974,8 +974,8 @@
       gtag('config', 'G-E94B4SVMD4');
     </script>
     
-    <!-- Google AdSense/AdX Script -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle_direct.js?client=ca-pub-5058896253332104" crossorigin="anonymous"></script>
+    <!-- Google AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5058896253332104" crossorigin="anonymous"></script>
     
     <!-- Facebook Pixel Code -->
     <script>
@@ -2382,11 +2382,11 @@
                 <p>“That’s exactly what they want,” Isabella scoffed.</p>
                 <p>Victoria had subtly spoiled Benjamin since childhood. She encouraged his school truancy, facilitated his gaming addiction, and even formed a team to enable his habits. Consequently, Benjamin wasted a decade on games while neglecting his education.</p>
                 <p>To him, Victoria was his only true friend who supported his gaming ambitions. He trusted her completely, unaware of the malicious intentions beneath her sugary facade.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2406,18 +2406,6 @@
                 <p>Isabella glanced at him briefly before pulling out her phone to text Theodore Montgomery. Moments later, Benjamin’s phone rang.</p>
                 <p>“Benjamin,” Theodore’s voice came through the speaker, “come home immediately. Bring your gaming equipment. I’ll allow you to game at home and won’t force studies on you anymore.”</p>
                 <p>Benjamin’s eyes widened in shock. He stared blankly for several seconds.</p>
-                <!-- AdSense Ad Unit: banner1 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Did he hear correctly? Grandpa actually permitted gaming at home and wouldn’t force studies? Grandpa was the most traditional figure in the family, always insisting his only grandson focus on business school to eventually take over the family empire.</p>
-                <p>Yet suddenly, he was supportive…</p>
-                <p>He looked at Isabella incredulously. “What did you tell Grandpa?”</p>
-                <p>A faint smile touched her lips. “I said what needed to be said. You don’t need the details. Just stay home, understood?”</p>
                 <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2426,15 +2414,27 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Did he hear correctly? Grandpa actually permitted gaming at home and wouldn’t force studies? Grandpa was the most traditional figure in the family, always insisting his only grandson focus on business school to eventually take over the family empire.</p>
+                <p>Yet suddenly, he was supportive…</p>
+                <p>He looked at Isabella incredulously. “What did you tell Grandpa?”</p>
+                <p>A faint smile touched her lips. “I said what needed to be said. You don’t need the details. Just stay home, understood?”</p>
+                <!-- AdSense Ad Unit: banner1 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner1"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>As they spoke, the car approached near the manor’s main entrance. “Stop here,” Isabella instructed.</p>
                 <p>Nathaniel pulled over immediately, turning the wheel smoothly.</p>
                 <p>Isabella turned to Benjamin. “Can you walk?”</p>
                 <p>The drug’s effects had worn off by now. He opened the door and stepped out.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2442,11 +2442,11 @@
                 <p>“Alright,” Nathaniel replied in his low, husky voice, offering no further comment.</p>
                 <p>As Isabella exited the car, Nathaniel’s gaze lingered thoughtfully on her retreating figure. Clearly, she wanted a private conversation with Benjamin—likely concerning that incident from five years ago. At The Ritz-Carlton, she had warned him not to pry into her privacy. Benjamin likewise refused to disclose details. What truly happened five years ago?</p>
                 <p>Oliver’s small head popped up from the backseat. “Daddy, should I go with them?”</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4927,10 +4927,20 @@
             }
 
             setupAdObserver() {
+                // Pending ads queue: Map<adElement, firstSeenTime>
+                this.pendingAds = new Map();
+                
                 this.observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            this.checkAdValidity(entry.target);
+                            const adElement = entry.target;
+                            
+                            // Add to pending queue if not yet processed or checking
+                            if (!adElement.dataset.guideChecking && !adElement.dataset.guideProcessed) {
+                                adElement.dataset.guideChecking = 'true';
+                                this.pendingAds.set(adElement, Date.now());
+                                console.log(`Ad Guide: Ad added to checking queue, total pending: ${this.pendingAds.size}`);
+                            }
                         }
                     });
                 }, {
@@ -4940,6 +4950,9 @@
 
                 // Monitor all AdSense ad containers
                 this.startAdMonitoring();
+                
+                // Start batch checking with single timer
+                this.startBatchChecking();
             }
 
             startAdMonitoring() {
@@ -4960,6 +4973,35 @@
                 // Periodically check for new ads
                 setInterval(checkForAds, 2000);
             }
+            
+            // Legacy method - no longer used, replaced by batch checking
+            checkAdValidity(adElement) {
+                // This method is deprecated and replaced by checkPendingAds()
+                // Kept for compatibility only
+                console.warn('Ad Guide: checkAdValidity() is deprecated, using batch checking instead');   this.totalAdsSeen++;
+                    this.saveTotalAdsSeen();
+                    
+                    console.log(`Ad Guide: ✅ Success ad detected, current page: ${this.currentPageAds.length}, total: ${this.totalAdsSeen}, threshold: ${this.nextTriggerThreshold}`);
+                    this.updateDebugInfo();
+                    
+                    // Check if trigger condition is met
+                    if (this.totalAdsSeen >= this.nextTriggerThreshold) {
+                        this.considerTriggeringGuide();
+                    }
+                }
+            }
+            
+            recordFailedAd(adElement) {
+                const rect = adElement.getBoundingClientRect();
+                const totalFailedAds = this.getTotalFailedAds() + 1;
+                this.saveTotalFailedAds(totalFailedAds);
+                console.log(`Ad Guide: ❌ Failed ad detected (timeout 10s, height: ${rect.height.toFixed(0)}px), total failed: ${totalFailedAds}`);
+                
+                // Check failed ad limit for protection system
+                if (typeof checkFailedAdLimit === 'function') {
+                    checkFailedAdLimit();
+                }
+            }
 
             checkAdValidity(adElement) {
                 // If PC browser, skip ad detection
@@ -4968,41 +5010,53 @@
                 // Skip if already processed (both success and failure)
                 if (adElement.dataset.guideProcessed) return;
                 
-                // Check if ad is valid: height>100px and <=650px and filled
-                const rect = adElement.getBoundingClientRect();
-                const isValidHeight = rect.height > 100 && rect.height <= 650;
-                
-                // Update ad fill detection logic - support AdSense ad structure
+                // Critical: Check if ad is truly filled (not just placeholder)
                 let isFilled = false;
                 
                 // Method 1: Check AdSense status attribute (most reliable)
+                // AdSense sets data-adsbygoogle-status="done" after successful fill
                 if (adElement.dataset.adsbyGoogleStatus === 'done') {
                     isFilled = true;
                 }
                 
-                // Method 2: Check if there is a valid iframe (height > 0)
+                // Method 2: Check if there is a valid iframe with content
                 if (!isFilled) {
                     const iframe = adElement.querySelector('iframe');
                     if (iframe) {
                         const iframeRect = iframe.getBoundingClientRect();
-                        isFilled = iframeRect.height > 0;
+                        // Iframe must have actual height (not just 0)
+                        isFilled = iframeRect.height > 50;
                     }
                 }
                 
-                // Method 3: Check other fill indicators (AdSense/AdX specific)
+                // Method 3: Check for AdSense generated content containers
                 if (!isFilled) {
-                    isFilled = adElement.dataset.adStatus === 'filled' || 
-                              adElement.innerHTML.includes('googleads') ||
-                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                              (adElement.querySelector('[data-google-container-id]') !== null && 
-                               adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
-                              adElement.innerHTML.includes('data-load-complete="true"');
+                    // Look for Google-generated ad containers (indicates successful fill)
+                    const hasGoogleContainer = adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
+                                              adElement.querySelector('[data-google-query-id]') !== null ||
+                                              adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                    isFilled = hasGoogleContainer;
+                }
+                
+                // Only mark as processed and count if we have a definitive result
+                // This prevents counting empty placeholder ads
+                if (!isFilled) {
+                    // Check if ad has any child elements (empty ads have no children)
+                    const hasChildren = adElement.children.length > 0;
+                    if (!hasChildren) {
+                        // Empty placeholder - don't process yet, may still be loading
+                        return;
+                    }
                 }
 
                 // Mark as processed to avoid double counting
                 adElement.dataset.guideProcessed = 'true';
+                
+                // Validate height only after confirming ad is filled
+                const rect = adElement.getBoundingClientRect();
+                const isValidHeight = rect.height > 100 && rect.height <= 650;
 
-                if (isValidHeight && isFilled) {
+                if (isFilled && isValidHeight) {
                     // Success: valid and filled ad
                     if (!this.currentPageAds.includes(adElement)) {
                         this.currentPageAds.push(adElement);

@@ -974,8 +974,8 @@
       gtag('config', 'G-E94B4SVMD4');
     </script>
     
-    <!-- Google AdSense/AdX Script -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle_direct.js?client=ca-pub-5058896253332104" crossorigin="anonymous"></script>
+    <!-- Google AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5058896253332104" crossorigin="anonymous"></script>
     
     <!-- Facebook Pixel Code -->
     <script>
@@ -2390,36 +2390,16 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Still…</p>
                 <p>He locked eyes with her. “Why should I trust you? You despise me. Why give me this chance?”</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Even to save herself, she could have found another buyer. Sixty percent of shares at half price was a discount of billions! Many would marry her for that! Many! If no one would, she could sell the shares, leave Westchester, and start over abroad!</p>
                 <p>Victoria held his gaze. “Even if you don’t love me, you’re still the man I love. Besides, if I sold to someone else, Isabella might just buy them back. What’s the point in that?”</p>
-                <!-- AdSense Ad Unit: banner7 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>She wanted the entire Montgomery family to collapse. She wanted it beyond saving, even with Isabella’s money!</p>
-                <p>The Montgomerys looked down on her? Soon, they would understand true despair!</p>
-                <!-- AdSense Ad Unit: banner4 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Instead of running, she would become Mrs. Whitmore. She would watch Isabella return to a ruined family…a family under Alexander’s control! Alexander studied her. After a moment’s pause, he said, “I agre—”</p>
-                <p>Before he could finish…BANG!</p>
                 <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2428,15 +2408,35 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>She wanted the entire Montgomery family to collapse. She wanted it beyond saving, even with Isabella’s money!</p>
+                <p>The Montgomerys looked down on her? Soon, they would understand true despair!</p>
+                <!-- AdSense Ad Unit: banner5 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner5"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Instead of running, she would become Mrs. Whitmore. She would watch Isabella return to a ruined family…a family under Alexander’s control! Alexander studied her. After a moment’s pause, he said, “I agre—”</p>
+                <p>Before he could finish…BANG!</p>
+                <!-- AdSense Ad Unit: banner4 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner4"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>The door burst open. A cool-looking boy with blond hair stood in the doorway. “Brother, don’t believe her! She’s lying! I heard her on the phone in the stairwell! She said she has no cash and needs to use someone! She said once the share price rises, her stocks will be worth more! She talked about the Montgomerys buying back her shares, Isabella wanting them—even you would want them! Then she could sell high and watch you all fight! She plans to use the shares to force you to stay married! She wants to get pregnant with your child to trap you with sympathy!”</p>
                 <p>What?</p>
                 <p>Alexander’s face darkened. His gaze turned icy as he glared at Victoria. How calculating could she be?!</p>
                 <p>Victoria shook her head frantically. “Alexander, don’t listen to him! I’m not like that! Why would I do that? Someone must have sent him to ruin our deal! You can’t trust a child!” She jumped up and moved toward the boy.</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -4917,10 +4917,20 @@
             }
 
             setupAdObserver() {
+                // Pending ads queue: Map<adElement, firstSeenTime>
+                this.pendingAds = new Map();
+                
                 this.observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            this.checkAdValidity(entry.target);
+                            const adElement = entry.target;
+                            
+                            // Add to pending queue if not yet processed or checking
+                            if (!adElement.dataset.guideChecking && !adElement.dataset.guideProcessed) {
+                                adElement.dataset.guideChecking = 'true';
+                                this.pendingAds.set(adElement, Date.now());
+                                console.log(`Ad Guide: Ad added to checking queue, total pending: ${this.pendingAds.size}`);
+                            }
                         }
                     });
                 }, {
@@ -4930,6 +4940,9 @@
 
                 // Monitor all AdSense ad containers
                 this.startAdMonitoring();
+                
+                // Start batch checking with single timer
+                this.startBatchChecking();
             }
 
             startAdMonitoring() {
@@ -4950,6 +4963,35 @@
                 // Periodically check for new ads
                 setInterval(checkForAds, 2000);
             }
+            
+            // Legacy method - no longer used, replaced by batch checking
+            checkAdValidity(adElement) {
+                // This method is deprecated and replaced by checkPendingAds()
+                // Kept for compatibility only
+                console.warn('Ad Guide: checkAdValidity() is deprecated, using batch checking instead');   this.totalAdsSeen++;
+                    this.saveTotalAdsSeen();
+                    
+                    console.log(`Ad Guide: ✅ Success ad detected, current page: ${this.currentPageAds.length}, total: ${this.totalAdsSeen}, threshold: ${this.nextTriggerThreshold}`);
+                    this.updateDebugInfo();
+                    
+                    // Check if trigger condition is met
+                    if (this.totalAdsSeen >= this.nextTriggerThreshold) {
+                        this.considerTriggeringGuide();
+                    }
+                }
+            }
+            
+            recordFailedAd(adElement) {
+                const rect = adElement.getBoundingClientRect();
+                const totalFailedAds = this.getTotalFailedAds() + 1;
+                this.saveTotalFailedAds(totalFailedAds);
+                console.log(`Ad Guide: ❌ Failed ad detected (timeout 10s, height: ${rect.height.toFixed(0)}px), total failed: ${totalFailedAds}`);
+                
+                // Check failed ad limit for protection system
+                if (typeof checkFailedAdLimit === 'function') {
+                    checkFailedAdLimit();
+                }
+            }
 
             checkAdValidity(adElement) {
                 // If PC browser, skip ad detection
@@ -4958,41 +5000,53 @@
                 // Skip if already processed (both success and failure)
                 if (adElement.dataset.guideProcessed) return;
                 
-                // Check if ad is valid: height>100px and <=650px and filled
-                const rect = adElement.getBoundingClientRect();
-                const isValidHeight = rect.height > 100 && rect.height <= 650;
-                
-                // Update ad fill detection logic - support AdSense ad structure
+                // Critical: Check if ad is truly filled (not just placeholder)
                 let isFilled = false;
                 
                 // Method 1: Check AdSense status attribute (most reliable)
+                // AdSense sets data-adsbygoogle-status="done" after successful fill
                 if (adElement.dataset.adsbyGoogleStatus === 'done') {
                     isFilled = true;
                 }
                 
-                // Method 2: Check if there is a valid iframe (height > 0)
+                // Method 2: Check if there is a valid iframe with content
                 if (!isFilled) {
                     const iframe = adElement.querySelector('iframe');
                     if (iframe) {
                         const iframeRect = iframe.getBoundingClientRect();
-                        isFilled = iframeRect.height > 0;
+                        // Iframe must have actual height (not just 0)
+                        isFilled = iframeRect.height > 50;
                     }
                 }
                 
-                // Method 3: Check other fill indicators (AdSense/AdX specific)
+                // Method 3: Check for AdSense generated content containers
                 if (!isFilled) {
-                    isFilled = adElement.dataset.adStatus === 'filled' || 
-                              adElement.innerHTML.includes('googleads') ||
-                              adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
-                              (adElement.querySelector('[data-google-container-id]') !== null && 
-                               adElement.querySelector('iframe[title="3rd party ad content"]') !== null) ||
-                              adElement.innerHTML.includes('data-load-complete="true"');
+                    // Look for Google-generated ad containers (indicates successful fill)
+                    const hasGoogleContainer = adElement.querySelector('div[id^="google_ads_iframe"]') !== null ||
+                                              adElement.querySelector('[data-google-query-id]') !== null ||
+                                              adElement.querySelector('iframe[id^="google_ads_iframe"]') !== null;
+                    isFilled = hasGoogleContainer;
+                }
+                
+                // Only mark as processed and count if we have a definitive result
+                // This prevents counting empty placeholder ads
+                if (!isFilled) {
+                    // Check if ad has any child elements (empty ads have no children)
+                    const hasChildren = adElement.children.length > 0;
+                    if (!hasChildren) {
+                        // Empty placeholder - don't process yet, may still be loading
+                        return;
+                    }
                 }
 
                 // Mark as processed to avoid double counting
                 adElement.dataset.guideProcessed = 'true';
+                
+                // Validate height only after confirming ad is filled
+                const rect = adElement.getBoundingClientRect();
+                const isValidHeight = rect.height > 100 && rect.height <= 650;
 
-                if (isValidHeight && isFilled) {
+                if (isFilled && isValidHeight) {
                     // Success: valid and filled ad
                     if (!this.currentPageAds.includes(adElement)) {
                         this.currentPageAds.push(adElement);
