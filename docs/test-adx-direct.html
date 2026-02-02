@@ -285,9 +285,14 @@
                 if (result.isSuccess) {
                     successCount++;
                     log(`广告 ${result.status.testId} [${result.status.slot}]: ${result.reason}`, 'success');
+                    log(`  └─ iframe高度: ${result.status.iframeHeight}px, body子元素: ${result.status.iframeBodyChildren}, bodyHTML: ${result.status.iframeBodyHTML}`, 'info');
+                    log(`  └─ src: ${result.status.iframeSrc ? result.status.iframeSrc.substring(0, 120) : 'N/A'}`, 'info');
                 } else {
                     failedCount++;
                     log(`广告 ${result.status.testId} [${result.status.slot}]: ${result.reason}`, result.status.innerHTML > 0 ? 'warning' : 'error');
+                    if (result.status.hasIframe) {
+                        log(`  └─ iframe高度: ${result.status.iframeHeight}px, src: ${result.status.iframeSrc ? result.status.iframeSrc.substring(0, 80) : 'N/A'}`, 'info');
+                    }
                 }
             });
 
