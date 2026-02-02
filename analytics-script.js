@@ -1,19 +1,19 @@
 // Google Apps Script 代码 - 网站访问统计系统(每日独立表格版本)
-// 主控制表格 ID: 1_aTtHxX7LmHTcY9BB5qECc4L8OSWHxNoDaqDuyda_xY
+// 主控制表格 ID: 1zawBAUYGfo11Bc6wqa9I73aqHi5FZAYeIX0HIRbrFKg
 // 部署ID: AKfycbwXBGv2e6k-7ABYVa-xb379BhB0m5DgLZ9YWjuvsl_5cFPW9aeQam22zsF0B8QWxuit4A
 // 部署URL: https://script.google.com/macros/s/AKfycbwXBGv2e6k-7ABYVa-xb379BhB0m5DgLZ9YWjuvsl_5cFPW9aeQam22zsF0B8QWxuit4A/exec
 // 
 // 架构说明：
 // - 主表格：用于控制台、统计汇总、表格索引
 // - 每日表格：每天自动创建新的独立表格，包含当天的详细数据和广告引导数据
-// - 表格命名：adx-good-2025-01-15
+// - 表格命名：adx-hezuo-2025-01-15
 // - 文件夹：所有每日表格存放在"网站统计数据"文件夹中
 
 // ==================== 配置常量 ====================
 
-const MAIN_SPREADSHEET_ID = '1_aTtHxX7LmHTcY9BB5qECc4L8OSWHxNoDaqDuyda_xY';
+const MAIN_SPREADSHEET_ID = '1zawBAUYGfo11Bc6wqa9I73aqHi5FZAYeIX0HIRbrFKg';
 const DATA_FOLDER_NAME = '网站统计数据';
-const SPREADSHEET_PREFIX = 'adx-good-';
+const SPREADSHEET_PREFIX = 'adx-hezuo-';
 
 // ==================== 主入口函数 ====================
 
