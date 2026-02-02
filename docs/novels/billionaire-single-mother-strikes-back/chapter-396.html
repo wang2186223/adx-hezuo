@@ -2387,11 +2387,11 @@
                 <p>They had invited nearly every influential figure, and all had accepted.</p>
                 <p>Alexander also enlisted numerous celebrities and supermodels, striving to make the event unforgettable.</p>
                 <p>So what if online critics condemned their union?</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2404,11 +2404,11 @@
                 <p>Inside the bridal suite...</p>
                 <p>Victoria had completed her makeup.</p>
                 <p>Eight bridesmaids surrounded her, all her female cousins.</p>
-                <!-- AdSense Ad Unit: banner6 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2421,11 +2421,11 @@
                 <p>They wanted the world to witness their familial loyalty.</p>
                 <p>Victoria&#39;s lips curved into a smirk as she eyed the solitary dress hanging aside.</p>
                 <p>Isabella would play nothing but a minor role in her wedding!</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2438,11 +2438,11 @@
                 <p>She would face the internet&#39;s furious wrath!</p>
                 <p>Speaking of Isabella...</p>
                 <p>She arrived at the hotel precisely then.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2455,11 +2455,11 @@
                 <p>She opened the car door, preparing to exit when Nathaniel asked, &#34;Are you certain you don&#39;t want me accompanying you?&#34;</p>
                 <p>&#34;Positive. I can handle this alone. Just focus on caring for Christopher.&#34; Isabella waved at Oliver before walking away.</p>
                 <p>She understood Nathaniel&#39;s protective instincts.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5041,15 +5041,9 @@
             }
             
             isAdFilled(adElement) {
-                // Check if AdSense marked it as filled
-                const dataStatus = adElement.dataset.adsbygoogleStatus;
-                
-                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
-                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
                 
                 if (!iframe) {
-                    // No iframe at all = not filled
                     return false;
                 }
                 
@@ -5057,42 +5051,71 @@
                 const iframeRect = iframe.getBoundingClientRect();
                 const iframeHeight = iframeRect.height;
                 
-                // If iframe height is 0 or very small, it's collapsed = no fill
+                // If iframe height is collapsed (0 or very small), definitely no fill
                 if (iframeHeight < 10) {
                     return false;
                 }
                 
-                // Check if iframe has actual content (not just empty)
-                try {
-                    // For same-origin iframes, we can check contentWindow
-                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
-                    if (iframeDoc) {
-                        const body = iframeDoc.body;
-                        if (body && body.children.length === 0) {
-                            // Empty body = no ad content
-                            return false;
-                        }
-                    }
-                } catch (e) {
-                    // Cross-origin iframe, can't access content directly
-                    // Fall back to other checks
+                // Check if iframe has ad URL
+                const hasAdUrl = iframe.src.includes('googleads.g.doubleclick.net') ||
+                                iframe.src.includes('tpc.googlesyndication.com') ||
+                                iframe.src.includes('googlesyndication.com/pagead');
+                
+                if (!hasAdUrl) {
+                    // No ad URL means no fill attempt
+                    return false;
                 }
                 
-                // Check for specific AdSense success indicators
-                const hasAdContent = 
-                    iframe.src.includes('googleads.g.doubleclick.net') ||
-                    iframe.src.includes('tpc.googlesyndication.com');
+                // CRITICAL: Having ad URL doesn't guarantee fill success
+                // AdSense can return empty iframe with fixed height even when no fill
+                // We need additional checks:
                 
-                // If status is done and iframe exists with good height and ad URL, consider it filled
-                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
+                // Check if height is suspiciously equal to our set height (280px)
+                // If it's exactly 280, it might just be the empty container
+                if (Math.abs(iframeHeight - 280) < 5) {
+                    // Height matches our setting exactly - could be empty
+                    // Try additional checks
+                    
+                    // Check for data attributes that indicate fill status
+                    const dataStatus = adElement.dataset.adsbygoogleStatus;
+                    const dataAdStatus = adElement.dataset.adStatus;
+                    
+                    // Check if there are visible elements inside (cross-origin might block this)
+                    try {
+                        const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                        if (iframeDoc && iframeDoc.body) {
+                            const hasContent = iframeDoc.body.children.length > 0 ||
+                                             iframeDoc.body.innerHTML.length > 100;
+                            if (!hasContent) {
+                                return false; // Confirmed empty
+                            }
+                            return true; // Confirmed has content
+                        }
+                    } catch (e) {
+                        // Cross-origin, can't access
+                        // Fall through to conservative logic
+                    }
+                    
+                    // Can't confirm content due to cross-origin
+                    // Be conservative: don't count it as filled
+                    // UNLESS we see other indicators
+                    if (dataStatus === 'done' || dataAdStatus === 'filled') {
+                        // Trust the status attribute
+                        return true;
+                    }
+                    
+                    // No confirmation - assume not filled
+                    return false;
+                }
+                
+                // Height is different from set height (e.g., collapsed or different size)
+                // This suggests dynamic content - likely filled
+                if (iframeHeight > 100 && iframeHeight !== 280) {
                     return true;
                 }
                 
-                // Additional check: look for visible ad elements inside the container
-                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
-                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
-                
-                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
+                // Default: if we have ad URL and reasonable height, tentatively yes
+                return iframeHeight > 100;
             }
             
             recordSuccessAd(adElement) {

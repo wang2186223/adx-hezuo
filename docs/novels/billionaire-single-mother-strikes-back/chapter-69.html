@@ -2380,11 +2380,11 @@
                 <p>Isabella accepted the bowl and took an elegant spoonful.</p>
                 <p>The moment it touched her tongue, her taste buds were awakened by the fresh, perfectly balanced flavor. It was rich but not heavy, utterly delicious. She couldn’t believe Nathaniel—that powerful, commanding man—could cook like this.</p>
                 <p>Watching Isabella savor the dish, Victoria burned with envy. Each spoonful felt like a slap. She forced her expression to remain neutral. “Isabella, dear, you accepted food from a stranger without even knowing who he is?” she said, layering her tone with sisterly concern. “You should know men always have hidden motives.”</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2400,26 +2400,16 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Victoria’s concerned mask slipped instantly. La Dolce was the most famous dessert shop in Westchester. The lines stretched for hours. Hundreds waited daily just for one scoop.</p>
                 <p>When Victoria didn’t respond, Isabella raised a brow. “Cat got your tongue? You sounded so convincing earlier. Unless… you were just putting on a show?”</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Victoria’s face flushed deep purple under the stares of everyone around. She struggled to keep her composure. “Of course not! If that’s what you want, you’ll have it. Penelope, what are you waiting for? Go get it now.”</p>
                 <p>“Yes, Miss.” Penelope, who had been massaging Victoria’s shoulders, pressed her lips together and hurried out.</p>
-                <!-- AdSense Ad Unit: banner4 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>‘This heat is unbearable. They’re trying to kill me making me stand in line for hours. That cunning Isabella knows how to make life difficult,’ Penelope fumed silently.</p>
-                <p>•••</p>
                 <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2428,16 +2418,26 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>‘This heat is unbearable. They’re trying to kill me making me stand in line for hours. That cunning Isabella knows how to make life difficult,’ Penelope fumed silently.</p>
+                <p>•••</p>
+                <!-- AdSense Ad Unit: banner5 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner5"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>After Penelope left, Victoria turned back to business. “Isabella, since you’ve accepted the chowder, shouldn’t you at least find out who this chairman is? You should thank him properly. It’s basic manners.” This mysterious chairman had helped Isabella twice now. She needed to uncover his identity!</p>
                 <p>Isabella’s lips curved into a captivating smile. “You would need to thank him. But I don’t.” Her eyes shifted to the assistant. “After all, he’s Harrison Winslow’s assistant. Since Harrison works under me, I don’t need to thank the assistant of my subordinate.”</p>
                 <p>Her tone was cool and arrogant.</p>
                 <p>Isabella was lying, but it was for Nathaniel’s protection. If Victoria found out it was him, she would latch onto him and never let go.</p>
                 <p>Victoria’s gaze turned icy. She stared at the assistant in disbelief. “You’re Harrison Winslow’s assistant?”</p>
-                <!-- AdSense Ad Unit: banner8 -->
+                <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner8"
+                     data-ad-slot="adx-23335185836-banner7"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5002,15 +5002,9 @@
             }
             
             isAdFilled(adElement) {
-                // Check if AdSense marked it as filled
-                const dataStatus = adElement.dataset.adsbygoogleStatus;
-                
-                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
-                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
                 
                 if (!iframe) {
-                    // No iframe at all = not filled
                     return false;
                 }
                 
@@ -5018,42 +5012,71 @@
                 const iframeRect = iframe.getBoundingClientRect();
                 const iframeHeight = iframeRect.height;
                 
-                // If iframe height is 0 or very small, it's collapsed = no fill
+                // If iframe height is collapsed (0 or very small), definitely no fill
                 if (iframeHeight < 10) {
                     return false;
                 }
                 
-                // Check if iframe has actual content (not just empty)
-                try {
-                    // For same-origin iframes, we can check contentWindow
-                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
-                    if (iframeDoc) {
-                        const body = iframeDoc.body;
-                        if (body && body.children.length === 0) {
-                            // Empty body = no ad content
-                            return false;
-                        }
-                    }
-                } catch (e) {
-                    // Cross-origin iframe, can't access content directly
-                    // Fall back to other checks
+                // Check if iframe has ad URL
+                const hasAdUrl = iframe.src.includes('googleads.g.doubleclick.net') ||
+                                iframe.src.includes('tpc.googlesyndication.com') ||
+                                iframe.src.includes('googlesyndication.com/pagead');
+                
+                if (!hasAdUrl) {
+                    // No ad URL means no fill attempt
+                    return false;
                 }
                 
-                // Check for specific AdSense success indicators
-                const hasAdContent = 
-                    iframe.src.includes('googleads.g.doubleclick.net') ||
-                    iframe.src.includes('tpc.googlesyndication.com');
+                // CRITICAL: Having ad URL doesn't guarantee fill success
+                // AdSense can return empty iframe with fixed height even when no fill
+                // We need additional checks:
                 
-                // If status is done and iframe exists with good height and ad URL, consider it filled
-                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
+                // Check if height is suspiciously equal to our set height (280px)
+                // If it's exactly 280, it might just be the empty container
+                if (Math.abs(iframeHeight - 280) < 5) {
+                    // Height matches our setting exactly - could be empty
+                    // Try additional checks
+                    
+                    // Check for data attributes that indicate fill status
+                    const dataStatus = adElement.dataset.adsbygoogleStatus;
+                    const dataAdStatus = adElement.dataset.adStatus;
+                    
+                    // Check if there are visible elements inside (cross-origin might block this)
+                    try {
+                        const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                        if (iframeDoc && iframeDoc.body) {
+                            const hasContent = iframeDoc.body.children.length > 0 ||
+                                             iframeDoc.body.innerHTML.length > 100;
+                            if (!hasContent) {
+                                return false; // Confirmed empty
+                            }
+                            return true; // Confirmed has content
+                        }
+                    } catch (e) {
+                        // Cross-origin, can't access
+                        // Fall through to conservative logic
+                    }
+                    
+                    // Can't confirm content due to cross-origin
+                    // Be conservative: don't count it as filled
+                    // UNLESS we see other indicators
+                    if (dataStatus === 'done' || dataAdStatus === 'filled') {
+                        // Trust the status attribute
+                        return true;
+                    }
+                    
+                    // No confirmation - assume not filled
+                    return false;
+                }
+                
+                // Height is different from set height (e.g., collapsed or different size)
+                // This suggests dynamic content - likely filled
+                if (iframeHeight > 100 && iframeHeight !== 280) {
                     return true;
                 }
                 
-                // Additional check: look for visible ad elements inside the container
-                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
-                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
-                
-                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
+                // Default: if we have ad URL and reasonable height, tentatively yes
+                return iframeHeight > 100;
             }
             
             recordSuccessAd(adElement) {

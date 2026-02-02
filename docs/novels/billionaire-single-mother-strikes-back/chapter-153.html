@@ -2380,16 +2380,26 @@
                 <p>“Your performance is Oscar-worthy. Should I record this and post it online? You’d go viral.”</p>
                 <p>Victoria’s face tightened. Isabella was cornering her! The sheer audacity!</p>
                 <p>She masked her rage with a wounded expression. “Isabella, what will make you believe me? If Mother hadn’t stopped me, I would have died crashing into that wall. But she was right. What would happen to her if I died? She raised me all these years. I can’t let her suffer that loss.”</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner8 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner8"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>“I’ll swear it, okay? I swear to God: If I had any part in this, may my parents disown and despise me. May I die a lonely, abandoned orphan!” Victoria vowed, pouring every ounce of fake sincerity into her trembling voice.</p>
                 <p>The room fell silent. The oath was brutal. Pity for her apparent anguish filled the air. Even William’s stern gaze softened slightly. Had he misjudged her?</p>
+                <!-- AdSense Ad Unit: banner6 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner6"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Isabella watched the theatrics with cold amusement. A cruel vow? She was already an orphan her real parents never wanted.</p>
+                <p>Victoria continued her lament, playing the misunderstood, unloved daughter.</p>
                 <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2398,33 +2408,23 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Isabella watched the theatrics with cold amusement. A cruel vow? She was already an orphan her real parents never wanted.</p>
-                <p>Victoria continued her lament, playing the misunderstood, unloved daughter.</p>
-                <!-- AdSense Ad Unit: banner5 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>‘If she loves acting so much, I’ll give her a standing ovation,’ Isabella thought, a sharp smile playing on her lips. “I might have believed you. Sadly, I have proof.” She flung a stack of photos at Victoria.</p>
                 <p>The images were from the Mercedes Auto Show backstage. One captured a knowing glance between Victoria and Isadora. Another showed Victoria’s venomous stare directed at her agent. A third clearly displayed a money transfer from Victoria to Isadora.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner3 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner3"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>The amount was $19,500. The exact price Silas the dealer quoted for the halophilic bacteria. The transaction date matched Isadora’s court testimony perfectly.</p>
                 <p>Shocked gasps echoed through the room. Disbelief was etched on every face.</p>
-                <!-- AdSense Ad Unit: banner7 -->
+                <!-- AdSense Ad Unit: banner5 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner7"
+                     data-ad-slot="adx-23335185836-banner5"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2434,11 +2434,11 @@
                 <p>“Heavens! And she put on that whole show! Smashing her head! That horrible vow! Unbelievable!”</p>
                 <p>“This is terrifying! I always thought she was so kind. But look at her in these photos… She’s a monster!”</p>
                 <p>The room erupted into chaos. Eleanor, who had been holding Victoria, slowly pulled her hand away. Her voice shook. “Victoria… What is this?”</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner4 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner4"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5003,15 +5003,9 @@
             }
             
             isAdFilled(adElement) {
-                // Check if AdSense marked it as filled
-                const dataStatus = adElement.dataset.adsbygoogleStatus;
-                
-                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
-                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
                 
                 if (!iframe) {
-                    // No iframe at all = not filled
                     return false;
                 }
                 
@@ -5019,42 +5013,71 @@
                 const iframeRect = iframe.getBoundingClientRect();
                 const iframeHeight = iframeRect.height;
                 
-                // If iframe height is 0 or very small, it's collapsed = no fill
+                // If iframe height is collapsed (0 or very small), definitely no fill
                 if (iframeHeight < 10) {
                     return false;
                 }
                 
-                // Check if iframe has actual content (not just empty)
-                try {
-                    // For same-origin iframes, we can check contentWindow
-                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
-                    if (iframeDoc) {
-                        const body = iframeDoc.body;
-                        if (body && body.children.length === 0) {
-                            // Empty body = no ad content
-                            return false;
-                        }
-                    }
-                } catch (e) {
-                    // Cross-origin iframe, can't access content directly
-                    // Fall back to other checks
+                // Check if iframe has ad URL
+                const hasAdUrl = iframe.src.includes('googleads.g.doubleclick.net') ||
+                                iframe.src.includes('tpc.googlesyndication.com') ||
+                                iframe.src.includes('googlesyndication.com/pagead');
+                
+                if (!hasAdUrl) {
+                    // No ad URL means no fill attempt
+                    return false;
                 }
                 
-                // Check for specific AdSense success indicators
-                const hasAdContent = 
-                    iframe.src.includes('googleads.g.doubleclick.net') ||
-                    iframe.src.includes('tpc.googlesyndication.com');
+                // CRITICAL: Having ad URL doesn't guarantee fill success
+                // AdSense can return empty iframe with fixed height even when no fill
+                // We need additional checks:
                 
-                // If status is done and iframe exists with good height and ad URL, consider it filled
-                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
+                // Check if height is suspiciously equal to our set height (280px)
+                // If it's exactly 280, it might just be the empty container
+                if (Math.abs(iframeHeight - 280) < 5) {
+                    // Height matches our setting exactly - could be empty
+                    // Try additional checks
+                    
+                    // Check for data attributes that indicate fill status
+                    const dataStatus = adElement.dataset.adsbygoogleStatus;
+                    const dataAdStatus = adElement.dataset.adStatus;
+                    
+                    // Check if there are visible elements inside (cross-origin might block this)
+                    try {
+                        const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                        if (iframeDoc && iframeDoc.body) {
+                            const hasContent = iframeDoc.body.children.length > 0 ||
+                                             iframeDoc.body.innerHTML.length > 100;
+                            if (!hasContent) {
+                                return false; // Confirmed empty
+                            }
+                            return true; // Confirmed has content
+                        }
+                    } catch (e) {
+                        // Cross-origin, can't access
+                        // Fall through to conservative logic
+                    }
+                    
+                    // Can't confirm content due to cross-origin
+                    // Be conservative: don't count it as filled
+                    // UNLESS we see other indicators
+                    if (dataStatus === 'done' || dataAdStatus === 'filled') {
+                        // Trust the status attribute
+                        return true;
+                    }
+                    
+                    // No confirmation - assume not filled
+                    return false;
+                }
+                
+                // Height is different from set height (e.g., collapsed or different size)
+                // This suggests dynamic content - likely filled
+                if (iframeHeight > 100 && iframeHeight !== 280) {
                     return true;
                 }
                 
-                // Additional check: look for visible ad elements inside the container
-                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
-                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
-                
-                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
+                // Default: if we have ad URL and reasonable height, tentatively yes
+                return iframeHeight > 100;
             }
             
             recordSuccessAd(adElement) {

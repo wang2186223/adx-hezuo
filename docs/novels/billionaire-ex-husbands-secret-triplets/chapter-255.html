@@ -2382,11 +2382,11 @@
                 <p>Nathan&#39;s expression soured slightly.</p>
                 <p>Rosalind stepped forward, placing a gentle hand on Theodore&#39;s arm. &#34;Grandfather, this is too harsh on Ms. Vanderbilt. Maybe we should reconsider the bet.&#34;</p>
                 <p>Her words sounded sympathetic, but her true intention was clear—she wanted Evelyn to back out voluntarily.</p>
-                <!-- AdSense Ad Unit: banner4 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2406,18 +2406,6 @@
                 <p>She finished her coffee in one gulp and stood. &#34;I’m heading to the company now.&#34; Grabbing her bag, she strode out without another glance.</p>
                 <p>Nathan watched her leave, his jaw tight.</p>
                 <p>Theodore, surprisingly, looked almost impressed. She’s got spine. Not bad.</p>
-                <!-- AdSense Ad Unit: banner6 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner6"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>Rosalind noticed his shift in attitude, and a flicker of coldness passed through her gaze.</p>
-                <p>At Soul Jewelry Studio</p>
-                <p>&#34;You&#39;re leaving for two weeks?&#34; Gregory blinked in surprise as Evelyn handed over her workload.</p>
-                <p>&#34;I’m enlisting for military training,&#34; she replied. &#34;Everything’s in your hands until I return.&#34;</p>
                 <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2426,15 +2414,27 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>Rosalind noticed his shift in attitude, and a flicker of coldness passed through her gaze.</p>
+                <p>At Soul Jewelry Studio</p>
+                <p>&#34;You&#39;re leaving for two weeks?&#34; Gregory blinked in surprise as Evelyn handed over her workload.</p>
+                <p>&#34;I’m enlisting for military training,&#34; she replied. &#34;Everything’s in your hands until I return.&#34;</p>
+                <!-- AdSense Ad Unit: banner5 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner5"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>She paused. &#34;Is Adrian Boucher’s jewelry order ready?&#34;</p>
                 <p>Gregory nodded. &#34;Finished. We can deliver it to his team today.&#34;</p>
                 <p>&#34;Good. Handle the follow-ups for me.&#34; She smiled, but as soon as he left, her expression turned pensive.</p>
                 <p>She opened her desk drawer, pulling out a business card she’d never used.</p>
-                <!-- AdSense Ad Unit: banner3 -->
+                <!-- AdSense Ad Unit: banner2 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner3"
+                     data-ad-slot="adx-23335185836-banner2"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2443,11 +2443,11 @@
                 <p>Her phone buzzed—Edmund Lincoln was calling.</p>
                 <p>Administrative Office</p>
                 <p>&#34;Nathan, you know Grandfather is making this impossible for Evelyn. Are you really going to let this happen?&#34; Rosalind studied him carefully as he flipped through documents.</p>
-                <!-- AdSense Ad Unit: banner2 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner2"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5020,15 +5020,9 @@
             }
             
             isAdFilled(adElement) {
-                // Check if AdSense marked it as filled
-                const dataStatus = adElement.dataset.adsbygoogleStatus;
-                
-                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
-                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
                 
                 if (!iframe) {
-                    // No iframe at all = not filled
                     return false;
                 }
                 
@@ -5036,42 +5030,71 @@
                 const iframeRect = iframe.getBoundingClientRect();
                 const iframeHeight = iframeRect.height;
                 
-                // If iframe height is 0 or very small, it's collapsed = no fill
+                // If iframe height is collapsed (0 or very small), definitely no fill
                 if (iframeHeight < 10) {
                     return false;
                 }
                 
-                // Check if iframe has actual content (not just empty)
-                try {
-                    // For same-origin iframes, we can check contentWindow
-                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
-                    if (iframeDoc) {
-                        const body = iframeDoc.body;
-                        if (body && body.children.length === 0) {
-                            // Empty body = no ad content
-                            return false;
-                        }
-                    }
-                } catch (e) {
-                    // Cross-origin iframe, can't access content directly
-                    // Fall back to other checks
+                // Check if iframe has ad URL
+                const hasAdUrl = iframe.src.includes('googleads.g.doubleclick.net') ||
+                                iframe.src.includes('tpc.googlesyndication.com') ||
+                                iframe.src.includes('googlesyndication.com/pagead');
+                
+                if (!hasAdUrl) {
+                    // No ad URL means no fill attempt
+                    return false;
                 }
                 
-                // Check for specific AdSense success indicators
-                const hasAdContent = 
-                    iframe.src.includes('googleads.g.doubleclick.net') ||
-                    iframe.src.includes('tpc.googlesyndication.com');
+                // CRITICAL: Having ad URL doesn't guarantee fill success
+                // AdSense can return empty iframe with fixed height even when no fill
+                // We need additional checks:
                 
-                // If status is done and iframe exists with good height and ad URL, consider it filled
-                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
+                // Check if height is suspiciously equal to our set height (280px)
+                // If it's exactly 280, it might just be the empty container
+                if (Math.abs(iframeHeight - 280) < 5) {
+                    // Height matches our setting exactly - could be empty
+                    // Try additional checks
+                    
+                    // Check for data attributes that indicate fill status
+                    const dataStatus = adElement.dataset.adsbygoogleStatus;
+                    const dataAdStatus = adElement.dataset.adStatus;
+                    
+                    // Check if there are visible elements inside (cross-origin might block this)
+                    try {
+                        const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                        if (iframeDoc && iframeDoc.body) {
+                            const hasContent = iframeDoc.body.children.length > 0 ||
+                                             iframeDoc.body.innerHTML.length > 100;
+                            if (!hasContent) {
+                                return false; // Confirmed empty
+                            }
+                            return true; // Confirmed has content
+                        }
+                    } catch (e) {
+                        // Cross-origin, can't access
+                        // Fall through to conservative logic
+                    }
+                    
+                    // Can't confirm content due to cross-origin
+                    // Be conservative: don't count it as filled
+                    // UNLESS we see other indicators
+                    if (dataStatus === 'done' || dataAdStatus === 'filled') {
+                        // Trust the status attribute
+                        return true;
+                    }
+                    
+                    // No confirmation - assume not filled
+                    return false;
+                }
+                
+                // Height is different from set height (e.g., collapsed or different size)
+                // This suggests dynamic content - likely filled
+                if (iframeHeight > 100 && iframeHeight !== 280) {
                     return true;
                 }
                 
-                // Additional check: look for visible ad elements inside the container
-                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
-                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
-                
-                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
+                // Default: if we have ad URL and reasonable height, tentatively yes
+                return iframeHeight > 100;
             }
             
             recordSuccessAd(adElement) {

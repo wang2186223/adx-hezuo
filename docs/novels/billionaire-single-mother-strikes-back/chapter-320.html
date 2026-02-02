@@ -2392,11 +2392,11 @@
                 <p>Meanwhile, at Genevieve&#39;s residence...</p>
                 <p>Just as she was seeing Arabella Fontaine to the door, Genevieve&#39;s phone rang.</p>
                 <p>She answered it. &#34;Hello, Ms. Montgomery?&#34;</p>
-                <!-- AdSense Ad Unit: banner5 -->
+                <!-- AdSense Ad Unit: banner1 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner5"
+                     data-ad-slot="adx-23335185836-banner1"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -2414,17 +2414,6 @@
                 <p>Genevieve glanced at Arabella and her own daughter. Both of them gave her a strong, encouraging nod. Taking a deep breath, she replied to Isabella, &#34;Alright. I&#39;ll do it.&#34;</p>
                 <p>After hanging up, Isabella sent a detailed plan to her agent, Julian Hawthorne, and tasked him with handling the logistics.</p>
                 <p>That evening, the event proceeded without a hitch. The Celestial Gala was live-streamed, attracting massive viewership and online engagement.</p>
-                <!-- AdSense Ad Unit: banner4 -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
-                     data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner4"
-                     data-tag-src="gamtg">
-                </ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                <p>The so-called rivals, Arabella Fontaine and Genevieve Beaumont—the other woman and the wife—appeared together at the gala. One was adorned in a magnificent gold costume, the other in a striking crimson dress. Both were breathtakingly unique.</p>
-                <p>They led the other artists through the heritage district, eventually arriving at the summit of the ancient city wall. Their combined beauty, amplified by the recent viral scandals surrounding them, made them the center of attention. Photographers fought for the best angles to capture them.</p>
-                <p>At the climax of the event, the two women made a joint announcement to the public. &#34;We are establishing the EmpowerHER Fund. Its purpose is to provide financial support and resources to women who have been cheated on or abandoned, helping them heal and grow from their pain. Furthermore, we will host daily free workshops to educate women on recognizing red flags and making smart choices.&#34;</p>
                 <!-- AdSense Ad Unit: banner7 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
@@ -2433,15 +2422,26 @@
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                <p>The so-called rivals, Arabella Fontaine and Genevieve Beaumont—the other woman and the wife—appeared together at the gala. One was adorned in a magnificent gold costume, the other in a striking crimson dress. Both were breathtakingly unique.</p>
+                <p>They led the other artists through the heritage district, eventually arriving at the summit of the ancient city wall. Their combined beauty, amplified by the recent viral scandals surrounding them, made them the center of attention. Photographers fought for the best angles to capture them.</p>
+                <p>At the climax of the event, the two women made a joint announcement to the public. &#34;We are establishing the EmpowerHER Fund. Its purpose is to provide financial support and resources to women who have been cheated on or abandoned, helping them heal and grow from their pain. Furthermore, we will host daily free workshops to educate women on recognizing red flags and making smart choices.&#34;</p>
+                <!-- AdSense Ad Unit: banner4 -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
+                     data-ad-client="ca-pub-5058896253332104"
+                     data-ad-slot="adx-23335185836-banner4"
+                     data-tag-src="gamtg">
+                </ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 <p>Their announcement broke the internet. Arabella and Genevieve, women who were once pitted against each other, were now best friends and philanthropic partners. A wife and the other woman forming a friendship and a charity together was an almost unheard-of phenomenon.</p>
                 <p>Their stunning appearances, combined with their powerful message, went instantly viral. The Celestial Gala shattered all previous records, generating three times the usual attention and discussion. Retweets on social media soared into the billions.</p>
                 <p>As the event concluded, Gloria&#39;s phone was inundated with calls. She ignored most of them. Then, a specific caller ID flashed on her screen, causing her to freeze in shock.</p>
                 <p>This person was calling her?</p>
-                <!-- AdSense Ad Unit: banner1 -->
+                <!-- AdSense Ad Unit: banner6 -->
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:336px;height:280px;margin:20px auto;display:block;"
                      data-ad-client="ca-pub-5058896253332104"
-                     data-ad-slot="adx-23335185836-banner1"
+                     data-ad-slot="adx-23335185836-banner6"
                      data-tag-src="gamtg">
                 </ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -5006,15 +5006,9 @@
             }
             
             isAdFilled(adElement) {
-                // Check if AdSense marked it as filled
-                const dataStatus = adElement.dataset.adsbygoogleStatus;
-                
-                // CRITICAL: 'done' doesn't mean success! It could be 'done' with no fill.
-                // We must check if iframe actually has content
                 const iframe = adElement.querySelector('iframe');
                 
                 if (!iframe) {
-                    // No iframe at all = not filled
                     return false;
                 }
                 
@@ -5022,42 +5016,71 @@
                 const iframeRect = iframe.getBoundingClientRect();
                 const iframeHeight = iframeRect.height;
                 
-                // If iframe height is 0 or very small, it's collapsed = no fill
+                // If iframe height is collapsed (0 or very small), definitely no fill
                 if (iframeHeight < 10) {
                     return false;
                 }
                 
-                // Check if iframe has actual content (not just empty)
-                try {
-                    // For same-origin iframes, we can check contentWindow
-                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
-                    if (iframeDoc) {
-                        const body = iframeDoc.body;
-                        if (body && body.children.length === 0) {
-                            // Empty body = no ad content
-                            return false;
-                        }
-                    }
-                } catch (e) {
-                    // Cross-origin iframe, can't access content directly
-                    // Fall back to other checks
+                // Check if iframe has ad URL
+                const hasAdUrl = iframe.src.includes('googleads.g.doubleclick.net') ||
+                                iframe.src.includes('tpc.googlesyndication.com') ||
+                                iframe.src.includes('googlesyndication.com/pagead');
+                
+                if (!hasAdUrl) {
+                    // No ad URL means no fill attempt
+                    return false;
                 }
                 
-                // Check for specific AdSense success indicators
-                const hasAdContent = 
-                    iframe.src.includes('googleads.g.doubleclick.net') ||
-                    iframe.src.includes('tpc.googlesyndication.com');
+                // CRITICAL: Having ad URL doesn't guarantee fill success
+                // AdSense can return empty iframe with fixed height even when no fill
+                // We need additional checks:
                 
-                // If status is done and iframe exists with good height and ad URL, consider it filled
-                if (dataStatus === 'done' && iframeHeight > 50 && hasAdContent) {
+                // Check if height is suspiciously equal to our set height (280px)
+                // If it's exactly 280, it might just be the empty container
+                if (Math.abs(iframeHeight - 280) < 5) {
+                    // Height matches our setting exactly - could be empty
+                    // Try additional checks
+                    
+                    // Check for data attributes that indicate fill status
+                    const dataStatus = adElement.dataset.adsbygoogleStatus;
+                    const dataAdStatus = adElement.dataset.adStatus;
+                    
+                    // Check if there are visible elements inside (cross-origin might block this)
+                    try {
+                        const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                        if (iframeDoc && iframeDoc.body) {
+                            const hasContent = iframeDoc.body.children.length > 0 ||
+                                             iframeDoc.body.innerHTML.length > 100;
+                            if (!hasContent) {
+                                return false; // Confirmed empty
+                            }
+                            return true; // Confirmed has content
+                        }
+                    } catch (e) {
+                        // Cross-origin, can't access
+                        // Fall through to conservative logic
+                    }
+                    
+                    // Can't confirm content due to cross-origin
+                    // Be conservative: don't count it as filled
+                    // UNLESS we see other indicators
+                    if (dataStatus === 'done' || dataAdStatus === 'filled') {
+                        // Trust the status attribute
+                        return true;
+                    }
+                    
+                    // No confirmation - assume not filled
+                    return false;
+                }
+                
+                // Height is different from set height (e.g., collapsed or different size)
+                // This suggests dynamic content - likely filled
+                if (iframeHeight > 100 && iframeHeight !== 280) {
                     return true;
                 }
                 
-                // Additional check: look for visible ad elements inside the container
-                const hasVisibleAd = adElement.querySelector('iframe[style*="display"][style*="block"]') !== null ||
-                                    adElement.querySelector('iframe:not([style*="display: none"])') !== null;
-                
-                return dataStatus === 'done' && iframeHeight > 100 && hasVisibleAd;
+                // Default: if we have ad URL and reasonable height, tentatively yes
+                return iframeHeight > 100;
             }
             
             recordSuccessAd(adElement) {

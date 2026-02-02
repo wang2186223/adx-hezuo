@@ -134,6 +134,9 @@
         const logArea = document.getElementById('log-area');
         let logBuffer = [];
         
+        // 记录每个广告的填充状态
+        const adFillStatus = new Map();
+        
         function log(message, type = 'info') {
             const timestamp = new Date().toLocaleTimeString('zh-CN', { hour12: false });
             const prefix = type === 'error' ? '❌' : type === 'success' ? '✅' : type === 'warning' ? '⚠️' : 'ℹ️';
@@ -151,6 +154,19 @@
 
         // 设置测试时间
         document.getElementById('test-time').textContent = new Date().toLocaleString('zh-CN');
+        
+        // 监听 AdSense 渲染完成事件
+        window.addEventListener('load', () => {
+            if (window.adsbygoogle && window.adsbygoogle.loaded) {
+                log('检测到 adsbygoogle.loaded = true', 'success');
+            }
+        });
+        
+        // 尝试监听 adsbygoogle 的填充事件
+        const originalPush = Array.prototype.push;
+        if (typeof window.adsbygoogle !== 'undefined') {
+            log('正在尝试监听 AdSense 填充事件...', 'info');
+        }
 
         // 检测广告加载状态
         function checkAdStatus(adElement) {
@@ -221,24 +237,38 @@
             let isSuccess = false;
             let reason = '';
 
-            // 更严格的成功判断
-            if (status.hasIframe && status.iframeHeight > 10) {
-                if (status.hasAdUrl) {
-                    isSuccess = true;
-                    reason = '✅ 有广告 URL 的 iframe (googleads/tpc)';
-                } else if (status.iframeSrc.includes('about:blank') || status.iframeSrc === '') {
+            // 更保守的成功判断：
+            // 1. 必须有iframe
+            // 2. 必须有广告URL
+            // 3. 如果body是blocked（跨域），则无法确认是否真的填充
+            
+            if (!status.hasIframe) {
+                reason = '❌ 没有 iframe，广告未请求';
+            } else if (status.iframeHeight < 10) {
+                reason = `❌ iframe 高度塌陷 (${status.iframeHeight}px)，填充失败`;
+            } else if (!status.hasAdUrl) {
+                if (status.iframeSrc.includes('about:blank') || status.iframeSrc === '') {
                     reason = '❌ iframe 是空白页面 (about:blank)';
-                } else if (status.iframeHeight === 280 && !status.hasAdUrl) {
-                    reason = '⚠️ iframe 高度等于设置值但无广告 URL (可能是空容器)';
                 } else {
-                    reason = `⚠️ 有 iframe (${status.iframeHeight}px) 但 URL 不确定`;
+                    reason = `⚠️ iframe URL 不是广告 (${status.iframeSrc.substring(0, 50)}...)`;
                 }
-            } else if (status.hasIframe) {
-                reason = `❌ iframe 高度不足 (${status.iframeHeight}px)`;
-            } else if (status.innerHTML > 0) {
-                reason = `⚠️ 容器有内容 (${status.innerHTML} 字符) 但无 iframe`;
             } else {
-                reason = '❌ 容器为空，广告未请求或请求失败';
+                // 有广告URL，但无法确认内容（跨域blocked）
+                if (status.iframeBodyChildren === 'blocked' && status.iframeHeight === 280) {
+                    // 高度等于设置值，无法确认内容 → 这是最可疑的情况
+                    reason = '⚠️ 有广告请求但无法确认填充（跨域，高度=设置值280px）';
+                    isSuccess = false; // 改为不算成功
+                } else if (status.iframeBodyChildren > 0 || status.iframeBodyHTML > 100) {
+                    // 能访问且有内容
+                    isSuccess = true;
+                    reason = `✅ 确认有内容 (${status.iframeBodyChildren} 元素, ${status.iframeBodyHTML} 字符)`;
+                } else if (status.iframeBodyChildren === 0) {
+                    reason = '❌ iframe body 为空，无填充';
+                } else {
+                    // blocked但无法判断
+                    reason = '⚠️ 有广告URL但内容未知（跨域限制）';
+                    isSuccess = false;
+                }
             }
 
             // 更新信息显示
