@@ -237,11 +237,6 @@
             let isSuccess = false;
             let reason = '';
 
-            // 更保守的成功判断：
-            // 1. 必须有iframe
-            // 2. 必须有广告URL
-            // 3. 如果body是blocked（跨域），则无法确认是否真的填充
-            
             if (!status.hasIframe) {
                 reason = '❌ 没有 iframe，广告未请求';
             } else if (status.iframeHeight < 10) {
@@ -253,21 +248,27 @@
                     reason = `⚠️ iframe URL 不是广告 (${status.iframeSrc.substring(0, 50)}...)`;
                 }
             } else {
-                // 有广告URL，但无法确认内容（跨域blocked）
-                if (status.iframeBodyChildren === 'blocked' && status.iframeHeight === 280) {
-                    // 高度等于设置值，无法确认内容 → 这是最可疑的情况
-                    reason = '⚠️ 有广告请求但无法确认填充（跨域，高度=设置值280px）';
-                    isSuccess = false; // 改为不算成功
-                } else if (status.iframeBodyChildren > 0 || status.iframeBodyHTML > 100) {
-                    // 能访问且有内容
+                // 有广告URL，检查是否真的填充
+                const heightIsSetValue = Math.abs(status.iframeHeight - 280) < 5;
+                const contentUnknown = status.iframeBodyChildren === 'blocked' || status.iframeBodyChildren === 'cross-origin';
+                
+                if (status.iframeBodyChildren > 0 && status.iframeBodyHTML > 100) {
+                    // 确认有内容
                     isSuccess = true;
-                    reason = `✅ 确认有内容 (${status.iframeBodyChildren} 元素, ${status.iframeBodyHTML} 字符)`;
-                } else if (status.iframeBodyChildren === 0) {
+                    reason = `✅ 确认填充成功 (${status.iframeBodyChildren} 元素, ${status.iframeBodyHTML} 字符)`;
+                } else if (status.iframeBodyChildren === 0 || status.iframeBodyHTML === 0) {
+                    // 确认为空
                     reason = '❌ iframe body 为空，无填充';
+                } else if (heightIsSetValue && contentUnknown) {
+                    // 高度=设置值 且 无法确认内容 → 很可能是空的
+                    reason = '❌ 高度=设置值280px且内容未知（跨域），判定为未填充';
+                } else if (!heightIsSetValue && status.hasAdUrl) {
+                    // 高度不等于设置值，说明可能被动态调整了
+                    isSuccess = true;
+                    reason = `✅ 高度动态调整(${status.iframeHeight}px≠280px)，可能有填充`;
                 } else {
-                    // blocked但无法判断
+                    // 其他情况
                     reason = '⚠️ 有广告URL但内容未知（跨域限制）';
-                    isSuccess = false;
                 }
             }
 
