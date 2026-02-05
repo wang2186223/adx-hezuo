@@ -254,9 +254,8 @@ class WebsiteBuilder:
                 }
             ]
             
-            # 复制4个单元2次得到8个，然后随机选择6个（每个页面都不同）
-            extended_ad_units = all_ad_units + all_ad_units
-            selected_ad_units = random.sample(extended_ad_units, 6)
+            # 直接使用4个广告单元
+            selected_ad_units = all_ad_units
             
             # 准备渲染数据（两个版本使用相同的数据）
             render_data = {
