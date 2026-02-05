@@ -125,15 +125,7 @@
                  data-slot-path="/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner4">
             </div>
         </div>
-        <div class="ad-info" id="info-4">等待检测...</div>
-    </div>
-
-    <div class="test-section">
-        <h2>实时日志</h2>
-        <div class="log-area" id="log-area">等待广告加载...</div>
-    </div>
-
-    <!-- Google Publisher Tag (GPT) Script -->
+        <Google Publisher Tag (GPT) Script -->
     <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js" crossorigin="anonymous"></script>
     <script>
       window.googletag = window.googletag || {cmd: []};
@@ -150,38 +142,20 @@
         
         console.log('✅ GPT 广告位已定义');
       });
-    </script>
+    
+    <div class="test-section">
+        <h2>实时日志</h2>
+        <div class="log-area" id="log-area">等待广告加载...</div>
+    </div>
+
+    <!-- AdX Direct Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle_direct.js?client=ca-pub-5058896253332104"
+            crossorigin="anonymous"></script>
 
     <script>
-        // 显示测试时间
-        document.getElementById('test-time').textContent = new Date().toLocaleString('zh-CN');
-
         // 日志功能
         const logArea = document.getElementById('log-area');
-        let logIndex = 0;
-
-        function log(message, type = 'info') {
-            logIndex++;
-            const timestamp = new Date().toLocaleTimeString('zh-CN', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit', fractionalSecondDigits: 3 });
-            const colors = { success: '#4CAF50', error: '#f44336', warning: '#FF9800', info: '#2196F3' };
-            const color = colors[type] || colors.info;
-            
-            const line = `${timestamp} [${logIndex.toString().padStart(3, '0')}] ${message}`;
-            const div = document.createElement('div');
-            div.style.color = color;
-            div.textContent = line;
-            logArea.appendChild(div);
-            logArea.scrollTop = logArea.scrollHeight;
-            console.log(line);
-        }
-
-        function clearLogs() {
-            logArea.innerHTML = '日志已清除，等待新的事件...';
-            logIndex = 0;
-            log('日志已重置', 'info');
-        }
-
-        // GPT 事件监听
+        let loGPT 事件
         window.googletag = window.googletag || {cmd: []};
         googletag.cmd.push(function() {
             // 监听广告填充事件
@@ -189,16 +163,11 @@
                 const slotId = event.slot.getSlotElementId();
                 const isEmpty = event.isEmpty;
                 const size = event.size;
-                const creativeId = event.creativeId;
-                const lineItemId = event.lineItemId;
                 
                 if (isEmpty) {
                     log(`❌ 广告位 ${slotId} 未填充 (No Ad)`, 'error');
                 } else {
-                    log(`✅ 广告位 ${slotId} 已填充`, 'success');
-                    log(`   └─ 尺寸: ${size ? size.join('x') : 'unknown'}`, 'info');
-                    log(`   └─ CreativeId: ${creativeId || 'N/A'}`, 'info');
-                    log(`   └─ LineItemId: ${lineItemId || 'N/A'}`, 'info');
+                    log(`✅ 广告位 ${slotId} 已填充 - 尺寸: ${size ? size.join('x') : 'unknown'}`, 'success');
                 }
                 
                 // 更新状态
@@ -206,54 +175,16 @@
                 if (adElement) {
                     adElement.dataset.gptStatus = isEmpty ? 'unfilled' : 'filled';
                     adElement.dataset.gptSize = size ? size.join('x') : 'unknown';
-                    adElement.dataset.creativeId = creativeId || '';
-                    adElement.dataset.lineItemId = lineItemId || '';
                 }
-                
-                // 自动更新状态显示
-                checkAdStatus(adElement);
             });
             
             // 监听广告请求事件
             googletag.pubads().addEventListener('slotRequested', function(event) {
                 const slotId = event.slot.getSlotElementId();
-                log(`📡 广告位 ${slotId} 请求已发送`, 'info');
-            });
-            
-            // 监听广告响应事件
-            googletag.pubads().addEventListener('slotResponseReceived', function(event) {
-                const slotId = event.slot.getSlotElementId();
-                log(`📥 广告位 ${slotId} 收到响应`, 'info');
-            });
-            
-            // 监听广告加载事件
-            googletag.pubads().addEventListener('slotOnload', function(event) {
-                const slotId = event.slot.getSlotElementId();
-                log(`🎯 广告位 ${slotId} 加载完成`, 'success');
-            });
-            
-            log('✅ GPT 事件监听已设置', 'success');
-        });
-
-        // 检查单个广告状态
-        function checkAdStatus(adElement) {
-            const testId = adElement.dataset.testId;
-            if (!testId) {
-                console.warn('广告元素缺少 data-test-id');
-                return { isSuccess: false, status: {}, reason: '无 test-id' };
-            }
-
-            const infoDiv = document.getElementById(`info-${testId}`);
-            
-            // 获取状态信息
-            const status = {
-                testId: testId,
                 divId: adElement.id,
                 slotPath: adElement.dataset.slotPath,
                 gptStatus: adElement.dataset.gptStatus || 'undefined',
                 gptSize: adElement.dataset.gptSize || 'undefined',
-                creativeId: adElement.dataset.creativeId || 'N/A',
-                lineItemId: adElement.dataset.lineItemId || 'N/A',
                 hasIframe: false,
                 iframeHeight: 0,
                 containerHeight: adElement.offsetHeight,
@@ -268,6 +199,7 @@
                 status.hasGoogleAdsIframe = true;
                 status.iframeHeight = iframe.offsetHeight || iframe.getBoundingClientRect().height;
                 status.iframeSrc = iframe.src;
+                status.iframeSrcShort = iframe.src.substring(0, 100) + '...';
                 status.iframeId = iframe.id;
                 
                 // 检查 iframe 是否有广告内容的URL
@@ -291,16 +223,41 @@
                 reason = '❌ GPT Status = unfilled (无广告填充)';
             } else {
                 // 状态尚未设置
-                reason = `⚠️ GPT Status = ${gptStatus || 'undefined'} (等待 slotRenderEnded 事件)`;
+                reason = `⚠️ GPT Status = ${gptStatus || 'undefined'} (等待 slotRenderEnded 事件
+                status.hasAdUrl = iframe.src.includes('googleads.g.doubleclick.net') || 
+                                 iframe.src.includes('tpc.googlesyndication.com');
+                
+                // 尝试检查 iframe 内容
+                try {
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (iframeDoc && iframeDoc.body) {
+                        status.iframeBodyChildren = iframeDoc.body.children.length;
+                        status.iframeBodyHTML = iframeDoc.body.innerHTML.length;
+                    } else {
+                        status.iframeBodyChildren = 'cross-origin';
+                        status.iframeBodyHTML = 'cross-origin';
+                    }
+                } catch (e) {
+                    status.iframeBodyChildren = 'blocked';
+                    status.iframeBodyHTML = 'blocked';
+                }
             }
 
-            // 更新信息显示
-            if (!infoDiv) {
-                console.warn(`找不到 info-${testId} 元素，跳过显示`);
-                return { isSuccess, status, reason };
+            // 检查 Google 查询ID
+            const googleQueryElement = adElement.querySelector('[data-google-query-id]');
+            if (googleQueryElement) {
+                status.hasGoogleQueryId = true;
+                status.googleQueryId = googleQueryElement.dataset.googleQueryId;
             }
-            
-            const statusClass = isSuccess ? 'status-success' : (gptStatus === 'unfilled' ? 'status-failed' : 'status-pending');
+
+            // 检查 Google Ads iframe
+            const googleAdsIframe = adElement.querySelector('iframe[id^="google_ads_iframe"]');
+            if (googleAdsIframe) {
+                status.hasGoogleAdsIframe = true;
+            }
+
+            // 判断加载状态
+            let isSuccess = false;gptStatus === 'unfilled' ? 'status-failed' : 'status-pending');
             infoDiv.className = `ad-info ${statusClass}`;
             infoDiv.innerHTML = `
                 <div><strong>状态判定:</strong> ${reason}</div>
@@ -308,25 +265,32 @@
                 <div><strong>Slot Path:</strong> <span style="font-size:10px;">${status.slotPath}</span></div>
                 <div><strong>🔑 GPT Status:</strong> <span style="color:#f00;font-weight:bold;">${gptStatus || 'undefined'}</span></div>
                 <div><strong>广告尺寸:</strong> ${status.gptSize}</div>
-                <div><strong>Creative ID:</strong> ${status.creativeId}</div>
-                <div><strong>Line Item ID:</strong> ${status.lineItemId}</div>
                 <div><strong>容器高度:</strong> ${status.containerHeight}px</div>
                 <div><strong>有 GPT iframe:</strong> ${status.hasGoogleAdsIframe ? '是' : '否'}</div>
                 ${status.hasIframe ? `<div><strong>iframe ID:</strong> ${status.iframeId}</div>` : ''}
                 ${status.hasIframe ? `<div><strong>iframe 高度:</strong> ${status.iframeHeight}px</div>` : ''}
                 ${status.hasIframe ? `<div><strong>有广告 URL:</strong> ${status.hasAdUrl ? '是' : '否'}</div>` : ''}
-            `;
+                ${status.iframeSrcShort ? `<div><strong>iframe src:</strong> <span style="font-size:9px;word-break:break-all;">${status.iframeSrcShort}</span></div>` : ''}
+            }
 
-            return { isSuccess, status, reason };
-        }
-
-        // 检查所有广告
-        function checkAllAds() {
-            log('=== 开始检查所有 GPT 广告状态 ===', 'info');
+            // 更新信息显示
+            if (!infoDiv) {
+                console.warn(`找不到info-${testId}元素，跳过显示`);
+                return { isSuccess, status, reason };
+            }
+            
+            const statusClass = isSuccess ? 'status-success' : (adStatus === 'unfilled' ? 'status-failed' : 'status-pending');
+            infoDiv.className = `ad-info ${statusClass}`;
+            infoDiv.innerHTML = `
+                <div><strong>状态判定:</strong> ${reason}</div>
+                <div><strong>🔑 data-ad-status:</strong> <span style="color:#f00;font-weight:bold;">${adStatus || 'undefined'}</span></div>
+                <div><strong>data-adsbygoogle-status:</strong> ${status.adsbygoogleStatus}</div>
+                <div><strong>容器高度:</strong> ${status.containerHeight}px</div>
+                <div><strong>有 iframe:</strong> ${status.hasIframe ? '是' : '否'}</div>
+                ${statu GPT 广告状态...', 'info');
             const ads = document.querySelectorAll('[id^="div-gpt-ad-"]');
             let successCount = 0;
             let failedCount = 0;
-            let pendingCount = 0;
 
             ads.forEach(ad => {
                 const result = checkAdStatus(ad);
@@ -341,20 +305,19 @@
                     log(`广告 ${result.status.testId} [${result.status.divId}]: ${result.reason}`, 'success');
                     if (result.status.hasIframe) {
                         log(`  └─ iframe: ${result.status.iframeId}, 高度: ${result.status.iframeHeight}px`, 'info');
+                        log(`  └─ src: ${result.status.iframeSrc ? result.status.iframeSrc.substring(0, 120) : 'N/A'}`, 'info');
                     }
-                } else if (result.status.gptStatus === 'unfilled') {
-                    failedCount++;
-                    log(`广告 ${result.status.testId} [${result.status.divId}]: ${result.reason}`, 'error');
                 } else {
-                    pendingCount++;
-                    log(`广告 ${result.status.testId} [${result.status.divId}]: ${result.reason}`, 'warning');
+                    failedCount++;
+                    log(`广告 ${result.status.testId} [${result.status.divId}]: ${result.reason}`, result.status.innerHTML > 0 ? 'warning' : 'error');
+                    if (result.status.hasIframe) {
+                        log(`  └─ iframe高度: ${result.status.iframeHeight}px
+                if (result.status.testId === 'unknown') {
+                    return;
                 }
-            });
-
-            log(`=== 检查完成: 成功 ${successCount} | 失败 ${failedCount} | 等待中 ${pendingCount} ===`, 'info');
-        }
-
-        // GPT 广告加载监控
+                
+                if (result.isSuccess) {
+           GPT 广告加载监控
         log('页面加载完成，开始监控 GPT 广告...', 'info');
 
         // 显示 GPT 广告
@@ -422,6 +385,22 @@
             if (typeof googletag === 'undefined' || !googletag.apiReady) {
                 log('❌ GPT 脚本加载超时', 'error');
             }
+            } else {
+                log('❌ adsbygoogle 对象未找到，脚本可能未加载', 'error');
+            }
+        });
+
+        // 监听 adsbygoogle 脚本加载
+        let checkScriptInterval = setInterval(() => {
+            if (typeof (adsbygoogle) !== 'undefined') {
+                clearInterval(checkScriptInterval);
+                log('✅ adsbygoogle 脚本已加载', 'success');
+            }
+        }, 100);
+
+        // 10秒后停止检查
+        setTimeout(() => {
+            clearInterval(checkScriptInterval);
         }, 10000);
     </script>
 </body>
