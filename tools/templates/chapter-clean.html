@@ -44,6 +44,24 @@
         {% for ad_unit in selected_ad_units %}
         googletag.defineSlot('{{ ad_unit.slot_path }}', {{ ad_unit.size }}, '{{ ad_unit.div_id }}').addService(googletag.pubads());
         {% endfor %}
+        
+        // ===== GPT Event Listeners (Clean Version - Minimal Logging) =====
+        
+        // Track ad rendering status silently
+        googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+            const slotId = event.slot.getSlotElementId();
+            const isEmpty = event.isEmpty;
+            
+            // Mark ad element status for potential monitoring
+            const adElement = document.getElementById(slotId);
+            if (adElement) {
+                adElement.dataset.adStatus = isEmpty ? 'failed' : 'success';
+                if (!isEmpty && event.size) {
+                    adElement.dataset.adSize = event.size.join('x');
+                }
+            }
+        });
+        
         googletag.pubads().enableSingleRequest();
         googletag.enableServices();
       });

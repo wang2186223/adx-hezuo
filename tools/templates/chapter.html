@@ -983,6 +983,65 @@
         {% for ad_unit in selected_ad_units %}
         googletag.defineSlot('{{ ad_unit.slot_path }}', {{ ad_unit.size }}, '{{ ad_unit.div_id }}').addService(googletag.pubads());
         {% endfor %}
+        
+        // ===== GPT Event Listeners for Ad Protection System =====
+        
+        // Track ad rendering status
+        googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+            const slotId = event.slot.getSlotElementId();
+            const isEmpty = event.isEmpty;
+            const size = event.size;
+            
+            if (isEmpty) {
+                // Ad failed to fill
+                console.log(`❌ Ad ${slotId} failed to fill`);
+                
+                // Increment failed ad count for Ad Protection System
+                const currentFailed = parseInt(localStorage.getItem('adGuideFailedAds') || '0');
+                localStorage.setItem('adGuideFailedAds', (currentFailed + 1).toString());
+                
+                // Mark ad element as failed
+                const adElement = document.getElementById(slotId);
+                if (adElement) {
+                    adElement.dataset.adStatus = 'failed';
+                }
+            } else {
+                // Ad filled successfully
+                console.log(`✅ Ad ${slotId} filled successfully (${size ? size.join('x') : 'unknown'})`);
+                
+                // Increment success ad count
+                const currentSuccess = parseInt(localStorage.getItem('adGuideTotalSeen') || '0');
+                localStorage.setItem('adGuideTotalSeen', (currentSuccess + 1).toString());
+                
+                // Mark ad element as success
+                const adElement = document.getElementById(slotId);
+                if (adElement) {
+                    adElement.dataset.adStatus = 'success';
+                    adElement.dataset.adSize = size ? size.join('x') : 'unknown';
+                }
+            }
+        });
+        
+        // Track ad load completion
+        googletag.pubads().addEventListener('slotOnload', function(event) {
+            const slotId = event.slot.getSlotElementId();
+            console.log(`🎯 Ad ${slotId} fully loaded`);
+        });
+        
+        // Track ad request
+        googletag.pubads().addEventListener('slotRequested', function(event) {
+            const slotId = event.slot.getSlotElementId();
+            console.log(`📡 Ad ${slotId} requested`);
+        });
+        
+        // Track ad response
+        googletag.pubads().addEventListener('slotResponseReceived', function(event) {
+            const slotId = event.slot.getSlotElementId();
+            console.log(`📥 Ad ${slotId} response received`);
+        });
+        
+        console.log('✅ GPT event listeners initialized');
+        
         googletag.pubads().enableSingleRequest();
         googletag.enableServices();
       });

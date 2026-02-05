@@ -50,6 +50,24 @@
         
         googletag.defineSlot('/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner4', [336, 280], 'div-gpt-ad-1770286143370-0').addService(googletag.pubads());
         
+        
+        // ===== GPT Event Listeners (Clean Version - Minimal Logging) =====
+        
+        // Track ad rendering status silently
+        googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+            const slotId = event.slot.getSlotElementId();
+            const isEmpty = event.isEmpty;
+            
+            // Mark ad element status for potential monitoring
+            const adElement = document.getElementById(slotId);
+            if (adElement) {
+                adElement.dataset.adStatus = isEmpty ? 'failed' : 'success';
+                if (!isEmpty && event.size) {
+                    adElement.dataset.adSize = event.size.join('x');
+                }
+            }
+        });
+        
         googletag.pubads().enableSingleRequest();
         googletag.enableServices();
       });
