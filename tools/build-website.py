@@ -222,20 +222,41 @@ class WebsiteBuilder:
                     'url': f"/novels/{novel_data['slug']}/chapter-{ch['number']}"
                 })
             
-            # 定义所有8个广告单元 (AdSense/AdX)
+            # 定义所有4个 GPT 广告单元
             all_ad_units = [
-                {'id': 1, 'slot': 'adx-23335185836-banner1', 'name': 'banner1'},
-                {'id': 2, 'slot': 'adx-23335185836-banner2', 'name': 'banner2'},
-                {'id': 3, 'slot': 'adx-23335185836-banner3', 'name': 'banner3'},
-                {'id': 4, 'slot': 'adx-23335185836-banner4', 'name': 'banner4'},
-                {'id': 5, 'slot': 'adx-23335185836-banner5', 'name': 'banner5'},
-                {'id': 6, 'slot': 'adx-23335185836-banner6', 'name': 'banner6'},
-                {'id': 7, 'slot': 'adx-23335185836-banner7', 'name': 'banner7'},
-                {'id': 8, 'slot': 'adx-23335185836-banner8', 'name': 'banner8'},
+                {
+                    'id': 1,
+                    'name': 'banner1',
+                    'div_id': 'div-gpt-ad-1770286007007-0',
+                    'slot_path': '/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner1',
+                    'size': [336, 280]
+                },
+                {
+                    'id': 2,
+                    'name': 'banner2',
+                    'div_id': 'div-gpt-ad-1770286092616-0',
+                    'slot_path': '/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner2',
+                    'size': [336, 280]
+                },
+                {
+                    'id': 3,
+                    'name': 'banner3',
+                    'div_id': 'div-gpt-ad-1770286115260-0',
+                    'slot_path': '/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner3',
+                    'size': [336, 280]
+                },
+                {
+                    'id': 4,
+                    'name': 'banner4',
+                    'div_id': 'div-gpt-ad-1770286143370-0',
+                    'slot_path': '/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner4',
+                    'size': [336, 280]
+                }
             ]
             
-            # 从8个广告单元中随机选择6个（每个页面都不同）
-            selected_ad_units = random.sample(all_ad_units, 6)
+            # 复制4个单元2次得到8个，然后随机选择6个（每个页面都不同）
+            extended_ad_units = all_ad_units + all_ad_units
+            selected_ad_units = random.sample(extended_ad_units, 6)
             
             # 准备渲染数据（两个版本使用相同的数据）
             render_data = {
