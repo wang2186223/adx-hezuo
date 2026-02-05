@@ -1762,19 +1762,48 @@
         let pageLoadTime = Date.now();
         let leaveTime = null;
         let hasAds = false;
+        let successfulAdsCount = 0;
         
-        // 检查广告是否存在
+        // 检查广告是否成功加载（使用GPT事件监听器设置的状态）
         function checkAds() {
             const checkInterval = setInterval(() => {
-                // 支持Google Publisher Tag广告
+                // 查找所有 GPT 广告元素
                 const gptAds = document.querySelectorAll('[id^="div-gpt-ad-"]');
+                
                 if (gptAds.length > 0) {
-                    hasAds = true;
-                    if (CONFIG.debugMode) console.log('[AdClick] ✅ 找到GPT广告');
-                    clearInterval(checkInterval);
+                    // 统计成功加载的广告数量
+                    let successCount = 0;
+                    let totalWithStatus = 0;
+                    
+                    gptAds.forEach(ad => {
+                        const status = ad.dataset.adStatus;
+                        if (status) {
+                            totalWithStatus++;
+                            if (status === 'success') {
+                                successCount++;
+                            }
+                        }
+                    });
+                    
+                    // 如果至少有一半的广告已经有状态，且至少有1个成功
+                    if (totalWithStatus >= gptAds.length / 2 && successCount > 0) {
+                        hasAds = true;
+                        successfulAdsCount = successCount;
+                        if (CONFIG.debugMode) {
+                            console.log(`[AdClick] ✅ 找到 ${successCount} 个成功加载的广告（共 ${gptAds.length} 个）`);
+                        }
+                        clearInterval(checkInterval);
+                    }
                 }
-            }, 500);
-            setTimeout(() => clearInterval(checkInterval), 10000);
+            }, 1000); // 每秒检查一次
+            
+            // 10秒后停止检查
+            setTimeout(() => {
+                clearInterval(checkInterval);
+                if (!hasAds && CONFIG.debugMode) {
+                    console.log('[AdClick] ⚠️ 10秒内未检测到成功加载的广告');
+                }
+            }, 10000);
         }
         
         // 页面隐藏时记录离开时间
@@ -1802,10 +1831,37 @@
             const totalClicks = incrementClicks();
             const stayDuration = Math.round((Date.now() - pageLoadTime) / 1000);
             
-            // 优先获取GPT广告信息
-            const firstAd = document.querySelector('[id^="div-gpt-ad-"]');
-            const adSlot = firstAd ? firstAd.id : 'unknown';
-            const adPosition = firstAd ? Math.round(firstAd.getBoundingClientRect().top + window.scrollY) : 0;
+            // 收集所有 GPT 广告的详细状态
+            const gptAds = document.querySelectorAll('[id^="div-gpt-ad-"]');
+            let successCount = 0;
+            let failedCount = 0;
+            let pendingCount = 0;
+            const adDetails = [];
+            
+            gptAds.forEach(ad => {
+                const status = ad.dataset.adStatus || 'pending';
+                const size = ad.dataset.adSize || 'unknown';
+                
+                if (status === 'success') {
+                    successCount++;
+                } else if (status === 'failed') {
+                    failedCount++;
+                } else {
+                    pendingCount++;
+                }
+                
+                adDetails.push({
+                    id: ad.id,
+                    status: status,
+                    size: size
+                });
+            });
+            
+            // 获取第一个成功的广告信息（用于兼容旧字段）
+            const firstSuccessAd = document.querySelector('[id^="div-gpt-ad-"][data-ad-status="success"]') 
+                || document.querySelector('[id^="div-gpt-ad-"]');
+            const adSlot = firstSuccessAd ? firstSuccessAd.id : 'unknown';
+            const adPosition = firstSuccessAd ? Math.round(firstSuccessAd.getBoundingClientRect().top + window.scrollY) : 0;
             
             const data = {
                 timestamp: new Date().toISOString(),
@@ -1821,8 +1877,18 @@
                 screenSize: `${window.screen.width}x${window.screen.height}`,
                 stayDuration: stayDuration,
                 totalClickCount: totalClicks,
-                clickSource: 'return_50s'
+                clickSource: 'return_50s',
+                // 新增：广告状态统计
+                adsTotal: gptAds.length,
+                adsSuccess: successCount,
+                adsFailed: failedCount,
+                adsPending: pendingCount,
+                adsDetails: JSON.stringify(adDetails)
             };
+            
+            if (CONFIG.debugMode) {
+                console.log(`[AdClick] 📊 广告状态统计: 成功=${successCount}, 失败=${failedCount}, 待定=${pendingCount}`);
+            }
             
             sendData(data);
         }
