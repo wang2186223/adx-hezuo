@@ -222,40 +222,16 @@ class WebsiteBuilder:
                     'url': f"/novels/{novel_data['slug']}/chapter-{ch['number']}"
                 })
             
-            # 定义所有4个 GPT 广告单元
+            # 定义所有4个广告单元
             all_ad_units = [
-                {
-                    'id': 1,
-                    'name': 'banner1',
-                    'div_id': 'div-gpt-ad-1770286007007-0',
-                    'slot_path': '/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner1',
-                    'size': [336, 280]
-                },
-                {
-                    'id': 2,
-                    'name': 'banner2',
-                    'div_id': 'div-gpt-ad-1770286092616-0',
-                    'slot_path': '/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner2',
-                    'size': [336, 280]
-                },
-                {
-                    'id': 3,
-                    'name': 'banner3',
-                    'div_id': 'div-gpt-ad-1770286115260-0',
-                    'slot_path': '/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner3',
-                    'size': [336, 280]
-                },
-                {
-                    'id': 4,
-                    'name': 'banner4',
-                    'div_id': 'div-gpt-ad-1770286143370-0',
-                    'slot_path': '/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner4',
-                    'size': [336, 280]
-                }
+                {'id': 1, 'slot_id': 'div-gpt-ad-1770286007007-0', 'path': '/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner1'},
+                {'id': 2, 'slot_id': 'div-gpt-ad-1770286092616-0', 'path': '/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner2'},
+                {'id': 3, 'slot_id': 'div-gpt-ad-1770286115260-0', 'path': '/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner3'},
+                {'id': 4, 'slot_id': 'div-gpt-ad-1770286143370-0', 'path': '/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner4'},
             ]
             
-            # 直接使用4个广告单元
-            selected_ad_units = all_ad_units
+            # 从4个广告单元中随机选择4个（每个页面都不同）
+            selected_ad_units = random.sample(all_ad_units, 4)
             
             # 准备渲染数据（两个版本使用相同的数据）
             render_data = {
@@ -274,7 +250,7 @@ class WebsiteBuilder:
                     'chapters': all_chapters,
                     'tags': novel_data['tags']
                 },
-                'selected_ad_units': selected_ad_units,  # 传递选中的6个广告单元完整信息
+                'selected_ad_units': selected_ad_units,  # 传递选中的4个广告单元完整信息
                 'prev_chapter': prev_chapter,
                 'next_chapter': next_chapter,
                 'site_url': self.site_url

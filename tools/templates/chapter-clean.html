@@ -35,33 +35,16 @@
       gtag('config', 'G-E94B4SVMD4');
     </script>
     
-    <!-- Google Publisher Tag (GPT) - 动态加载选中的广告单元 -->
+    <!-- Google Publisher Tag (GPT) -->
     <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js" crossorigin="anonymous"></script>
     <script>
       window.googletag = window.googletag || {cmd: []};
       googletag.cmd.push(function() {
-        // Define ad slots for the chapter page (randomly selected 6 out of available units)
-        {% for ad_unit in selected_ad_units %}
-        googletag.defineSlot('{{ ad_unit.slot_path }}', {{ ad_unit.size }}, '{{ ad_unit.div_id }}').addService(googletag.pubads());
-        {% endfor %}
-        
-        // ===== GPT Event Listeners (Clean Version - Minimal Logging) =====
-        
-        // Track ad rendering status silently
-        googletag.pubads().addEventListener('slotRenderEnded', function(event) {
-            const slotId = event.slot.getSlotElementId();
-            const isEmpty = event.isEmpty;
-            
-            // Mark ad element status for potential monitoring
-            const adElement = document.getElementById(slotId);
-            if (adElement) {
-                adElement.dataset.adStatus = isEmpty ? 'failed' : 'success';
-                if (!isEmpty && event.size) {
-                    adElement.dataset.adSize = event.size.join('x');
-                }
-            }
-        });
-        
+        // Define ad slots for the chapter page
+        googletag.defineSlot('/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner1', [336, 280], 'div-gpt-ad-1770286007007-0').addService(googletag.pubads());
+        googletag.defineSlot('/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner2', [336, 280], 'div-gpt-ad-1770286092616-0').addService(googletag.pubads());
+        googletag.defineSlot('/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner3', [336, 280], 'div-gpt-ad-1770286115260-0').addService(googletag.pubads());
+        googletag.defineSlot('/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner4', [336, 280], 'div-gpt-ad-1770286143370-0').addService(googletag.pubads());
         googletag.pubads().enableSingleRequest();
         googletag.enableServices();
       });
@@ -774,51 +757,58 @@
             <div class="content font-medium">
                 {%- set paragraphs = chapter.content.split('\n') | map('trim') | select() | list -%}
                 {%- set total_paragraphs = paragraphs | length -%}
-                {%- if total_paragraphs > 10 -%}
-                    {%- set available_space = total_paragraphs - 5 -%}
-                    {%- set interval = available_space // 4 -%}
-                    {%- set ad_position_1 = 5 + interval -%}
-                    {%- set ad_position_2 = 5 + interval * 2 -%}
-                    {%- set ad_position_3 = 5 + interval * 3 -%}
-                    {%- set ad_position_4 = total_paragraphs -%}
+                {%- set ad_position_1 = 1 -%}
+                {%- set ad_position_5 = total_paragraphs -%}
+                {%- if total_paragraphs > 4 -%}
+                    {%- set middle_space = (total_paragraphs - 2) // 4 -%}
+                    {%- set ad_position_2 = 1 + middle_space -%}
+                    {%- set ad_position_3 = 1 + middle_space * 2 -%}
+                    {%- set ad_position_4 = 1 + middle_space * 3 -%}
                 {%- else -%}
-                    {%- set ad_position_1 = 6 -%}
-                    {%- set ad_position_2 = 7 -%}
-                    {%- set ad_position_3 = 8 -%}
-                    {%- set ad_position_4 = total_paragraphs -%}
+                    {%- set ad_position_2 = 2 -%}
+                    {%- set ad_position_3 = 3 -%}
+                    {%- set ad_position_4 = 4 -%}
                 {%- endif -%}
                 
                 {%- for paragraph in paragraphs %}
                 <p>{{ paragraph }}</p>
                 {%- if loop.index == ad_position_1 %}
-                <!-- {{ selected_ad_units[0].slot_path }} -->
-                <div id='{{ selected_ad_units[0].div_id }}' style='min-width: 336px; min-height: 280px; margin: 20px auto;'>
+                <!-- /22796784223/Netlink/goodluckark.com/banner_1 -->
+                <div id='div-gpt-ad-1762511964282-0' style='min-width: 300px; min-height: 250px; text-align:center; margin: 20px 0;'>
                   <script>
-                    googletag.cmd.push(function() { googletag.display('{{ selected_ad_units[0].div_id }}'); });
+                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1762511964282-0'); });
                   </script>
                 </div>
                 {%- endif %}
                 {%- if loop.index == ad_position_2 %}
-                <!-- {{ selected_ad_units[1].slot_path }} -->
-                <div id='{{ selected_ad_units[1].div_id }}' style='min-width: 336px; min-height: 280px; margin: 20px auto;'>
+                <!-- /22796784223/Netlink/goodluckark.com/banner_2 -->
+                <div id='div-gpt-ad-1762511986518-0' style='min-width: 300px; min-height: 250px; text-align:center; margin: 20px 0;'>
                   <script>
-                    googletag.cmd.push(function() { googletag.display('{{ selected_ad_units[1].div_id }}'); });
+                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1762511986518-0'); });
                   </script>
                 </div>
                 {%- endif %}
                 {%- if loop.index == ad_position_3 %}
-                <!-- {{ selected_ad_units[2].slot_path }} -->
-                <div id='{{ selected_ad_units[2].div_id }}' style='min-width: 336px; min-height: 280px; margin: 20px auto;'>
+                <!-- /22796784223/Netlink/goodluckark.com/banner_3 -->
+                <div id='div-gpt-ad-1762512008111-0' style='min-width: 300px; min-height: 250px; text-align:center; margin: 20px 0;'>
                   <script>
-                    googletag.cmd.push(function() { googletag.display('{{ selected_ad_units[2].div_id }}'); });
+                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1762512008111-0'); });
                   </script>
                 </div>
                 {%- endif %}
                 {%- if loop.index == ad_position_4 %}
-                <!-- {{ selected_ad_units[3].slot_path }} -->
-                <div id='{{ selected_ad_units[3].div_id }}' style='min-width: 336px; min-height: 280px; margin: 20px auto;'>
+                <!-- /22796784223/Netlink/goodluckark.com/banner_4 -->
+                <div id='div-gpt-ad-1762512031919-0' style='min-width: 300px; min-height: 250px; text-align:center; margin: 20px 0;'>
                   <script>
-                    googletag.cmd.push(function() { googletag.display('{{ selected_ad_units[3].div_id }}'); });
+                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1762512031919-0'); });
+                  </script>
+                </div>
+                {%- endif %}
+                {%- if loop.index == ad_position_5 %}
+                <!-- /22796784223/Netlink/goodluckark.com/banner_5 -->
+                <div id='div-gpt-ad-1762512054239-0' style='min-width: 300px; min-height: 250px; text-align:center; margin: 20px 0;'>
+                  <script>
+                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1762512054239-0'); });
                   </script>
                 </div>
                 {%- endif %}
