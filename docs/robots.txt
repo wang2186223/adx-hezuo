@@ -1,10 +1,45 @@
-User-agent: *
+# Allow Google AdX crawlers (for ad verification and contextual analysis)
+User-agent: Mediapartners-Google
 Allow: /
 
-# Allow all search engines to crawl the site
-Allow: /novels/
-Allow: /index.html
+User-agent: AdsBot-Google
+Allow: /
 
-# Disallow crawling of cache and temporary files
-Disallow: /novels-cache.json
-Disallow: /.git/
+User-agent: AdsBot-Google-Mobile
+Allow: /
+
+# Allow access to ads.txt for all crawlers
+User-agent: *
+Allow: /ads.txt
+
+# Block all search engine crawlers
+User-agent: Googlebot
+Disallow: /
+
+User-agent: Googlebot-Image
+Disallow: /
+
+User-agent: Googlebot-News
+Disallow: /
+
+User-agent: Bingbot
+Disallow: /
+
+User-agent: Slurp
+Disallow: /
+
+User-agent: DuckDuckBot
+Disallow: /
+
+User-agent: Baiduspider
+Disallow: /
+
+User-agent: YandexBot
+Disallow: /
+
+User-agent: Sogou
+Disallow: /
+
+# Block all other crawlers
+User-agent: *
+Disallow: /
