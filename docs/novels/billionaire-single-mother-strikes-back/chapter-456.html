@@ -981,13 +981,13 @@
       googletag.cmd.push(function() {
         // Define ad slots for the chapter page (randomly selected 4 out of 10)
         
-        googletag.defineSlot('/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner3', [336, 280], 'div-gpt-ad-1770286115260-0').addService(googletag.pubads());
+        googletag.defineSlot('/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner1', [336, 280], 'div-gpt-ad-1770286007007-0').addService(googletag.pubads());
         
         googletag.defineSlot('/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner2', [336, 280], 'div-gpt-ad-1770286092616-0').addService(googletag.pubads());
         
-        googletag.defineSlot('/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner1', [336, 280], 'div-gpt-ad-1770286007007-0').addService(googletag.pubads());
-        
         googletag.defineSlot('/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner4', [336, 280], 'div-gpt-ad-1770286143370-0').addService(googletag.pubads());
+        
+        googletag.defineSlot('/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner3', [336, 280], 'div-gpt-ad-1770286115260-0').addService(googletag.pubads());
         
         googletag.pubads().enableSingleRequest();
         googletag.enableServices();
@@ -2400,10 +2400,10 @@
                 <p>Takashi&#39;s screen went black instantly. When it brightened again, all he saw was his defeated Witch lying at the Dancer&#39;s feet.</p>
                 <p>Takashi had lost. Again.</p>
                 <p>The entire duel lasted less than sixty seconds. It was brutally fast.</p>
-                <!-- /23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner3 -->
-                <div id='div-gpt-ad-1770286115260-0' style='min-width: 336px; min-height: 280px;'>
+                <!-- /23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner1 -->
+                <div id='div-gpt-ad-1770286007007-0' style='min-width: 336px; min-height: 280px;'>
                   <script>
-                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1770286115260-0'); });
+                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1770286007007-0'); });
                   </script>
                 </div>
                 <p>The spectators were utterly speechless. A moment of stunned silence hung in the air before the crowd erupted.</p>
@@ -2422,10 +2422,10 @@
                 <p>[Hah! Now Takashi can&#39;t blame it on luck this time!]</p>
                 <p>[I strongly recommend he changes his ID to &#39;The Loser&#39;!]</p>
                 <p>Reading the flood of mocking comments, Takashi&#39;s face darkened with fury. He never imagined he would lose to Isabella a second time. And so humiliatingly fast.</p>
-                <!-- /23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner1 -->
-                <div id='div-gpt-ad-1770286007007-0' style='min-width: 336px; min-height: 280px;'>
+                <!-- /23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner4 -->
+                <div id='div-gpt-ad-1770286143370-0' style='min-width: 336px; min-height: 280px;'>
                   <script>
-                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1770286007007-0'); });
+                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1770286143370-0'); });
                   </script>
                 </div>
                 <p>He had never experienced such public shame in his entire life.</p>
@@ -2435,10 +2435,10 @@
                 <p>They drew their taser batons, blocking the exit, the weapons pointed directly at Isabella and Benjamin. Isabella&#39;s brow furrowed. “Breaking your promise so easily?”</p>
                 <p>“So what?” Takashi sneered coldly, his eyes filled with malice. “The end justifies the means. You humiliated me. You&#39;re the only one who can defeat me. Do you honestly believe I&#39;d let you leave my estate alive? How naive!”</p>
                 <p>With that, he pulled out a sharp, gleaming dagger.</p>
-                <!-- /23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner4 -->
-                <div id='div-gpt-ad-1770286143370-0' style='min-width: 336px; min-height: 280px;'>
+                <!-- /23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner3 -->
+                <div id='div-gpt-ad-1770286115260-0' style='min-width: 336px; min-height: 280px;'>
                   <script>
-                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1770286143370-0'); });
+                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1770286115260-0'); });
                   </script>
                 </div>
             </div>
@@ -4674,10 +4674,10 @@
                 // Key Point 1: Guide Trigger Mechanism
                 this.MIN_INITIAL_ADS = 1; // Minimum ads for first trigger (only used on very first visit)
                 this.MAX_INITIAL_ADS = 15; // Maximum ads for first trigger (only used on very first visit)
-                this.MIN_RANDOM_ADS = 30; // Minimum random ads for next trigger
-                this.MAX_RANDOM_ADS = 100; // Maximum random ads for next trigger
+                this.MIN_RANDOM_ADS = 20; // Minimum random ads for next trigger
+                this.MAX_RANDOM_ADS = 60; // Maximum random ads for next trigger
                 this.TRIGGER_PROBABILITY = 0.80; // 80% trigger probability
-                this.MAX_TRIGGERS_BEFORE_LONG_COOLDOWN = 3; // Enter long cooldown after 3 accumulated triggers
+                this.MAX_TRIGGERS_BEFORE_LONG_COOLDOWN = 5; // Enter long cooldown after 5 accumulated triggers
                 this.LONG_COOLDOWN_HOURS = 6; // Long cooldown 6 hours
                 this.INACTIVITY_RESET_MINUTES = 60; // Auto reset after 60 minutes of inactivity
                 

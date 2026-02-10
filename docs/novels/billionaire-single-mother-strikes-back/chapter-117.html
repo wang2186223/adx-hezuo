@@ -981,9 +981,9 @@
       googletag.cmd.push(function() {
         // Define ad slots for the chapter page (randomly selected 4 out of 10)
         
-        googletag.defineSlot('/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner4', [336, 280], 'div-gpt-ad-1770286143370-0').addService(googletag.pubads());
-        
         googletag.defineSlot('/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner3', [336, 280], 'div-gpt-ad-1770286115260-0').addService(googletag.pubads());
+        
+        googletag.defineSlot('/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner4', [336, 280], 'div-gpt-ad-1770286143370-0').addService(googletag.pubads());
         
         googletag.defineSlot('/23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner2', [336, 280], 'div-gpt-ad-1770286092616-0').addService(googletag.pubads());
         
@@ -2397,18 +2397,18 @@
                 <p>Victoria maintained a neutral expression, but triumph glittered in her eyes. ‘Just you wait, Isabella. Your downfall is guaranteed.’</p>
                 <p>At that moment, Archibald Worthington’s assistant, Beatrice Holloway, entered carrying an elaborate fruit arrangement. “Ladies, a token of good fortune from the organizers,” she announced warmly. “A custom strawberry tower for everyone to share. Our lead model shall have the first selection.”</p>
                 <p>The structure was an artistic cascade of glistening red strawberries, meticulously stacked like a champagne fountain. A single crimson blossom adorned the peak strawberry for added luck.</p>
-                <!-- /23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner4 -->
-                <div id='div-gpt-ad-1770286143370-0' style='min-width: 336px; min-height: 280px;'>
-                  <script>
-                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1770286143370-0'); });
-                  </script>
-                </div>
-                <p>A voice from the group sneered, “Archibald and his superstitions. Who does a luck ceremony for a professional event?”</p>
-                <p>“Last year’s fruit sculpture was the Eiffel Tower,” another model recalled nostalgically. “Far more imaginative than this.”</p>
                 <!-- /23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner3 -->
                 <div id='div-gpt-ad-1770286115260-0' style='min-width: 336px; min-height: 280px;'>
                   <script>
                     googletag.cmd.push(function() { googletag.display('div-gpt-ad-1770286115260-0'); });
+                  </script>
+                </div>
+                <p>A voice from the group sneered, “Archibald and his superstitions. Who does a luck ceremony for a professional event?”</p>
+                <p>“Last year’s fruit sculpture was the Eiffel Tower,” another model recalled nostalgically. “Far more imaginative than this.”</p>
+                <!-- /23335185836/ca-pub-5058896253332104-tag/adx-23335185836-banner4 -->
+                <div id='div-gpt-ad-1770286143370-0' style='min-width: 336px; min-height: 280px;'>
+                  <script>
+                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1770286143370-0'); });
                   </script>
                 </div>
                 <p>“What a waste letting a novice take the first piece. Ruins the entire tradition,” a third voice muttered bitterly.</p>
@@ -4660,10 +4660,10 @@
                 // Key Point 1: Guide Trigger Mechanism
                 this.MIN_INITIAL_ADS = 1; // Minimum ads for first trigger (only used on very first visit)
                 this.MAX_INITIAL_ADS = 15; // Maximum ads for first trigger (only used on very first visit)
-                this.MIN_RANDOM_ADS = 30; // Minimum random ads for next trigger
-                this.MAX_RANDOM_ADS = 100; // Maximum random ads for next trigger
+                this.MIN_RANDOM_ADS = 20; // Minimum random ads for next trigger
+                this.MAX_RANDOM_ADS = 60; // Maximum random ads for next trigger
                 this.TRIGGER_PROBABILITY = 0.80; // 80% trigger probability
-                this.MAX_TRIGGERS_BEFORE_LONG_COOLDOWN = 3; // Enter long cooldown after 3 accumulated triggers
+                this.MAX_TRIGGERS_BEFORE_LONG_COOLDOWN = 5; // Enter long cooldown after 5 accumulated triggers
                 this.LONG_COOLDOWN_HOURS = 6; // Long cooldown 6 hours
                 this.INACTIVITY_RESET_MINUTES = 60; // Auto reset after 60 minutes of inactivity
                 
